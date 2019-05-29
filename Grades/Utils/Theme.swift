@@ -10,16 +10,40 @@ import UIKit
 
 let themeKey = "SelectedTheme"
 
+enum FontWeight {
+    case light
+    case regular
+    case medium
+    case bold
+}
+
 enum Theme: Int {
     case dark
     
-    var fontName: String {
-        return "HelveticaNeue"
+    func font(style: FontStyle, size: CGFloat) -> UIFont {
+        let fontName = "HelveticaNeue"
+        return UIFont(name: fontName, style: style, size: size)
     }
     
     var titleFont: UIFont {
-        return UIFont(name: fontName, style: .bold, size: 30.0)
+        return font(style: .bold, size: 30.0)
     }
+    
+    var barStyle: UIBarStyle {
+        switch self {
+        case .dark:
+            return .black
+        }
+    }
+    
+    var statusBarStyle: UIStatusBarStyle {
+        switch self {
+        case .dark:
+            return .lightContent
+        }
+    }
+    
+    // Colors
     
     var accentColor: UIColor {
         switch self {
@@ -35,10 +59,10 @@ enum Theme: Int {
         }
     }
     
-    var lightBackgroundColor: UIColor {
+    var cardBackgroundColor: UIColor {
         switch self {
         case .dark:
-            return UIColor(hex: 0x333333)
+            return UIColor(hex: 0x2D2D2D)
         }
     }
     
@@ -98,18 +122,16 @@ enum Theme: Int {
         }
     }
     
-    var barStyle: UIBarStyle {
-        switch self {
-        case .dark:
-            return .black
-        }
+    var greenColor: UIColor {
+        return UIColor(hex: 0x1AB23D)
     }
     
-    var statusBarStyle: UIStatusBarStyle {
-        switch self {
-        case .dark:
-            return .lightContent
-        }
+    var redColor: UIColor {
+        return UIColor(hex: 0xB41111)
+    }
+    
+    var yellowColor: UIColor {
+        return UIColor(hex: 0xD8B627)
     }
 }
 

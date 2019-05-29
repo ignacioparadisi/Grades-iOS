@@ -15,6 +15,10 @@ extension UICollectionView {
         register(nib, forCellWithReuseIdentifier: T.reusableIdentifier)
     }
     
+    func register<T: UICollectionViewCell>(_: T.Type) where T: ReusableView {
+        register(T.self, forCellWithReuseIdentifier: T.reusableIdentifier)
+    }
+    
     /// Dequeue cell if C ollection View comforms ReusableView protocol
     func dequeueReusableCell<T: UICollectionViewCell>(for indexPath: IndexPath) -> T where T: ReusableView {
         guard let cell = dequeueReusableCell(withReuseIdentifier: T.reusableIdentifier, for: indexPath) as? T else {

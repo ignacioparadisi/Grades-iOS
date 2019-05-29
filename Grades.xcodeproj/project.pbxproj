@@ -27,6 +27,11 @@
 		4FF6F471227A17F8000F14D2 /* ScrollableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F470227A17F8000F14D2 /* ScrollableView.swift */; };
 		4FF6F473227A1F90000F14D2 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F472227A1F90000F14D2 /* UIFont+Extension.swift */; };
 		4FF6F475227A211D000F14D2 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F474227A211D000F14D2 /* String+Extension.swift */; };
+		4FF6F479227A2B94000F14D2 /* TermCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F477227A2B94000F14D2 /* TermCollectionViewCell.swift */; };
+		4FF6F47A227A2B94000F14D2 /* TermCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FF6F478227A2B94000F14D2 /* TermCollectionViewCell.xib */; };
+		4FF6F47F227A410B000F14D2 /* UICollectionViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F47E227A410B000F14D2 /* UICollectionViewCell+Extension.swift */; };
+		4FF6F481227A70AB000F14D2 /* SubjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F480227A70AB000F14D2 /* SubjectCollectionViewCell.swift */; };
+		4FF6F483227A72BE000F14D2 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F482227A72BE000F14D2 /* HeaderCollectionReusableView.swift */; };
 		B31F06935769A866DBA4BA86 /* Pods_Grades.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3331F2C02BBE33564DB3E91E /* Pods_Grades.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +60,11 @@
 		4FF6F470227A17F8000F14D2 /* ScrollableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableView.swift; sourceTree = "<group>"; };
 		4FF6F472227A1F90000F14D2 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		4FF6F474227A211D000F14D2 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		4FF6F477227A2B94000F14D2 /* TermCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermCollectionViewCell.swift; sourceTree = "<group>"; };
+		4FF6F478227A2B94000F14D2 /* TermCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermCollectionViewCell.xib; sourceTree = "<group>"; };
+		4FF6F47E227A410B000F14D2 /* UICollectionViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extension.swift"; sourceTree = "<group>"; };
+		4FF6F480227A70AB000F14D2 /* SubjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectCollectionViewCell.swift; sourceTree = "<group>"; };
+		4FF6F482227A72BE000F14D2 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		67446F864585CE8DCB9A795F /* Pods-Grades.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grades.debug.xcconfig"; path = "Target Support Files/Pods-Grades/Pods-Grades.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +167,7 @@
 		4FF6F44F227A0BBF000F14D2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4FF6F476227A2B47000F14D2 /* CollectionViewCells */,
 				4FF6F450227A0BBF000F14D2 /* IPViews */,
 			);
 			path = Views;
@@ -190,6 +201,7 @@
 				4FF6F46C227A15AF000F14D2 /* UITableView+Extension.swift */,
 				4FF6F472227A1F90000F14D2 /* UIFont+Extension.swift */,
 				4FF6F474227A211D000F14D2 /* String+Extension.swift */,
+				4FF6F47E227A410B000F14D2 /* UICollectionViewCell+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -210,6 +222,25 @@
 				4FF6F470227A17F8000F14D2 /* ScrollableView.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		4FF6F476227A2B47000F14D2 /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				4FF6F47B227A2B98000F14D2 /* TermCollectionViewCell */,
+				4FF6F480227A70AB000F14D2 /* SubjectCollectionViewCell.swift */,
+				4FF6F482227A72BE000F14D2 /* HeaderCollectionReusableView.swift */,
+			);
+			path = CollectionViewCells;
+			sourceTree = "<group>";
+		};
+		4FF6F47B227A2B98000F14D2 /* TermCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				4FF6F477227A2B94000F14D2 /* TermCollectionViewCell.swift */,
+				4FF6F478227A2B94000F14D2 /* TermCollectionViewCell.xib */,
+			);
+			path = TermCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		93A718D2B2158A500C743908 /* Pods */ = {
@@ -283,6 +314,7 @@
 			files = (
 				4FF6F42A227A04B8000F14D2 /* LaunchScreen.storyboard in Resources */,
 				4FF6F427227A04B8000F14D2 /* Assets.xcassets in Resources */,
+				4FF6F47A227A2B94000F14D2 /* TermCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,8 +378,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FF6F481227A70AB000F14D2 /* SubjectCollectionViewCell.swift in Sources */,
 				4FF6F45C227A0CA4000F14D2 /* Images+Enum.swift in Sources */,
 				4FF6F45E227A1074000F14D2 /* Theme.swift in Sources */,
+				4FF6F47F227A410B000F14D2 /* UICollectionViewCell+Extension.swift in Sources */,
 				4FF6F44C227A0BAE000F14D2 /* CalendarViewController.swift in Sources */,
 				4FF6F469227A1585000F14D2 /* ReusableView.swift in Sources */,
 				4FF6F460227A10F7000F14D2 /* UIColor+Extension.swift in Sources */,
@@ -356,6 +390,8 @@
 				4FF6F44B227A0BAE000F14D2 /* GradesViewController.swift in Sources */,
 				4FF6F44D227A0BAE000F14D2 /* MainTabBarController.swift in Sources */,
 				4FF6F452227A0BBF000F14D2 /* TitleLabel.swift in Sources */,
+				4FF6F483227A72BE000F14D2 /* HeaderCollectionReusableView.swift in Sources */,
+				4FF6F479227A2B94000F14D2 /* TermCollectionViewCell.swift in Sources */,
 				4FF6F475227A211D000F14D2 /* String+Extension.swift in Sources */,
 				4FF6F473227A1F90000F14D2 /* UIFont+Extension.swift in Sources */,
 				4FF6F46D227A15AF000F14D2 /* UITableView+Extension.swift in Sources */,

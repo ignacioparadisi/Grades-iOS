@@ -10,9 +10,65 @@ import UIKit
 
 class GradesViewController: BaseViewController {
     
+    var collectionView: UICollectionView!
+    var layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+    private var indexOfCellBeforeDragging = 0
+    
     override func setupNavigationBar() {
         super.setupNavigationBar()
-        title = "Grades".localized
+        title = "Terms".localized
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+        navigationItem.rightBarButtonItem = addButton
+    }
+    
+    override func setupView() {
+        super.setupView()
+        setupCollectionView()
+    }
+    
+    func setupCollectionView() {
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 80
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 40, bottom: 20, right: 40)
+        
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = .clear
+        collectionView.isPagingEnabled = true
+        collectionView.collectionViewLayout = layout
+        
+        view.addSubview(collectionView)
+        collectionView.anchor.edgesToSuperview(toSafeArea: true).activate()
+        collectionView.register(TermCollectionViewCell.self)
     }
 
+}
+
+extension GradesViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(for: indexPath) as TermCollectionViewCell
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width - 80, height: collectionView.frame.height - 40)
+    }
+    
+//    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+//        let cell = collectionView.cellForItem(at: indexPath) as! TermCollectionViewCell
+//        cell.shrink(down: true)
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+//        let cell = collectionView.cellForItem(at: indexPath) as! TermCollectionViewCell
+//        cell.shrink(down: false)
+//    }
+    
 }
