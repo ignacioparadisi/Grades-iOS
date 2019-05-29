@@ -44,12 +44,16 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
     private func initialize() {
         backgroundColor = .clear
         
-        addSubview(termNameLabel)
+        let nameLabelContainer = UIView()
+        nameLabelContainer.backgroundColor = .clear
+        addSubview(nameLabelContainer)
+        nameLabelContainer.addSubview(termNameLabel)
+        
         termNameLabel.anchor
-            .top(to: topAnchor, constant: 20)
-            .leading(to: leadingAnchor, constant: 16)
-            .trailing(to: trailingAnchor, constant: -16)
-            .centerX(to: centerXAnchor)
+            .leading(to: nameLabelContainer.leadingAnchor, constant: 16)
+            .trailing(to: nameLabelContainer.trailingAnchor, constant: -16)
+            .centerX(to: nameLabelContainer.centerXAnchor)
+            .centerY(to: nameLabelContainer.centerYAnchor)
             .activate()
 
         let qualificationContainer = UIView()
@@ -67,6 +71,13 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
         qualificationLabel.anchor
             .centerX(to: qualificationContainer.centerXAnchor)
             .centerY(to: qualificationContainer.centerYAnchor)
+            .activate()
+        
+        nameLabelContainer.anchor
+            .top(to: topAnchor, constant: 20)
+            .leading(to: leadingAnchor)
+            .trailing(to: trailingAnchor)
+            .bottom(to: qualificationContainer.topAnchor, constant: -20)
             .activate()
     }
     

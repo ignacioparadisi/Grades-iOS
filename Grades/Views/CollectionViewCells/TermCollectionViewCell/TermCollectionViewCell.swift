@@ -48,7 +48,7 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadableVie
         self.layer.masksToBounds = false
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
         
-        let layout = UICollectionViewFlowLayout()
+        let layout = StretchyHeaderLayout()
         layout.scrollDirection = .vertical
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = self
@@ -72,7 +72,7 @@ extension UICollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSo
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCollectionReusableView", for: indexPath) as! HeaderCollectionReusableView
-        header.configureWith(qualification: 9)
+        header.configureWith(qualification: 20)
         return header
     }
     
@@ -83,7 +83,7 @@ extension UICollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSo
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(for: indexPath) as SubjectCollectionViewCell
-        cell.backgroundColor = .black
+        cell.backgroundColor = .clear
         return cell
     }
     

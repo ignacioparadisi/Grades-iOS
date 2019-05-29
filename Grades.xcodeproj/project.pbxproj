@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4FCEA14C229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */; };
 		4FF6F420227A04B6000F14D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F41F227A04B6000F14D2 /* AppDelegate.swift */; };
 		4FF6F427227A04B8000F14D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FF6F426227A04B8000F14D2 /* Assets.xcassets */; };
 		4FF6F42A227A04B8000F14D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF6F428227A04B8000F14D2 /* LaunchScreen.storyboard */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		07275EA9DE87859383BBC4AA /* Pods-Grades.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grades.release.xcconfig"; path = "Target Support Files/Pods-Grades/Pods-Grades.release.xcconfig"; sourceTree = "<group>"; };
 		3331F2C02BBE33564DB3E91E /* Pods_Grades.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grades.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyHeaderLayout.swift; sourceTree = "<group>"; };
 		4FF6F41C227A04B6000F14D2 /* Grades.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grades.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FF6F41F227A04B6000F14D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FF6F426227A04B8000F14D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			children = (
 				4FF6F476227A2B47000F14D2 /* CollectionViewCells */,
 				4FF6F450227A0BBF000F14D2 /* IPViews */,
+				4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				4FF6F46F227A15BE000F14D2 /* UICollectionView+Extension.swift in Sources */,
 				4FF6F44B227A0BAE000F14D2 /* GradesViewController.swift in Sources */,
 				4FF6F44D227A0BAE000F14D2 /* MainTabBarController.swift in Sources */,
+				4FCEA14C229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift in Sources */,
 				4FF6F452227A0BBF000F14D2 /* TitleLabel.swift in Sources */,
 				4FF6F483227A72BE000F14D2 /* HeaderCollectionReusableView.swift in Sources */,
 				4FF6F479227A2B94000F14D2 /* TermCollectionViewCell.swift in Sources */,
