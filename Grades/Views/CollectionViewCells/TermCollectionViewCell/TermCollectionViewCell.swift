@@ -86,7 +86,6 @@ extension UICollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSo
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(for: indexPath) as SubjectCollectionViewCell
-        cell.backgroundColor = .gray
         return cell
     }
     
