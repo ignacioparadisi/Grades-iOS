@@ -80,9 +80,9 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
             .bottom(to: qualificationContainer.topAnchor, constant: -20)
             .activate()
         
-        layer.shadowRadius = 5
-        layer.shadowOffset = CGSize(width: 0, height: 2)
-        layer.shadowOpacity = 0.6
+        layer.shadowRadius = 6
+        layer.shadowOffset = CGSize(width: 0, height: 5)
+        layer.shadowOpacity = 0.30
     }
     
     override func draw(_ rect: CGRect) {

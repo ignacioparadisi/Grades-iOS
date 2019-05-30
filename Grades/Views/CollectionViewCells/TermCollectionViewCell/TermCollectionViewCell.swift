@@ -54,7 +54,7 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadableVie
         collectionView.dataSource = self
         collectionView.backgroundColor = .clear
         collectionView.layer.cornerRadius = 10
-        collectionView.scrollIndicatorInsets = UIEdgeInsets(top: frame.height * 0.3 + 16, left: 0, bottom: 0, right: 0)
+        collectionView.scrollIndicatorInsets = UIEdgeInsets(top: frame.height * 0.3 + 16, left: 0, bottom: 16, right: 0)
         addSubview(collectionView)
         collectionView.anchor.edgesToSuperview().activate()
         
@@ -67,7 +67,7 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadableVie
 extension UICollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+        return 6
     }
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
