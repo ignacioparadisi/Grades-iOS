@@ -11,7 +11,6 @@ import UIKit
 class GradesViewController: BaseViewController {
     
     var collectionView: UICollectionView!
-    var layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     private var indexOfCellBeforeDragging = 0
     
     override func setupNavigationBar() {
@@ -28,6 +27,7 @@ class GradesViewController: BaseViewController {
     }
     
     func setupCollectionView() {
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 80
         layout.sectionInset = UIEdgeInsets(top: 20, left: 40, bottom: 20, right: 40)
@@ -37,7 +37,7 @@ class GradesViewController: BaseViewController {
         collectionView.dataSource = self
         collectionView.backgroundColor = .clear
         collectionView.isPagingEnabled = true
-        collectionView.collectionViewLayout = layout
+        // collectionView.collectionViewLayout = layout
         
         view.addSubview(collectionView)
         collectionView.anchor.edgesToSuperview(toSafeArea: true).activate()
@@ -65,7 +65,7 @@ extension GradesViewController: UICollectionViewDelegate, UICollectionViewDelega
 //        let cell = collectionView.cellForItem(at: indexPath) as! TermCollectionViewCell
 //        cell.shrink(down: true)
 //    }
-//    
+//
 //    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
 //        let cell = collectionView.cellForItem(at: indexPath) as! TermCollectionViewCell
 //        cell.shrink(down: false)

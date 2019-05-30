@@ -79,6 +79,10 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
             .trailing(to: trailingAnchor)
             .bottom(to: qualificationContainer.topAnchor, constant: -20)
             .activate()
+        
+        layer.shadowRadius = 5
+        layer.shadowOffset = CGSize(width: 0, height: 2)
+        layer.shadowOpacity = 0.6
     }
     
     override func draw(_ rect: CGRect) {
@@ -127,4 +131,5 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
             path.fill()
         }
     }
+    
 }

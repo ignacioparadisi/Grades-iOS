@@ -41,12 +41,11 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadableVie
         backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
         layer.cornerRadius = 10
         
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize(width: 5, height: 5)
-        self.layer.shadowRadius = 10.0
-        self.layer.shadowOpacity = 1
+        self.layer.shadowOffset = .zero
+        self.layer.shadowRadius = 10
+        self.layer.shadowOpacity = 0.6
         self.layer.masksToBounds = false
-        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
+//        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
         
         let layout = StretchyHeaderLayout()
         layout.scrollDirection = .vertical
@@ -55,6 +54,7 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadableVie
         collectionView.dataSource = self
         collectionView.backgroundColor = .clear
         collectionView.layer.cornerRadius = 10
+        collectionView.scrollIndicatorInsets = UIEdgeInsets(top: frame.height * 0.3 + 16, left: 0, bottom: 0, right: 0)
         addSubview(collectionView)
         collectionView.anchor.edgesToSuperview().activate()
         
@@ -71,9 +71,12 @@ extension UICollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCollectionReusableView", for: indexPath) as! HeaderCollectionReusableView
-        header.configureWith(qualification: 20)
-        return header
+        if kind == UICollectionView.elementKindSectionHeader {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCollectionReusableView", for: indexPath) as! HeaderCollectionReusableView
+            header.configureWith(qualification: 20)
+            return header
+        }
+        fatalError("Header missing")
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -83,12 +86,16 @@ extension UICollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSo
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(for: indexPath) as SubjectCollectionViewCell
-        cell.backgroundColor = .clear
+        cell.backgroundColor = .gray
         return cell
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 50)
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
     }
 
 }
