@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UICollectionViewCell {
+extension UIView {
     
     func shrink(down: Bool) {
         UIView.animate(withDuration: 0.3) {

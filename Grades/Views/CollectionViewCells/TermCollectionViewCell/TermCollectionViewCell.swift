@@ -68,7 +68,7 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadableVie
     }
     
     private func fetchSubjects() {
-        subjects = RealmManager.shared.getArray(ofType: Subject.self, filter: "term.id = '\(term.id)'") as! [Subject]
+        subjects = RealmManager.shared.getArray(ofType: Subject.self, filter: "term.id == '\(term.id)'") as! [Subject]
         collectionView.reloadData()
     }
 

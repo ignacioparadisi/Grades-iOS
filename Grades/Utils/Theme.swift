@@ -97,7 +97,7 @@ enum Theme: Int {
     var placeholderColor: UIColor {
         switch self {
         case .dark:
-            return .lightGray
+            return UIColor(hex: 0xABADAD)
         }
     }
     

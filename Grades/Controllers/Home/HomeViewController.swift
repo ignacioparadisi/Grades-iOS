@@ -23,7 +23,7 @@ class HomeViewController: BaseViewController, ScrollableView {
         super.setupView()
         addScrollView()
         
-        let notificationsLabel = TitleLabel()
+        let notificationsLabel = IPTitleLabel()
         notificationsLabel.textColor = ThemeManager.currentTheme.textColor
         notificationsLabel.text = "Notifications".localized
         

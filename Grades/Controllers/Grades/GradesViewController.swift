@@ -16,9 +16,9 @@ class GradesViewController: BaseViewController {
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
-        title = "Terms".localized
+        navigationItem.title = "Terms"
         
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddTerm))
         navigationItem.rightBarButtonItem = addButton
     }
     
@@ -39,7 +39,6 @@ class GradesViewController: BaseViewController {
         collectionView.dataSource = self
         collectionView.backgroundColor = .clear
         collectionView.isPagingEnabled = true
-        // collectionView.collectionViewLayout = layout
         
         view.addSubview(collectionView)
         collectionView.anchor.edgesToSuperview(toSafeArea: true).activate()
@@ -49,6 +48,11 @@ class GradesViewController: BaseViewController {
     private func fetchTerms() {
         terms = RealmManager.shared.getArray(ofType: Term.self) as! [Term]
         collectionView.reloadData()
+    }
+    
+    @objc private func goToAddTerm() {
+        let viewController = AddTermViewController()
+        present(UINavigationController(rootViewController: viewController), animated: true)
     }
 
 }

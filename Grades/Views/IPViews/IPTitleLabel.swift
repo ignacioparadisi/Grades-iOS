@@ -8,25 +8,37 @@
 
 import UIKit
 
-class TitleLabel: UILabel {
+class IPTitleLabel: UILabel {
 
+    private var wasInitialized = false
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        initialize()
+        if !wasInitialized {
+            initialize()
+            wasInitialized = true
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        initialize()
+        if !wasInitialized {
+            initialize()
+            wasInitialized = true
+        }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        initialize()
+        if !wasInitialized {
+            initialize()
+            wasInitialized = true
+        }
     }
     
     private func initialize() {
         font = ThemeManager.currentTheme.titleFont
+        textColor = ThemeManager.currentTheme.textColor
     }
     
 }
