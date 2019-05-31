@@ -12,6 +12,12 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadableVie
     
     var collectionView: UICollectionView!
     var isInitialized: Bool = false
+    var term: Term = Term() {
+        didSet {
+            fetchSubjects()
+        }
+    }
+    var subjects: [Subject] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,7 +51,6 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadableVie
         self.layer.shadowRadius = 10
         self.layer.shadowOpacity = 0.6
         self.layer.masksToBounds = false
-//        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
         
         let layout = StretchyHeaderLayout()
         layout.scrollDirection = .vertical
@@ -61,19 +66,24 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadableVie
         collectionView.register(SubjectCollectionViewCell.self)
         collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderCollectionReusableView")
     }
+    
+    private func fetchSubjects() {
+        subjects = RealmManager.shared.getArray(ofType: Subject.self, filter: "term.id = '\(term.id)'") as! [Subject]
+        collectionView.reloadData()
+    }
 
 }
 
-extension UICollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension TermCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return subjects.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCollectionReusableView", for: indexPath) as! HeaderCollectionReusableView
-            header.configureWith(qualification: 20)
+            header.configureWith(term: term)
             return header
         }
         fatalError("Header missing")
@@ -85,12 +95,14 @@ extension UICollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let item = indexPath.item
         let cell = collectionView.dequeueReusableCell(for: indexPath) as SubjectCollectionViewCell
+        cell.configureWith(subject: subjects[item])
         return cell
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 50)
+        return CGSize(width: collectionView.frame.width, height: 60)
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

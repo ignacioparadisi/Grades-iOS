@@ -12,6 +12,7 @@ class GradesViewController: BaseViewController {
     
     var collectionView: UICollectionView!
     private var indexOfCellBeforeDragging = 0
+    private var terms: [Term] = []
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
@@ -24,6 +25,7 @@ class GradesViewController: BaseViewController {
     override func setupView() {
         super.setupView()
         setupCollectionView()
+        fetchTerms()
     }
     
     func setupCollectionView() {
@@ -43,17 +45,24 @@ class GradesViewController: BaseViewController {
         collectionView.anchor.edgesToSuperview(toSafeArea: true).activate()
         collectionView.register(TermCollectionViewCell.self)
     }
+    
+    private func fetchTerms() {
+        terms = RealmManager.shared.getArray(ofType: Term.self) as! [Term]
+        collectionView.reloadData()
+    }
 
 }
 
 extension GradesViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return terms.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let item = indexPath.item
         let cell = collectionView.dequeueReusableCell(for: indexPath) as TermCollectionViewCell
+        cell.term = terms[item]
         return cell
     }
     

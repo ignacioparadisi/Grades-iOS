@@ -16,8 +16,8 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
         let label = UILabel()
         label.textColor = ThemeManager.currentTheme.textColor
         label.font = ThemeManager.currentTheme.font(style: .medium, size: 25)
+        label.numberOfLines = 0
         label.textAlignment = .center
-        label.text = "Term Name"
         return label
     }()
     let qualificationLabel: UILabel = {
@@ -29,7 +29,7 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
         return label
     }()
     
-    var qualification: Float = 0;
+    var term: Term = Term();
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -109,17 +109,18 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
         fill()
     }
     
-    public func configureWith(qualification: Float) {
+    public func configureWith(term: Term) {
        
-        self.qualification = qualification
-        qualificationLabel.text = "\(Int(qualification.rounded()))"
+        self.term = term
+        termNameLabel.text = term.name
+        qualificationLabel.text = "\(Int(term.qualification.rounded()))"
         draw(frame)
         
     }
     
     private func fill() {
         // fill the path
-        let roundedQualification = qualification.rounded()
+        let roundedQualification = term.qualification.rounded()
         if roundedQualification <= 20, roundedQualification > 15 {
             ThemeManager.currentTheme.greenColor.set()
             path.fill()

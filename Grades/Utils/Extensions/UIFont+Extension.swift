@@ -9,16 +9,16 @@
 import UIKit
 
 enum FontStyle: String {
-    case light = "Light"
-    case regular = "Regular"
-    case medium = "Medium"
-    case bold = "Bold"
+    case light = "-Light"
+    case regular = ""
+    case medium = "-Medium"
+    case bold = "-Bold"
 }
 
 extension UIFont {
     
     convenience init(name: String, style: FontStyle, size: CGFloat) {
-        self.init(name: name + "-\(style.rawValue)", size: size)!
+        self.init(name: name + "\(style.rawValue)", size: size)!
     }
     
 }

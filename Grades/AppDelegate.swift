@@ -8,6 +8,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Apply current theme before showing the window
         ThemeManager.applayTheme(ThemeManager.currentTheme)
         window?.makeKeyAndVisible()
+        
         return true
     }
 
