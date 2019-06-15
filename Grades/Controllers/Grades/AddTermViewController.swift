@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol AddTermViewControllerDelegate: class {
+    func shouldRefresh()
+}
+
 class AddTermViewController: BaseViewController, ScrollableView {
     
     let titleTopConstant: CGFloat = 20.0
@@ -15,6 +19,8 @@ class AddTermViewController: BaseViewController, ScrollableView {
     let fieldTopConstant: CGFloat = 10.0
     let trailingConstant: CGFloat = -16.0
     let leadingConstant: CGFloat = 16.0
+    
+    weak var delegate: AddTermViewControllerDelegate?
     var contentView: UIView = UIView()
     let nameTextField = IPTextField()
     let addButton = IPButton()
@@ -28,12 +34,29 @@ class AddTermViewController: BaseViewController, ScrollableView {
         textField.keyboardType = .decimalPad
         return textField
     }()
+    let startDateButton: IPButton = {
+        let button = IPButton()
+        button.titleLabel?.font = ThemeManager.currentTheme.font(style: .regular, size: 17.0)
+        // button.setTitleColor(ThemeManager.currentTheme.placeholderColor, for: .normal)
+        button.color = ThemeManager.currentTheme.cardBackgroundColor
+        button.highlightDarknessPercentage = 4
+        return button
+    }()
+    let endDateButton: IPButton = {
+        let button = IPButton()
+        button.titleLabel?.font = ThemeManager.currentTheme.font(style: .regular, size: 17.0)
+        // button.setTitleColor(ThemeManager.currentTheme.placeholderColor, for: .normal)
+        button.color = ThemeManager.currentTheme.cardBackgroundColor
+        button.highlightDarknessPercentage = 4
+        return button
+    }()
     
     override func setupView() {
         super.setupView()
         addScrollView()
         setupNameSection()
         setupQualificationsSection()
+        setupDuration()
         setupSaveButton()
     }
     
@@ -55,6 +78,7 @@ class AddTermViewController: BaseViewController, ScrollableView {
         nameTitleLabel.text = "Name".localized
         nameDescriptionLabel.text = "Enter a name for the term".localized
         nameTextField.placeholder = "Term name".localized
+        nameTextField.delegate = self
         
         contentView.addSubview(nameTitleLabel)
         contentView.addSubview(nameDescriptionLabel)
@@ -79,15 +103,17 @@ class AddTermViewController: BaseViewController, ScrollableView {
     
     private func setupQualificationsSection() {
         let qualificationsLabel = IPTitleLabel()
-        let qualificationDescription = IPLabel()
+        let qualificationDescriptionLabel = IPLabel()
         
         qualificationsLabel.text = "Qualifications".localized
-        qualificationDescription.text = "Enter max and min qualification to pass".localized
+        qualificationDescriptionLabel.text = "Enter max and min qualification to pass".localized
         maxQualificationTextField.placeholder = "Max. Qualification".localized
         minQualificationTextField.placeholder = "Min. Qualification".localized
+        maxQualificationTextField.delegate = self
+        minQualificationTextField.delegate = self
         
         contentView.addSubview(qualificationsLabel)
-        contentView.addSubview(qualificationDescription)
+        contentView.addSubview(qualificationDescriptionLabel)
         contentView.addSubview(minQualificationTextField)
         contentView.addSubview(maxQualificationTextField)
         
@@ -96,37 +122,125 @@ class AddTermViewController: BaseViewController, ScrollableView {
             .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
             .leading(to: contentView.leadingAnchor, constant: leadingConstant)
             .activate()
-        qualificationDescription.anchor
+        qualificationDescriptionLabel.anchor
             .top(to: qualificationsLabel.bottomAnchor, constant: descriptionTopConstant)
             .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
             .leading(to: contentView.leadingAnchor, constant: leadingConstant)
             .activate()
         minQualificationTextField.anchor
-            .top(to: qualificationDescription.bottomAnchor, constant: fieldTopConstant)
+            .top(to: qualificationDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
             .trailing(to: contentView.centerXAnchor, constant: trailingConstant / 2)
             .leading(to: contentView.leadingAnchor, constant: leadingConstant)
             .activate()
         maxQualificationTextField.anchor
-            .top(to: qualificationDescription.bottomAnchor, constant: fieldTopConstant)
+            .top(to: qualificationDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
             .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
             .leading(to: contentView.centerXAnchor, constant: leadingConstant / 2)
             .activate()
+    }
+    
+    private func setupDuration() {
+        let durationTitleLabel = IPTitleLabel()
+        let durationDescriptionLabel = IPLabel()
+        
+        durationTitleLabel.text = "Duration"
+        durationDescriptionLabel.text = "Enter the duration of the term"
+        startDateButton.setTitle("From", for: .normal)
+        endDateButton.setTitle("To", for: .normal)
+        
+        contentView.addSubview(durationTitleLabel)
+        contentView.addSubview(durationDescriptionLabel)
+        contentView.addSubview(startDateButton)
+        contentView.addSubview(endDateButton)
+        
+        durationTitleLabel.anchor
+            .top(to: minQualificationTextField.bottomAnchor, constant: titleTopConstant)
+            .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
+            .leading(to: contentView.leadingAnchor, constant: leadingConstant)
+            .activate()
+        durationDescriptionLabel.anchor
+            .top(to: durationTitleLabel.bottomAnchor, constant: descriptionTopConstant)
+            .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
+            .leading(to: contentView.leadingAnchor, constant: leadingConstant)
+            .activate()
+        startDateButton.anchor
+            .top(to: durationDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
+            .trailing(to: contentView.centerXAnchor, constant: trailingConstant / 2)
+            .leading(to: contentView.leadingAnchor, constant: leadingConstant)
+            .activate()
+        endDateButton.anchor
+            .top(to: durationDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
+            .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
+            .leading(to: contentView.centerXAnchor, constant: leadingConstant / 2)
+            .activate()
+        
     }
     
     private func setupSaveButton() {
         addButton.setTitle("Save".localized, for: .normal)
         addButton.addTarget(self, action: #selector(createTerm), for: .touchUpInside)
         addButton.color = ThemeManager.currentTheme.accentColor
+        addButton.isEnabled = false
         contentView.addSubview(addButton)
         addButton.anchor
             .bottom(to: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -20)
             .trailing(to: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -16)
             .leading(to: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 16)
             .activate()
+        let topConstraint = addButton.topAnchor.constraint(greaterThanOrEqualTo: startDateButton.bottomAnchor, constant: 20)
+        topConstraint.isActive = true
+    }
+    
+    private func checkRequiredFields() {
+        if nameTextField.isEmpty || minQualificationTextField.isEmpty
+            || maxQualificationTextField.isEmpty {
+            addButton.isEnabled = false
+            return
+        }
+        addButton.isEnabled = true
     }
     
     @objc private func createTerm() {
-        dismissView()
+        if let name = nameTextField.text, let minQualificationText = minQualificationTextField.text,
+            let maxQualificationText = maxQualificationTextField.text,
+            let minQualification = Float(minQualificationText),
+            let maxQualification = Float(maxQualificationText) {
+            
+            let term = Term()
+            term.name = name
+            term.minQualification = minQualification
+            term.maxQualification = maxQualification
+            // RealmManager.shared.add(term)
+            dismissView()
+            delegate?.shouldRefresh()
+        }
+        
+        
     }
 
+}
+
+extension AddTermViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case nameTextField:
+            _ = nameTextField.resignFirstResponder()
+            _ = minQualificationTextField.becomeFirstResponder()
+        case minQualificationTextField:
+            _ = minQualificationTextField.resignFirstResponder()
+            _ = maxQualificationTextField.becomeFirstResponder()
+        default:
+            return true
+        }
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        checkRequiredFields()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        checkRequiredFields()
+    }
 }

@@ -12,7 +12,15 @@ class GradesViewController: BaseViewController {
     
     var collectionView: UICollectionView!
     private var indexOfCellBeforeDragging = 0
-    private var terms: [Term] = []
+    private var terms: [Term] = [
+        Term(name: "Semestre 1", qualification: 0, maxQualification: 20, minQualification: 10),
+        Term(name: "Semestre 2", qualification: 15, maxQualification: 20, minQualification: 10),
+        Term(name: "Semestre 3", qualification: 17, maxQualification: 20, minQualification: 10),
+        Term(name: "Semestre 4", qualification: 20, maxQualification: 20, minQualification: 10),
+        Term(name: "Semestre 5", qualification: 6, maxQualification: 20, minQualification: 10),
+        Term(name: "Semestre 6", qualification: 12, maxQualification: 20, minQualification: 10),
+        Term(name: "Semestre 7", qualification: 10, maxQualification: 20, minQualification: 10)
+    ]
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
@@ -46,12 +54,13 @@ class GradesViewController: BaseViewController {
     }
     
     private func fetchTerms() {
-        terms = RealmManager.shared.getArray(ofType: Term.self) as! [Term]
+        // terms = RealmManager.shared.getArray(ofType: Term.self) as! [Term]
         collectionView.reloadData()
     }
     
     @objc private func goToAddTerm() {
         let viewController = AddTermViewController()
+        viewController.delegate = self
         present(UINavigationController(rootViewController: viewController), animated: true)
     }
 
@@ -66,6 +75,8 @@ extension GradesViewController: UICollectionViewDelegate, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = indexPath.item
         let cell = collectionView.dequeueReusableCell(for: indexPath) as TermCollectionViewCell
+        cell.delegate = self
+        cell.tag = item
         cell.term = terms[item]
         return cell
     }
@@ -74,14 +85,26 @@ extension GradesViewController: UICollectionViewDelegate, UICollectionViewDelega
         return CGSize(width: collectionView.frame.width - 80, height: collectionView.frame.height - 40)
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-//        let cell = collectionView.cellForItem(at: indexPath) as! TermCollectionViewCell
-//        cell.shrink(down: true)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
-//        let cell = collectionView.cellForItem(at: indexPath) as! TermCollectionViewCell
-//        cell.shrink(down: false)
-//    }
+}
+
+extension GradesViewController: AddTermViewControllerDelegate {
     
+    func shouldRefresh() {
+        fetchTerms()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            let indexPath = IndexPath(item: self.terms.count - 1, section: 0)
+            self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
+    }
+    
+}
+
+extension GradesViewController: TermCollectionViewCellDelegate {
+    
+    func goToTermDetail(item: Int) {
+        let term = terms[item]
+        let viewController = TermDetailViewController()
+        viewController.term = term
+        present(viewController, animated: true)
+    }
 }

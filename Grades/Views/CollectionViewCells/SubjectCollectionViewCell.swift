@@ -29,7 +29,7 @@ class SubjectCollectionViewCell: UICollectionViewCell, ReusableView {
         return label
     }()
     private let graphContainer = UIView()
-    var subject: Subject = Subject()
+    var subject: Subject = Subject(name: "Calculo", qualification: 10, maxQualification: 20, minQualification: 10)// Subject()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,12 +45,12 @@ class SubjectCollectionViewCell: UICollectionViewCell, ReusableView {
         bottomLine.backgroundColor = UIColor(hex: 0x707070)
         addSubview(bottomLine)
         bottomLine.anchor
-            .trailing(to: trailingAnchor)
+            .trailing(to: trailingAnchor, constant: -16)
             .bottom(to: bottomAnchor)
             .leading(to: leadingAnchor, constant: 16)
             .height(constant: 1)
             .activate()
-        
+
         addSubview(nameLabel)
         nameLabel.anchor
             .top(to: topAnchor)
@@ -79,10 +79,10 @@ class SubjectCollectionViewCell: UICollectionViewCell, ReusableView {
             .centerY(to: graphContainer.centerYAnchor)
             .activate()
         
-        center = CGPoint(x: circleRadius, y: circleRadius)
+        let circleCenter = CGPoint(x: circleRadius, y: circleRadius)
         
         let backgroundShapeLayer = CAShapeLayer()
-        let backgroundCircularPath = UIBezierPath(arcCenter: center, radius: circleRadius, startAngle: circleStartAngle, endAngle: circleEndAngle, clockwise: true)
+        let backgroundCircularPath = UIBezierPath(arcCenter: circleCenter, radius: circleRadius, startAngle: circleStartAngle, endAngle: circleEndAngle, clockwise: true)
         backgroundShapeLayer.path = backgroundCircularPath.cgPath
         backgroundShapeLayer.fillColor = UIColor.clear.cgColor
         backgroundShapeLayer.strokeColor = UIColor(hex: 0x707070).cgColor
@@ -95,10 +95,10 @@ class SubjectCollectionViewCell: UICollectionViewCell, ReusableView {
         nameLabel.text = subject.name
         qualificationLabel.text = "\(Int(subject.qualification.rounded()))"
         
-        center = CGPoint(x: circleRadius, y: circleRadius)
+        let circleCenter = CGPoint(x: circleRadius, y: circleRadius)
         
         let shapeLayer = CAShapeLayer()
-        let circularPath = UIBezierPath(arcCenter: center, radius: circleRadius, startAngle: circleStartAngle, endAngle: circleStartAngle + constantAngle * CGFloat(subject.qualification / subject.maxQualification), clockwise: true)
+        let circularPath = UIBezierPath(arcCenter: circleCenter, radius: circleRadius, startAngle: circleStartAngle, endAngle: circleStartAngle + constantAngle * CGFloat(subject.qualification / subject.maxQualification), clockwise: true)
         shapeLayer.path = circularPath.cgPath
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeColor = ThemeManager.currentTheme.greenColor.cgColor

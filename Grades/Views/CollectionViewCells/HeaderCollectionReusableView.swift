@@ -10,7 +10,6 @@ import UIKit
 
 class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
     
-    let path = UIBezierPath()
     let qualificationContainerDiameter: CGFloat = 60
     let termNameLabel: UILabel = {
         let label = UILabel()
@@ -95,34 +94,32 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
         let bottomRightCorner = CGPoint(x: topRightCorner.x, y: topRightCorner.y + height)
         let bottomCenter = CGPoint(x: size.width / 2, y: size.height)
         let bottomLeftCorner = CGPoint(x: topLeftCorner.x, y: height)
+        
+        let path = UIBezierPath()
 
         // create the path
         path.move(to: topLeftCorner)
         path.addLine(to: topRightCorner)
         path.addLine(to: bottomRightCorner)
         path.addLine(to: bottomCenter)
-//        path.addLine(to: bottomRightCenter)
-//        path.addArc(withCenter: CGPoint(x: size.width / 2, y: size.height - 10), radius: 10, startAngle: CGFloat.pi / 3, endAngle: (2/3)*CGFloat.pi, clockwise: true)
-//        path.addLine(to: bottomLeftCenter)
         path.addLine(to: bottomLeftCorner)
         path.close()
-        fill()
+        
+        fill(path)
     }
     
     public func configureWith(term: Term) {
-       
         self.term = term
         termNameLabel.text = term.name
         qualificationLabel.text = "\(Int(term.qualification.rounded()))"
-        draw(frame)
-        
+        setNeedsDisplay()
     }
     
-    private func fill() {
+    private func fill(_ path: UIBezierPath) {
         // fill the path
         let roundedQualification = term.qualification.rounded()
         if roundedQualification <= 20, roundedQualification > 15 {
-            ThemeManager.currentTheme.greenColor.set()
+             ThemeManager.currentTheme.greenColor.set()
             path.fill()
         } else if roundedQualification <= 15, roundedQualification > 9 {
             ThemeManager.currentTheme.yellowColor.set()

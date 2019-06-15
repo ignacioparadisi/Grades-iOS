@@ -12,6 +12,7 @@ class IPButton: UIButton {
     
     private var wasInitialized = false
     private let padding = UIEdgeInsets(top: 15, left: 10, bottom: 15, right: 10)
+    var highlightDarknessPercentage: CGFloat = 10
     var color: UIColor? {
         didSet {
             backgroundColor = color
@@ -20,9 +21,14 @@ class IPButton: UIButton {
     override var isHighlighted: Bool {
         didSet {
             UIView.animate(withDuration: 0.3) {
-                self.backgroundColor = self.isHighlighted ? self.color?.darker() : self.color
+                self.backgroundColor = self.isHighlighted ? self.color?.darker(by: self.highlightDarknessPercentage) : self.color
             }
             shrink(down: isHighlighted)
+        }
+    }
+    override var isEnabled: Bool {
+        didSet {
+            self.backgroundColor = self.isEnabled ? self.color : ThemeManager.currentTheme.disabledButtonBackgroundColor
         }
     }
     
@@ -53,6 +59,7 @@ class IPButton: UIButton {
     private func initialize() {
         layer.cornerRadius = 10.0
         setTitleColor(ThemeManager.currentTheme.textColor, for: .normal)
+        setTitleColor(ThemeManager.currentTheme.disabledButtonTextColor, for: .disabled)
         titleLabel?.font = ThemeManager.currentTheme.font(style: .medium, size: 20)
         contentEdgeInsets = padding
     }

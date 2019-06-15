@@ -11,14 +11,15 @@ import UIKit
 class StretchyHeaderLayout: UICollectionViewFlowLayout {
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        var layoutAttributes = super.layoutAttributesForElements(in: rect)
+        guard var layoutAttributes = super.layoutAttributesForElements(in: rect) else { return [] }
         
-        let attrs = layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: 0))
-        if !layoutAttributes!.contains(attrs!) {
-            layoutAttributes?.append(attrs!)
+        guard let attrs = layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: 0)) else { return [] }
+        
+        if !layoutAttributes.contains(attrs) {
+            layoutAttributes.append(attrs)
         }
         
-        layoutAttributes?.forEach({ (attributes) in
+        layoutAttributes.forEach({ (attributes) in
             if attributes.representedElementKind == UICollectionView.elementKindSectionHeader {
                 
                 guard let collectionView = collectionView else { return }

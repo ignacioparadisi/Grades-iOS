@@ -17,6 +17,9 @@ class IPTextField: UITextField {
             setPlaceholder(placeholder)
         }
     }
+    var isEmpty: Bool {
+        return text?.isEmpty ?? true
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

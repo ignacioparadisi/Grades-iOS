@@ -37,7 +37,7 @@ class IPTitleLabel: UILabel {
     }
     
     private func initialize() {
-        font = ThemeManager.currentTheme.titleFont
+        font = ThemeManager.currentTheme.font(style: .bold, size: 28.0)
         textColor = ThemeManager.currentTheme.textColor
     }
     
