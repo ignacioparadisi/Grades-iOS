@@ -21,4 +21,6 @@ protocol Service {
     func fetchSubjects(for term: Term) -> [Subject]
     
     func createTerm(_ term: Term)
+    
+    func createSubject(_ subject: Subject)
 }

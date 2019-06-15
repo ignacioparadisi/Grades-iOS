@@ -26,4 +26,6 @@ class TestDataService: Service {
     
     func createTerm(_ term: Term) {
     }
+    
+    func createSubject(_ subject: Subject) {}
 }

@@ -1,14 +1,14 @@
 //
-//  SubjectCollectionViewCell.swift
+//  SubjectCardCollectionViewCell.swift
 //  Grades
 //
-//  Created by Ignacio Paradisi on 6/15/19.
+//  Created by Ignacio Paradisi on 5/1/19.
 //  Copyright © 2019 Ignacio Paradisi. All rights reserved.
 //
 
 import UIKit
 
-class SubjectCollectionViewCell: UICollectionViewCell, ReusableView {
+class SubjectCardCollectionViewCell: UICollectionViewCell, ReusableView {
     
     /// The start angle of the qualification graph
     private let circleStartAngle: CGFloat = 5/6 * CGFloat.pi
@@ -22,7 +22,7 @@ class SubjectCollectionViewCell: UICollectionViewCell, ReusableView {
     private let margin: CGFloat = 16
     /// Label for the subject's name
     private let nameLabel: UILabel = {
-        let label = UILabel()
+       let label = UILabel()
         label.font = ThemeManager.currentTheme.font(style: .regular, size: 17)
         label.textColor = ThemeManager.currentTheme.textColor
         label.text = "Subject Name"
@@ -37,7 +37,6 @@ class SubjectCollectionViewCell: UICollectionViewCell, ReusableView {
     }()
     /// Clear view that contains the graph
     private let graphContainer = UIView()
-    private let containerView = UIView()
     /// Subjects to be displayed
     var subject: Subject = Subject()
     
@@ -53,37 +52,37 @@ class SubjectCollectionViewCell: UICollectionViewCell, ReusableView {
     
     /// Adds all the components to the view
     private func initialize() {
-        setupContainerView()
-        containerView.addSubview(nameLabel)
+        let bottomLine = UIView()
+        bottomLine.backgroundColor = UIColor(hex: 0x707070)
+        addSubview(bottomLine)
+        bottomLine.anchor
+            .trailing(to: trailingAnchor, constant: -margin)
+            .bottom(to: bottomAnchor)
+            .leading(to: leadingAnchor, constant: margin)
+            .height(constant: 1)
+            .activate()
+
+        addSubview(nameLabel)
         nameLabel.anchor
-            .leading(to: containerView.leadingAnchor, constant: margin)
-            .centerY(to: containerView.centerYAnchor)
+            .top(to: topAnchor)
+            .leading(to: leadingAnchor, constant: margin)
+            .bottom(to: bottomAnchor, constant: -10)
+            .centerY(to: centerYAnchor)
             .activate()
         
         drawCircle()
-    }
-    
-    private func setupContainerView() {
-        containerView.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
-        containerView.layer.cornerRadius = 10
-        containerView.layer.masksToBounds = false
-        
-        addSubview(containerView)
-        containerView.anchor
-            .edgesToSuperview(insets: UIEdgeInsets(top: 0, left: 16, bottom: -8, right: -16))
-            .activate()
     }
     
     
     /// Draws the semi-circle of the graph that is in the back
     private func drawCircle() {
         graphContainer.backgroundColor = .clear
-        containerView.addSubview(graphContainer)
+        addSubview(graphContainer)
         graphContainer.anchor
             .height(constant: circleRadius * 2)
             .width(constant: circleRadius * 2)
-            .trailing(to: containerView.trailingAnchor, constant: -margin)
-            .centerY(to: containerView.centerYAnchor, constant: 5)
+            .trailing(to: trailingAnchor, constant: -margin)
+            .centerY(to: centerYAnchor)
             .activate()
         
         
@@ -137,5 +136,4 @@ class SubjectCollectionViewCell: UICollectionViewCell, ReusableView {
             subject.shouldDraw = false
         }
     }
-    
 }

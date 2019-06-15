@@ -68,7 +68,7 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
         contentView.addSubview(collectionView)
         collectionView.anchor.edgesToSuperview().activate()
         
-        collectionView.register(SubjectCollectionViewCell.self)
+        collectionView.register(SubjectCardCollectionViewCell.self)
         collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderCollectionReusableView")
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(goToTermDetail(gestureRecognizer:)))
@@ -132,7 +132,7 @@ extension TermCollectionViewCell: UICollectionViewDelegate, UICollectionViewData
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = indexPath.item
-        let cell = collectionView.dequeueReusableCell(for: indexPath) as SubjectCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(for: indexPath) as SubjectCardCollectionViewCell
         cell.configureWith(subject: term.subjects[item])
         return cell
     }

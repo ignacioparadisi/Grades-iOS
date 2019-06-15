@@ -1,5 +1,5 @@
 //
-//  AddTermViewController.swift
+//  CreateTermViewController.swift
 //  Grades
 //
 //  Created by Ignacio Paradisi on 5/31/19.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol AddTermViewControllerDelegate: class {
-    func shouldRefresh()
+protocol CreateTermViewControllerDelegate: class {
+    func didCreateTerm()
 }
 
-class AddTermViewController: BaseViewController, ScrollableView {
+class CreateTermViewController: BaseViewController, ScrollableView {
     
     let titleTopConstant: CGFloat = 20.0
     let descriptionTopConstant: CGFloat = 5.0
@@ -20,7 +20,7 @@ class AddTermViewController: BaseViewController, ScrollableView {
     let trailingConstant: CGFloat = -16.0
     let leadingConstant: CGFloat = 16.0
     
-    weak var delegate: AddTermViewControllerDelegate?
+    weak var delegate: CreateTermViewControllerDelegate?
     var contentView: UIView = UIView()
     let nameTextField = IPTextField()
     let addButton = IPButton()
@@ -213,7 +213,7 @@ class AddTermViewController: BaseViewController, ScrollableView {
             
             ServiceFactory.createService(.realm).createTerm(term)
             dismissView()
-            delegate?.shouldRefresh()
+            delegate?.didCreateTerm()
         }
         
         
@@ -221,7 +221,7 @@ class AddTermViewController: BaseViewController, ScrollableView {
 
 }
 
-extension AddTermViewController: UITextFieldDelegate {
+extension CreateTermViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case nameTextField:

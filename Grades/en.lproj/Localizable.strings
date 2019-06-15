@@ -24,6 +24,11 @@
 "Max. Qualification" = "Max. Qualification";
 "Min. Qualification" = "Min. Qualification";
 
+// Subjects
+"Add Subject" = "Add Subjct";
+"Enter a name for the subject" = "Enter a name for the subject";
+"Subject name" = "Subject name";
+
 // General
 "Name" = "Name";
 "Cancel" = "Cancel";

@@ -8,15 +8,10 @@
 
 import UIKit
 
-protocol TermDetailCollectionViewHeaderDelegate: class {
-    func dismissView()
-}
-
 class TermDetailCollectionViewHeader: UICollectionReusableView, ReusableView {
     
     let qualificationContainerDiameter: CGFloat = 80.0
     let minMaxQualificationContainerDiameter: CGFloat = 60.0
-    weak var delegate: TermDetailCollectionViewHeaderDelegate?
     let qualificationLabel = IPTitleLabel()
     let minQualificationLabel = IPLabel()
     let maxQualificationLabel = IPLabel()
@@ -103,10 +98,6 @@ class TermDetailCollectionViewHeader: UICollectionReusableView, ReusableView {
         maxQualificationLabel.text = "\(qualificationable.maxQualification)"
         
         backgroundColor = UIColor.getColor(for: qualificationable)
-    }
-    
-    @objc private func dismissView() {
-        delegate?.dismissView()
     }
 
 }

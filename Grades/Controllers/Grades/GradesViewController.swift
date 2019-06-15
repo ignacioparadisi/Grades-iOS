@@ -18,7 +18,7 @@ class GradesViewController: BaseViewController {
         super.setupNavigationBar()
         navigationItem.title = "Terms"
         
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddTerm))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateTerm))
         navigationItem.rightBarButtonItem = addButton
     }
     
@@ -56,8 +56,8 @@ class GradesViewController: BaseViewController {
         }
     }
     
-    @objc private func goToAddTerm() {
-        let viewController = AddTermViewController()
+    @objc private func goToCreateTerm() {
+        let viewController = CreateTermViewController()
         viewController.delegate = self
         present(UINavigationController(rootViewController: viewController), animated: true)
     }
@@ -89,9 +89,9 @@ extension GradesViewController: UICollectionViewDelegate, UICollectionViewDelega
     
 }
 
-extension GradesViewController: AddTermViewControllerDelegate {
+extension GradesViewController: CreateTermViewControllerDelegate {
     
-    func shouldRefresh() {
+    func didCreateTerm() {
         fetchTerms()
     }
     

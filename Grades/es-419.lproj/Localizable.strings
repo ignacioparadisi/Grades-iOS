@@ -24,6 +24,11 @@
 "Max. Qualification" = "Calificación máxima";
 "Min. Qualification" = "Calificación mínima";
 
+// Subjects
+"Add Subject" = "Agregar Materia";
+"Enter a name for the subject" = "Ingresa un nombre para la materia";
+"Subject name" = "Nombre de la materia";
+
 // General
 "Name" = "Nombre";
 "Cancel" = "Cancelar";

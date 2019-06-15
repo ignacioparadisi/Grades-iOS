@@ -32,11 +32,15 @@ class RealmService: Service {
     ///
     /// - Returns: Stored subjects in the database
     func fetchSubjects(for term: Term) -> [Subject] {
-        let subjects = RealmManager.shared.getArray(ofType: Subject.self, filter: "term.id == 'term.id'") as! [Subject]
+        let subjects = RealmManager.shared.getArray(ofType: Subject.self, filter: "term.id == '\(term.id)'") as! [Subject]
         return subjects
     }
     
     func createTerm(_ term: Term) {
         RealmManager.shared.create(term)
+    }
+    
+    func createSubject(_ subject: Subject) {
+        RealmManager.shared.create(subject)
     }
 }

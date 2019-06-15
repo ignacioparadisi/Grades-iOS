@@ -12,6 +12,7 @@ class TermDetailViewController: BaseViewController {
     
     var collectionView: UICollectionView!
     var term: Term = Term()
+    var subjects: [Subject] = []
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
@@ -35,10 +36,21 @@ class TermDetailViewController: BaseViewController {
             .activate()
         collectionView.register(SubjectCollectionViewCell.self)
         collectionView.register(TermDetailCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TermDetailCollectionViewHeader")
+        
+        fetchSubjects()
     }
     
     @objc private func goToCreateSubject() {
-        // TODO: Implement code
+        let viewController = CreateSubjectViewController()
+        viewController.delegate = self
+        viewController.term = term
+        present(UINavigationController(rootViewController: viewController), animated: true)
+    }
+    
+    private func fetchSubjects() {
+        subjects = ServiceFactory.createService(.realm).fetchSubjects(for: term)
+        term.subjects = subjects
+        collectionView.reloadData()
     }
 
 }
@@ -46,18 +58,19 @@ class TermDetailViewController: BaseViewController {
 extension TermDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return subjects.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let index = indexPath.item
         let cell = collectionView.dequeueReusableCell(for: indexPath) as SubjectCollectionViewCell
+        cell.configureWith(subject: subjects[index])
         return cell
     }
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "TermDetailCollectionViewHeader", for: indexPath) as! TermDetailCollectionViewHeader
-            header.delegate = self
             header.configureWith(term)
             return header
         }
@@ -70,7 +83,7 @@ extension TermDetailViewController: UICollectionViewDataSource, UICollectionView
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 100)
+        return CGSize(width: collectionView.frame.width, height: 80)
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -79,9 +92,8 @@ extension TermDetailViewController: UICollectionViewDataSource, UICollectionView
     
 }
 
-extension TermDetailViewController: TermDetailCollectionViewHeaderDelegate {
-    
-    func dismissView() {
-        dismiss(animated: true)
+extension TermDetailViewController: CreateSubjectViewControllerDelegate {
+    func didCreateSubject() {
+        fetchSubjects()
     }
 }
