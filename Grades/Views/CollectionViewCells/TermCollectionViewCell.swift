@@ -8,16 +8,34 @@
 
 import UIKit
 
-class TermCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadableView {
+protocol TermCollectionViewCellDelegate: class {
+    func goToTermDetail(item: Int)
+}
+
+class TermCollectionViewCell: UICollectionViewCell, ReusableView {
     
+    weak var delegate: TermCollectionViewCellDelegate?
     var collectionView: UICollectionView!
     var isInitialized: Bool = false
-    var term: Term = Term() {
+    var term: Term = Term()  {
+//        didSet {
+//            if subjects.isEmpty {
+//                fetchSubjects()
+//            }
+//        }
         didSet {
-            fetchSubjects()
+            collectionView.reloadData()
+            collectionView.collectionViewLayout.invalidateLayout()
         }
     }
-    var subjects: [Subject] = []
+    var subjects: [Subject] = [
+        Subject(name: "Calculo", qualification: 10, maxQualification: 20, minQualification: 10),
+        Subject(name: "Calculo", qualification: 10, maxQualification: 20, minQualification: 10),
+        Subject(name: "Calculo", qualification: 10, maxQualification: 20, minQualification: 10),
+        Subject(name: "Calculo", qualification: 10, maxQualification: 20, minQualification: 10),
+        Subject(name: "Calculo", qualification: 10, maxQualification: 20, minQualification: 10),
+        Subject(name: "Calculo", qualification: 10, maxQualification: 20, minQualification: 10)
+    ]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,8 +70,9 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadableVie
         self.layer.shadowOpacity = 0.6
         self.layer.masksToBounds = false
         
-        let layout = StretchyHeaderLayout()
+        let layout = UICollectionViewFlowLayout() // StretchyHeaderLayout()
         layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: frame.width, height: 60)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -64,11 +83,24 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadableVie
         collectionView.anchor.edgesToSuperview().activate()
         
         collectionView.register(SubjectCollectionViewCell.self)
-        collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderCollectionReusableView")
+         collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderCollectionReusableView")
+        // TODO: Verificar si esto está bien
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hola(gestureRecognizer:)))
+        collectionView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc private func hola(gestureRecognizer: UIGestureRecognizer) {
+        switch gestureRecognizer.state {
+        case .ended:
+            delegate?.goToTermDetail(item: tag)
+        default:
+            break
+        }
+        
     }
     
     private func fetchSubjects() {
-        subjects = RealmManager.shared.getArray(ofType: Subject.self, filter: "term.id == '\(term.id)'") as! [Subject]
+        // subjects = RealmManager.shared.getArray(ofType: Subject.self, filter: "term.id == '\(term.id)'") as! [Subject]
         collectionView.reloadData()
     }
 
@@ -101,12 +133,8 @@ extension TermCollectionViewCell: UICollectionViewDelegate, UICollectionViewData
         return cell
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 60)
-    }
-    
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
+        return UIEdgeInsets(top: 30, left: 0, bottom: 16, right: 0)
     }
 
 }
