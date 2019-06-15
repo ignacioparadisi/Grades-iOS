@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TermDetailCollectionViewHeader: UICollectionReusableView, ReusableView {
+class DetailCollectionViewHeader: UICollectionReusableView, ReusableView {
     
     let qualificationContainerDiameter: CGFloat = 80.0
     let minMaxQualificationContainerDiameter: CGFloat = 60.0
@@ -93,9 +93,9 @@ class TermDetailCollectionViewHeader: UICollectionReusableView, ReusableView {
     }
     
     func configureWith(_ qualificationable: Qualificationable) {
-        qualificationLabel.text = "\(qualificationable.qualification)"
-        minQualificationLabel.text = "\(qualificationable.minQualification)"
-        maxQualificationLabel.text = "\(qualificationable.maxQualification)"
+        qualificationLabel.text = "\(Int(qualificationable.qualification.rounded()))"
+        minQualificationLabel.text = "\(Int(qualificationable.minQualification.rounded()))"
+        maxQualificationLabel.text = "\(Int(qualificationable.maxQualification.rounded()))"
         
         backgroundColor = UIColor.getColor(for: qualificationable)
     }

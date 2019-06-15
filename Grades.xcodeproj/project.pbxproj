@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F09643B22B5800C00D72277 /* SubjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643A22B5800C00D72277 /* SubjectCollectionViewCell.swift */; };
 		4F09643D22B583B700D72277 /* CreateSubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */; };
+		4F09643F22B588FA00D72277 /* SubjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */; };
 		4F66289A22A145AF001F2CD9 /* IPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F66289922A145AF001F2CD9 /* IPTextField.swift */; };
 		4F66289C22A1462D001F2CD9 /* CreateTermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F66289B22A1462D001F2CD9 /* CreateTermViewController.swift */; };
 		4F66289E22A14874001F2CD9 /* IPLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F66289D22A14874001F2CD9 /* IPLabel.swift */; };
@@ -16,7 +17,7 @@
 		4F7EE95B22A18C6500E34672 /* IPButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EE95A22A18C6500E34672 /* IPButton.swift */; };
 		4F7EE96322A1914300E34672 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F7EE96522A1914300E34672 /* Localizable.strings */; };
 		4F7EE96A22A1D6D700E34672 /* TermDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EE96922A1D6D700E34672 /* TermDetailViewController.swift */; };
-		4F7EE96C22A1DD5A00E34672 /* TermDetailCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EE96B22A1DD5A00E34672 /* TermDetailCollectionViewHeader.swift */; };
+		4F7EE96C22A1DD5A00E34672 /* DetailCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EE96B22A1DD5A00E34672 /* DetailCollectionViewHeader.swift */; };
 		4FCEA14C229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */; };
 		4FDC23E022A0C09E0088FF3C /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDC23DF22A0C09E0088FF3C /* Term.swift */; };
 		4FDC23E322A0C2E30088FF3C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDC23E222A0C2E30088FF3C /* RealmManager.swift */; };
@@ -59,6 +60,7 @@
 		3331F2C02BBE33564DB3E91E /* Pods_Grades.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grades.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F09643A22B5800C00D72277 /* SubjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectCollectionViewCell.swift; sourceTree = "<group>"; };
 		4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubjectViewController.swift; sourceTree = "<group>"; };
+		4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectDetailViewController.swift; sourceTree = "<group>"; };
 		4F66289922A145AF001F2CD9 /* IPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPTextField.swift; sourceTree = "<group>"; };
 		4F66289B22A1462D001F2CD9 /* CreateTermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTermViewController.swift; sourceTree = "<group>"; };
 		4F66289D22A14874001F2CD9 /* IPLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPLabel.swift; sourceTree = "<group>"; };
@@ -68,7 +70,7 @@
 		4F7EE96422A1914300E34672 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4F7EE96622A1914800E34672 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4F7EE96922A1D6D700E34672 /* TermDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDetailViewController.swift; sourceTree = "<group>"; };
-		4F7EE96B22A1DD5A00E34672 /* TermDetailCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDetailCollectionViewHeader.swift; sourceTree = "<group>"; };
+		4F7EE96B22A1DD5A00E34672 /* DetailCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewHeader.swift; sourceTree = "<group>"; };
 		4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyHeaderLayout.swift; sourceTree = "<group>"; };
 		4FDC23DF22A0C09E0088FF3C /* Term.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
 		4FDC23E222A0C2E30088FF3C /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				4F66289B22A1462D001F2CD9 /* CreateTermViewController.swift */,
 				4F7EE96922A1D6D700E34672 /* TermDetailViewController.swift */,
 				4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */,
+				4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */,
 			);
 			path = Grades;
 			sourceTree = "<group>";
@@ -304,7 +307,7 @@
 				4FF6F477227A2B94000F14D2 /* TermCollectionViewCell.swift */,
 				4FF6F480227A70AB000F14D2 /* SubjectCardCollectionViewCell.swift */,
 				4FF6F482227A72BE000F14D2 /* HeaderCollectionReusableView.swift */,
-				4F7EE96B22A1DD5A00E34672 /* TermDetailCollectionViewHeader.swift */,
+				4F7EE96B22A1DD5A00E34672 /* DetailCollectionViewHeader.swift */,
 				4F09643A22B5800C00D72277 /* SubjectCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
@@ -484,7 +487,8 @@
 				4FE7BD0622B520C300EB9590 /* ServiceFactory.swift in Sources */,
 				4F7EE95B22A18C6500E34672 /* IPButton.swift in Sources */,
 				4F7EE96A22A1D6D700E34672 /* TermDetailViewController.swift in Sources */,
-				4F7EE96C22A1DD5A00E34672 /* TermDetailCollectionViewHeader.swift in Sources */,
+				4F09643F22B588FA00D72277 /* SubjectDetailViewController.swift in Sources */,
+				4F7EE96C22A1DD5A00E34672 /* DetailCollectionViewHeader.swift in Sources */,
 				4FF6F44A227A0BAE000F14D2 /* HomeViewController.swift in Sources */,
 				4FE7BD0422B51FF700EB9590 /* TestDataService.swift in Sources */,
 			);

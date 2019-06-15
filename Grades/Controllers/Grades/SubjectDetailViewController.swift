@@ -1,26 +1,25 @@
 //
-//  TermDetailViewController.swift
+//  SubjectDetailViewController.swift
 //  Grades
 //
-//  Created by Ignacio Paradisi on 5/31/19.
+//  Created by Ignacio Paradisi on 6/15/19.
 //  Copyright © 2019 Ignacio Paradisi. All rights reserved.
 //
 
 import UIKit
 
-class TermDetailViewController: BaseViewController {
-    
+class SubjectDetailViewController: BaseViewController {
+
     var collectionView: UICollectionView!
-    var term: Term = Term()
-    var subjects: [Subject] = []
+    var subject: Subject = Subject()
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
-        title = term.name
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateSubject))
+        title = subject.name
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateAssignment))
         navigationItem.rightBarButtonItem = addButton
     }
-
+    
     override func setupView() {
         super.setupView()
         
@@ -37,49 +36,32 @@ class TermDetailViewController: BaseViewController {
         collectionView.register(SubjectCollectionViewCell.self)
         collectionView.register(DetailCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailCollectionViewHeader")
         
-        fetchSubjects()
+        fetchAssignments()
     }
     
-    @objc private func goToCreateSubject() {
-        let viewController = CreateSubjectViewController()
-        viewController.delegate = self
-        viewController.term = term
-        present(UINavigationController(rootViewController: viewController), animated: true)
+    @objc private func goToCreateAssignment() {
     }
     
-    private func fetchSubjects() {
-        subjects = ServiceFactory.createService(.realm).fetchSubjects(for: term)
-        term.subjects = subjects
-        collectionView.reloadData()
+    private func fetchAssignments() {
     }
 
 }
 
-extension TermDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension SubjectDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return subjects.count
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let index = indexPath.item
         let cell = collectionView.dequeueReusableCell(for: indexPath) as SubjectCollectionViewCell
-        cell.configureWith(subject: subjects[index])
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let index = indexPath.item
-        let subject = subjects[index]
-        let viewController = SubjectDetailViewController()
-        viewController.subject = subject
-        navigationController?.pushViewController(viewController, animated: true)
     }
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "DetailCollectionViewHeader", for: indexPath) as! DetailCollectionViewHeader
-            header.configureWith(term)
+            header.configureWith(subject)
             return header
         }
         fatalError("Header missing")
@@ -98,10 +80,4 @@ extension TermDetailViewController: UICollectionViewDataSource, UICollectionView
         return UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
     }
     
-}
-
-extension TermDetailViewController: CreateSubjectViewControllerDelegate {
-    func didCreateSubject() {
-        fetchSubjects()
-    }
 }
