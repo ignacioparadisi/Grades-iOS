@@ -18,24 +18,10 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
     var collectionView: UICollectionView!
     var isInitialized: Bool = false
     var term: Term = Term()  {
-//        didSet {
-//            if subjects.isEmpty {
-//                fetchSubjects()
-//            }
-//        }
         didSet {
-            collectionView.reloadData()
-            collectionView.collectionViewLayout.invalidateLayout()
+            refreshTable()
         }
     }
-    var subjects: [Subject] = [
-        Subject(name: "Calculo", qualification: 10, maxQualification: 20, minQualification: 10),
-        Subject(name: "Calculo", qualification: 10, maxQualification: 20, minQualification: 10),
-        Subject(name: "Calculo", qualification: 10, maxQualification: 20, minQualification: 10),
-        Subject(name: "Calculo", qualification: 10, maxQualification: 20, minQualification: 10),
-        Subject(name: "Calculo", qualification: 10, maxQualification: 20, minQualification: 10),
-        Subject(name: "Calculo", qualification: 10, maxQualification: 20, minQualification: 10)
-    ]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,7 +56,7 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
         self.layer.shadowOpacity = 0.6
         self.layer.masksToBounds = false
         
-        let layout = UICollectionViewFlowLayout() // StretchyHeaderLayout()
+        let layout = StretchyHeaderLayout()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: frame.width, height: 60)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -79,17 +65,28 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
         collectionView.backgroundColor = .clear
         collectionView.layer.cornerRadius = 10
         collectionView.scrollIndicatorInsets = UIEdgeInsets(top: frame.height * 0.3 + 16, left: 0, bottom: 16, right: 0)
-        addSubview(collectionView)
+        contentView.addSubview(collectionView)
         collectionView.anchor.edgesToSuperview().activate()
         
         collectionView.register(SubjectCollectionViewCell.self)
-         collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderCollectionReusableView")
-        // TODO: Verificar si esto está bien
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hola(gestureRecognizer:)))
-        collectionView.addGestureRecognizer(tapGestureRecognizer)
+        collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderCollectionReusableView")
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(goToTermDetail(gestureRecognizer:)))
+        addGestureRecognizer(tapGesture)
     }
     
-    @objc private func hola(gestureRecognizer: UIGestureRecognizer) {
+    private func addSubjectView() {
+        let label = UILabel()
+        label.text = "This term has no subjects"
+        label.textColor = ThemeManager.currentTheme.placeholderColor
+        
+        addSubview(label)
+        label.anchor
+            .centerToSuperview()
+            .activate()
+    }
+    
+    @objc private func goToTermDetail(gestureRecognizer: UIGestureRecognizer) {
         switch gestureRecognizer.state {
         case .ended:
             delegate?.goToTermDetail(item: tag)
@@ -99,9 +96,16 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
         
     }
     
-    private func fetchSubjects() {
-        // subjects = RealmManager.shared.getArray(ofType: Subject.self, filter: "term.id == '\(term.id)'") as! [Subject]
+    @objc private func goToAddSubject() {
+        print("Add subject button tapped")
+    }
+    
+    private func refreshTable() {
+        if term.subjects.isEmpty {
+            addSubjectView()
+        }
         collectionView.reloadData()
+        collectionView.collectionViewLayout.invalidateLayout()
     }
 
 }
@@ -109,7 +113,7 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
 extension TermCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return subjects.count
+        return term.subjects.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -129,7 +133,7 @@ extension TermCollectionViewCell: UICollectionViewDelegate, UICollectionViewData
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = indexPath.item
         let cell = collectionView.dequeueReusableCell(for: indexPath) as SubjectCollectionViewCell
-        cell.configureWith(subject: subjects[item])
+        cell.configureWith(subject: term.subjects[item])
         return cell
     }
     

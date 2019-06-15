@@ -116,18 +116,9 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
     }
     
     private func fill(_ path: UIBezierPath) {
-        // fill the path
-        let roundedQualification = term.qualification.rounded()
-        if roundedQualification <= 20, roundedQualification > 15 {
-             ThemeManager.currentTheme.greenColor.set()
-            path.fill()
-        } else if roundedQualification <= 15, roundedQualification > 9 {
-            ThemeManager.currentTheme.yellowColor.set()
-            path.fill()
-        } else {
-            ThemeManager.currentTheme.redColor.set()
-            path.fill()
-        }
+        let fillColor = UIColor.getColor(for: term)
+        fillColor.set()
+        path.fill()
     }
     
 }

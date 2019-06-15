@@ -17,6 +17,18 @@ extension UIColor {
         self.init(red: (hex >> 16) & 0xFF, green: (hex >> 8) & 0xFF, blue: hex & 0xFF)
     }
     
+    static func getColor(for qualificationable: Qualificationable) -> UIColor {
+        let roundedQualification = qualificationable.qualification.rounded()
+        let minGreenQualification = qualificationable.maxQualification - ((qualificationable.maxQualification - qualificationable.minQualification) / 3)
+        if roundedQualification <= qualificationable.maxQualification, roundedQualification >= minGreenQualification {
+            return ThemeManager.currentTheme.greenColor
+        } else if roundedQualification < minGreenQualification, roundedQualification >= qualificationable.minQualification {
+            return ThemeManager.currentTheme.yellowColor
+        } else {
+            return ThemeManager.currentTheme.redColor
+        }
+    }
+    
     func darker(by percentage: CGFloat = 10.0) -> UIColor? {
         return self.adjust(by: -1 * abs(percentage) )
     }

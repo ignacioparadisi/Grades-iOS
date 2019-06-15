@@ -210,7 +210,8 @@ class AddTermViewController: BaseViewController, ScrollableView {
             term.name = name
             term.minQualification = minQualification
             term.maxQualification = maxQualification
-            // RealmManager.shared.add(term)
+            
+            ServiceFactory.createService(.realm).createTerm(term)
             dismissView()
             delegate?.shouldRefresh()
         }

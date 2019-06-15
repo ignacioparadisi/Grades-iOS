@@ -16,12 +16,14 @@ class TermDetailViewController: BaseViewController {
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = term.name
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateSubject))
+        navigationItem.rightBarButtonItem = addButton
     }
 
     override func setupView() {
         super.setupView()
         
-        let layout = StretchyHeaderLayout()
+        let layout = FixedHeaderLayout()
         layout.scrollDirection = .vertical
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = self
@@ -29,16 +31,15 @@ class TermDetailViewController: BaseViewController {
         collectionView.backgroundColor = .clear
         view.addSubview(collectionView)
         collectionView.anchor
-            .edgesToSuperview()
-//            .topToSuperview(toSafeArea: true)
-//            .trailingToSuperview()
-//            .bottomToSuperview()
-//            .leadingToSuperview()
+            .edgesToSuperview(toSafeArea: true)
             .activate()
         collectionView.register(SubjectCollectionViewCell.self)
         collectionView.register(TermDetailCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TermDetailCollectionViewHeader")
     }
     
+    @objc private func goToCreateSubject() {
+        // TODO: Implement code
+    }
 
 }
 
@@ -56,8 +57,8 @@ extension TermDetailViewController: UICollectionViewDataSource, UICollectionView
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "TermDetailCollectionViewHeader", for: indexPath) as! TermDetailCollectionViewHeader
-            // header.configureWith(term: term)
             header.delegate = self
+            header.configureWith(term)
             return header
         }
         fatalError("Header missing")
