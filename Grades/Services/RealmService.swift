@@ -36,11 +36,42 @@ class RealmService: Service {
         return subjects
     }
     
+    func fetchAssignments(for subject: Subject) -> [Assignment] {
+        let assignments = RealmManager.shared.getArray(ofType: Assignment.self, filter: "subject.id == '\(subject.id)'") as! [Assignment]
+        return assignments
+    }
+    
+    func fetchAssignments(for assignment: Assignment) -> [Assignment] {
+        let assignments = RealmManager.shared.getArray(ofType: Assignment.self, filter: "assignment.id == '\(assignment.id)'") as! [Assignment]
+        return assignments
+    }
+    
     func createTerm(_ term: Term) {
         RealmManager.shared.create(term)
     }
     
     func createSubject(_ subject: Subject) {
+        if let term = subject.term {
+            var subjects = fetchSubjects(for: term)
+            subjects.append(subject)
+            let qualification = Calculator.getAverageQualification(for: subjects)
+            RealmManager.shared.updateQualification(term, qualification: qualification)
+        }
         RealmManager.shared.create(subject)
+    }
+    
+    func createAssignment(_ assignment: Assignment) {
+        if let subject = assignment.subject {
+            var assignments = fetchAssignments(for: subject)
+            assignments.append(assignment)
+            let qualification = Calculator.getQualification(for: assignments)
+            RealmManager.shared.updateQualification(subject, qualification: qualification)
+        } else if let parentAssignment = assignment.assignment {
+            var assignments = fetchAssignments(for: parentAssignment)
+            assignments.append(assignment)
+            let qualification = Calculator.getAverageQualification(for: assignments)
+            RealmManager.shared.updateQualification(parentAssignment, qualification: qualification)
+        }
+        RealmManager.shared.create(assignment)
     }
 }

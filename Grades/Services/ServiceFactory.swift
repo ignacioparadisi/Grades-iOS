@@ -9,15 +9,12 @@
 import Foundation
 
 enum ServiceType {
-    case test
     case realm
 }
 
 class ServiceFactory {
     static func createService(_ type: ServiceType) -> Service {
         switch type {
-        case .test:
-            return TestDataService.shared
         case .realm:
             return RealmService.shared
         }

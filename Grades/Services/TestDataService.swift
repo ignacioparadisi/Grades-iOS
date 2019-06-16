@@ -8,24 +8,3 @@
 
 import Foundation
 
-class TestDataService: Service {
-    
-    static var shared = TestDataService()
-    
-    private init() {}
-    
-    func fetchTerms() -> [Term] {
-        let terms: [Term] = []
-        return terms
-    }
-    
-    func fetchSubjects(for term: Term) -> [Subject] {
-        let subjects: [Subject] = []
-        return subjects
-    }
-    
-    func createTerm(_ term: Term) {
-    }
-    
-    func createSubject(_ subject: Subject) {}
-}

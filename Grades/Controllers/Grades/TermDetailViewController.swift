@@ -20,6 +20,10 @@ class TermDetailViewController: BaseViewController {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateSubject))
         navigationItem.rightBarButtonItem = addButton
     }
+    
+    @objc func goBack() {
+        dismiss(animated: true)
+    }
 
     override func setupView() {
         super.setupView()

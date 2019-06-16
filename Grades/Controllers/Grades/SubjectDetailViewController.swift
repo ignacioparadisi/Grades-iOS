@@ -12,6 +12,7 @@ class SubjectDetailViewController: BaseViewController {
 
     var collectionView: UICollectionView!
     var subject: Subject = Subject()
+    var assignments: [Assignment] = []
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
@@ -40,9 +41,15 @@ class SubjectDetailViewController: BaseViewController {
     }
     
     @objc private func goToCreateAssignment() {
+        let controller = CreateAssignmentViewController()
+        controller.subject = subject
+        controller.delegate = self
+        present(UINavigationController(rootViewController: controller), animated: true)
     }
     
     private func fetchAssignments() {
+        assignments = ServiceFactory.createService(.realm).fetchAssignments(for: subject)
+        collectionView.reloadData()
     }
 
 }
@@ -50,7 +57,7 @@ class SubjectDetailViewController: BaseViewController {
 extension SubjectDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return assignments.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -78,6 +85,14 @@ extension SubjectDetailViewController: UICollectionViewDataSource, UICollectionV
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
+    }
+    
+}
+
+extension SubjectDetailViewController: CreateAssignmentViewControllerDelegate {
+    
+    func didCreateAssignment() {
+        fetchAssignments()
     }
     
 }

@@ -55,6 +55,14 @@ class RealmManager {
         return results.toArray(ofType: type) as [Object]
     }
     
+    func updateQualification(_ object: Object, qualification: Float) {
+        if var qualificationable = object as? Qualificationable {
+            try! self.database.write {
+                qualificationable.qualification = qualification
+            }
+        }
+    }
+    
 }
 
 extension Results {

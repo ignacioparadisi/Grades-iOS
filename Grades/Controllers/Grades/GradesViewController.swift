@@ -13,6 +13,8 @@ class GradesViewController: BaseViewController {
     var collectionView: UICollectionView!
     private var indexOfCellBeforeDragging = 0
     private var terms: [Term] = []
+//    let transition = PopAnimator()
+    var selectedCell: Int = -1
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
@@ -100,9 +102,35 @@ extension GradesViewController: CreateTermViewControllerDelegate {
 extension GradesViewController: TermCollectionViewCellDelegate {
     
     func goToTermDetail(item: Int) {
+        selectedCell = item
         let term = terms[item]
         let viewController = TermDetailViewController()
         viewController.term = term
+//        navigationController?.delegate = self
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
+
+// TODO: Make the transition animation
+//extension GradesViewController: UINavigationControllerDelegate {
+//    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        guard
+//            let selectedCell = collectionView.cellForItem(at: IndexPath(item: selectedCell, section: 0))
+//                as? TermCollectionViewCell,
+//            let selectedCellSuperview = selectedCell.superview
+//            else {
+//                return nil
+//        }
+//
+//        transition.originFrame = selectedCellSuperview.convert(selectedCell.frame, to: nil)
+//        transition.originFrame = CGRect(
+//            x: transition.originFrame.origin.x,
+//            y: transition.originFrame.origin.y - 50,
+//            width: transition.originFrame.size.width,
+//            height: transition.originFrame.size.height + 50
+//        )
+//
+//        transition.presenting = true
+//        return transition
+//    }
+//}

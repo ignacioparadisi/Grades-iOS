@@ -20,7 +20,13 @@ protocol Service {
     /// - Returns: Subjects stored
     func fetchSubjects(for term: Term) -> [Subject]
     
+    func fetchAssignments(for subject: Subject) -> [Assignment]
+    
+    func fetchAssignments(for assignment: Assignment) -> [Assignment]
+    
     func createTerm(_ term: Term)
     
     func createSubject(_ subject: Subject)
+    
+    func createAssignment(_ assignment: Assignment)
 }
