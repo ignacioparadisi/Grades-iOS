@@ -1,14 +1,14 @@
 //
-//  SubjectCollectionViewCell.swift
+//  SubjectTableViewCell.swift
 //  Grades
 //
-//  Created by Ignacio Paradisi on 6/15/19.
+//  Created by Ignacio Paradisi on 6/18/19.
 //  Copyright © 2019 Ignacio Paradisi. All rights reserved.
 //
 
 import UIKit
 
-class SubjectCollectionViewCell: UICollectionViewCell, ReusableView {
+class SubjectTableViewCell: UITableViewCell, ReusableView {
     
     /// The start angle of the qualification graph
     private let circleStartAngle: CGFloat = 5/6 * CGFloat.pi
@@ -41,8 +41,8 @@ class SubjectCollectionViewCell: UICollectionViewCell, ReusableView {
     /// Subjects to be displayed
     var subject: Subject = Subject()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         initialize()
     }
     
@@ -53,6 +53,7 @@ class SubjectCollectionViewCell: UICollectionViewCell, ReusableView {
     
     /// Adds all the components to the view
     private func initialize() {
+        selectionStyle = .none
         setupContainerView()
         containerView.addSubview(nameLabel)
         nameLabel.anchor
@@ -70,7 +71,8 @@ class SubjectCollectionViewCell: UICollectionViewCell, ReusableView {
         
         addSubview(containerView)
         containerView.anchor
-            .edgesToSuperview(insets: UIEdgeInsets(top: 4, left: 16, bottom: -4, right: -16))
+            .edgesToSuperview(insets: UIEdgeInsets(top: 8, left: 16, bottom: -8, right: -16))
+            .height(constant: 70)
             .activate()
     }
     

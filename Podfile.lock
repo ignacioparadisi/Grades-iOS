@@ -6,11 +6,13 @@ PODS:
   - Realm/Headers (3.16.2)
   - RealmSwift (3.16.2):
     - Realm (= 3.16.2)
+  - SwipeCellKit (2.6.0)
 
 DEPENDENCIES:
   - IQKeyboardManagerSwift
   - JTAppleCalendar
   - RealmSwift
+  - SwipeCellKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -18,13 +20,15 @@ SPEC REPOS:
     - JTAppleCalendar
     - Realm
     - RealmSwift
+    - SwipeCellKit
 
 SPEC CHECKSUMS:
   IQKeyboardManagerSwift: a8228c257614af98743b4cd8584637025f36358f
   JTAppleCalendar: 96da4d8388fa6dc82d6a60d41ef36a015e167e2f
   Realm: 0e73b4edeb5b6a90da3d83206883b2e34e00eb38
   RealmSwift: a81e650171ef0a5f999df1ed8d39ba8d6fce88a4
+  SwipeCellKit: 935ca28c187ec6e1ffb2b578cf8ddca842bfdcbb
 
-PODFILE CHECKSUM: 8be75341d81f774167457995341548f7c3f38e36
+PODFILE CHECKSUM: fcd79f2d7c9492d57f04f5a4e289f840d1a5f4b6
 
 COCOAPODS: 1.6.1

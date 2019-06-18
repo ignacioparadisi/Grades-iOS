@@ -15,6 +15,10 @@ extension UITableView {
         register(nib, forCellReuseIdentifier: T.reusableIdentifier)
     }
     
+    func register<T: UITableViewCell>(_: T.Type) where T: ReusableView {
+        register(T.self, forCellReuseIdentifier: T.reusableIdentifier)
+    }
+    
     func dequeueReusableCell<T: UITableViewCell>(for indexPath: IndexPath) -> T where T: ReusableView {
         guard let cell = dequeueReusableCell(withIdentifier: T.reusableIdentifier, for: indexPath) as? T else {
             fatalError("Could not dequeue cell with identifier: \(T.reusableIdentifier)")

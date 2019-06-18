@@ -86,10 +86,6 @@ extension GradesViewController: UICollectionViewDelegate, UICollectionViewDelega
         return CGSize(width: collectionView.frame.width - 80, height: collectionView.frame.height - 40)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
-    }
-    
 }
 
 extension GradesViewController: CreateTermViewControllerDelegate {
@@ -105,7 +101,7 @@ extension GradesViewController: TermCollectionViewCellDelegate {
     func goToTermDetail(item: Int) {
         selectedCell = item
         let term = terms[item]
-        let viewController = TermDetailViewController()
+        let viewController = TermDetailViewController2()
         viewController.delegate = self
         viewController.term = term
 //        navigationController?.delegate = self
