@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CreateTermViewControllerDelegate: class {
-    func didCreateTerm()
+    func shouldRefresh()
 }
 
 class CreateTermViewController: BaseViewController, ScrollableView {
@@ -213,7 +213,7 @@ class CreateTermViewController: BaseViewController, ScrollableView {
             
             ServiceFactory.createService(.realm).createTerm(term)
             dismissView()
-            delegate?.didCreateTerm()
+            delegate?.shouldRefresh()
         }
         
         

@@ -9,6 +9,7 @@
 import Foundation
 
 protocol Qualificationable {
+    var name: String { get set }
     var qualification: Float { get set }
     var maxQualification: Float { get set }
     var minQualification: Float { get set }

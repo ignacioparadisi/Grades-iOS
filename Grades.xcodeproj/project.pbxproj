@@ -10,6 +10,7 @@
 		4F09643B22B5800C00D72277 /* SubjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643A22B5800C00D72277 /* SubjectCollectionViewCell.swift */; };
 		4F09643D22B583B700D72277 /* CreateSubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */; };
 		4F09643F22B588FA00D72277 /* SubjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */; };
+		4F1DCB1B22B7E848003A135D /* BarChartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DCB1A22B7E848003A135D /* BarChartCollectionViewCell.swift */; };
 		4F66289A22A145AF001F2CD9 /* IPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F66289922A145AF001F2CD9 /* IPTextField.swift */; };
 		4F66289C22A1462D001F2CD9 /* CreateTermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F66289B22A1462D001F2CD9 /* CreateTermViewController.swift */; };
 		4F66289E22A14874001F2CD9 /* IPLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F66289D22A14874001F2CD9 /* IPLabel.swift */; };
@@ -65,6 +66,7 @@
 		4F09643A22B5800C00D72277 /* SubjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectCollectionViewCell.swift; sourceTree = "<group>"; };
 		4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubjectViewController.swift; sourceTree = "<group>"; };
 		4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectDetailViewController.swift; sourceTree = "<group>"; };
+		4F1DCB1A22B7E848003A135D /* BarChartCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartCollectionViewCell.swift; sourceTree = "<group>"; };
 		4F66289922A145AF001F2CD9 /* IPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPTextField.swift; sourceTree = "<group>"; };
 		4F66289B22A1462D001F2CD9 /* CreateTermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTermViewController.swift; sourceTree = "<group>"; };
 		4F66289D22A14874001F2CD9 /* IPLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPLabel.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				4FF6F482227A72BE000F14D2 /* HeaderCollectionReusableView.swift */,
 				4F7EE96B22A1DD5A00E34672 /* DetailCollectionViewHeader.swift */,
 				4F09643A22B5800C00D72277 /* SubjectCollectionViewCell.swift */,
+				4F1DCB1A22B7E848003A135D /* BarChartCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				4FF6F467227A14AC000F14D2 /* BaseViewController.swift in Sources */,
 				4FE7BD0A22B55CE800EB9590 /* FixedHeaderLayout.swift in Sources */,
 				4F66289A22A145AF001F2CD9 /* IPTextField.swift in Sources */,
+				4F1DCB1B22B7E848003A135D /* BarChartCollectionViewCell.swift in Sources */,
 				4FF6F46F227A15BE000F14D2 /* UICollectionView+Extension.swift in Sources */,
 				4F6C601D22B59DC300C7A931 /* PopAnimator.swift in Sources */,
 				4FF6F44B227A0BAE000F14D2 /* GradesViewController.swift in Sources */,

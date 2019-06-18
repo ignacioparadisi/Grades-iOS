@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CreateSubjectViewControllerDelegate: class {
-    func didCreateSubject()
+    func shouldRefresh()
 }
 
 class CreateSubjectViewController: BaseViewController, ScrollableView {
@@ -161,7 +161,7 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
             
             ServiceFactory.createService(.realm).createSubject(subject)
             dismissView()
-            delegate?.didCreateSubject()
+            delegate?.shouldRefresh()
         }
         
         

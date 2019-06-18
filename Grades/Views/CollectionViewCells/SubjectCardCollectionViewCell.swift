@@ -108,7 +108,7 @@ class SubjectCardCollectionViewCell: UICollectionViewCell, ReusableView {
     /// Configures the cell with the subject information and adds the semi-circle that is in the front
     ///
     /// - Parameter subject: Subject to be displayed
-    func configureWith(subject: Subject) {
+    func configure(with subject: Subject) {
         nameLabel.text = subject.name
         qualificationLabel.text = "\(Int(subject.qualification.rounded()))"
         

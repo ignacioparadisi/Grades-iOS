@@ -13,6 +13,7 @@ class SubjectDetailViewController: BaseViewController {
     var collectionView: UICollectionView!
     var subject: Subject = Subject()
     var assignments: [Assignment] = []
+    weak var delegate: CreateSubjectViewControllerDelegate?
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
@@ -93,6 +94,7 @@ extension SubjectDetailViewController: CreateAssignmentViewControllerDelegate {
     
     func didCreateAssignment() {
         fetchAssignments()
+        delegate?.shouldRefresh()
     }
     
 }

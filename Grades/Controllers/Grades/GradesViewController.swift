@@ -93,7 +93,7 @@ extension GradesViewController: UICollectionViewDelegate, UICollectionViewDelega
 
 extension GradesViewController: CreateTermViewControllerDelegate {
     
-    func didCreateTerm() {
+    func shouldRefresh() {
         fetchTerms()
     }
     
@@ -105,6 +105,7 @@ extension GradesViewController: TermCollectionViewCellDelegate {
         selectedCell = item
         let term = terms[item]
         let viewController = TermDetailViewController()
+        viewController.delegate = self
         viewController.term = term
 //        navigationController?.delegate = self
         navigationController?.pushViewController(viewController, animated: true)

@@ -133,7 +133,7 @@ extension TermCollectionViewCell: UICollectionViewDelegate, UICollectionViewData
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = indexPath.item
         let cell = collectionView.dequeueReusableCell(for: indexPath) as SubjectCardCollectionViewCell
-        cell.configureWith(subject: term.subjects[item])
+        cell.configure(with: term.subjects[item])
         return cell
     }
     

@@ -66,11 +66,20 @@ class RealmService: Service {
             assignments.append(assignment)
             let qualification = Calculator.getQualification(for: assignments)
             RealmManager.shared.updateQualification(subject, qualification: qualification)
+            
+            if let term = subject.term {
+                let subjects = fetchSubjects(for: term)
+                let qualification = Calculator.getAverageQualification(for: subjects)
+                RealmManager.shared.updateQualification(term, qualification: qualification)
+            }
+            
         } else if let parentAssignment = assignment.assignment {
             var assignments = fetchAssignments(for: parentAssignment)
             assignments.append(assignment)
             let qualification = Calculator.getAverageQualification(for: assignments)
             RealmManager.shared.updateQualification(parentAssignment, qualification: qualification)
+            
+            // TODO: Update term and subject after updating parent assignment
         }
         RealmManager.shared.create(assignment)
     }
