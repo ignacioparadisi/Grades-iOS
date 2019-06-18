@@ -18,8 +18,10 @@ class SubjectDetailViewController: BaseViewController {
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = subject.name
+        
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateAssignment))
-        navigationItem.rightBarButtonItem = addButton
+        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: nil)
+        navigationItem.setRightBarButtonItems([addButton, editButton], animated: false)
     }
     
     override func setupView() {

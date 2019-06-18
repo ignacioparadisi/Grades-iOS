@@ -20,8 +20,10 @@ class TermDetailViewController: BaseViewController {
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = term.name
+        
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateSubject))
-        navigationItem.rightBarButtonItem = addButton
+        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: nil)
+        navigationItem.setRightBarButtonItems([addButton, editButton], animated: false)
     }
     
     @objc func goBack() {

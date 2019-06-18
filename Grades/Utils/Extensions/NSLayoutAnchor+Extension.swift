@@ -271,4 +271,16 @@ public struct Anchor {
         }
         NSLayoutConstraint.activate(constraints)
     }
+    
+    public func deactivate(priority: UILayoutPriority? = nil) {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [top, leading, bottom, trailing, height, width, centerX, centerY].compactMap { constraint -> NSLayoutConstraint? in
+            let _constraint = constraint
+            if priority != nil {
+                _constraint?.priority = priority!
+            }
+            return _constraint
+        }
+        NSLayoutConstraint.deactivate(constraints)
+    }
 }

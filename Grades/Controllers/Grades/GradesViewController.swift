@@ -21,7 +21,8 @@ class GradesViewController: BaseViewController {
         navigationItem.title = "Terms"
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateTerm))
-        navigationItem.rightBarButtonItem = addButton
+        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: nil)
+        navigationItem.setRightBarButtonItems([addButton, editButton], animated: false)
     }
     
     override func setupView() {

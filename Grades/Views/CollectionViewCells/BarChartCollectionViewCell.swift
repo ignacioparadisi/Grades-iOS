@@ -27,6 +27,8 @@ class BarChartCollectionViewCell: UICollectionViewCell, ReusableView {
         stackView.spacing = 5.0
         return stackView
     }()
+    var widthConstraints: [NSLayoutConstraint] = []
+    var isExpanded: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -85,12 +87,14 @@ class BarChartCollectionViewCell: UICollectionViewCell, ReusableView {
         backView.layer.masksToBounds = false
         
         containerView.addSubview(backView)
-        
         backView.anchor
             .topToSuperview()
             .trailingToSuperview()
             .leadingToSuperview()
             .activate()
+        
+        let constraint = backView.widthAnchor.constraint(equalToConstant: 30)
+        widthConstraints.append(constraint)
         
         let numberLabel = IPLabel()
         numberLabel.text = "\(index + 1)"
@@ -128,8 +132,4 @@ class BarChartCollectionViewCell: UICollectionViewCell, ReusableView {
         namesStackView.addArrangedSubview(nameLabel)
     }
     
-    @objc func tap(gesture: UITapGestureRecognizer) {
-        print("Tap")
-        print(gesture.superview)
-    }
 }

@@ -56,7 +56,7 @@ class SubjectCardCollectionViewCell: UICollectionViewCell, ReusableView {
         bottomLine.backgroundColor = UIColor(hex: 0x707070)
         addSubview(bottomLine)
         bottomLine.anchor
-            .trailing(to: trailingAnchor, constant: -margin)
+            .trailing(to: trailingAnchor)
             .bottom(to: bottomAnchor)
             .leading(to: leadingAnchor, constant: margin)
             .height(constant: 1)
