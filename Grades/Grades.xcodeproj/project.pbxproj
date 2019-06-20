@@ -11,7 +11,7 @@
 		4F09643D22B583B700D72277 /* CreateSubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */; };
 		4F09643F22B588FA00D72277 /* SubjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */; };
 		4F1DCB1B22B7E848003A135D /* BarChartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DCB1A22B7E848003A135D /* BarChartCollectionViewCell.swift */; };
-		4F4A64FE22B99C1F003A1199 /* TermDetailViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A64FD22B99C1F003A1199 /* TermDetailViewController2.swift */; };
+		4F4A64FE22B99C1F003A1199 /* TermDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A64FD22B99C1F003A1199 /* TermDetailViewController.swift */; };
 		4F4A650122B99D40003A1199 /* SubjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A650022B99D40003A1199 /* SubjectTableViewCell.swift */; };
 		4F4A650322B99DB7003A1199 /* BarChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A650222B99DB7003A1199 /* BarChartTableViewCell.swift */; };
 		4F4A650522B99E11003A1199 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A650422B99E11003A1199 /* Header.swift */; };
@@ -25,7 +25,6 @@
 		4F6C602322B5BAC800C7A931 /* CreateAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C602222B5BAC800C7A931 /* CreateAssignmentViewController.swift */; };
 		4F7EE95B22A18C6500E34672 /* IPButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EE95A22A18C6500E34672 /* IPButton.swift */; };
 		4F7EE96322A1914300E34672 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F7EE96522A1914300E34672 /* Localizable.strings */; };
-		4F7EE96A22A1D6D700E34672 /* TermDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EE96922A1D6D700E34672 /* TermDetailViewController.swift */; };
 		4F7EE96C22A1DD5A00E34672 /* DetailCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EE96B22A1DD5A00E34672 /* DetailCollectionViewHeader.swift */; };
 		4FCEA14C229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */; };
 		4FDC23E022A0C09E0088FF3C /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDC23DF22A0C09E0088FF3C /* Term.swift */; };
@@ -71,7 +70,7 @@
 		4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubjectViewController.swift; sourceTree = "<group>"; };
 		4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectDetailViewController.swift; sourceTree = "<group>"; };
 		4F1DCB1A22B7E848003A135D /* BarChartCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartCollectionViewCell.swift; sourceTree = "<group>"; };
-		4F4A64FD22B99C1F003A1199 /* TermDetailViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDetailViewController2.swift; sourceTree = "<group>"; };
+		4F4A64FD22B99C1F003A1199 /* TermDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDetailViewController.swift; sourceTree = "<group>"; };
 		4F4A650022B99D40003A1199 /* SubjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectTableViewCell.swift; sourceTree = "<group>"; };
 		4F4A650222B99DB7003A1199 /* BarChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartTableViewCell.swift; sourceTree = "<group>"; };
 		4F4A650422B99E11003A1199 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
@@ -87,7 +86,6 @@
 		4F7EE96022A190F200E34672 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		4F7EE96422A1914300E34672 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4F7EE96622A1914800E34672 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		4F7EE96922A1D6D700E34672 /* TermDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDetailViewController.swift; sourceTree = "<group>"; };
 		4F7EE96B22A1DD5A00E34672 /* DetailCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewHeader.swift; sourceTree = "<group>"; };
 		4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyHeaderLayout.swift; sourceTree = "<group>"; };
 		4FDC23DF22A0C09E0088FF3C /* Term.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
@@ -240,11 +238,10 @@
 			children = (
 				4FF6F446227A0BAE000F14D2 /* GradesViewController.swift */,
 				4F66289B22A1462D001F2CD9 /* CreateTermViewController.swift */,
-				4F7EE96922A1D6D700E34672 /* TermDetailViewController.swift */,
 				4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */,
 				4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */,
 				4F6C602222B5BAC800C7A931 /* CreateAssignmentViewController.swift */,
-				4F4A64FD22B99C1F003A1199 /* TermDetailViewController2.swift */,
+				4F4A64FD22B99C1F003A1199 /* TermDetailViewController.swift */,
 			);
 			path = Grades;
 			sourceTree = "<group>";
@@ -510,7 +507,7 @@
 				4FDC23E322A0C2E30088FF3C /* RealmManager.swift in Sources */,
 				4F09643B22B5800C00D72277 /* SubjectCollectionViewCell.swift in Sources */,
 				4FF6F452227A0BBF000F14D2 /* IPTitleLabel.swift in Sources */,
-				4F4A64FE22B99C1F003A1199 /* TermDetailViewController2.swift in Sources */,
+				4F4A64FE22B99C1F003A1199 /* TermDetailViewController.swift in Sources */,
 				4F4A650522B99E11003A1199 /* Header.swift in Sources */,
 				4FE7BD0822B5277600EB9590 /* Qualificationable.swift in Sources */,
 				4FF6F483227A72BE000F14D2 /* HeaderCollectionReusableView.swift in Sources */,
@@ -531,7 +528,6 @@
 				4F6C601F22B5B3F800C7A931 /* Assignment.swift in Sources */,
 				4FE7BD0622B520C300EB9590 /* ServiceFactory.swift in Sources */,
 				4F7EE95B22A18C6500E34672 /* IPButton.swift in Sources */,
-				4F7EE96A22A1D6D700E34672 /* TermDetailViewController.swift in Sources */,
 				4F6C602322B5BAC800C7A931 /* CreateAssignmentViewController.swift in Sources */,
 				4F09643F22B588FA00D72277 /* SubjectDetailViewController.swift in Sources */,
 				4F7EE96C22A1DD5A00E34672 /* DetailCollectionViewHeader.swift in Sources */,

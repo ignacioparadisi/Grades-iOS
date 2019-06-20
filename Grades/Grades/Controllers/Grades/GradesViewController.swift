@@ -101,7 +101,7 @@ extension GradesViewController: TermCollectionViewCellDelegate {
     func goToTermDetail(item: Int) {
         selectedCell = item
         let term = terms[item]
-        let viewController = TermDetailViewController2()
+        let viewController = TermDetailViewController()
         viewController.delegate = self
         viewController.term = term
 //        navigationController?.delegate = self

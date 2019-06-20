@@ -1,8 +1,8 @@
 //
-//  TermDetailViewController.swift
+//  TermDetailViewController2.swift
 //  Grades
 //
-//  Created by Ignacio Paradisi on 5/31/19.
+//  Created by Ignacio Paradisi on 6/18/19.
 //  Copyright © 2019 Ignacio Paradisi. All rights reserved.
 //
 
@@ -10,9 +10,8 @@ import UIKit
 
 class TermDetailViewController: BaseViewController {
     
-    let chartSection: Int = 0
-    
-    var collectionView: UICollectionView!
+    let chartRow: Int = 0
+    var tableView: UITableView!
     var term: Term = Term()
     var subjects: [Subject] = []
     weak var delegate: CreateTermViewControllerDelegate?
@@ -29,23 +28,21 @@ class TermDetailViewController: BaseViewController {
     @objc func goBack() {
         dismiss(animated: true)
     }
-
+    
     override func setupView() {
         super.setupView()
-        
-        let layout = FixedHeaderLayout()
-        layout.scrollDirection = .vertical
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.backgroundColor = .clear
-        view.addSubview(collectionView)
-        collectionView.anchor
+
+        tableView = UITableView(frame: .zero)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        view.addSubview(tableView)
+        tableView.anchor
             .edgesToSuperview(toSafeArea: true)
             .activate()
-        collectionView.register(SubjectCollectionViewCell.self)
-        collectionView.register(BarChartCollectionViewCell.self)
-        collectionView.register(DetailCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailCollectionViewHeader")
+        tableView.register(SubjectTableViewCell.self)
+        tableView.register(BarChartTableViewCell.self)
         
         fetchSubjects()
     }
@@ -57,50 +54,47 @@ class TermDetailViewController: BaseViewController {
         present(UINavigationController(rootViewController: viewController), animated: true)
     }
     
+    @objc private func goToEditTerm() {
+        let viewController = CreateTermViewController()
+        viewController.delegate = self
+        present(UINavigationController(rootViewController: viewController), animated: true)
+    }
+    
     private func fetchSubjects() {
         subjects = ServiceFactory.createService(.realm).fetchSubjects(for: term)
         term.subjects = subjects
-        collectionView.reloadData()
+        tableView.reloadData()
     }
-
+    
 }
 
-extension TermDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return subjects.count + 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case chartSection:
-            return 1
-        default:
-            return subjects.count
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let section = indexPath.section
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let row = indexPath.row
         
-        switch section {
-        case chartSection:
-            let cell = collectionView.dequeueReusableCell(for: indexPath) as BarChartCollectionViewCell
+        switch row {
+        case chartRow:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as BarChartTableViewCell
             cell.configure(with: subjects)
             return cell
         default:
-            let index = indexPath.item
-            let cell = collectionView.dequeueReusableCell(for: indexPath) as SubjectCollectionViewCell
+            let index = row - 1
+            let cell = tableView.dequeueReusableCell(for: indexPath) as SubjectTableViewCell
             cell.configure(with: subjects[index])
             return cell
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let section = indexPath.section
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = indexPath.row
         
-        if section != chartSection {
-            let index = indexPath.item
+        if row != chartRow {
+            let index = indexPath.row - 1
             let subject = subjects[index]
             let viewController = SubjectDetailViewController()
             viewController.delegate = self
@@ -109,47 +103,47 @@ extension TermDetailViewController: UICollectionViewDataSource, UICollectionView
         }
     }
     
-    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "DetailCollectionViewHeader", for: indexPath) as! DetailCollectionViewHeader
-            header.configureWith(term)
-            return header
-        }
-        fatalError("Header missing")
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 0:
-            let estimatedHeight = collectionView.frame.height * 0.3
-            return CGSize(width: collectionView.frame.width, height: estimatedHeight > 140 ? 140 : estimatedHeight)
+            let header = DetailHeader(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 120))
+            header.configure(with: term)
+            return header
         default:
-            return CGSize(width: 0, height: 0)
+            return nil
         }
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let section: Int = indexPath.section
-        let width: CGFloat = collectionView.frame.width
-        var height: CGFloat = 80
-        
-        if section == chartSection {
-            height = 200
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 120
+        default:
+            return 0
         }
-        
-        return CGSize(width: width, height: height)
-        
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.row != chartRow
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let index = indexPath.row - 1
+        if editingStyle == .delete {
+            subjects.remove(at: index)
+            tableView.deleteRows(at: [indexPath], with: .left)
+            tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+        }
+        if editingStyle == .insert {
+            
+        }
+    }
 }
 
-extension TermDetailViewController: CreateSubjectViewControllerDelegate {
+extension TermDetailViewController: CreateSubjectViewControllerDelegate, CreateTermViewControllerDelegate {
     func shouldRefresh() {
         fetchSubjects()
         delegate?.shouldRefresh()
     }
 }
+
