@@ -17,6 +17,7 @@ class IPTextField: UITextField {
             setPlaceholder(placeholder)
         }
     }
+    var borderColor: UIColor = ThemeManager.currentTheme.redColor
     var isEmpty: Bool {
         return text?.isEmpty ?? true
     }
@@ -75,6 +76,15 @@ class IPTextField: UITextField {
         }
     }
     
+    func showErrorBorder() {
+        let color = CABasicAnimation(keyPath: "borderColor")
+        color.toValue = borderColor.cgColor
+        color.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        color.isRemovedOnCompletion = false
+        color.fillMode = .forwards
+        self.layer.add(color, forKey: "color")
+    }
+    
     override func becomeFirstResponder() -> Bool {
         super.becomeFirstResponder()
         UIView.animate(withDuration: 0.1) {
@@ -92,7 +102,7 @@ class IPTextField: UITextField {
         
         let color = CABasicAnimation(keyPath: "borderColor")
         if self.isRequired, self.isEmpty {
-            color.toValue = ThemeManager.currentTheme.redColor.cgColor
+            color.toValue = borderColor.cgColor
         } else {
             color.toValue = UIColor.clear.cgColor
         }

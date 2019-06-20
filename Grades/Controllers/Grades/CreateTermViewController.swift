@@ -213,34 +213,39 @@ class CreateTermViewController: BaseViewController, ScrollableView {
             let minQualification = Float(minQualificationText),
             let maxQualification = Float(maxQualificationText) {
             
-            if maxQualification <= minQualification {
-                let view = MessageView.viewFromNib(layout: .tabView)
-                view.configureTheme(.warning)
-                view.configureContent(title: "Error".localized, body: "Maximum qualification must be greater than minimum qualification")
-                view.button?.isHidden = true
-                view.configureDropShadow()
-                (view.backgroundView as? CornerRoundingView)?.cornerRadius = 10
+            if valuesAreValid(maxQualification: maxQualification, minQualification: minQualification) {
+                let term = Term()
+                term.name = name
+                term.minQualification = minQualification
+                term.maxQualification = maxQualification
                 
-                var config = SwiftMessages.defaultConfig
-                config.duration = .seconds(seconds: 15)
-                SwiftMessages.show(view: view)
-                
-                return
+                ServiceFactory.createService(.realm).createTerm(term)
+                dismissView()
+                delegate?.shouldRefresh()
             }
-            
-            let term = Term()
-            term.name = name
-            term.minQualification = minQualification
-            term.maxQualification = maxQualification
-            
-            ServiceFactory.createService(.realm).createTerm(term)
-            dismissView()
-            delegate?.shouldRefresh()
         }
-        
-        
     }
-
+    
+    private func valuesAreValid(maxQualification: Float, minQualification: Float) -> Bool {
+        if maxQualification <= minQualification {
+            maxQualificationTextField.showErrorBorder()
+            minQualificationTextField.showErrorBorder()
+            
+            let view = MessageView.viewFromNib(layout: .tabView)
+            view.configureTheme(.error)
+            view.configureContent(title: "Error".localized, body: "Maximum qualification must be greater than minimum qualification")
+            view.button?.isHidden = true
+            view.configureDropShadow()
+            (view.backgroundView as? CornerRoundingView)?.cornerRadius = 10
+            
+            var config = SwiftMessages.defaultConfig
+            config.duration = .seconds(seconds: 15)
+            SwiftMessages.show(view: view)
+            
+            return false
+        }
+        return true
+    }
 }
 
 extension CreateTermViewController: UITextFieldDelegate {
