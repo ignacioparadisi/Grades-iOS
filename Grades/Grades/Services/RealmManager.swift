@@ -63,6 +63,15 @@ class RealmManager {
         }
     }
     
+    func updateAssignment(_ oldAssignment: Assignment, _ newAssignment: Assignment) {
+        try! database.write {
+            oldAssignment.maxQualification = newAssignment.maxQualification
+            oldAssignment.minQualification = newAssignment.minQualification
+            oldAssignment.qualification = newAssignment.qualification
+            oldAssignment.percentage = newAssignment.percentage
+        }
+    }
+    
 }
 
 extension Results {

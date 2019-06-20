@@ -21,6 +21,7 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
     let leadingConstant: CGFloat = 16.0
     
     weak var delegate: CreateSubjectViewControllerDelegate?
+    var subject: Subject?
     var contentView: UIView = UIView()
     let nameTextField: IPTextField = {
         let textField = IPTextField()
@@ -159,20 +160,41 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
             let minQualification = Float(minQualificationText),
             let maxQualification = Float(maxQualificationText) {
             
-            let subject = Subject()
-            subject.term = term
-            subject.name = name
-            subject.minQualification = minQualification
-            subject.maxQualification = maxQualification
+            if valuesAreValid(maxQualification: maxQualification, minQualification: minQualification) {
+                let subject = Subject()
+                subject.term = term
+                subject.name = name
+                subject.minQualification = minQualification
+                subject.maxQualification = maxQualification
+                
+                ServiceFactory.createService(.realm).createSubject(subject)
+                dismissView()
+                delegate?.shouldRefresh()
+            }
             
-            ServiceFactory.createService(.realm).createSubject(subject)
-            dismissView()
-            delegate?.shouldRefresh()
+        }
+    }
+    
+    private func valuesAreValid(maxQualification: Float, minQualification: Float) -> Bool {
+        if maxQualification <= 0 || minQualification < 0 {
+            showErrorMessage("Qualifications must be greater than 0.".localized)
+            if maxQualification <= 0 {
+                maxQualificationTextField.showErrorBorder()
+            }
+            if minQualification <= 0 {
+                minQualificationTextField.showErrorBorder()
+            }
+            return false
         }
         
-        
+        if maxQualification <= minQualification {
+            maxQualificationTextField.showErrorBorder()
+            minQualificationTextField.showErrorBorder()
+            showErrorMessage("Maximum qualification must be greater than minimum qualification.".localized)
+            return false
+        }
+        return true
     }
-
 }
 
 extension CreateSubjectViewController: UITextFieldDelegate {

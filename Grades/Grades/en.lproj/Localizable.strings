@@ -29,10 +29,17 @@
 "Enter a name for the subject" = "Enter a name for the subject";
 "Subject name" = "Subject name";
 
+"Qualifications must be greater than 0." = "Qualifications must be greater than 0.";
+"Percentage must be greater than 0." = "Percentage must be greater than 0.";
+"Maximum qualification must be greater than minimum qualification." = "Maximum qualification must be greater than minimum qualification.";
+"Qualification mush be between minimum qualification and maximum qualification" = "Qualification mush be between minimum qualification and maximum qualification";
+"Percentage must be equal or less than 100." = "Percentage must be equal or less than 100.";
+
 // General
 "Name" = "Name";
 "Cancel" = "Cancel";
 "Save" = "Save";
+"Error" = "Error";
 
 
 

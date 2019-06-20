@@ -22,6 +22,7 @@ class CreateTermViewController: BaseViewController, ScrollableView {
     let leadingConstant: CGFloat = 16.0
     
     weak var delegate: CreateTermViewControllerDelegate?
+    var term: Term?
     var contentView: UIView = UIView()
     let nameTextField: IPTextField = {
         let textField = IPTextField()
@@ -227,21 +228,21 @@ class CreateTermViewController: BaseViewController, ScrollableView {
     }
     
     private func valuesAreValid(maxQualification: Float, minQualification: Float) -> Bool {
+        if maxQualification <= 0 || minQualification < 0 {
+            showErrorMessage("Qualifications must be greater than 0.".localized)
+            if maxQualification <= 0 {
+                maxQualificationTextField.showErrorBorder()
+            }
+            if minQualification <= 0 {
+                minQualificationTextField.showErrorBorder()
+            }
+            return false
+        }
+        
         if maxQualification <= minQualification {
             maxQualificationTextField.showErrorBorder()
             minQualificationTextField.showErrorBorder()
-            
-            let view = MessageView.viewFromNib(layout: .tabView)
-            view.configureTheme(.error)
-            view.configureContent(title: "Error".localized, body: "Maximum qualification must be greater than minimum qualification")
-            view.button?.isHidden = true
-            view.configureDropShadow()
-            (view.backgroundView as? CornerRoundingView)?.cornerRadius = 10
-            
-            var config = SwiftMessages.defaultConfig
-            config.duration = .seconds(seconds: 15)
-            SwiftMessages.show(view: view)
-            
+            showErrorMessage("Maximum qualification must be greater than minimum qualification.".localized)
             return false
         }
         return true

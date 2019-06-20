@@ -51,36 +51,49 @@ class RealmService: Service {
     }
     
     func createSubject(_ subject: Subject) {
-        if let term = subject.term {
-            var subjects = fetchSubjects(for: term)
-            subjects.append(subject)
-            let qualification = Calculator.getAverageQualification(for: subjects)
-            RealmManager.shared.updateQualification(term, qualification: qualification)
-        }
         RealmManager.shared.create(subject)
+        updateQualificationForParent(of: subject)
     }
     
     func createAssignment(_ assignment: Assignment) {
+        RealmManager.shared.create(assignment)
+        updateQualificationForParent(of: assignment)
+    }
+    
+    func updateAssignment(old oldAssignment: Assignment, new newAssignment: Assignment) {
+        RealmManager.shared.updateAssignment(oldAssignment, newAssignment)
+        // Now the old assignment is updated
+        updateQualificationForParent(of: oldAssignment)
+        
+    }
+    
+    /// Updates the qualification of the parent of the assignment passed as a parameter.
+    /// IMPORTANT: To use this method you first need to save the assignment in Realm.
+    ///
+    /// - Parameter assignment: Assignment that was created or updated.
+    private func updateQualificationForParent(of assignment: Assignment) {
         if let subject = assignment.subject {
-            var assignments = fetchAssignments(for: subject)
-            assignments.append(assignment)
+            let assignments = fetchAssignments(for: subject)
             let qualification = Calculator.getQualification(for: assignments)
             RealmManager.shared.updateQualification(subject, qualification: qualification)
-            
-            if let term = subject.term {
-                let subjects = fetchSubjects(for: term)
-                let qualification = Calculator.getAverageQualification(for: subjects)
-                RealmManager.shared.updateQualification(term, qualification: qualification)
-            }
-            
+            updateQualificationForParent(of: subject)
         } else if let parentAssignment = assignment.assignment {
-            var assignments = fetchAssignments(for: parentAssignment)
-            assignments.append(assignment)
+            let assignments = fetchAssignments(for: parentAssignment)
             let qualification = Calculator.getAverageQualification(for: assignments)
             RealmManager.shared.updateQualification(parentAssignment, qualification: qualification)
-            
-            // TODO: Update term and subject after updating parent assignment
+            updateQualificationForParent(of: assignment)
         }
-        RealmManager.shared.create(assignment)
+    }
+    
+    /// Updates the qualification of the parent of the subject passed as a parameter.
+    /// IMPORTANT: To use this method you first need to save the subject in Realm.
+    ///
+    /// - Parameter subject: Subject that was created or updated.
+    private func updateQualificationForParent(of subject: Subject) {
+        if let term = subject.term {
+            let subjects = fetchSubjects(for: term)
+            let qualification = Calculator.getAverageQualification(for: subjects)
+            RealmManager.shared.updateQualification(term, qualification: qualification)
+        }
     }
 }

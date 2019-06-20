@@ -29,4 +29,6 @@ protocol Service {
     func createSubject(_ subject: Subject)
     
     func createAssignment(_ assignment: Assignment)
+    
+    func updateAssignment(old oldAssignment: Assignment, new newAssignment: Assignment)
 }
