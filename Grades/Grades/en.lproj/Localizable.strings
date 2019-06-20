@@ -1,0 +1,38 @@
+/* 
+  Localizable.strings
+  Grades
+
+  Created by Ignacio Paradisi on 5/31/19.
+  Copyright © 2019 Ignacio Paradisi. All rights reserved.
+*/
+
+// TabBar Items
+"Grades" = "Grades";
+"Home" = "Home";
+"Calendar" = "Calendar";
+
+// Home
+"Notifications" = "Notifications";
+
+// Terms
+"Terms" = "Terms";
+"Add Term" = "Add Term";
+"Enter a name for the term" = "Enter a name for the term";
+"Term name" = "Term name";
+"Qualifications" = "Qualifications";
+"Enter max and min qualification to pass" = "Enter max and min qualification to pass";
+"Max. Qualification" = "Max. Qualification";
+"Min. Qualification" = "Min. Qualification";
+
+// Subjects
+"Add Subject" = "Add Subjct";
+"Enter a name for the subject" = "Enter a name for the subject";
+"Subject name" = "Subject name";
+
+// General
+"Name" = "Name";
+"Cancel" = "Cancel";
+"Save" = "Save";
+
+
+
