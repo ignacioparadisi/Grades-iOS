@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftMessages
 
 protocol CreateTermViewControllerDelegate: class {
     func shouldRefresh()
@@ -22,16 +23,22 @@ class CreateTermViewController: BaseViewController, ScrollableView {
     
     weak var delegate: CreateTermViewControllerDelegate?
     var contentView: UIView = UIView()
-    let nameTextField = IPTextField()
+    let nameTextField: IPTextField = {
+        let textField = IPTextField()
+        textField.isRequired = true
+        return textField
+    }()
     let addButton = IPButton()
     let minQualificationTextField: IPTextField = {
         let textField = IPTextField()
         textField.keyboardType = .decimalPad
+        textField.isRequired = true
         return textField
     }()
     let maxQualificationTextField: IPTextField = {
         let textField = IPTextField()
         textField.keyboardType = .decimalPad
+        textField.isRequired = true
         return textField
     }()
     let startDateButton: IPButton = {
@@ -205,6 +212,21 @@ class CreateTermViewController: BaseViewController, ScrollableView {
             let maxQualificationText = maxQualificationTextField.text,
             let minQualification = Float(minQualificationText),
             let maxQualification = Float(maxQualificationText) {
+            
+            if maxQualification <= minQualification {
+                let view = MessageView.viewFromNib(layout: .tabView)
+                view.configureTheme(.warning)
+                view.configureContent(title: "Error".localized, body: "Maximum qualification must be greater than minimum qualification")
+                view.button?.isHidden = true
+                view.configureDropShadow()
+                (view.backgroundView as? CornerRoundingView)?.cornerRadius = 10
+                
+                var config = SwiftMessages.defaultConfig
+                config.duration = .seconds(seconds: 15)
+                SwiftMessages.show(view: view)
+                
+                return
+            }
             
             let term = Term()
             term.name = name

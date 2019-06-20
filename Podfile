@@ -9,6 +9,6 @@ target 'Grades' do
   pod 'RealmSwift'
   pod 'JTAppleCalendar'
   pod 'IQKeyboardManagerSwift'
-  pod 'SwipeCellKit'
+  pod 'SwiftMessages'
 
 end

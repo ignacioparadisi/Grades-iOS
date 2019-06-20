@@ -22,16 +22,22 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
     
     weak var delegate: CreateSubjectViewControllerDelegate?
     var contentView: UIView = UIView()
-    let nameTextField = IPTextField()
+    let nameTextField: IPTextField = {
+        let textField = IPTextField()
+        textField.isRequired = true
+        return textField
+    }()
     let addButton = IPButton()
     let minQualificationTextField: IPTextField = {
         let textField = IPTextField()
         textField.keyboardType = .decimalPad
+        textField.isRequired = true
         return textField
     }()
     let maxQualificationTextField: IPTextField = {
         let textField = IPTextField()
         textField.keyboardType = .decimalPad
+        textField.isRequired = true
         return textField
     }()
     var term: Term = Term()

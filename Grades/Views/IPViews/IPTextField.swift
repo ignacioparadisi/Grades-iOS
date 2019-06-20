@@ -20,6 +20,7 @@ class IPTextField: UITextField {
     var isEmpty: Bool {
         return text?.isEmpty ?? true
     }
+    var isRequired: Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,6 +51,7 @@ class IPTextField: UITextField {
         textColor = ThemeManager.currentTheme.textColor
         layer.cornerRadius = 10
         layer.masksToBounds = false
+        layer.borderWidth = 2
     }
     
     override open func textRect(forBounds bounds: CGRect) -> CGRect {
@@ -65,7 +67,10 @@ class IPTextField: UITextField {
     }
     
     func setPlaceholder(_ string: String?) {
-        if let placeholder = string {
+        if var placeholder = string {
+            if isRequired {
+                placeholder += "*"
+            }
             attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme.placeholderColor])
         }
     }
@@ -84,6 +89,17 @@ class IPTextField: UITextField {
         UIView.animate(withDuration: 0.1) {
             self.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
         }
+        
+        let color = CABasicAnimation(keyPath: "borderColor")
+        if self.isRequired, self.isEmpty {
+            color.toValue = ThemeManager.currentTheme.redColor.cgColor
+        } else {
+            color.toValue = UIColor.clear.cgColor
+        }
+        color.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        color.isRemovedOnCompletion = false
+        color.fillMode = .forwards
+        self.layer.add(color, forKey: "color")
         return true
     }
     

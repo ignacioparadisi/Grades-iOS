@@ -22,16 +22,22 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
     
     weak var delegate: CreateAssignmentViewControllerDelegate?
     var contentView: UIView = UIView()
-    let nameTextField = IPTextField()
+    let nameTextField: IPTextField = {
+        let textField = IPTextField()
+        textField.isRequired = true
+        return textField
+    }()
     let addButton = IPButton()
     let minQualificationTextField: IPTextField = {
         let textField = IPTextField()
         textField.keyboardType = .decimalPad
+        textField.isRequired = true
         return textField
     }()
     let maxQualificationTextField: IPTextField = {
         let textField = IPTextField()
         textField.keyboardType = .decimalPad
+        textField.isRequired = true
         return textField
     }()
     let qualificationTextField: IPTextField = {
@@ -42,6 +48,7 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
     let percentageTextField: IPTextField = {
         let textField = IPTextField()
         textField.keyboardType = .decimalPad
+        textField.isRequired = true
         return textField
     }()
     var subject: Subject = Subject()
