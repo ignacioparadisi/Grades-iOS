@@ -23,7 +23,8 @@ class SubjectCollectionViewCell: UICollectionViewCell, ReusableView {
     /// Label for the subject's name
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = ThemeManager.currentTheme.font(style: .regular, size: 17)
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         label.textColor = ThemeManager.currentTheme.textColor
         label.text = "Subject Name"
         return label
@@ -31,7 +32,8 @@ class SubjectCollectionViewCell: UICollectionViewCell, ReusableView {
     /// Label for the subject's qualification
     private let qualificationLabel: UILabel = {
         let label = UILabel()
-        label.font = ThemeManager.currentTheme.font(style: .regular, size: 20)
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         label.textColor = ThemeManager.currentTheme.textColor
         return label
     }()

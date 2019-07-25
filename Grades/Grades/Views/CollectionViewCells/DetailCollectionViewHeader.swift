@@ -69,7 +69,7 @@ class DetailCollectionViewHeader: UICollectionReusableView, ReusableView {
     private func setupMinMaxQualificationContainer(label: UILabel, description: String) -> UIView {
         let view = UIView()
         let descriptionLabel = IPLabel()
-        descriptionLabel.font = ThemeManager.currentTheme.font(style: .regular, size: 10)
+        descriptionLabel.font = UIFont.preferredFont(forTextStyle: .caption2)
         descriptionLabel.text = description
         addSubview(view)
         view.anchor

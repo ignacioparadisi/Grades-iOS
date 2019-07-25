@@ -21,17 +21,16 @@ class SubjectTableViewCell: UITableViewCell, ReusableView {
     /// Margin for leading and trailing
     private let margin: CGFloat = 16
     /// Label for the subject's name
-    private let nameLabel: UILabel = {
-        let label = UILabel()
-        label.font = ThemeManager.currentTheme.font(style: .regular, size: 17)
-        label.textColor = ThemeManager.currentTheme.textColor
+    private let nameLabel: IPLabel = {
+        let label = IPLabel()
         label.text = "Subject Name"
         return label
     }()
     /// Label for the subject's qualification
     private let qualificationLabel: UILabel = {
         let label = UILabel()
-        label.font = ThemeManager.currentTheme.font(style: .regular, size: 20)
+        label.font = UIFont.preferredFont(forTextStyle: .title3)
+        label.adjustsFontForContentSizeCategory = true
         label.textColor = ThemeManager.currentTheme.textColor
         return label
     }()

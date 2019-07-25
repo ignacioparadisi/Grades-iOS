@@ -44,7 +44,7 @@ class CreateTermViewController: BaseViewController, ScrollableView {
     }()
     let startDateButton: IPButton = {
         let button = IPButton()
-        button.titleLabel?.font = ThemeManager.currentTheme.font(style: .regular, size: 17.0)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         // button.setTitleColor(ThemeManager.currentTheme.placeholderColor, for: .normal)
         button.color = ThemeManager.currentTheme.cardBackgroundColor
         button.highlightDarknessPercentage = 4
@@ -52,7 +52,7 @@ class CreateTermViewController: BaseViewController, ScrollableView {
     }()
     let endDateButton: IPButton = {
         let button = IPButton()
-        button.titleLabel?.font = ThemeManager.currentTheme.font(style: .regular, size: 17.0)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         // button.setTitleColor(ThemeManager.currentTheme.placeholderColor, for: .normal)
         button.color = ThemeManager.currentTheme.cardBackgroundColor
         button.highlightDarknessPercentage = 4

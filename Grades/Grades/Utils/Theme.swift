@@ -10,23 +10,12 @@ import UIKit
 
 let themeKey = "SelectedTheme"
 
-enum FontWeight {
-    case light
-    case regular
-    case medium
-    case bold
-}
-
 enum Theme: Int {
     case dark
     
-    func font(style: FontStyle, size: CGFloat) -> UIFont {
-        let fontName = "HelveticaNeue"
-        return UIFont(name: fontName, style: style, size: size)
-    }
-    
-    var titleFont: UIFont {
-        return font(style: .bold, size: 30.0)
+    func font(style: FontStyle, size: CGFloat, forTextSyle: UIFont.TextStyle) -> UIFont {
+        let font = UIFont(name: "HelveticaNeue", style: style, size: size)
+        return UIFontMetrics(forTextStyle: forTextSyle).scaledFont(for: font)
     }
     
     var barStyle: UIBarStyle {

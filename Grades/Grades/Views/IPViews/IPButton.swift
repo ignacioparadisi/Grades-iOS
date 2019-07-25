@@ -60,7 +60,8 @@ class IPButton: UIButton {
         layer.cornerRadius = 10.0
         setTitleColor(ThemeManager.currentTheme.textColor, for: .normal)
         setTitleColor(ThemeManager.currentTheme.disabledButtonTextColor, for: .disabled)
-        titleLabel?.font = ThemeManager.currentTheme.font(style: .medium, size: 20)
+        titleLabel?.font = UIFont.preferredFont(forTextStyle: .title3)
+        titleLabel?.adjustsFontForContentSizeCategory = true
         contentEdgeInsets = padding
     }
     

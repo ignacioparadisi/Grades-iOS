@@ -1,5 +1,5 @@
 //
-//  ServiceFactory.swift
+//  Factory.swift
 //  Grades
 //
 //  Created by Ignacio Paradisi on 6/23/19.
@@ -8,12 +8,16 @@
 
 import Foundation
 
-class ServiceFactory {
+enum ServiceType {
+    case realm
+}
+
+class Factory {
     
-    static func createService(_ type: ServiceType) -> Service {
+    static func getServiceFactory(for type: ServiceType) -> NewServiceFactory {
         switch type {
         case .realm:
-            return RealmService.shared
+            return RealmServiceFactory()
         }
     }
     

@@ -23,6 +23,16 @@
 		4F6C601F22B5B3F800C7A931 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C601E22B5B3F800C7A931 /* Assignment.swift */; };
 		4F6C602122B5B57A00C7A931 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C602022B5B57A00C7A931 /* Calculator.swift */; };
 		4F6C602322B5BAC800C7A931 /* CreateAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C602222B5BAC800C7A931 /* CreateAssignmentViewController.swift */; };
+		4F75398C22C0549F00276742 /* TermService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75398B22C0549F00276742 /* TermService.swift */; };
+		4F75398E22C054B200276742 /* SubjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75398D22C054B200276742 /* SubjectService.swift */; };
+		4F75399022C054BE00276742 /* AssignmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75398F22C054BE00276742 /* AssignmentService.swift */; };
+		4F75399222C0564C00276742 /* RealmServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75399122C0564C00276742 /* RealmServiceFactory.swift */; };
+		4F75399622C057B500276742 /* RealmTermService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75399522C057B500276742 /* RealmTermService.swift */; };
+		4F75399922C05A6C00276742 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75399822C05A6C00276742 /* Factory.swift */; };
+		4F75399B22C05AF700276742 /* RealmSubjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75399A22C05AF700276742 /* RealmSubjectService.swift */; };
+		4F75399D22C05B9400276742 /* RealmAssignmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75399C22C05B9400276742 /* RealmAssignmentService.swift */; };
+		4F75399F22C05CFE00276742 /* NewServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75399E22C05CFE00276742 /* NewServiceFactory.swift */; };
+		4F7539A122C05D4300276742 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7539A022C05D4300276742 /* ServiceFactory.swift */; };
 		4F7EE95B22A18C6500E34672 /* IPButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EE95A22A18C6500E34672 /* IPButton.swift */; };
 		4F7EE96322A1914300E34672 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F7EE96522A1914300E34672 /* Localizable.strings */; };
 		4F7EE96C22A1DD5A00E34672 /* DetailCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EE96B22A1DD5A00E34672 /* DetailCollectionViewHeader.swift */; };
@@ -31,8 +41,6 @@
 		4FDC23E322A0C2E30088FF3C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDC23E222A0C2E30088FF3C /* RealmManager.swift */; };
 		4FE7BD0022B51F8400EB9590 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BCFF22B51F8400EB9590 /* Service.swift */; };
 		4FE7BD0222B51FD100EB9590 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BD0122B51FD100EB9590 /* RealmService.swift */; };
-		4FE7BD0422B51FF700EB9590 /* TestDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BD0322B51FF700EB9590 /* TestDataService.swift */; };
-		4FE7BD0622B520C300EB9590 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BD0522B520C300EB9590 /* ServiceFactory.swift */; };
 		4FE7BD0822B5277600EB9590 /* Qualificationable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BD0722B5277600EB9590 /* Qualificationable.swift */; };
 		4FE7BD0A22B55CE800EB9590 /* FixedHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BD0922B55CE800EB9590 /* FixedHeaderLayout.swift */; };
 		4FED757622A0CFAC002C3F98 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FED757522A0CFAC002C3F98 /* Subject.swift */; };
@@ -82,6 +90,16 @@
 		4F6C601E22B5B3F800C7A931 /* Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
 		4F6C602022B5B57A00C7A931 /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 		4F6C602222B5BAC800C7A931 /* CreateAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAssignmentViewController.swift; sourceTree = "<group>"; };
+		4F75398B22C0549F00276742 /* TermService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermService.swift; sourceTree = "<group>"; };
+		4F75398D22C054B200276742 /* SubjectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectService.swift; sourceTree = "<group>"; };
+		4F75398F22C054BE00276742 /* AssignmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentService.swift; sourceTree = "<group>"; };
+		4F75399122C0564C00276742 /* RealmServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmServiceFactory.swift; sourceTree = "<group>"; };
+		4F75399522C057B500276742 /* RealmTermService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTermService.swift; sourceTree = "<group>"; };
+		4F75399822C05A6C00276742 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
+		4F75399A22C05AF700276742 /* RealmSubjectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSubjectService.swift; sourceTree = "<group>"; };
+		4F75399C22C05B9400276742 /* RealmAssignmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAssignmentService.swift; sourceTree = "<group>"; };
+		4F75399E22C05CFE00276742 /* NewServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServiceFactory.swift; sourceTree = "<group>"; };
+		4F7539A022C05D4300276742 /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		4F7EE95A22A18C6500E34672 /* IPButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPButton.swift; sourceTree = "<group>"; };
 		4F7EE96022A190F200E34672 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		4F7EE96422A1914300E34672 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -92,8 +110,6 @@
 		4FDC23E222A0C2E30088FF3C /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		4FE7BCFF22B51F8400EB9590 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		4FE7BD0122B51FD100EB9590 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
-		4FE7BD0322B51FF700EB9590 /* TestDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataService.swift; sourceTree = "<group>"; };
-		4FE7BD0522B520C300EB9590 /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		4FE7BD0722B5277600EB9590 /* Qualificationable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Qualificationable.swift; sourceTree = "<group>"; };
 		4FE7BD0922B55CE800EB9590 /* FixedHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeaderLayout.swift; sourceTree = "<group>"; };
 		4FED757522A0CFAC002C3F98 /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
@@ -156,6 +172,18 @@
 			path = TableViewCells;
 			sourceTree = "<group>";
 		};
+		4F75399722C057E900276742 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				4FDC23E222A0C2E30088FF3C /* RealmManager.swift */,
+				4F75399122C0564C00276742 /* RealmServiceFactory.swift */,
+				4F75399522C057B500276742 /* RealmTermService.swift */,
+				4F75399A22C05AF700276742 /* RealmSubjectService.swift */,
+				4F75399C22C05B9400276742 /* RealmAssignmentService.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		4FCEA14D229F557400CD4AC6 /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,11 +197,15 @@
 		4FDC23E122A0C2C70088FF3C /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				4FDC23E222A0C2E30088FF3C /* RealmManager.swift */,
+				4F75399722C057E900276742 /* Realm */,
+				4F75399E22C05CFE00276742 /* NewServiceFactory.swift */,
 				4FE7BCFF22B51F8400EB9590 /* Service.swift */,
 				4FE7BD0122B51FD100EB9590 /* RealmService.swift */,
-				4FE7BD0322B51FF700EB9590 /* TestDataService.swift */,
-				4FE7BD0522B520C300EB9590 /* ServiceFactory.swift */,
+				4F75398B22C0549F00276742 /* TermService.swift */,
+				4F75398D22C054B200276742 /* SubjectService.swift */,
+				4F75398F22C054BE00276742 /* AssignmentService.swift */,
+				4F75399822C05A6C00276742 /* Factory.swift */,
+				4F7539A022C05D4300276742 /* ServiceFactory.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -452,24 +484,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Grades/Pods-Grades-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Grades/Pods-Grades-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Grades/Pods-Grades-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -484,12 +503,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FF6F481227A70AB000F14D2 /* SubjectCardCollectionViewCell.swift in Sources */,
+				4F75399D22C05B9400276742 /* RealmAssignmentService.swift in Sources */,
 				4FF6F45C227A0CA4000F14D2 /* Images+Enum.swift in Sources */,
+				4F75399022C054BE00276742 /* AssignmentService.swift in Sources */,
 				4FF6F45E227A1074000F14D2 /* Theme.swift in Sources */,
 				4F4A650122B99D40003A1199 /* SubjectTableViewCell.swift in Sources */,
+				4F75399622C057B500276742 /* RealmTermService.swift in Sources */,
+				4F75398E22C054B200276742 /* SubjectService.swift in Sources */,
 				4FF6F47F227A410B000F14D2 /* UIView+Extension.swift in Sources */,
 				4F09643D22B583B700D72277 /* CreateSubjectViewController.swift in Sources */,
 				4FF6F44C227A0BAE000F14D2 /* CalendarViewController.swift in Sources */,
+				4F75399F22C05CFE00276742 /* NewServiceFactory.swift in Sources */,
 				4FF6F469227A1585000F14D2 /* ReusableView.swift in Sources */,
 				4F4A650322B99DB7003A1199 /* BarChartTableViewCell.swift in Sources */,
 				4FED757622A0CFAC002C3F98 /* Subject.swift in Sources */,
@@ -497,12 +521,15 @@
 				4FF6F467227A14AC000F14D2 /* BaseViewController.swift in Sources */,
 				4FE7BD0A22B55CE800EB9590 /* FixedHeaderLayout.swift in Sources */,
 				4F66289A22A145AF001F2CD9 /* IPTextField.swift in Sources */,
+				4F75398C22C0549F00276742 /* TermService.swift in Sources */,
 				4F1DCB1B22B7E848003A135D /* BarChartCollectionViewCell.swift in Sources */,
 				4FF6F46F227A15BE000F14D2 /* UICollectionView+Extension.swift in Sources */,
+				4F7539A122C05D4300276742 /* ServiceFactory.swift in Sources */,
 				4F6C601D22B59DC300C7A931 /* PopAnimator.swift in Sources */,
 				4FF6F44B227A0BAE000F14D2 /* GradesViewController.swift in Sources */,
 				4FF6F44D227A0BAE000F14D2 /* MainTabBarController.swift in Sources */,
 				4FCEA14C229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift in Sources */,
+				4F75399922C05A6C00276742 /* Factory.swift in Sources */,
 				4F66289E22A14874001F2CD9 /* IPLabel.swift in Sources */,
 				4FDC23E322A0C2E30088FF3C /* RealmManager.swift in Sources */,
 				4F09643B22B5800C00D72277 /* SubjectCollectionViewCell.swift in Sources */,
@@ -520,19 +547,19 @@
 				4FF6F46B227A159A000F14D2 /* NibLoadableView.swift in Sources */,
 				4FF6F462227A119F000F14D2 /* NSLayoutAnchor+Extension.swift in Sources */,
 				4F66289C22A1462D001F2CD9 /* CreateTermViewController.swift in Sources */,
+				4F75399222C0564C00276742 /* RealmServiceFactory.swift in Sources */,
 				4F6628A022A14B7E001F2CD9 /* UIViewController+Extension.swift in Sources */,
 				4FF6F420227A04B6000F14D2 /* AppDelegate.swift in Sources */,
 				4FDC23E022A0C09E0088FF3C /* Term.swift in Sources */,
 				4FF6F471227A17F8000F14D2 /* ScrollableView.swift in Sources */,
 				4FE7BD0222B51FD100EB9590 /* RealmService.swift in Sources */,
 				4F6C601F22B5B3F800C7A931 /* Assignment.swift in Sources */,
-				4FE7BD0622B520C300EB9590 /* ServiceFactory.swift in Sources */,
 				4F7EE95B22A18C6500E34672 /* IPButton.swift in Sources */,
 				4F6C602322B5BAC800C7A931 /* CreateAssignmentViewController.swift in Sources */,
 				4F09643F22B588FA00D72277 /* SubjectDetailViewController.swift in Sources */,
 				4F7EE96C22A1DD5A00E34672 /* DetailCollectionViewHeader.swift in Sources */,
+				4F75399B22C05AF700276742 /* RealmSubjectService.swift in Sources */,
 				4FF6F44A227A0BAE000F14D2 /* HomeViewController.swift in Sources */,
-				4FE7BD0422B51FF700EB9590 /* TestDataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

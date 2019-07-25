@@ -14,7 +14,7 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
     let termNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = ThemeManager.currentTheme.textColor
-        label.font = ThemeManager.currentTheme.font(style: .medium, size: 25)
+        label.font = UIFont.preferredFont(forTextStyle: .title2)
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -22,7 +22,7 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
     let qualificationLabel: UILabel = {
         let label = UILabel()
         label.textColor = ThemeManager.currentTheme.textColor
-        label.font = ThemeManager.currentTheme.font(style: .medium, size: 25)
+        label.font = UIFont.preferredFont(forTextStyle: .title2)
         label.textAlignment = .center
         label.text = "17"
         return label
