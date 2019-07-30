@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class Assignment: Object, Qualificationable {
+class Assignment: Object, Qualificationable, Orderable {
     
     @objc dynamic var subject: Subject?
     @objc dynamic var assignment: Assignment?
@@ -19,6 +19,8 @@ class Assignment: Object, Qualificationable {
     @objc dynamic var maxQualification: Float = 0.0
     @objc dynamic var minQualification: Float = 0.0
     @objc dynamic var percentage: Float = 0.0
+    @objc dynamic var position: Int = 0
+    @objc dynamic var dateCreated: Date = Date()
     
     override static func primaryKey() -> String? {
         return "id"

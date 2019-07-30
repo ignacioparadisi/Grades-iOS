@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class Subject: Object, Qualificationable {
+class Subject: Object, Qualificationable, Orderable {
 
     @objc dynamic var term: Term?
     @objc dynamic var id: String = UUID().uuidString
@@ -17,6 +17,8 @@ class Subject: Object, Qualificationable {
     @objc dynamic var qualification: Float = 0.0
     @objc dynamic var maxQualification: Float = 0.0
     @objc dynamic var minQualification: Float = 0.0
+    @objc dynamic var position: Int = 0
+    @objc dynamic var dateCreated: Date = Date()
     var shouldDraw: Bool = true
 
     override static func primaryKey() -> String? {

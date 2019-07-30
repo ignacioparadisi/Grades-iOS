@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GradesViewController: BaseViewController {
+class TermsViewController: BaseViewController {
     
     var collectionView: UICollectionView!
     private var indexOfCellBeforeDragging = 0
@@ -18,10 +18,10 @@ class GradesViewController: BaseViewController {
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
-        navigationItem.title = "Terms"
+        navigationItem.title = "Terms".localized
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateTerm))
-        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: nil)
+        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(goToEditTerms))
         navigationItem.setRightBarButtonItems([addButton, editButton], animated: false)
     }
     
@@ -49,7 +49,10 @@ class GradesViewController: BaseViewController {
     }
     
     private func fetchTerms() {
-        terms = ServiceFactory.createService(.realm).fetchTerms()
+        terms = Factory.getServiceFactory(for: .realm).termService.fetchTerms()
+        terms = terms.sorted(by: { (term1, term2) -> Bool in
+            return term1.position < term2.position
+        })
         collectionView.reloadData()
         if !terms.isEmpty {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
@@ -62,12 +65,20 @@ class GradesViewController: BaseViewController {
     @objc private func goToCreateTerm() {
         let viewController = CreateTermViewController()
         viewController.delegate = self
+        viewController.termsCount = terms.count
+        present(UINavigationController(rootViewController: viewController), animated: true)
+    }
+    
+    @objc private func goToEditTerms() {
+        let viewController = EditTermsViewController()
+        viewController.delegate = self
+        viewController.terms = terms
         present(UINavigationController(rootViewController: viewController), animated: true)
     }
 
 }
 
-extension GradesViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+extension TermsViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return terms.count
@@ -88,7 +99,7 @@ extension GradesViewController: UICollectionViewDelegate, UICollectionViewDelega
     
 }
 
-extension GradesViewController: CreateTermViewControllerDelegate {
+extension TermsViewController: CreateTermViewControllerDelegate {
     
     func shouldRefresh() {
         fetchTerms()
@@ -96,7 +107,7 @@ extension GradesViewController: CreateTermViewControllerDelegate {
     
 }
 
-extension GradesViewController: TermCollectionViewCellDelegate {
+extension TermsViewController: TermCollectionViewCellDelegate {
     
     func goToTermDetail(item: Int) {
         selectedCell = item
@@ -107,6 +118,14 @@ extension GradesViewController: TermCollectionViewCellDelegate {
 //        navigationController?.delegate = self
         navigationController?.pushViewController(viewController, animated: true)
     }
+}
+
+extension TermsViewController: EditTermsViewControllerDelegate {
+    
+    func didEditTerms() {
+        fetchTerms()
+    }
+    
 }
 
 // TODO: Make the transition animation

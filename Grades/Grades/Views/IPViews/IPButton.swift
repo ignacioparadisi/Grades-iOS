@@ -31,7 +31,7 @@ class IPButton: UIButton {
             self.backgroundColor = self.isEnabled ? self.color : ThemeManager.currentTheme.disabledButtonBackgroundColor
         }
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         if !wasInitialized {

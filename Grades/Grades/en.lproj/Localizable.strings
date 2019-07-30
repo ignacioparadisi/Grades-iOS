@@ -34,6 +34,7 @@
 "Maximum qualification must be greater than minimum qualification." = "Maximum qualification must be greater than minimum qualification.";
 "Qualification mush be between minimum qualification and maximum qualification" = "Qualification mush be between minimum qualification and maximum qualification";
 "Percentage must be equal or less than 100." = "Percentage must be equal or less than 100.";
+"End date of the term must be greater than start date." = "End date of the term must be greater than start date.";
 
 // General
 "Name" = "Name";

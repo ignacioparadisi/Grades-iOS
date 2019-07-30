@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14490.70" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qGM-IM-cSd">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14490.21"/>
+    </dependencies>
+    <scenes>
+        <!--Terms-->
+        <scene sceneID="Mjb-DP-dem">
+            <objects>
+                <controller identifier="Terms" title="Terms" id="qGM-IM-cSd" customClass="TermsInterfaceController" customModule="GradesWatch_Extension">
+                    <items>
+                        <button width="1" alignment="left" title="Request Terms" id="5tG-En-jqj">
+                            <connections>
+                                <action selector="fetchTerms" destination="qGM-IM-cSd" id="6Zi-aj-GGz"/>
+                            </connections>
+                        </button>
+                        <table alignment="left" id="zZT-aa-LDt">
+                            <items>
+                                <tableRow identifier="TermRow" id="Qe6-zm-ElW" customClass="TermRow" customModule="GradesWatch_Extension">
+                                    <group key="rootItem" width="1" alignment="left" spacing="4" id="LAu-oF-JS7">
+                                        <items>
+                                            <separator height="1" heightAdjustment="-8" alignment="left" verticalAlignment="center" id="M7Z-zc-An0">
+                                                <color key="color" red="0.10196078431372549" green="0.69803921568627447" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
+                                            </separator>
+                                            <label alignment="left" verticalAlignment="center" text="Cálculo 1" id="2sw-1c-Xpy"/>
+                                            <spriteKitScene width="40" height="40" alignment="right" verticalAlignment="center" id="eKY-PB-wg6"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="chartScene" destination="eKY-PB-wg6" id="J0j-rz-Je0"/>
+                                        <outlet property="termNameLabel" destination="2sw-1c-Xpy" id="41T-lh-ckT"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="table" destination="zZT-aa-LDt" id="OcJ-f3-j8H"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-145" y="136"/>
+        </scene>
+    </scenes>
+</document>

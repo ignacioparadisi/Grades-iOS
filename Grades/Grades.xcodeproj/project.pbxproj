@@ -3,18 +3,34 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1980D711D152EEC2A7D142BF /* Pods_GradesWatch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526CC43AE900E43BAB2BD4E8 /* Pods_GradesWatch_Extension.framework */; };
 		4F09643B22B5800C00D72277 /* SubjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643A22B5800C00D72277 /* SubjectCollectionViewCell.swift */; };
 		4F09643D22B583B700D72277 /* CreateSubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */; };
 		4F09643F22B588FA00D72277 /* SubjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */; };
 		4F1DCB1B22B7E848003A135D /* BarChartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DCB1A22B7E848003A135D /* BarChartCollectionViewCell.swift */; };
+		4F3EC74322EB2C20006AA47C /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F3EC74122EB2C20006AA47C /* Interface.storyboard */; };
+		4F3EC74522EB2C21006AA47C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3EC74422EB2C21006AA47C /* Assets.xcassets */; };
+		4F3EC74C22EB2C21006AA47C /* GradesWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4F3EC74B22EB2C21006AA47C /* GradesWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4F3EC75322EB2C21006AA47C /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3EC75222EB2C21006AA47C /* ExtensionDelegate.swift */; };
+		4F3EC75522EB2C21006AA47C /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3EC75422EB2C21006AA47C /* NotificationController.swift */; };
+		4F3EC75722EB2C22006AA47C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3EC75622EB2C22006AA47C /* Assets.xcassets */; };
+		4F3EC75C22EB2C22006AA47C /* GradesWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4F3EC73F22EB2C1F006AA47C /* GradesWatch.app */; };
+		4F3FDF0D22EBC61E00C1DEF1 /* TermRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3FDF0C22EBC61E00C1DEF1 /* TermRow.swift */; };
+		4F3FDF0F22EBC65800C1DEF1 /* TermsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3FDF0E22EBC65800C1DEF1 /* TermsInterfaceController.swift */; };
+		4F3FDF1122EBC6E200C1DEF1 /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDC23DF22A0C09E0088FF3C /* Term.swift */; };
+		4F3FDF1222EBC6E400C1DEF1 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FED757522A0CFAC002C3F98 /* Subject.swift */; };
+		4F3FDF1322EBC6E700C1DEF1 /* Qualificationable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BD0722B5277600EB9590 /* Qualificationable.swift */; };
+		4F3FDF1422EBC6E900C1DEF1 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C601E22B5B3F800C7A931 /* Assignment.swift */; };
 		4F4A64FE22B99C1F003A1199 /* TermDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A64FD22B99C1F003A1199 /* TermDetailViewController.swift */; };
 		4F4A650122B99D40003A1199 /* SubjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A650022B99D40003A1199 /* SubjectTableViewCell.swift */; };
 		4F4A650322B99DB7003A1199 /* BarChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A650222B99DB7003A1199 /* BarChartTableViewCell.swift */; };
 		4F4A650522B99E11003A1199 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A650422B99E11003A1199 /* Header.swift */; };
+		4F61FA8022EBE6F8008C6555 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F61FA7F22EBE6F8008C6555 /* WatchSessionManager.swift */; };
+		4F61FA8222EBE833008C6555 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F61FA8122EBE833008C6555 /* WatchSessionManager.swift */; };
 		4F66289A22A145AF001F2CD9 /* IPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F66289922A145AF001F2CD9 /* IPTextField.swift */; };
 		4F66289C22A1462D001F2CD9 /* CreateTermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F66289B22A1462D001F2CD9 /* CreateTermViewController.swift */; };
 		4F66289E22A14874001F2CD9 /* IPLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F66289D22A14874001F2CD9 /* IPLabel.swift */; };
@@ -36,6 +52,11 @@
 		4F7EE95B22A18C6500E34672 /* IPButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EE95A22A18C6500E34672 /* IPButton.swift */; };
 		4F7EE96322A1914300E34672 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F7EE96522A1914300E34672 /* Localizable.strings */; };
 		4F7EE96C22A1DD5A00E34672 /* DetailCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EE96B22A1DD5A00E34672 /* DetailCollectionViewHeader.swift */; };
+		4FACFF4F22F0DB71000997E1 /* IPDatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF4E22F0DB71000997E1 /* IPDatePickerTextField.swift */; };
+		4FACFF5122F0EE68000997E1 /* Orderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF5022F0EE68000997E1 /* Orderable.swift */; };
+		4FACFF5222F0EEEC000997E1 /* Orderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF5022F0EE68000997E1 /* Orderable.swift */; };
+		4FACFF5722F0F38E000997E1 /* EditTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF5622F0F38E000997E1 /* EditTermsViewController.swift */; };
+		4FACFF5922F0FBD0000997E1 /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF5822F0FBD0000997E1 /* LabelTableViewCell.swift */; };
 		4FCEA14C229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */; };
 		4FDC23E022A0C09E0088FF3C /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDC23DF22A0C09E0088FF3C /* Term.swift */; };
 		4FDC23E322A0C2E30088FF3C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDC23E222A0C2E30088FF3C /* RealmManager.swift */; };
@@ -48,7 +69,7 @@
 		4FF6F427227A04B8000F14D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FF6F426227A04B8000F14D2 /* Assets.xcassets */; };
 		4FF6F42A227A04B8000F14D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF6F428227A04B8000F14D2 /* LaunchScreen.storyboard */; };
 		4FF6F44A227A0BAE000F14D2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F444227A0BAE000F14D2 /* HomeViewController.swift */; };
-		4FF6F44B227A0BAE000F14D2 /* GradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F446227A0BAE000F14D2 /* GradesViewController.swift */; };
+		4FF6F44B227A0BAE000F14D2 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F446227A0BAE000F14D2 /* TermsViewController.swift */; };
 		4FF6F44C227A0BAE000F14D2 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F448227A0BAE000F14D2 /* CalendarViewController.swift */; };
 		4FF6F44D227A0BAE000F14D2 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F449227A0BAE000F14D2 /* MainTabBarController.swift */; };
 		4FF6F452227A0BBF000F14D2 /* IPTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F451227A0BBF000F14D2 /* IPTitleLabel.swift */; };
@@ -71,6 +92,48 @@
 		B31F06935769A866DBA4BA86 /* Pods_Grades.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3331F2C02BBE33564DB3E91E /* Pods_Grades.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4F3EC74D22EB2C21006AA47C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FF6F414227A04B6000F14D2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F3EC74A22EB2C21006AA47C;
+			remoteInfo = "GradesWatch Extension";
+		};
+		4F3EC75A22EB2C22006AA47C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FF6F414227A04B6000F14D2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F3EC73E22EB2C1F006AA47C;
+			remoteInfo = GradesWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4F3EC76222EB2C22006AA47C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4F3EC74C22EB2C21006AA47C /* GradesWatch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F3EC76422EB2C22006AA47C /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				4F3EC75C22EB2C22006AA47C /* GradesWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		07275EA9DE87859383BBC4AA /* Pods-Grades.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grades.release.xcconfig"; path = "Target Support Files/Pods-Grades/Pods-Grades.release.xcconfig"; sourceTree = "<group>"; };
 		3331F2C02BBE33564DB3E91E /* Pods_Grades.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grades.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,10 +141,24 @@
 		4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubjectViewController.swift; sourceTree = "<group>"; };
 		4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectDetailViewController.swift; sourceTree = "<group>"; };
 		4F1DCB1A22B7E848003A135D /* BarChartCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartCollectionViewCell.swift; sourceTree = "<group>"; };
+		4F3EC73F22EB2C1F006AA47C /* GradesWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GradesWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F3EC74222EB2C20006AA47C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		4F3EC74422EB2C21006AA47C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4F3EC74622EB2C21006AA47C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F3EC74B22EB2C21006AA47C /* GradesWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "GradesWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F3EC75222EB2C21006AA47C /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		4F3EC75422EB2C21006AA47C /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		4F3EC75622EB2C22006AA47C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4F3EC75822EB2C22006AA47C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F3EC75922EB2C22006AA47C /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		4F3FDF0C22EBC61E00C1DEF1 /* TermRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermRow.swift; sourceTree = "<group>"; };
+		4F3FDF0E22EBC65800C1DEF1 /* TermsInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsInterfaceController.swift; sourceTree = "<group>"; };
 		4F4A64FD22B99C1F003A1199 /* TermDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDetailViewController.swift; sourceTree = "<group>"; };
 		4F4A650022B99D40003A1199 /* SubjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectTableViewCell.swift; sourceTree = "<group>"; };
 		4F4A650222B99DB7003A1199 /* BarChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartTableViewCell.swift; sourceTree = "<group>"; };
 		4F4A650422B99E11003A1199 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		4F61FA7F22EBE6F8008C6555 /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
+		4F61FA8122EBE833008C6555 /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		4F66289922A145AF001F2CD9 /* IPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPTextField.swift; sourceTree = "<group>"; };
 		4F66289B22A1462D001F2CD9 /* CreateTermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTermViewController.swift; sourceTree = "<group>"; };
 		4F66289D22A14874001F2CD9 /* IPLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPLabel.swift; sourceTree = "<group>"; };
@@ -105,6 +182,10 @@
 		4F7EE96422A1914300E34672 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4F7EE96622A1914800E34672 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4F7EE96B22A1DD5A00E34672 /* DetailCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewHeader.swift; sourceTree = "<group>"; };
+		4FACFF4E22F0DB71000997E1 /* IPDatePickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPDatePickerTextField.swift; sourceTree = "<group>"; };
+		4FACFF5022F0EE68000997E1 /* Orderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orderable.swift; sourceTree = "<group>"; };
+		4FACFF5622F0F38E000997E1 /* EditTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTermsViewController.swift; sourceTree = "<group>"; };
+		4FACFF5822F0FBD0000997E1 /* LabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTableViewCell.swift; sourceTree = "<group>"; };
 		4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyHeaderLayout.swift; sourceTree = "<group>"; };
 		4FDC23DF22A0C09E0088FF3C /* Term.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
 		4FDC23E222A0C2E30088FF3C /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
@@ -119,7 +200,7 @@
 		4FF6F429227A04B8000F14D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4FF6F42B227A04B8000F14D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FF6F444227A0BAE000F14D2 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		4FF6F446227A0BAE000F14D2 /* GradesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradesViewController.swift; sourceTree = "<group>"; };
+		4FF6F446227A0BAE000F14D2 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		4FF6F448227A0BAE000F14D2 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		4FF6F449227A0BAE000F14D2 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		4FF6F451227A0BBF000F14D2 /* IPTitleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPTitleLabel.swift; sourceTree = "<group>"; };
@@ -139,15 +220,33 @@
 		4FF6F47E227A410B000F14D2 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		4FF6F480227A70AB000F14D2 /* SubjectCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		4FF6F482227A72BE000F14D2 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		526CC43AE900E43BAB2BD4E8 /* Pods_GradesWatch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GradesWatch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67446F864585CE8DCB9A795F /* Pods-Grades.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grades.debug.xcconfig"; path = "Target Support Files/Pods-Grades/Pods-Grades.debug.xcconfig"; sourceTree = "<group>"; };
+		9E87735B25A00D384A3E5190 /* Pods-GradesWatch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GradesWatch Extension.debug.xcconfig"; path = "Target Support Files/Pods-GradesWatch Extension/Pods-GradesWatch Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		FE089B8CD5645E86A86B7DCC /* Pods-GradesWatch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GradesWatch Extension.release.xcconfig"; path = "Target Support Files/Pods-GradesWatch Extension/Pods-GradesWatch Extension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4F3EC74822EB2C21006AA47C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1980D711D152EEC2A7D142BF /* Pods_GradesWatch_Extension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FF6F419227A04B6000F14D2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B31F06935769A866DBA4BA86 /* Pods_Grades.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9AFE75E372B26DF20DB5FE0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,8 +257,50 @@
 			isa = PBXGroup;
 			children = (
 				3331F2C02BBE33564DB3E91E /* Pods_Grades.framework */,
+				526CC43AE900E43BAB2BD4E8 /* Pods_GradesWatch_Extension.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4F3EC74022EB2C20006AA47C /* GradesWatch */ = {
+			isa = PBXGroup;
+			children = (
+				4F3EC74122EB2C20006AA47C /* Interface.storyboard */,
+				4F3EC74422EB2C21006AA47C /* Assets.xcassets */,
+				4F3EC74622EB2C21006AA47C /* Info.plist */,
+			);
+			path = GradesWatch;
+			sourceTree = "<group>";
+		};
+		4F3EC74F22EB2C21006AA47C /* GradesWatch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4F3FDF1022EBC65F00C1DEF1 /* Controllers */,
+				4F3FDEDB22EB66FC00C1DEF1 /* Cells */,
+				4F3EC75222EB2C21006AA47C /* ExtensionDelegate.swift */,
+				4F3EC75422EB2C21006AA47C /* NotificationController.swift */,
+				4F3EC75622EB2C22006AA47C /* Assets.xcassets */,
+				4F3EC75822EB2C22006AA47C /* Info.plist */,
+				4F3EC75922EB2C22006AA47C /* PushNotificationPayload.apns */,
+				4F61FA8122EBE833008C6555 /* WatchSessionManager.swift */,
+			);
+			path = "GradesWatch Extension";
+			sourceTree = "<group>";
+		};
+		4F3FDEDB22EB66FC00C1DEF1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4F3FDF0C22EBC61E00C1DEF1 /* TermRow.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		4F3FDF1022EBC65F00C1DEF1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4F3FDF0E22EBC65800C1DEF1 /* TermsInterfaceController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		4F4A64FF22B99D14003A1199 /* TableViewCells */ = {
@@ -168,6 +309,7 @@
 				4F4A650022B99D40003A1199 /* SubjectTableViewCell.swift */,
 				4F4A650222B99DB7003A1199 /* BarChartTableViewCell.swift */,
 				4F4A650422B99E11003A1199 /* Header.swift */,
+				4FACFF5822F0FBD0000997E1 /* LabelTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -175,6 +317,7 @@
 		4F75399722C057E900276742 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
+				4F61FA7F22EBE6F8008C6555 /* WatchSessionManager.swift */,
 				4FDC23E222A0C2E30088FF3C /* RealmManager.swift */,
 				4F75399122C0564C00276742 /* RealmServiceFactory.swift */,
 				4F75399522C057B500276742 /* RealmTermService.swift */,
@@ -182,6 +325,34 @@
 				4F75399C22C05B9400276742 /* RealmAssignmentService.swift */,
 			);
 			path = Realm;
+			sourceTree = "<group>";
+		};
+		4FACFF5322F0F2EE000997E1 /* Terms */ = {
+			isa = PBXGroup;
+			children = (
+				4FF6F446227A0BAE000F14D2 /* TermsViewController.swift */,
+				4F66289B22A1462D001F2CD9 /* CreateTermViewController.swift */,
+				4F4A64FD22B99C1F003A1199 /* TermDetailViewController.swift */,
+				4FACFF5622F0F38E000997E1 /* EditTermsViewController.swift */,
+			);
+			path = Terms;
+			sourceTree = "<group>";
+		};
+		4FACFF5422F0F302000997E1 /* Subjects */ = {
+			isa = PBXGroup;
+			children = (
+				4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */,
+				4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */,
+			);
+			path = Subjects;
+			sourceTree = "<group>";
+		};
+		4FACFF5522F0F30B000997E1 /* Assignments */ = {
+			isa = PBXGroup;
+			children = (
+				4F6C602222B5BAC800C7A931 /* CreateAssignmentViewController.swift */,
+			);
+			path = Assignments;
 			sourceTree = "<group>";
 		};
 		4FCEA14D229F557400CD4AC6 /* Layouts */ = {
@@ -214,6 +385,8 @@
 			isa = PBXGroup;
 			children = (
 				4FF6F41E227A04B6000F14D2 /* Grades */,
+				4F3EC74022EB2C20006AA47C /* GradesWatch */,
+				4F3EC74F22EB2C21006AA47C /* GradesWatch Extension */,
 				4FF6F41D227A04B6000F14D2 /* Products */,
 				93A718D2B2158A500C743908 /* Pods */,
 				023612A8EE307CB21239CBCB /* Frameworks */,
@@ -224,6 +397,8 @@
 			isa = PBXGroup;
 			children = (
 				4FF6F41C227A04B6000F14D2 /* Grades.app */,
+				4F3EC73F22EB2C1F006AA47C /* GradesWatch.app */,
+				4F3EC74B22EB2C21006AA47C /* GradesWatch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -268,12 +443,9 @@
 		4FF6F445227A0BAE000F14D2 /* Grades */ = {
 			isa = PBXGroup;
 			children = (
-				4FF6F446227A0BAE000F14D2 /* GradesViewController.swift */,
-				4F66289B22A1462D001F2CD9 /* CreateTermViewController.swift */,
-				4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */,
-				4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */,
-				4F6C602222B5BAC800C7A931 /* CreateAssignmentViewController.swift */,
-				4F4A64FD22B99C1F003A1199 /* TermDetailViewController.swift */,
+				4FACFF5522F0F30B000997E1 /* Assignments */,
+				4FACFF5422F0F302000997E1 /* Subjects */,
+				4FACFF5322F0F2EE000997E1 /* Terms */,
 			);
 			path = Grades;
 			sourceTree = "<group>";
@@ -291,8 +463,9 @@
 			children = (
 				4FDC23DF22A0C09E0088FF3C /* Term.swift */,
 				4FED757522A0CFAC002C3F98 /* Subject.swift */,
-				4FE7BD0722B5277600EB9590 /* Qualificationable.swift */,
 				4F6C601E22B5B3F800C7A931 /* Assignment.swift */,
+				4FACFF5022F0EE68000997E1 /* Orderable.swift */,
+				4FE7BD0722B5277600EB9590 /* Qualificationable.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -315,6 +488,7 @@
 				4F66289922A145AF001F2CD9 /* IPTextField.swift */,
 				4F66289D22A14874001F2CD9 /* IPLabel.swift */,
 				4F7EE95A22A18C6500E34672 /* IPButton.swift */,
+				4FACFF4E22F0DB71000997E1 /* IPDatePickerTextField.swift */,
 			);
 			path = IPViews;
 			sourceTree = "<group>";
@@ -382,6 +556,8 @@
 			children = (
 				67446F864585CE8DCB9A795F /* Pods-Grades.debug.xcconfig */,
 				07275EA9DE87859383BBC4AA /* Pods-Grades.release.xcconfig */,
+				9E87735B25A00D384A3E5190 /* Pods-GradesWatch Extension.debug.xcconfig */,
+				FE089B8CD5645E86A86B7DCC /* Pods-GradesWatch Extension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -389,6 +565,43 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4F3EC73E22EB2C1F006AA47C /* GradesWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F3EC76322EB2C22006AA47C /* Build configuration list for PBXNativeTarget "GradesWatch" */;
+			buildPhases = (
+				4F3EC73D22EB2C1F006AA47C /* Resources */,
+				4F3EC76222EB2C22006AA47C /* Embed App Extensions */,
+				E9AFE75E372B26DF20DB5FE0 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F3EC74E22EB2C21006AA47C /* PBXTargetDependency */,
+			);
+			name = GradesWatch;
+			productName = GradesWatch;
+			productReference = 4F3EC73F22EB2C1F006AA47C /* GradesWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		4F3EC74A22EB2C21006AA47C /* GradesWatch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F3EC76122EB2C22006AA47C /* Build configuration list for PBXNativeTarget "GradesWatch Extension" */;
+			buildPhases = (
+				92C6FFECB195228896170149 /* [CP] Check Pods Manifest.lock */,
+				4F3EC74722EB2C21006AA47C /* Sources */,
+				4F3EC74822EB2C21006AA47C /* Frameworks */,
+				4F3EC74922EB2C21006AA47C /* Resources */,
+				A05A0E29A3AE3DB949294E76 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GradesWatch Extension";
+			productName = "GradesWatch Extension";
+			productReference = 4F3EC74B22EB2C21006AA47C /* GradesWatch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		4FF6F41B227A04B6000F14D2 /* Grades */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FF6F42E227A04B8000F14D2 /* Build configuration list for PBXNativeTarget "Grades" */;
@@ -397,11 +610,13 @@
 				4FF6F418227A04B6000F14D2 /* Sources */,
 				4FF6F419227A04B6000F14D2 /* Frameworks */,
 				4FF6F41A227A04B6000F14D2 /* Resources */,
-				A9405FA9241396EEEECE7418 /* [CP] Embed Pods Frameworks */,
+				4F3EC76422EB2C22006AA47C /* Embed Watch Content */,
+				28E699C157030CF49D2C8271 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4F3EC75B22EB2C22006AA47C /* PBXTargetDependency */,
 			);
 			name = Grades;
 			productName = Grades;
@@ -414,12 +629,23 @@
 		4FF6F414227A04B6000F14D2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1030;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Ignacio Paradisi";
 				TargetAttributes = {
+					4F3EC73E22EB2C1F006AA47C = {
+						CreatedOnToolsVersion = 10.3;
+					};
+					4F3EC74A22EB2C21006AA47C = {
+						CreatedOnToolsVersion = 10.3;
+					};
 					4FF6F41B227A04B6000F14D2 = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -438,11 +664,30 @@
 			projectRoot = "";
 			targets = (
 				4FF6F41B227A04B6000F14D2 /* Grades */,
+				4F3EC73E22EB2C1F006AA47C /* GradesWatch */,
+				4F3EC74A22EB2C21006AA47C /* GradesWatch Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4F3EC73D22EB2C1F006AA47C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F3EC74522EB2C21006AA47C /* Assets.xcassets in Resources */,
+				4F3EC74322EB2C20006AA47C /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F3EC74922EB2C21006AA47C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F3EC75722EB2C22006AA47C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FF6F41A227A04B6000F14D2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -478,7 +723,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A9405FA9241396EEEECE7418 /* [CP] Embed Pods Frameworks */ = {
+		28E699C157030CF49D2C8271 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -495,9 +740,65 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Grades/Pods-Grades-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		92C6FFECB195228896170149 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GradesWatch Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A05A0E29A3AE3DB949294E76 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GradesWatch Extension/Pods-GradesWatch Extension-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GradesWatch Extension/Pods-GradesWatch Extension-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GradesWatch Extension/Pods-GradesWatch Extension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4F3EC74722EB2C21006AA47C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F3FDF1322EBC6E700C1DEF1 /* Qualificationable.swift in Sources */,
+				4F3FDF0D22EBC61E00C1DEF1 /* TermRow.swift in Sources */,
+				4F3FDF0F22EBC65800C1DEF1 /* TermsInterfaceController.swift in Sources */,
+				4F3FDF1122EBC6E200C1DEF1 /* Term.swift in Sources */,
+				4F3FDF1422EBC6E900C1DEF1 /* Assignment.swift in Sources */,
+				4F3EC75522EB2C21006AA47C /* NotificationController.swift in Sources */,
+				4F61FA8222EBE833008C6555 /* WatchSessionManager.swift in Sources */,
+				4F3FDF1222EBC6E400C1DEF1 /* Subject.swift in Sources */,
+				4FACFF5222F0EEEC000997E1 /* Orderable.swift in Sources */,
+				4F3EC75322EB2C21006AA47C /* ExtensionDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FF6F418227A04B6000F14D2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -517,21 +818,24 @@
 				4FF6F469227A1585000F14D2 /* ReusableView.swift in Sources */,
 				4F4A650322B99DB7003A1199 /* BarChartTableViewCell.swift in Sources */,
 				4FED757622A0CFAC002C3F98 /* Subject.swift in Sources */,
+				4FACFF5122F0EE68000997E1 /* Orderable.swift in Sources */,
 				4FF6F460227A10F7000F14D2 /* UIColor+Extension.swift in Sources */,
 				4FF6F467227A14AC000F14D2 /* BaseViewController.swift in Sources */,
 				4FE7BD0A22B55CE800EB9590 /* FixedHeaderLayout.swift in Sources */,
 				4F66289A22A145AF001F2CD9 /* IPTextField.swift in Sources */,
+				4FACFF5722F0F38E000997E1 /* EditTermsViewController.swift in Sources */,
 				4F75398C22C0549F00276742 /* TermService.swift in Sources */,
 				4F1DCB1B22B7E848003A135D /* BarChartCollectionViewCell.swift in Sources */,
 				4FF6F46F227A15BE000F14D2 /* UICollectionView+Extension.swift in Sources */,
 				4F7539A122C05D4300276742 /* ServiceFactory.swift in Sources */,
 				4F6C601D22B59DC300C7A931 /* PopAnimator.swift in Sources */,
-				4FF6F44B227A0BAE000F14D2 /* GradesViewController.swift in Sources */,
+				4FF6F44B227A0BAE000F14D2 /* TermsViewController.swift in Sources */,
 				4FF6F44D227A0BAE000F14D2 /* MainTabBarController.swift in Sources */,
 				4FCEA14C229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift in Sources */,
 				4F75399922C05A6C00276742 /* Factory.swift in Sources */,
 				4F66289E22A14874001F2CD9 /* IPLabel.swift in Sources */,
 				4FDC23E322A0C2E30088FF3C /* RealmManager.swift in Sources */,
+				4FACFF5922F0FBD0000997E1 /* LabelTableViewCell.swift in Sources */,
 				4F09643B22B5800C00D72277 /* SubjectCollectionViewCell.swift in Sources */,
 				4FF6F452227A0BBF000F14D2 /* IPTitleLabel.swift in Sources */,
 				4F4A64FE22B99C1F003A1199 /* TermDetailViewController.swift in Sources */,
@@ -549,10 +853,12 @@
 				4F66289C22A1462D001F2CD9 /* CreateTermViewController.swift in Sources */,
 				4F75399222C0564C00276742 /* RealmServiceFactory.swift in Sources */,
 				4F6628A022A14B7E001F2CD9 /* UIViewController+Extension.swift in Sources */,
+				4F61FA8022EBE6F8008C6555 /* WatchSessionManager.swift in Sources */,
 				4FF6F420227A04B6000F14D2 /* AppDelegate.swift in Sources */,
 				4FDC23E022A0C09E0088FF3C /* Term.swift in Sources */,
 				4FF6F471227A17F8000F14D2 /* ScrollableView.swift in Sources */,
 				4FE7BD0222B51FD100EB9590 /* RealmService.swift in Sources */,
+				4FACFF4F22F0DB71000997E1 /* IPDatePickerTextField.swift in Sources */,
 				4F6C601F22B5B3F800C7A931 /* Assignment.swift in Sources */,
 				4F7EE95B22A18C6500E34672 /* IPButton.swift in Sources */,
 				4F6C602322B5BAC800C7A931 /* CreateAssignmentViewController.swift in Sources */,
@@ -565,7 +871,28 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		4F3EC74E22EB2C21006AA47C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F3EC74A22EB2C21006AA47C /* GradesWatch Extension */;
+			targetProxy = 4F3EC74D22EB2C21006AA47C /* PBXContainerItemProxy */;
+		};
+		4F3EC75B22EB2C22006AA47C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F3EC73E22EB2C1F006AA47C /* GradesWatch */;
+			targetProxy = 4F3EC75A22EB2C22006AA47C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		4F3EC74122EB2C20006AA47C /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F3EC74222EB2C20006AA47C /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		4F7EE96522A1914300E34672 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -587,6 +914,90 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4F3EC75D22EB2C22006AA47C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8T85WESY64;
+				IBSC_MODULE = GradesWatch_Extension;
+				INFOPLIST_FILE = GradesWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ignacioparadisi.Grades.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+			};
+			name = Debug;
+		};
+		4F3EC75E22EB2C22006AA47C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8T85WESY64;
+				IBSC_MODULE = GradesWatch_Extension;
+				INFOPLIST_FILE = GradesWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ignacioparadisi.Grades.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+			};
+			name = Release;
+		};
+		4F3EC75F22EB2C22006AA47C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E87735B25A00D384A3E5190 /* Pods-GradesWatch Extension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8T85WESY64;
+				INFOPLIST_FILE = "GradesWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ignacioparadisi.Grades.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+			};
+			name = Debug;
+		};
+		4F3EC76022EB2C22006AA47C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE089B8CD5645E86A86B7DCC /* Pods-GradesWatch Extension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8T85WESY64;
+				INFOPLIST_FILE = "GradesWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ignacioparadisi.Grades.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+			};
+			name = Release;
+		};
 		4FF6F42C227A04B8000F14D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -748,6 +1159,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4F3EC76122EB2C22006AA47C /* Build configuration list for PBXNativeTarget "GradesWatch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F3EC75F22EB2C22006AA47C /* Debug */,
+				4F3EC76022EB2C22006AA47C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F3EC76322EB2C22006AA47C /* Build configuration list for PBXNativeTarget "GradesWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F3EC75D22EB2C22006AA47C /* Debug */,
+				4F3EC75E22EB2C22006AA47C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4FF6F417227A04B6000F14D2 /* Build configuration list for PBXProject "Grades" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

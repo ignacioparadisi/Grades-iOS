@@ -1,5 +1,5 @@
 //
-//  CreateSubjectViewController.swift
+//  CreateAssignmentViewController.swift
 //  Grades
 //
 //  Created by Ignacio Paradisi on 6/15/19.
@@ -8,20 +8,20 @@
 
 import UIKit
 
-protocol CreateSubjectViewControllerDelegate: class {
-    func shouldRefresh()
+protocol CreateAssignmentViewControllerDelegate: class {
+    func didCreateAssignment()
 }
 
-class CreateSubjectViewController: BaseViewController, ScrollableView {
-
+class CreateAssignmentViewController: BaseViewController, ScrollableView {
+    
     let titleTopConstant: CGFloat = 20.0
     let descriptionTopConstant: CGFloat = 5.0
     let fieldTopConstant: CGFloat = 10.0
     let trailingConstant: CGFloat = -16.0
     let leadingConstant: CGFloat = 16.0
     
-    weak var delegate: CreateSubjectViewControllerDelegate?
-    var subject: Subject?
+    weak var delegate: CreateAssignmentViewControllerDelegate?
+    var assignment: Assignment?
     var contentView: UIView = UIView()
     let nameTextField: IPTextField = {
         let textField = IPTextField()
@@ -41,7 +41,18 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
         textField.isRequired = true
         return textField
     }()
-    var term: Term = Term()
+    let qualificationTextField: IPTextField = {
+        let textField = IPTextField()
+        textField.keyboardType = .decimalPad
+        return textField
+    }()
+    let percentageTextField: IPTextField = {
+        let textField = IPTextField()
+        textField.keyboardType = .decimalPad
+        textField.isRequired = true
+        return textField
+    }()
+    var subject: Subject = Subject()
     
     override func setupView() {
         super.setupView()
@@ -53,7 +64,7 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
-        title = "Add Subject".localized
+        title = "Add Assignment".localized
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
         navigationItem.rightBarButtonItem = cancelButton
     }
@@ -67,8 +78,8 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
         let nameDescriptionLabel = IPLabel()
         
         nameTitleLabel.text = "Name".localized
-        nameDescriptionLabel.text = "Enter a name for the subject".localized
-        nameTextField.placeholder = "Subject name".localized
+        nameDescriptionLabel.text = "Enter a name for the assignment".localized
+        nameTextField.placeholder = "Assignment name".localized
         nameTextField.delegate = self
         
         contentView.addSubview(nameTitleLabel)
@@ -128,11 +139,26 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
             .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
             .leading(to: contentView.centerXAnchor, constant: leadingConstant / 2)
             .activate()
+        
+        contentView.addSubview(qualificationTextField)
+        contentView.addSubview(percentageTextField)
+        qualificationTextField.placeholder = "Qualification".localized
+        percentageTextField.placeholder = "Percentage".localized
+        qualificationTextField.anchor
+            .top(to: minQualificationTextField.bottomAnchor, constant: titleTopConstant)
+            .trailing(to: contentView.centerXAnchor, constant: trailingConstant / 2)
+            .leading(to: contentView.leadingAnchor, constant: leadingConstant)
+            .activate()
+        percentageTextField.anchor
+            .top(to: maxQualificationTextField.bottomAnchor, constant: titleTopConstant)
+            .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
+            .leading(to: contentView.centerXAnchor, constant: leadingConstant / 2)
+            .activate()
     }
     
     private func setupSaveButton() {
         addButton.setTitle("Save".localized, for: .normal)
-        addButton.addTarget(self, action: #selector(createSubject), for: .touchUpInside)
+        addButton.addTarget(self, action: #selector(createAssignment), for: .touchUpInside)
         addButton.color = ThemeManager.currentTheme.accentColor
         addButton.isEnabled = false
         contentView.addSubview(addButton)
@@ -145,6 +171,15 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
         topConstraint.isActive = true
     }
     
+    func edit(_ assignment: Assignment) {
+        self.assignment = assignment
+        nameTextField.text = assignment.name
+        minQualificationTextField.text = "\(assignment.minQualification)"
+        maxQualificationTextField.text = "\(assignment.maxQualification)"
+        qualificationTextField.text = "\(assignment.qualification)"
+        percentageTextField.text = "\(assignment.percentage * 100)"
+    }
+    
     private func checkRequiredFields() {
         if nameTextField.isEmpty || minQualificationTextField.isEmpty
             || maxQualificationTextField.isEmpty {
@@ -154,29 +189,44 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
         addButton.isEnabled = true
     }
     
-    @objc private func createSubject() {
+    @objc private func createAssignment() {
         if let name = nameTextField.text, let minQualificationText = minQualificationTextField.text,
             let maxQualificationText = maxQualificationTextField.text,
+            let percentageText = percentageTextField.text,
             let minQualification = Float(minQualificationText),
-            let maxQualification = Float(maxQualificationText) {
+            let maxQualification = Float(maxQualificationText),
+            let percentage = Float(percentageText),
+            !name.isEmpty {
             
-            if valuesAreValid(maxQualification: maxQualification, minQualification: minQualification) {
-                let subject = Subject()
-                subject.term = term
-                subject.name = name
-                subject.minQualification = minQualification
-                subject.maxQualification = maxQualification
-                
-                ServiceFactory.createService(.realm).createSubject(subject)
-                dismissView()
-                delegate?.shouldRefresh()
+            var qualification: Float = 0
+            if let qualificationText = qualificationTextField.text, let unwrappedQualification = Float(qualificationText) {
+                qualification = unwrappedQualification
             }
             
+            if valuesAreValid(maxQualification: maxQualification, minQualification: minQualification, qualification: qualification, percentage: percentage) {
+                let assignment = Assignment()
+                assignment.subject = subject
+                assignment.name = name
+                assignment.minQualification = minQualification
+                assignment.maxQualification = maxQualification
+                assignment.percentage = percentage * 0.01
+                assignment.qualification = qualification
+                
+                if self.assignment != nil {
+                    self.assignment = assignment
+                } else {
+                    Factory.getServiceFactory(for: .realm).assignmentService.createAssignment(assignment)
+                    // ServiceFactory.createService(.realm).createAssignment(assignment)
+                }
+                
+                dismissView()
+                delegate?.didCreateAssignment()
+            }
         }
     }
     
-    private func valuesAreValid(maxQualification: Float, minQualification: Float) -> Bool {
-        if maxQualification <= 0 || minQualification < 0 {
+    private func valuesAreValid(maxQualification: Float, minQualification: Float, qualification: Float, percentage: Float) -> Bool {
+        if maxQualification <= 0 || minQualification < 0 || qualification < 0 {
             showErrorMessage("Qualifications must be greater than 0.".localized)
             if maxQualification <= 0 {
                 maxQualificationTextField.showErrorBorder()
@@ -184,6 +234,21 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
             if minQualification <= 0 {
                 minQualificationTextField.showErrorBorder()
             }
+            if qualification <= 0 {
+                qualificationTextField.showErrorBorder()
+            }
+            return false
+        }
+        
+        if percentage <= 0 {
+            percentageTextField.showErrorBorder()
+            showErrorMessage("Percentage must be greater than 0.".localized)
+            return false
+        }
+        
+        if percentage > 100 {
+            percentageTextField.showErrorBorder()
+            showErrorMessage("Percentage must be equal or less than 100.".localized)
             return false
         }
         
@@ -193,11 +258,19 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
             showErrorMessage("Maximum qualification must be greater than minimum qualification.".localized)
             return false
         }
+        
+        if qualification < minQualification || qualification > maxQualification {
+            qualificationTextField.showErrorBorder()
+            showErrorMessage("Qualification mush be between minimum qualification and maximum qualification".localized)
+            return false
+        }
+        
         return true
     }
+    
 }
 
-extension CreateSubjectViewController: UITextFieldDelegate {
+extension CreateAssignmentViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case nameTextField:
@@ -221,3 +294,4 @@ extension CreateSubjectViewController: UITextFieldDelegate {
         checkRequiredFields()
     }
 }
+

@@ -23,6 +23,7 @@ class CreateTermViewController: BaseViewController, ScrollableView {
     
     weak var delegate: CreateTermViewControllerDelegate?
     var term: Term?
+    var termsCount: Int = 0
     var contentView: UIView = UIView()
     let nameTextField: IPTextField = {
         let textField = IPTextField()
@@ -42,21 +43,19 @@ class CreateTermViewController: BaseViewController, ScrollableView {
         textField.isRequired = true
         return textField
     }()
-    let startDateButton: IPButton = {
-        let button = IPButton()
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
-        // button.setTitleColor(ThemeManager.currentTheme.placeholderColor, for: .normal)
-        button.color = ThemeManager.currentTheme.cardBackgroundColor
-        button.highlightDarknessPercentage = 4
-        return button
+    let startDateTextField: IPDatePickerTextField = {
+        let textField = IPDatePickerTextField()
+        textField.isRequired = true
+        textField.datePickerMode = .date
+        textField.dateFormat = "EEE d, yyyy"
+        return textField
     }()
-    let endDateButton: IPButton = {
-        let button = IPButton()
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
-        // button.setTitleColor(ThemeManager.currentTheme.placeholderColor, for: .normal)
-        button.color = ThemeManager.currentTheme.cardBackgroundColor
-        button.highlightDarknessPercentage = 4
-        return button
+    let endDateTextField: IPDatePickerTextField = {
+        let textField = IPDatePickerTextField()
+        textField.isRequired = true
+        textField.datePickerMode = .date
+        textField.dateFormat = "EEE d, yyyy"
+        return textField
     }()
     
     override func setupView() {
@@ -153,13 +152,13 @@ class CreateTermViewController: BaseViewController, ScrollableView {
         
         durationTitleLabel.text = "Duration"
         durationDescriptionLabel.text = "Enter the duration of the term"
-        startDateButton.setTitle("From", for: .normal)
-        endDateButton.setTitle("To", for: .normal)
+        startDateTextField.placeholder = "From"
+        endDateTextField.placeholder = "To"
         
         contentView.addSubview(durationTitleLabel)
         contentView.addSubview(durationDescriptionLabel)
-        contentView.addSubview(startDateButton)
-        contentView.addSubview(endDateButton)
+        contentView.addSubview(startDateTextField)
+        contentView.addSubview(endDateTextField)
         
         durationTitleLabel.anchor
             .top(to: minQualificationTextField.bottomAnchor, constant: titleTopConstant)
@@ -171,12 +170,12 @@ class CreateTermViewController: BaseViewController, ScrollableView {
             .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
             .leading(to: contentView.leadingAnchor, constant: leadingConstant)
             .activate()
-        startDateButton.anchor
+        startDateTextField.anchor
             .top(to: durationDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
             .trailing(to: contentView.centerXAnchor, constant: trailingConstant / 2)
             .leading(to: contentView.leadingAnchor, constant: leadingConstant)
             .activate()
-        endDateButton.anchor
+        endDateTextField.anchor
             .top(to: durationDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
             .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
             .leading(to: contentView.centerXAnchor, constant: leadingConstant / 2)
@@ -195,7 +194,7 @@ class CreateTermViewController: BaseViewController, ScrollableView {
             .trailing(to: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -16)
             .leading(to: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 16)
             .activate()
-        let topConstraint = addButton.topAnchor.constraint(greaterThanOrEqualTo: startDateButton.bottomAnchor, constant: 20)
+        let topConstraint = addButton.topAnchor.constraint(greaterThanOrEqualTo: startDateTextField.bottomAnchor, constant: 20)
         topConstraint.isActive = true
     }
     
@@ -212,15 +211,21 @@ class CreateTermViewController: BaseViewController, ScrollableView {
         if let name = nameTextField.text, let minQualificationText = minQualificationTextField.text,
             let maxQualificationText = maxQualificationTextField.text,
             let minQualification = Float(minQualificationText),
-            let maxQualification = Float(maxQualificationText) {
+            let maxQualification = Float(maxQualificationText),
+            let startDate = startDateTextField.date,
+            let endDate = endDateTextField.date {
             
             if valuesAreValid(maxQualification: maxQualification, minQualification: minQualification) {
                 let term = Term()
                 term.name = name
                 term.minQualification = minQualification
                 term.maxQualification = maxQualification
+                term.startDate = startDate
+                term.endDate = endDate
+                term.position = termsCount
                 
-                ServiceFactory.createService(.realm).createTerm(term)
+                Factory.getServiceFactory(for: .realm).termService.createTerm(term)
+                // ServiceFactory.createService(.realm).createTerm(term)
                 dismissView()
                 delegate?.shouldRefresh()
             }
@@ -245,6 +250,14 @@ class CreateTermViewController: BaseViewController, ScrollableView {
             showErrorMessage("Maximum qualification must be greater than minimum qualification.".localized)
             return false
         }
+        
+        if let startDate = startDateTextField.date, let endDate = endDateTextField.date, startDate >= endDate {
+            startDateTextField.showErrorBorder()
+            endDateTextField.showErrorBorder()
+            showErrorMessage("End date of the term must be greater than start date.".localized)
+            return false
+        }
+        
         return true
     }
 }

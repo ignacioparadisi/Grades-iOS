@@ -17,7 +17,7 @@ class RealmManager {
     static let shared: RealmManager = RealmManager()
     
     /// Creates an instance of Realm
-    private init() {
+    private init() {        
         database = try! Realm()
         print("Realm File: \(database.configuration.fileURL)")
     }
@@ -29,6 +29,24 @@ class RealmManager {
     func create(_ object: Object) {
         try! self.database.write {
             self.database.add(object)
+        }
+    }
+    
+    func delete(_ object: Object) {
+        try! self.database.write {
+            self.database.delete(object)
+        }
+    }
+    
+    func delete(_ objects: [Object]) {
+        try! self.database.write {
+            self.database.delete(objects)
+        }
+    }
+    
+    func update(_ object: Object) {
+        try! self.database.write {
+            self.database.add(object, update: .modified)
         }
     }
     

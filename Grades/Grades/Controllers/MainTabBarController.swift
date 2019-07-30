@@ -12,7 +12,7 @@ class MainTabBarController: UITabBarController {
     
     let homeViewController = UINavigationController(rootViewController: HomeViewController())
     let calendarViewController = UINavigationController(rootViewController: CalendarViewController())
-    let gradesViewController = UINavigationController(rootViewController: GradesViewController())
+    let termsViewController = UINavigationController(rootViewController: TermsViewController())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ class MainTabBarController: UITabBarController {
         let viewControllers = [
             homeViewController,
             calendarViewController,
-            gradesViewController
+            termsViewController
         ]
         self.viewControllers = viewControllers
        
@@ -41,7 +41,7 @@ class MainTabBarController: UITabBarController {
         
         let gradesImage = UIImage(named: .grades)
         let gradesItem = UITabBarItem(title: "Grades".localized, image: gradesImage, selectedImage: gradesImage)
-        gradesViewController.tabBarItem = gradesItem
+        termsViewController.tabBarItem = gradesItem
     }
 
 

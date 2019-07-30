@@ -61,7 +61,8 @@ class TermDetailViewController: BaseViewController {
     }
     
     private func fetchSubjects() {
-        subjects = ServiceFactory.createService(.realm).fetchSubjects(for: term)
+        subjects = Factory.getServiceFactory(for: .realm).subjectService.fetchSubjects(for: term)
+        // subjects = ServiceFactory.createService(.realm).fetchSubjects(for: term)
         term.subjects = subjects
         tableView.reloadData()
     }

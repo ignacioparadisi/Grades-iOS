@@ -34,6 +34,7 @@
 "Maximum qualification must be greater than minimum qualification." = "La calificación máxima debe ser mayor a la calificación mínima.";
 "Qualification mush be between minimum qualification and maximum qualification" = "La calificación debe estar entre la calificación mímina y la calificación máxima.";
 "Percentage must be equal or less than 100." = "El porcentaje debe ser menor o igual a 100.";
+"End date of the term must be greater than start date." = "La fecha final del período debe ser mayor a la fecha de inicio.";
 
 // General
 "Name" = "Nombre";
