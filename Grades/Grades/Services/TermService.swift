@@ -19,6 +19,8 @@ protocol TermService {
     
     func deleteTerms(_ terms: [Term])
     
-    func updateTerm(_ terms: [Term])
+    func updateTerms(_ terms: [Term])
+    
+    func updateTerm(_ term: Term)
     
 }

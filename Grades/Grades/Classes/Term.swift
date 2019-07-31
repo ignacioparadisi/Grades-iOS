@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class Term: Object, Qualificationable, Orderable {
+class Term: Object, Qualificationable, Orderable, NSCopying {
 
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var name: String = ""
@@ -24,6 +24,21 @@ class Term: Object, Qualificationable, Orderable {
 
     override static func primaryKey() -> String? {
         return "id"
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        let term = Term()
+        term.id = id
+        term.name = name
+        term.qualification = qualification
+        term.maxQualification = maxQualification
+        term.minQualification = minQualification
+        term.startDate = startDate
+        term.endDate = endDate
+        term.position = position
+        term.dateCreated = dateCreated
+        term.subjects = subjects
+        return term
     }
 
 }

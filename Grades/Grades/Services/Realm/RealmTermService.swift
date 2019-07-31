@@ -32,9 +32,14 @@ class RealmTermService: TermService {
         RealmManager.shared.delete(terms)
     }
     
-    func updateTerm(_ terms: [Term]) {
+    func updateTerms(_ terms: [Term]) {
         for term in terms {
             RealmManager.shared.update(term)
         }
     }
+    
+    func updateTerm(_ term: Term) {
+        RealmManager.shared.update(term)
+    }
+    
 }

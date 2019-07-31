@@ -36,10 +36,21 @@ class EditTermViewController: BaseViewController {
         textField.dateFormat = "EEE d, yyyy"
         return textField
     }()
+    let saveButton: IPButton = {
+        let button = IPButton()
+        button.backgroundColor = ThemeManager.currentTheme.accentColor
+        button.setTitle("Save".localized, for: .normal)
+        button.addTarget(self, action: #selector(didEditTerm), for: .touchUpInside)
+        return button
+    }()
 
     override func setupView() {
         super.setupView()
         setupDuration()
+        setupSaveButton()
+        
+        startDateTextField.date = term.startDate
+        endDateTextField.date = term.endDate
     }
     
     override func setupNavigationBar() {
@@ -69,25 +80,57 @@ class EditTermViewController: BaseViewController {
         view.addSubview(endDateTextField)
         
         durationTitleLabel.anchor
-            .top(to: view.topAnchor, constant: titleTopConstant)
-            .trailing(to: view.trailingAnchor, constant: trailingConstant)
-            .leading(to: view.leadingAnchor, constant: leadingConstant)
+            .topToSuperview(constant: titleTopConstant, toSafeArea: true)
+            .trailingToSuperview(constant: trailingConstant)
+            .leadingToSuperview(constant: leadingConstant)
             .activate()
         durationDescriptionLabel.anchor
             .top(to: durationTitleLabel.bottomAnchor, constant: descriptionTopConstant)
-            .trailing(to: view.trailingAnchor, constant: trailingConstant)
-            .leading(to: view.leadingAnchor, constant: leadingConstant)
+            .trailingToSuperview(constant: trailingConstant)
+            .leadingToSuperview(constant: leadingConstant)
             .activate()
         startDateTextField.anchor
             .top(to: durationDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
             .trailing(to: view.centerXAnchor, constant: trailingConstant / 2)
-            .leading(to: view.leadingAnchor, constant: leadingConstant)
+            .leadingToSuperview(constant: leadingConstant)
             .activate()
         endDateTextField.anchor
             .top(to: durationDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
-            .trailing(to: view.trailingAnchor, constant: trailingConstant)
+            .trailingToSuperview(constant: trailingConstant)
             .leading(to: view.centerXAnchor, constant: leadingConstant / 2)
             .activate()
-        
     }
+    
+    private func setupSaveButton() {
+        view.addSubview(saveButton)
+        saveButton.anchor
+            .trailingToSuperview(constant: trailingConstant)
+            .bottomToSuperview(constant: trailingConstant, toSafeArea: true)
+            .leadingToSuperview(constant: leadingConstant)
+            .activate()
+    }
+    
+    private func valuesAreValid() -> Bool {
+        if let startDate = startDateTextField.date, let endDate = endDateTextField.date, startDate >= endDate {
+            startDateTextField.showErrorBorder()
+            endDateTextField.showErrorBorder()
+            showErrorMessage("End date of the term must be greater than start date.".localized)
+            return false
+        }
+        
+        return true
+    }
+    
+    @objc private func didEditTerm() {
+        if valuesAreValid(), let startDate = startDateTextField.date,
+            let endDate = endDateTextField.date,
+            let updatedTerm = term.copy() as? Term {
+            updatedTerm.startDate = startDate
+            updatedTerm.endDate = endDate
+            Factory.getServiceFactory(for: .realm).termService.updateTerm(updatedTerm)
+            delegate?.didEditTerm(updatedTerm)
+            dismissView()
+        }
+    }
+    
 }

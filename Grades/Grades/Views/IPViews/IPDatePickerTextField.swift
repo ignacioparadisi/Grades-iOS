@@ -28,7 +28,14 @@ class IPDatePickerTextField: IPTextField {
             dateFormatter.dateFormat = dateFormat
         }
     }
-    var date: Date?
+    var date: Date? {
+        didSet {
+            if let date = date {
+                datePicker.date = date
+                text = dateFormatter.string(from: date)
+            }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -73,9 +80,6 @@ class IPDatePickerTextField: IPTextField {
     
     @objc private func pickDate() {
         date = datePicker.date
-        if let date = date {
-            text = dateFormatter.string(from: date)
-        }
         resignFirstResponder()
     }
     

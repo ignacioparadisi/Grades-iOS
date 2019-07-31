@@ -61,6 +61,7 @@ class TermDetailViewController: BaseViewController {
     @objc private func goToEditTerm() {
         let viewController = EditTermViewController()
         viewController.delegate = self
+        viewController.term = term
         present(UINavigationController(rootViewController: viewController), animated: true)
     }
     
@@ -158,7 +159,9 @@ extension TermDetailViewController: CreateSubjectViewControllerDelegate, CreateT
 
 extension TermDetailViewController: EditTermViewControllerDelegate {
     func didEditTerm(_ term: Term) {
-        
+        self.term = term
+        tableView.reloadData()
+        delegate?.shouldRefresh()
     }
 }
 

@@ -23,6 +23,10 @@
 "Enter max and min qualification to pass" = "Ingresa la calificación máxima y la calificación mínima para aprobar";
 "Max. Qualification" = "Calificación máxima";
 "Min. Qualification" = "Calificación mínima";
+"Duration" = "Duración";
+"Enter the duration of the term" = "Ingrese la duración del período";
+"From" = "Desde";
+"To" = "Hasta";
 
 // Subjects
 "Add Subject" = "Agregar Materia";

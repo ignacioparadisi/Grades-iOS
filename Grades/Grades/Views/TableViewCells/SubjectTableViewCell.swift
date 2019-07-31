@@ -20,6 +20,7 @@ class SubjectTableViewCell: UITableViewCell, ReusableView {
     private let circleRadius: CGFloat = 26
     /// Margin for leading and trailing
     private let margin: CGFloat = 16
+    private let lineWidth: CGFloat = 5
     /// Label for the subject's name
     private let nameLabel: IPLabel = {
         let label = IPLabel()
@@ -101,7 +102,7 @@ class SubjectTableViewCell: UITableViewCell, ReusableView {
         backgroundShapeLayer.path = backgroundCircularPath.cgPath
         backgroundShapeLayer.fillColor = UIColor.clear.cgColor
         backgroundShapeLayer.strokeColor = UIColor(hex: 0x707070).cgColor
-        backgroundShapeLayer.lineWidth = 2
+        backgroundShapeLayer.lineWidth = lineWidth
         backgroundShapeLayer.lineCap = .round
         chartContainer.layer.addSublayer(backgroundShapeLayer)
     }
@@ -123,7 +124,7 @@ class SubjectTableViewCell: UITableViewCell, ReusableView {
             frontShapeLayer.path = circularPath.cgPath
             frontShapeLayer.fillColor = UIColor.clear.cgColor
             frontShapeLayer.strokeColor = UIColor.getColor(for: subject).cgColor
-            frontShapeLayer.lineWidth = 2
+            frontShapeLayer.lineWidth = lineWidth
             frontShapeLayer.strokeEnd = 0
             frontShapeLayer.lineCap = .round
             chartContainer.layer.addSublayer(frontShapeLayer)
