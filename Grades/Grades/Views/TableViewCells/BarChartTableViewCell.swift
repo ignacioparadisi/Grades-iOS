@@ -49,7 +49,7 @@ class BarChartTableViewCell: UITableViewCell, ReusableView {
         containerView.anchor
             .topToSuperview(constant: margin)
             .trailingToSuperview(constant: -margin, toSafeArea: true)
-            .bottomToSuperview()
+            .bottomToSuperview(constant: -margin)
             .leadingToSuperview(constant: margin, toSafeArea: true)
             .activate()
         
@@ -114,10 +114,9 @@ class BarChartTableViewCell: UITableViewCell, ReusableView {
         topView.layer.cornerRadius = 5
         topView.layer.masksToBounds = false
         backView.addSubview(topView)
-        
-        let barHeight = frame.height - (5 * margin) - (frame.height - (5 * margin)) * CGFloat(item.qualification / item.maxQualification)
+
         topView.anchor
-            .topToSuperview(constant: barHeight)
+            .height(to: backView.heightAnchor, multiplier: CGFloat(item.qualification / item.maxQualification))
             .trailingToSuperview()
             .bottomToSuperview()
             .leadingToSuperview()

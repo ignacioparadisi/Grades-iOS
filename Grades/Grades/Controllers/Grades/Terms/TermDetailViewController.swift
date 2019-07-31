@@ -10,7 +10,11 @@ import UIKit
 
 class TermDetailViewController: BaseViewController {
     
-    let chartRow: Int = 0
+    enum TableRows: Int, CaseIterable {
+        case dateRow = 0
+        case chartRow = 1
+        case subjectsRow = 2
+    }
     var tableView: UITableView!
     var term: Term = Term()
     var subjects: [Subject] = []
@@ -62,7 +66,6 @@ class TermDetailViewController: BaseViewController {
     
     private func fetchSubjects() {
         subjects = Factory.getServiceFactory(for: .realm).subjectService.fetchSubjects(for: term)
-        // subjects = ServiceFactory.createService(.realm).fetchSubjects(for: term)
         term.subjects = subjects
         tableView.reloadData()
     }
@@ -72,19 +75,27 @@ class TermDetailViewController: BaseViewController {
 extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return subjects.count + 1
+        return subjects.count + TableRows.allCases.count - 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         
-        switch row {
-        case chartRow:
+        switch TableRows(rawValue: row)  {
+        case .dateRow?:
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "EEE d, yyyy"
+            let cell = UITableViewCell()
+            cell.textLabel?.textColor = ThemeManager.currentTheme.textColor
+            cell.textLabel?.text = "\(dateFormatter.string(from: term.startDate)) - \(dateFormatter.string(from: term.endDate))"
+            cell.textLabel?.textAlignment = .center
+            return cell
+        case .chartRow?:
             let cell = tableView.dequeueReusableCell(for: indexPath) as BarChartTableViewCell
             cell.configure(with: subjects)
             return cell
         default:
-            let index = row - 1
+            let index = row - TableRows.allCases.count + 1
             let cell = tableView.dequeueReusableCell(for: indexPath) as SubjectTableViewCell
             cell.configure(with: subjects[index])
             return cell
@@ -94,8 +105,8 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         
-        if row != chartRow {
-            let index = indexPath.row - 1
+        if row != TableRows.chartRow.rawValue {
+            let index = indexPath.row - TableRows.allCases.count + 1
             let subject = subjects[index]
             let viewController = SubjectDetailViewController()
             viewController.delegate = self
@@ -125,7 +136,7 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.row != chartRow
+        return indexPath.row != TableRows.chartRow.rawValue
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -134,9 +145,6 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
             subjects.remove(at: index)
             tableView.deleteRows(at: [indexPath], with: .left)
             tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
-        }
-        if editingStyle == .insert {
-            
         }
     }
 }

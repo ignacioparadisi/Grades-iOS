@@ -63,6 +63,8 @@ class SubjectCardCollectionViewCell: UICollectionViewCell, ReusableView {
             .leading(to: leadingAnchor, constant: margin)
             .height(constant: 1)
             .activate()
+        
+        drawCircle()
 
         addSubview(nameLabel)
         nameLabel.anchor
@@ -70,9 +72,8 @@ class SubjectCardCollectionViewCell: UICollectionViewCell, ReusableView {
             .leading(to: leadingAnchor, constant: margin)
             .bottom(to: bottomAnchor, constant: -10)
             .centerY(to: centerYAnchor)
+            .trailing(to: graphContainer.leadingAnchor, constant: -8)
             .activate()
-        
-        drawCircle()
     }
     
     

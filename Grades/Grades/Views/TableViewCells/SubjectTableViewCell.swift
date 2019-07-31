@@ -35,7 +35,7 @@ class SubjectTableViewCell: UITableViewCell, ReusableView {
         return label
     }()
     /// Clear view that contains the graph
-    private let graphContainer = UIView()
+    private let chartContainer = UIView()
     private let containerView = UIView()
     /// Subjects to be displayed
     var subject: Subject = Subject()
@@ -78,9 +78,9 @@ class SubjectTableViewCell: UITableViewCell, ReusableView {
     
     /// Draws the semi-circle of the graph that is in the back
     private func drawCircle() {
-        graphContainer.backgroundColor = .clear
-        containerView.addSubview(graphContainer)
-        graphContainer.anchor
+        chartContainer.backgroundColor = .clear
+        containerView.addSubview(chartContainer)
+        chartContainer.anchor
             .height(constant: circleRadius * 2)
             .width(constant: circleRadius * 2)
             .trailing(to: containerView.trailingAnchor, constant: -margin)
@@ -88,10 +88,10 @@ class SubjectTableViewCell: UITableViewCell, ReusableView {
             .activate()
         
         
-        graphContainer.addSubview(qualificationLabel)
+        chartContainer.addSubview(qualificationLabel)
         qualificationLabel.anchor
-            .centerX(to: graphContainer.centerXAnchor)
-            .centerY(to: graphContainer.centerYAnchor)
+            .centerX(to: chartContainer.centerXAnchor)
+            .centerY(to: chartContainer.centerYAnchor)
             .activate()
         
         let circleCenter = CGPoint(x: circleRadius, y: circleRadius)
@@ -103,7 +103,7 @@ class SubjectTableViewCell: UITableViewCell, ReusableView {
         backgroundShapeLayer.strokeColor = UIColor(hex: 0x707070).cgColor
         backgroundShapeLayer.lineWidth = 2
         backgroundShapeLayer.lineCap = .round
-        graphContainer.layer.addSublayer(backgroundShapeLayer)
+        chartContainer.layer.addSublayer(backgroundShapeLayer)
     }
     
     
@@ -126,7 +126,7 @@ class SubjectTableViewCell: UITableViewCell, ReusableView {
             frontShapeLayer.lineWidth = 2
             frontShapeLayer.strokeEnd = 0
             frontShapeLayer.lineCap = .round
-            graphContainer.layer.addSublayer(frontShapeLayer)
+            chartContainer.layer.addSublayer(frontShapeLayer)
             
             let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
             basicAnimation.toValue = 1
