@@ -4,6 +4,8 @@
 
 # System
 .DS_Store
+appIcon
+appIcon.png
 
 ## Build generated
 build/

@@ -48,13 +48,6 @@ class SubjectCardCollectionViewCell: UICollectionViewCell, ReusableView {
             .leading(to: leadingAnchor, constant: margin)
             .height(constant: 1)
             .activate()
-        
-        progressRingView = ProgressRingView(radius: circleRadius)
-        addSubview(progressRingView)
-        progressRingView.anchor
-            .trailing(to: trailingAnchor, constant: -margin)
-            .centerY(to: centerYAnchor)
-            .activate()
 
         addSubview(nameLabel)
         nameLabel.anchor
@@ -62,7 +55,14 @@ class SubjectCardCollectionViewCell: UICollectionViewCell, ReusableView {
             .leading(to: leadingAnchor, constant: margin)
             .bottom(to: bottomAnchor, constant: -10)
             .centerY(to: centerYAnchor)
-            .trailing(to: progressRingView.leadingAnchor, constant: -8)
+            .activate()
+        
+        progressRingView = ProgressRingView(radius: circleRadius)
+        addSubview(progressRingView)
+        progressRingView.anchor
+            .leading(to: nameLabel.trailingAnchor, constant: 8)
+            .trailing(to: trailingAnchor, constant: -margin)
+            .centerY(to: centerYAnchor)
             .activate()
     }
     
@@ -72,6 +72,15 @@ class SubjectCardCollectionViewCell: UICollectionViewCell, ReusableView {
     /// - Parameter subject: Subject to be displayed
     func configure(with subject: Subject) {
         nameLabel.text = subject.name
+        
+        progressRingView.removeFromSuperview()
+        progressRingView = ProgressRingView(radius: circleRadius)
+        addSubview(progressRingView)
+        progressRingView.anchor
+            .leading(to: nameLabel.trailingAnchor, constant: 8)
+            .trailing(to: trailingAnchor, constant: -margin)
+            .centerY(to: centerYAnchor)
+            .activate()
         progressRingView.configure(with: subject)
     }
 }

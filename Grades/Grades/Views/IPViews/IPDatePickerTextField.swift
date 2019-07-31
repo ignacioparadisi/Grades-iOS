@@ -23,7 +23,7 @@ class IPDatePickerTextField: IPTextField {
             datePicker.datePickerMode = datePickerMode
         }
     }
-    var dateFormat: String = "EEE d, yyyy" {
+    var dateFormat: String = "MMM d, yyyy" {
         didSet {
             dateFormatter.dateFormat = dateFormat
         }
@@ -80,7 +80,7 @@ class IPDatePickerTextField: IPTextField {
     
     @objc private func pickDate() {
         date = datePicker.date
-        resignFirstResponder()
+        _ = resignFirstResponder()
     }
     
 }

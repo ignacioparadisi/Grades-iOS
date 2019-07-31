@@ -26,14 +26,14 @@ class EditTermViewController: BaseViewController {
         let textField = IPDatePickerTextField()
         textField.isRequired = true
         textField.datePickerMode = .date
-        textField.dateFormat = "EEE d, yyyy"
+        textField.dateFormat = "MMM d, yyyy"
         return textField
     }()
     let endDateTextField: IPDatePickerTextField = {
         let textField = IPDatePickerTextField()
         textField.isRequired = true
         textField.datePickerMode = .date
-        textField.dateFormat = "EEE d, yyyy"
+        textField.dateFormat = "MMM d, yyyy"
         return textField
     }()
     let saveButton: IPButton = {

@@ -82,17 +82,10 @@ class EditTermsViewController: BaseViewController {
     private func updatePositions() {
             var aux: [Term] = []
             for (index, term) in self.terms.enumerated() {
-                let auxTerm = Term()
-                auxTerm.id = term.id
-                auxTerm.name = term.name
-                auxTerm.dateCreated = term.dateCreated
-                auxTerm.minQualification = term.minQualification
-                auxTerm.maxQualification = term.maxQualification
-                auxTerm.qualification = term.qualification
-                auxTerm.startDate = term.startDate
-                auxTerm.endDate = term.endDate
-                auxTerm.position = index
-                aux.append(auxTerm)
+                if let auxTerm = term.copy() as? Term {
+                    auxTerm.position = index
+                    aux.append(auxTerm)
+                }
             }
             self.terms = aux
     }

@@ -41,6 +41,7 @@ class TermDetailViewController: BaseViewController {
         tableView.dataSource = self
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
         view.addSubview(tableView)
         tableView.anchor
             .edgesToSuperview(toSafeArea: true)
@@ -76,6 +77,9 @@ class TermDetailViewController: BaseViewController {
 extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if subjects.isEmpty {
+            return 1
+        }
         return subjects.count + TableRows.allCases.count - 1
     }
     
@@ -85,11 +89,12 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
         switch TableRows(rawValue: row)  {
         case .dateRow?:
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "EEE d, yyyy"
+            dateFormatter.dateFormat = "MMM d, yyyy"
             let cell = UITableViewCell()
             cell.textLabel?.textColor = ThemeManager.currentTheme.textColor
             cell.textLabel?.text = "\(dateFormatter.string(from: term.startDate)) - \(dateFormatter.string(from: term.endDate))"
             cell.textLabel?.textAlignment = .center
+            cell.selectionStyle = .none
             return cell
         case .chartRow?:
             let cell = tableView.dequeueReusableCell(for: indexPath) as BarChartTableViewCell
@@ -106,7 +111,7 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         
-        if row != TableRows.chartRow.rawValue {
+        if row > TableRows.chartRow.rawValue {
             let index = indexPath.row - TableRows.allCases.count + 1
             let subject = subjects[index]
             let viewController = SubjectDetailViewController()

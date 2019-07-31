@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1980D711D152EEC2A7D142BF /* Pods_GradesWatch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526CC43AE900E43BAB2BD4E8 /* Pods_GradesWatch_Extension.framework */; };
-		4F09643B22B5800C00D72277 /* SubjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643A22B5800C00D72277 /* SubjectCollectionViewCell.swift */; };
 		4F09643D22B583B700D72277 /* CreateSubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */; };
 		4F09643F22B588FA00D72277 /* SubjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */; };
 		4F2FFB2222F1D1E40086B8B2 /* ProgressRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FFB2122F1D1E40086B8B2 /* ProgressRingView.swift */; };
@@ -50,7 +49,6 @@
 		4F75399F22C05CFE00276742 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75399E22C05CFE00276742 /* ServiceFactory.swift */; };
 		4F7EE95B22A18C6500E34672 /* IPButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EE95A22A18C6500E34672 /* IPButton.swift */; };
 		4F7EE96322A1914300E34672 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F7EE96522A1914300E34672 /* Localizable.strings */; };
-		4F7EE96C22A1DD5A00E34672 /* DetailCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EE96B22A1DD5A00E34672 /* DetailCollectionViewHeader.swift */; };
 		4FACFF4F22F0DB71000997E1 /* IPDatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF4E22F0DB71000997E1 /* IPDatePickerTextField.swift */; };
 		4FACFF5122F0EE68000997E1 /* Orderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF5022F0EE68000997E1 /* Orderable.swift */; };
 		4FACFF5222F0EEEC000997E1 /* Orderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF5022F0EE68000997E1 /* Orderable.swift */; };
@@ -87,6 +85,7 @@
 		4FF6F47F227A410B000F14D2 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F47E227A410B000F14D2 /* UIView+Extension.swift */; };
 		4FF6F481227A70AB000F14D2 /* SubjectCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F480227A70AB000F14D2 /* SubjectCardCollectionViewCell.swift */; };
 		4FF6F483227A72BE000F14D2 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F482227A72BE000F14D2 /* HeaderCollectionReusableView.swift */; };
+		4FF9AA0622F205CA00FE59AE /* AssignmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF9AA0522F205CA00FE59AE /* AssignmentTableViewCell.swift */; };
 		B31F06935769A866DBA4BA86 /* Pods_Grades.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3331F2C02BBE33564DB3E91E /* Pods_Grades.framework */; };
 /* End PBXBuildFile section */
 
@@ -135,7 +134,6 @@
 /* Begin PBXFileReference section */
 		07275EA9DE87859383BBC4AA /* Pods-Grades.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grades.release.xcconfig"; path = "Target Support Files/Pods-Grades/Pods-Grades.release.xcconfig"; sourceTree = "<group>"; };
 		3331F2C02BBE33564DB3E91E /* Pods_Grades.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grades.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F09643A22B5800C00D72277 /* SubjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectCollectionViewCell.swift; sourceTree = "<group>"; };
 		4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubjectViewController.swift; sourceTree = "<group>"; };
 		4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectDetailViewController.swift; sourceTree = "<group>"; };
 		4F2FFB2122F1D1E40086B8B2 /* ProgressRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRingView.swift; sourceTree = "<group>"; };
@@ -178,7 +176,6 @@
 		4F7EE96022A190F200E34672 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		4F7EE96422A1914300E34672 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4F7EE96622A1914800E34672 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		4F7EE96B22A1DD5A00E34672 /* DetailCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewHeader.swift; sourceTree = "<group>"; };
 		4FACFF4E22F0DB71000997E1 /* IPDatePickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPDatePickerTextField.swift; sourceTree = "<group>"; };
 		4FACFF5022F0EE68000997E1 /* Orderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orderable.swift; sourceTree = "<group>"; };
 		4FACFF5622F0F38E000997E1 /* EditTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTermsViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +213,7 @@
 		4FF6F47E227A410B000F14D2 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		4FF6F480227A70AB000F14D2 /* SubjectCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		4FF6F482227A72BE000F14D2 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		4FF9AA0522F205CA00FE59AE /* AssignmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentTableViewCell.swift; sourceTree = "<group>"; };
 		526CC43AE900E43BAB2BD4E8 /* Pods_GradesWatch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GradesWatch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67446F864585CE8DCB9A795F /* Pods-Grades.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grades.debug.xcconfig"; path = "Target Support Files/Pods-Grades/Pods-Grades.debug.xcconfig"; sourceTree = "<group>"; };
 		9E87735B25A00D384A3E5190 /* Pods-GradesWatch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GradesWatch Extension.debug.xcconfig"; path = "Target Support Files/Pods-GradesWatch Extension/Pods-GradesWatch Extension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -306,6 +304,7 @@
 				4F4A650222B99DB7003A1199 /* BarChartTableViewCell.swift */,
 				4F4A650422B99E11003A1199 /* Header.swift */,
 				4FACFF5822F0FBD0000997E1 /* LabelTableViewCell.swift */,
+				4FF9AA0522F205CA00FE59AE /* AssignmentTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -539,8 +538,6 @@
 				4FF6F477227A2B94000F14D2 /* TermCollectionViewCell.swift */,
 				4FF6F480227A70AB000F14D2 /* SubjectCardCollectionViewCell.swift */,
 				4FF6F482227A72BE000F14D2 /* HeaderCollectionReusableView.swift */,
-				4F7EE96B22A1DD5A00E34672 /* DetailCollectionViewHeader.swift */,
-				4F09643A22B5800C00D72277 /* SubjectCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -847,7 +844,6 @@
 				4F66289E22A14874001F2CD9 /* IPLabel.swift in Sources */,
 				4FDC23E322A0C2E30088FF3C /* RealmManager.swift in Sources */,
 				4FACFF5922F0FBD0000997E1 /* LabelTableViewCell.swift in Sources */,
-				4F09643B22B5800C00D72277 /* SubjectCollectionViewCell.swift in Sources */,
 				4FF6F452227A0BBF000F14D2 /* IPTitleLabel.swift in Sources */,
 				4F4A64FE22B99C1F003A1199 /* TermDetailViewController.swift in Sources */,
 				4F4A650522B99E11003A1199 /* Header.swift in Sources */,
@@ -868,12 +864,12 @@
 				4FF6F420227A04B6000F14D2 /* AppDelegate.swift in Sources */,
 				4FDC23E022A0C09E0088FF3C /* Term.swift in Sources */,
 				4FF6F471227A17F8000F14D2 /* ScrollableView.swift in Sources */,
+				4FF9AA0622F205CA00FE59AE /* AssignmentTableViewCell.swift in Sources */,
 				4FACFF4F22F0DB71000997E1 /* IPDatePickerTextField.swift in Sources */,
 				4F6C601F22B5B3F800C7A931 /* Assignment.swift in Sources */,
 				4F7EE95B22A18C6500E34672 /* IPButton.swift in Sources */,
 				4F6C602322B5BAC800C7A931 /* CreateAssignmentViewController.swift in Sources */,
 				4F09643F22B588FA00D72277 /* SubjectDetailViewController.swift in Sources */,
-				4F7EE96C22A1DD5A00E34672 /* DetailCollectionViewHeader.swift in Sources */,
 				4F75399B22C05AF700276742 /* RealmSubjectService.swift in Sources */,
 				4FF6F44A227A0BAE000F14D2 /* HomeViewController.swift in Sources */,
 			);

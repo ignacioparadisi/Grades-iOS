@@ -9,8 +9,13 @@
 import UIKit
 
 class SubjectDetailViewController: BaseViewController {
+    
+    enum TableRows: Int, CaseIterable {
+        case chartRow = 0
+        case assignmentsRow = 1
+    }
 
-    var collectionView: UICollectionView!
+    var tableView: UITableView!
     var subject: Subject = Subject()
     var assignments: [Assignment] = []
     weak var delegate: CreateSubjectViewControllerDelegate?
@@ -27,18 +32,18 @@ class SubjectDetailViewController: BaseViewController {
     override func setupView() {
         super.setupView()
         
-        let layout = FixedHeaderLayout()
-        layout.scrollDirection = .vertical
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.backgroundColor = .clear
-        view.addSubview(collectionView)
-        collectionView.anchor
+        tableView = UITableView(frame: .zero)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
+        view.addSubview(tableView)
+        tableView.anchor
             .edgesToSuperview(toSafeArea: true)
             .activate()
-        collectionView.register(SubjectCollectionViewCell.self)
-        collectionView.register(DetailCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailCollectionViewHeader")
+        tableView.register(AssignmentTableViewCell.self)
+        tableView.register(BarChartTableViewCell.self)
         
         fetchAssignments()
     }
@@ -52,44 +57,89 @@ class SubjectDetailViewController: BaseViewController {
     
     private func fetchAssignments() {
         assignments = AbstractServiceFactory.getServiceFactory(for: .realm).assignmentService.fetchAssignments(for: subject)
-        collectionView.reloadData()
+        tableView.reloadData()
+    }
+    
+    private func showActionSheet() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let editDateAction = UIAlertAction(title: "Edit date".localized, style: .default, handler: nil)
+        let editQualificationAction = UIAlertAction(title: "Edit qualification".localized, style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
+        
+        actionSheet.addAction(editDateAction)
+        actionSheet.addAction(editQualificationAction)
+        actionSheet.addAction(cancelAction)
+        
+        present(actionSheet, animated: true)
     }
 
 }
 
-extension SubjectDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension SubjectDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return assignments.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(for: indexPath) as SubjectCollectionViewCell
-        return cell
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "DetailCollectionViewHeader", for: indexPath) as! DetailCollectionViewHeader
-            header.configureWith(subject)
-            return header
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if assignments.isEmpty {
+            return 1
         }
-        fatalError("Header missing")
+        return assignments.count + TableRows.allCases.count - 1
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let estimatedHeight = collectionView.frame.height * 0.3
-        return CGSize(width: collectionView.frame.width, height: estimatedHeight > 140 ? 140 : estimatedHeight)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let row = indexPath.row
+        
+        switch TableRows(rawValue: row)  {
+        case .chartRow?:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as BarChartTableViewCell
+            cell.configure(with: assignments)
+            return cell
+        default:
+            let index = row - TableRows.allCases.count + 1
+            let cell = tableView.dequeueReusableCell(for: indexPath) as AssignmentTableViewCell
+            cell.configure(with: assignments[index])
+            return cell
+        }
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 80)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = indexPath.row
+        
+        if row > TableRows.chartRow.rawValue {
+            showActionSheet()
+        }
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch section {
+        case 0:
+            let header = DetailHeader(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 120))
+            header.configure(with: subject)
+            return header
+        default:
+            return nil
+        }
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 120
+        default:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.row != TableRows.chartRow.rawValue
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let index = indexPath.row - TableRows.allCases.count + 1
+        if editingStyle == .delete {
+            assignments.remove(at: index)
+            tableView.deleteRows(at: [indexPath], with: .left)
+            tableView.reloadRows(at: [IndexPath(row: TableRows.chartRow.rawValue, section: 0)], with: .none)
+        }
+    }
 }
 
 extension SubjectDetailViewController: CreateAssignmentViewControllerDelegate {

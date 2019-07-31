@@ -1,15 +1,15 @@
 //
-//  QualificationableTableViewCell.swift
+//  AssignmentTableViewCell.swift
 //  Grades
 //
-//  Created by Ignacio Paradisi on 6/18/19.
+//  Created by Ignacio Paradisi on 7/31/19.
 //  Copyright © 2019 Ignacio Paradisi. All rights reserved.
 //
 
 import UIKit
 
-class QualificationableTableViewCell: UITableViewCell, ReusableView {
-    
+class AssignmentTableViewCell: UITableViewCell, ReusableView {
+
     /// The radius of the graph
     private let circleRadius: CGFloat = 26
     /// Margin for leading and trailing
@@ -19,6 +19,12 @@ class QualificationableTableViewCell: UITableViewCell, ReusableView {
     private let nameLabel: IPLabel = {
         let label = IPLabel()
         label.text = "Name"
+        return label
+    }()
+    private let dateLabel: IPLabel = {
+        let label = IPLabel()
+        label.text = "Date:"
+        label.textColor = ThemeManager.currentTheme.placeholderColor
         return label
     }()
     private let containerView = UIView()
@@ -40,9 +46,18 @@ class QualificationableTableViewCell: UITableViewCell, ReusableView {
         
         containerView.addSubview(nameLabel)
         nameLabel.anchor
+            .topToSuperview(constant: margin)
             .leadingToSuperview(constant: margin)
-            .centerYToSuperview()
             .activate()
+        
+        containerView.addSubview(dateLabel)
+        dateLabel.anchor
+            .top(to: nameLabel.bottomAnchor, constant: 5)
+            .leadingToSuperview(constant: margin)
+            .bottomToSuperview(constant: -margin)
+            .trailing(to: nameLabel.trailingAnchor)
+            .activate()
+        
         
         progressRingView = ProgressRingView(radius: circleRadius)
         containerView.addSubview(progressRingView)
@@ -61,7 +76,6 @@ class QualificationableTableViewCell: UITableViewCell, ReusableView {
         addSubview(containerView)
         containerView.anchor
             .edgesToSuperview(insets: UIEdgeInsets(top: 4, left: 16, bottom: -4, right: -16))
-            .height(constant: 70)
             .activate()
     }
     
@@ -82,5 +96,5 @@ class QualificationableTableViewCell: UITableViewCell, ReusableView {
             .activate()
         progressRingView.configure(with: qualificationable)
     }
-    
+
 }
