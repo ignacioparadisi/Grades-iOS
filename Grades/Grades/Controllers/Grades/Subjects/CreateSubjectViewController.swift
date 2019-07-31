@@ -167,8 +167,7 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
                 subject.minQualification = minQualification
                 subject.maxQualification = maxQualification
                 
-                Factory.getServiceFactory(for: .realm).subjectService.createSubject(subject)
-                // ServiceFactory.createService(.realm).createSubject(subject)
+                AbstractServiceFactory.getServiceFactory(for: .realm).subjectService.createSubject(subject)
                 dismissView()
                 delegate?.shouldRefresh()
             }

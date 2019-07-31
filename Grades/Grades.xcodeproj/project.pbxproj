@@ -44,11 +44,10 @@
 		4F75399022C054BE00276742 /* AssignmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75398F22C054BE00276742 /* AssignmentService.swift */; };
 		4F75399222C0564C00276742 /* RealmServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75399122C0564C00276742 /* RealmServiceFactory.swift */; };
 		4F75399622C057B500276742 /* RealmTermService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75399522C057B500276742 /* RealmTermService.swift */; };
-		4F75399922C05A6C00276742 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75399822C05A6C00276742 /* Factory.swift */; };
+		4F75399922C05A6C00276742 /* AbstractServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75399822C05A6C00276742 /* AbstractServiceFactory.swift */; };
 		4F75399B22C05AF700276742 /* RealmSubjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75399A22C05AF700276742 /* RealmSubjectService.swift */; };
 		4F75399D22C05B9400276742 /* RealmAssignmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75399C22C05B9400276742 /* RealmAssignmentService.swift */; };
-		4F75399F22C05CFE00276742 /* NewServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75399E22C05CFE00276742 /* NewServiceFactory.swift */; };
-		4F7539A122C05D4300276742 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7539A022C05D4300276742 /* ServiceFactory.swift */; };
+		4F75399F22C05CFE00276742 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75399E22C05CFE00276742 /* ServiceFactory.swift */; };
 		4F7EE95B22A18C6500E34672 /* IPButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EE95A22A18C6500E34672 /* IPButton.swift */; };
 		4F7EE96322A1914300E34672 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F7EE96522A1914300E34672 /* Localizable.strings */; };
 		4F7EE96C22A1DD5A00E34672 /* DetailCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EE96B22A1DD5A00E34672 /* DetailCollectionViewHeader.swift */; };
@@ -61,8 +60,6 @@
 		4FCEA14C229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */; };
 		4FDC23E022A0C09E0088FF3C /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDC23DF22A0C09E0088FF3C /* Term.swift */; };
 		4FDC23E322A0C2E30088FF3C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDC23E222A0C2E30088FF3C /* RealmManager.swift */; };
-		4FE7BD0022B51F8400EB9590 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BCFF22B51F8400EB9590 /* Service.swift */; };
-		4FE7BD0222B51FD100EB9590 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BD0122B51FD100EB9590 /* RealmService.swift */; };
 		4FE7BD0822B5277600EB9590 /* Qualificationable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BD0722B5277600EB9590 /* Qualificationable.swift */; };
 		4FE7BD0A22B55CE800EB9590 /* FixedHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BD0922B55CE800EB9590 /* FixedHeaderLayout.swift */; };
 		4FED757622A0CFAC002C3F98 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FED757522A0CFAC002C3F98 /* Subject.swift */; };
@@ -173,11 +170,10 @@
 		4F75398F22C054BE00276742 /* AssignmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentService.swift; sourceTree = "<group>"; };
 		4F75399122C0564C00276742 /* RealmServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmServiceFactory.swift; sourceTree = "<group>"; };
 		4F75399522C057B500276742 /* RealmTermService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTermService.swift; sourceTree = "<group>"; };
-		4F75399822C05A6C00276742 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
+		4F75399822C05A6C00276742 /* AbstractServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractServiceFactory.swift; sourceTree = "<group>"; };
 		4F75399A22C05AF700276742 /* RealmSubjectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSubjectService.swift; sourceTree = "<group>"; };
 		4F75399C22C05B9400276742 /* RealmAssignmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAssignmentService.swift; sourceTree = "<group>"; };
-		4F75399E22C05CFE00276742 /* NewServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServiceFactory.swift; sourceTree = "<group>"; };
-		4F7539A022C05D4300276742 /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
+		4F75399E22C05CFE00276742 /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		4F7EE95A22A18C6500E34672 /* IPButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPButton.swift; sourceTree = "<group>"; };
 		4F7EE96022A190F200E34672 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		4F7EE96422A1914300E34672 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -191,8 +187,6 @@
 		4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyHeaderLayout.swift; sourceTree = "<group>"; };
 		4FDC23DF22A0C09E0088FF3C /* Term.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
 		4FDC23E222A0C2E30088FF3C /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
-		4FE7BCFF22B51F8400EB9590 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		4FE7BD0122B51FD100EB9590 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		4FE7BD0722B5277600EB9590 /* Qualificationable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Qualificationable.swift; sourceTree = "<group>"; };
 		4FE7BD0922B55CE800EB9590 /* FixedHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeaderLayout.swift; sourceTree = "<group>"; };
 		4FED757522A0CFAC002C3F98 /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
@@ -372,14 +366,11 @@
 			isa = PBXGroup;
 			children = (
 				4F75399722C057E900276742 /* Realm */,
-				4F75399E22C05CFE00276742 /* NewServiceFactory.swift */,
-				4FE7BCFF22B51F8400EB9590 /* Service.swift */,
-				4FE7BD0122B51FD100EB9590 /* RealmService.swift */,
+				4F75399E22C05CFE00276742 /* ServiceFactory.swift */,
 				4F75398B22C0549F00276742 /* TermService.swift */,
 				4F75398D22C054B200276742 /* SubjectService.swift */,
 				4F75398F22C054BE00276742 /* AssignmentService.swift */,
-				4F75399822C05A6C00276742 /* Factory.swift */,
-				4F7539A022C05D4300276742 /* ServiceFactory.swift */,
+				4F75399822C05A6C00276742 /* AbstractServiceFactory.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -835,7 +826,7 @@
 				4FF6F47F227A410B000F14D2 /* UIView+Extension.swift in Sources */,
 				4F09643D22B583B700D72277 /* CreateSubjectViewController.swift in Sources */,
 				4FF6F44C227A0BAE000F14D2 /* CalendarViewController.swift in Sources */,
-				4F75399F22C05CFE00276742 /* NewServiceFactory.swift in Sources */,
+				4F75399F22C05CFE00276742 /* ServiceFactory.swift in Sources */,
 				4FF6F469227A1585000F14D2 /* ReusableView.swift in Sources */,
 				4F4A650322B99DB7003A1199 /* BarChartTableViewCell.swift in Sources */,
 				4FED757622A0CFAC002C3F98 /* Subject.swift in Sources */,
@@ -848,12 +839,11 @@
 				4FACFF5722F0F38E000997E1 /* EditTermsViewController.swift in Sources */,
 				4F75398C22C0549F00276742 /* TermService.swift in Sources */,
 				4FF6F46F227A15BE000F14D2 /* UICollectionView+Extension.swift in Sources */,
-				4F7539A122C05D4300276742 /* ServiceFactory.swift in Sources */,
 				4F6C601D22B59DC300C7A931 /* PopAnimator.swift in Sources */,
 				4FF6F44B227A0BAE000F14D2 /* TermsViewController.swift in Sources */,
 				4FF6F44D227A0BAE000F14D2 /* MainTabBarController.swift in Sources */,
 				4FCEA14C229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift in Sources */,
-				4F75399922C05A6C00276742 /* Factory.swift in Sources */,
+				4F75399922C05A6C00276742 /* AbstractServiceFactory.swift in Sources */,
 				4F66289E22A14874001F2CD9 /* IPLabel.swift in Sources */,
 				4FDC23E322A0C2E30088FF3C /* RealmManager.swift in Sources */,
 				4FACFF5922F0FBD0000997E1 /* LabelTableViewCell.swift in Sources */,
@@ -867,7 +857,6 @@
 				4FF6F479227A2B94000F14D2 /* TermCollectionViewCell.swift in Sources */,
 				4FF6F475227A211D000F14D2 /* String+Extension.swift in Sources */,
 				4FF6F473227A1F90000F14D2 /* UIFont+Extension.swift in Sources */,
-				4FE7BD0022B51F8400EB9590 /* Service.swift in Sources */,
 				4FF6F46D227A15AF000F14D2 /* UITableView+Extension.swift in Sources */,
 				4FF6F46B227A159A000F14D2 /* NibLoadableView.swift in Sources */,
 				4FF6F462227A119F000F14D2 /* NSLayoutAnchor+Extension.swift in Sources */,
@@ -879,7 +868,6 @@
 				4FF6F420227A04B6000F14D2 /* AppDelegate.swift in Sources */,
 				4FDC23E022A0C09E0088FF3C /* Term.swift in Sources */,
 				4FF6F471227A17F8000F14D2 /* ScrollableView.swift in Sources */,
-				4FE7BD0222B51FD100EB9590 /* RealmService.swift in Sources */,
 				4FACFF4F22F0DB71000997E1 /* IPDatePickerTextField.swift in Sources */,
 				4F6C601F22B5B3F800C7A931 /* Assignment.swift in Sources */,
 				4F7EE95B22A18C6500E34672 /* IPButton.swift in Sources */,

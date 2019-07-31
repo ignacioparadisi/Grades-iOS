@@ -48,7 +48,7 @@ class TermsViewController: BaseViewController {
     }
     
     private func fetchTerms() {
-        terms = Factory.getServiceFactory(for: .realm).termService.fetchTerms()
+        terms = AbstractServiceFactory.getServiceFactory(for: .realm).termService.fetchTerms()
         terms = terms.sorted(by: { (term1, term2) -> Bool in
             return term1.position < term2.position
         })

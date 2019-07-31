@@ -1,5 +1,5 @@
 //
-//  Factory.swift
+//  AbstractServiceFactory.swift
 //  Grades
 //
 //  Created by Ignacio Paradisi on 6/23/19.
@@ -12,9 +12,9 @@ enum ServiceType {
     case realm
 }
 
-class Factory {
+class AbstractServiceFactory {
     
-    static func getServiceFactory(for type: ServiceType) -> NewServiceFactory {
+    static func getServiceFactory(for type: ServiceType) -> ServiceFactory {
         switch type {
         case .realm:
             return RealmServiceFactory()

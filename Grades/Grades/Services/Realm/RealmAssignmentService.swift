@@ -55,7 +55,7 @@ class RealmAssignmentService: AssignmentService {
     /// - Parameter subject: Subject that was created or updated.
     func updateQualificationForParent(of subject: Subject) {
         if let term = subject.term {
-            let factory = Factory.getServiceFactory(for: .realm)
+            let factory = AbstractServiceFactory.getServiceFactory(for: .realm)
             let subjects = factory.subjectService.fetchSubjects(for: term)
             let qualification = Calculator.getAverageQualification(for: subjects)
             RealmManager.shared.updateQualification(term, qualification: qualification)

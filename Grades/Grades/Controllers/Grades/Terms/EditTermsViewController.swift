@@ -72,7 +72,7 @@ class EditTermsViewController: BaseViewController {
     }
     
     @objc private func editTerms() {
-        let termService = Factory.getServiceFactory(for: .realm).termService
+        let termService = AbstractServiceFactory.getServiceFactory(for: .realm).termService
         termService.deleteTerms(termsToBeDeleted)
         termService.updateTerms(terms)
         delegate?.didEditTerms()

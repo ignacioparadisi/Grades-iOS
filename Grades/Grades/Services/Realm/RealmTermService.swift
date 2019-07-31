@@ -17,7 +17,7 @@ class RealmTermService: TermService {
         let terms = RealmManager.shared.getArray(ofType: Term.self) as! [Term]
         
         for term in terms {
-            let factory = Factory.getServiceFactory(for: .realm)
+            let factory = AbstractServiceFactory.getServiceFactory(for: .realm)
             let subjects = factory.subjectService.fetchSubjects(for: term)
             term.subjects = subjects
         }

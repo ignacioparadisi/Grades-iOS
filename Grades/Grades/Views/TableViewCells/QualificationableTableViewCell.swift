@@ -60,7 +60,7 @@ class QualificationableTableViewCell: UITableViewCell, ReusableView {
         
         addSubview(containerView)
         containerView.anchor
-            .edgesToSuperview(insets: UIEdgeInsets(top: 8, left: 16, bottom: -8, right: -16))
+            .edgesToSuperview(insets: UIEdgeInsets(top: 4, left: 16, bottom: -4, right: -16))
             .height(constant: 70)
             .activate()
     }

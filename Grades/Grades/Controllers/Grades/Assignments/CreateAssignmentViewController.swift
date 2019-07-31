@@ -215,8 +215,7 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
                 if self.assignment != nil {
                     self.assignment = assignment
                 } else {
-                    Factory.getServiceFactory(for: .realm).assignmentService.createAssignment(assignment)
-                    // ServiceFactory.createService(.realm).createAssignment(assignment)
+                    AbstractServiceFactory.getServiceFactory(for: .realm).assignmentService.createAssignment(assignment)
                 }
                 
                 dismissView()

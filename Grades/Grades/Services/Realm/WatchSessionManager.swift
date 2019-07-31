@@ -48,7 +48,6 @@ extension WatchSessionManager: WCSessionDelegate {
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         print(message)
-        let service = ServiceFactory.createService(.realm)
-        replyHandler(["terms": service.fetchTerms()])
+
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RealmServiceFactory: NewServiceFactory {
+class RealmServiceFactory: ServiceFactory {
     var termService: TermService = {
         return RealmTermService()
     }()

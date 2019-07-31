@@ -51,8 +51,7 @@ class SubjectDetailViewController: BaseViewController {
     }
     
     private func fetchAssignments() {
-        assignments = Factory.getServiceFactory(for: .realm).assignmentService.fetchAssignments(for: subject)
-        // assignments = ServiceFactory.createService(.realm).fetchAssignments(for: subject)
+        assignments = AbstractServiceFactory.getServiceFactory(for: .realm).assignmentService.fetchAssignments(for: subject)
         collectionView.reloadData()
     }
 

@@ -8,13 +8,10 @@
 
 import Foundation
 
-class ServiceFactory {
+protocol ServiceFactory {
     
-    static func createService(_ type: ServiceType) -> Service {
-        switch type {
-        case .realm:
-            return RealmService.shared
-        }
-    }
+    var termService: TermService { get }
+    var subjectService: SubjectService { get }
+    var assignmentService: AssignmentService { get }
     
 }
