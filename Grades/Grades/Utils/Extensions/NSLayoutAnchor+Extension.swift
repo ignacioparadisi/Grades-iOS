@@ -158,18 +158,18 @@ public struct Anchor {
     }
     
     // MARK: Anchor to superview axises
-    public func centerXToSuperview() -> Anchor {
+    public func centerXToSuperview(constant: CGFloat = 0) -> Anchor {
         guard let superview = view.superview else {
             return self
         }
-        return centerX(to: superview.centerXAnchor)
+        return centerX(to: superview.centerXAnchor, constant: constant)
     }
     
-    public func centerYToSuperview() -> Anchor {
+    public func centerYToSuperview(constant: CGFloat = 0) -> Anchor {
         guard let superview = view.superview else {
             return self
         }
-        return centerY(to: superview.centerYAnchor)
+        return centerY(to: superview.centerYAnchor, constant: constant)
     }
     
     public func centerToSuperview() -> Anchor {

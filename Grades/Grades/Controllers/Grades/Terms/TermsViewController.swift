@@ -11,7 +11,6 @@ import UIKit
 class TermsViewController: BaseViewController {
     
     var collectionView: UICollectionView!
-    private var indexOfCellBeforeDragging = 0
     private var terms: [Term] = []
 //    let transition = PopAnimator()
     var selectedCell: Int = -1

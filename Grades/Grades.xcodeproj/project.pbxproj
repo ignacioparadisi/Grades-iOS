@@ -11,7 +11,7 @@
 		4F09643B22B5800C00D72277 /* SubjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643A22B5800C00D72277 /* SubjectCollectionViewCell.swift */; };
 		4F09643D22B583B700D72277 /* CreateSubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */; };
 		4F09643F22B588FA00D72277 /* SubjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */; };
-		4F1DCB1B22B7E848003A135D /* BarChartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DCB1A22B7E848003A135D /* BarChartCollectionViewCell.swift */; };
+		4F2FFB2222F1D1E40086B8B2 /* ProgressRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FFB2122F1D1E40086B8B2 /* ProgressRingView.swift */; };
 		4F3EC74322EB2C20006AA47C /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F3EC74122EB2C20006AA47C /* Interface.storyboard */; };
 		4F3EC74522EB2C21006AA47C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3EC74422EB2C21006AA47C /* Assets.xcassets */; };
 		4F3EC74C22EB2C21006AA47C /* GradesWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4F3EC74B22EB2C21006AA47C /* GradesWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -26,7 +26,7 @@
 		4F3FDF1322EBC6E700C1DEF1 /* Qualificationable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BD0722B5277600EB9590 /* Qualificationable.swift */; };
 		4F3FDF1422EBC6E900C1DEF1 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C601E22B5B3F800C7A931 /* Assignment.swift */; };
 		4F4A64FE22B99C1F003A1199 /* TermDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A64FD22B99C1F003A1199 /* TermDetailViewController.swift */; };
-		4F4A650122B99D40003A1199 /* SubjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A650022B99D40003A1199 /* SubjectTableViewCell.swift */; };
+		4F4A650122B99D40003A1199 /* QualificationableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A650022B99D40003A1199 /* QualificationableTableViewCell.swift */; };
 		4F4A650322B99DB7003A1199 /* BarChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A650222B99DB7003A1199 /* BarChartTableViewCell.swift */; };
 		4F4A650522B99E11003A1199 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A650422B99E11003A1199 /* Header.swift */; };
 		4F61FA8022EBE6F8008C6555 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F61FA7F22EBE6F8008C6555 /* WatchSessionManager.swift */; };
@@ -141,7 +141,7 @@
 		4F09643A22B5800C00D72277 /* SubjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectCollectionViewCell.swift; sourceTree = "<group>"; };
 		4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubjectViewController.swift; sourceTree = "<group>"; };
 		4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectDetailViewController.swift; sourceTree = "<group>"; };
-		4F1DCB1A22B7E848003A135D /* BarChartCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartCollectionViewCell.swift; sourceTree = "<group>"; };
+		4F2FFB2122F1D1E40086B8B2 /* ProgressRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRingView.swift; sourceTree = "<group>"; };
 		4F3EC73F22EB2C1F006AA47C /* GradesWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GradesWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3EC74222EB2C20006AA47C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		4F3EC74422EB2C21006AA47C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 		4F3FDF0C22EBC61E00C1DEF1 /* TermRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermRow.swift; sourceTree = "<group>"; };
 		4F3FDF0E22EBC65800C1DEF1 /* TermsInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsInterfaceController.swift; sourceTree = "<group>"; };
 		4F4A64FD22B99C1F003A1199 /* TermDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDetailViewController.swift; sourceTree = "<group>"; };
-		4F4A650022B99D40003A1199 /* SubjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectTableViewCell.swift; sourceTree = "<group>"; };
+		4F4A650022B99D40003A1199 /* QualificationableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualificationableTableViewCell.swift; sourceTree = "<group>"; };
 		4F4A650222B99DB7003A1199 /* BarChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartTableViewCell.swift; sourceTree = "<group>"; };
 		4F4A650422B99E11003A1199 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		4F61FA7F22EBE6F8008C6555 /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
@@ -308,7 +308,7 @@
 		4F4A64FF22B99D14003A1199 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				4F4A650022B99D40003A1199 /* SubjectTableViewCell.swift */,
+				4F4A650022B99D40003A1199 /* QualificationableTableViewCell.swift */,
 				4F4A650222B99DB7003A1199 /* BarChartTableViewCell.swift */,
 				4F4A650422B99E11003A1199 /* Header.swift */,
 				4FACFF5822F0FBD0000997E1 /* LabelTableViewCell.swift */,
@@ -480,6 +480,7 @@
 				4FCEA14D229F557400CD4AC6 /* Layouts */,
 				4FF6F476227A2B47000F14D2 /* CollectionViewCells */,
 				4FF6F450227A0BBF000F14D2 /* IPViews */,
+				4F2FFB2122F1D1E40086B8B2 /* ProgressRingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -549,7 +550,6 @@
 				4FF6F482227A72BE000F14D2 /* HeaderCollectionReusableView.swift */,
 				4F7EE96B22A1DD5A00E34672 /* DetailCollectionViewHeader.swift */,
 				4F09643A22B5800C00D72277 /* SubjectCollectionViewCell.swift */,
-				4F1DCB1A22B7E848003A135D /* BarChartCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -615,6 +615,7 @@
 				4FF6F41A227A04B6000F14D2 /* Resources */,
 				4F3EC76422EB2C22006AA47C /* Embed Watch Content */,
 				28E699C157030CF49D2C8271 /* [CP] Embed Pods Frameworks */,
+				4F2FFB2022F1D1320086B8B2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -743,6 +744,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Grades/Pods-Grades-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4F2FFB2022F1D1320086B8B2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nfile=\"unused.rb\"\nif [ -f \"$file\" ]\nthen\necho \"$file found.\"\nruby unused.rb xcode\nelse\necho \"unused.rb doesn't exist\"\nfi\n";
+		};
 		92C6FFECB195228896170149 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -811,7 +829,7 @@
 				4FF6F45C227A0CA4000F14D2 /* Images+Enum.swift in Sources */,
 				4F75399022C054BE00276742 /* AssignmentService.swift in Sources */,
 				4FF6F45E227A1074000F14D2 /* Theme.swift in Sources */,
-				4F4A650122B99D40003A1199 /* SubjectTableViewCell.swift in Sources */,
+				4F4A650122B99D40003A1199 /* QualificationableTableViewCell.swift in Sources */,
 				4F75399622C057B500276742 /* RealmTermService.swift in Sources */,
 				4F75398E22C054B200276742 /* SubjectService.swift in Sources */,
 				4FF6F47F227A410B000F14D2 /* UIView+Extension.swift in Sources */,
@@ -829,7 +847,6 @@
 				4FACFF5B22F124A8000997E1 /* EditTermViewController.swift in Sources */,
 				4FACFF5722F0F38E000997E1 /* EditTermsViewController.swift in Sources */,
 				4F75398C22C0549F00276742 /* TermService.swift in Sources */,
-				4F1DCB1B22B7E848003A135D /* BarChartCollectionViewCell.swift in Sources */,
 				4FF6F46F227A15BE000F14D2 /* UICollectionView+Extension.swift in Sources */,
 				4F7539A122C05D4300276742 /* ServiceFactory.swift in Sources */,
 				4F6C601D22B59DC300C7A931 /* PopAnimator.swift in Sources */,
@@ -856,6 +873,7 @@
 				4FF6F462227A119F000F14D2 /* NSLayoutAnchor+Extension.swift in Sources */,
 				4F66289C22A1462D001F2CD9 /* CreateTermViewController.swift in Sources */,
 				4F75399222C0564C00276742 /* RealmServiceFactory.swift in Sources */,
+				4F2FFB2222F1D1E40086B8B2 /* ProgressRingView.swift in Sources */,
 				4F6628A022A14B7E001F2CD9 /* UIViewController+Extension.swift in Sources */,
 				4F61FA8022EBE6F8008C6555 /* WatchSessionManager.swift in Sources */,
 				4FF6F420227A04B6000F14D2 /* AppDelegate.swift in Sources */,

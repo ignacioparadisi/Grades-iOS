@@ -45,7 +45,7 @@ class TermDetailViewController: BaseViewController {
         tableView.anchor
             .edgesToSuperview(toSafeArea: true)
             .activate()
-        tableView.register(SubjectTableViewCell.self)
+        tableView.register(QualificationableTableViewCell.self)
         tableView.register(BarChartTableViewCell.self)
         
         fetchSubjects()
@@ -97,7 +97,7 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             let index = row - TableRows.allCases.count + 1
-            let cell = tableView.dequeueReusableCell(for: indexPath) as SubjectTableViewCell
+            let cell = tableView.dequeueReusableCell(for: indexPath) as QualificationableTableViewCell
             cell.configure(with: subjects[index])
             return cell
         }
