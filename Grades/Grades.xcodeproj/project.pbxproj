@@ -57,6 +57,7 @@
 		4FACFF5222F0EEEC000997E1 /* Orderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF5022F0EE68000997E1 /* Orderable.swift */; };
 		4FACFF5722F0F38E000997E1 /* EditTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF5622F0F38E000997E1 /* EditTermsViewController.swift */; };
 		4FACFF5922F0FBD0000997E1 /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF5822F0FBD0000997E1 /* LabelTableViewCell.swift */; };
+		4FACFF5B22F124A8000997E1 /* EditTermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF5A22F124A8000997E1 /* EditTermViewController.swift */; };
 		4FCEA14C229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */; };
 		4FDC23E022A0C09E0088FF3C /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDC23DF22A0C09E0088FF3C /* Term.swift */; };
 		4FDC23E322A0C2E30088FF3C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDC23E222A0C2E30088FF3C /* RealmManager.swift */; };
@@ -186,6 +187,7 @@
 		4FACFF5022F0EE68000997E1 /* Orderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orderable.swift; sourceTree = "<group>"; };
 		4FACFF5622F0F38E000997E1 /* EditTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTermsViewController.swift; sourceTree = "<group>"; };
 		4FACFF5822F0FBD0000997E1 /* LabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTableViewCell.swift; sourceTree = "<group>"; };
+		4FACFF5A22F124A8000997E1 /* EditTermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTermViewController.swift; sourceTree = "<group>"; };
 		4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyHeaderLayout.swift; sourceTree = "<group>"; };
 		4FDC23DF22A0C09E0088FF3C /* Term.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
 		4FDC23E222A0C2E30088FF3C /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 				4F66289B22A1462D001F2CD9 /* CreateTermViewController.swift */,
 				4F4A64FD22B99C1F003A1199 /* TermDetailViewController.swift */,
 				4FACFF5622F0F38E000997E1 /* EditTermsViewController.swift */,
+				4FACFF5A22F124A8000997E1 /* EditTermViewController.swift */,
 			);
 			path = Terms;
 			sourceTree = "<group>";
@@ -823,6 +826,7 @@
 				4FF6F467227A14AC000F14D2 /* BaseViewController.swift in Sources */,
 				4FE7BD0A22B55CE800EB9590 /* FixedHeaderLayout.swift in Sources */,
 				4F66289A22A145AF001F2CD9 /* IPTextField.swift in Sources */,
+				4FACFF5B22F124A8000997E1 /* EditTermViewController.swift in Sources */,
 				4FACFF5722F0F38E000997E1 /* EditTermsViewController.swift in Sources */,
 				4F75398C22C0549F00276742 /* TermService.swift in Sources */,
 				4F1DCB1B22B7E848003A135D /* BarChartCollectionViewCell.swift in Sources */,

@@ -150,10 +150,10 @@ class CreateTermViewController: BaseViewController, ScrollableView {
         let durationTitleLabel = IPTitleLabel()
         let durationDescriptionLabel = IPLabel()
         
-        durationTitleLabel.text = "Duration"
-        durationDescriptionLabel.text = "Enter the duration of the term"
-        startDateTextField.placeholder = "From"
-        endDateTextField.placeholder = "To"
+        durationTitleLabel.text = "Duration".localized
+        durationDescriptionLabel.text = "Enter the duration of the term".localized
+        startDateTextField.placeholder = "From".localized
+        endDateTextField.placeholder = "To".localized
         
         contentView.addSubview(durationTitleLabel)
         contentView.addSubview(durationDescriptionLabel)
@@ -180,7 +180,6 @@ class CreateTermViewController: BaseViewController, ScrollableView {
             .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
             .leading(to: contentView.centerXAnchor, constant: leadingConstant / 2)
             .activate()
-        
     }
     
     private func setupSaveButton() {

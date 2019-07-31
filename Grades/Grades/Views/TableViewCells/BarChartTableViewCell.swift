@@ -10,6 +10,7 @@ import UIKit
 
 class BarChartTableViewCell: UITableViewCell, ReusableView {
     
+    let minimumHeight: CGFloat = 90
     let margin: CGFloat = 16
     var chartStackView: UIStackView = {
         let stackView = UIStackView()
@@ -27,7 +28,6 @@ class BarChartTableViewCell: UITableViewCell, ReusableView {
         stackView.spacing = 5.0
         return stackView
     }()
-    var widthConstraints: [NSLayoutConstraint] = []
     var isExpanded: Bool = false
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -51,6 +51,7 @@ class BarChartTableViewCell: UITableViewCell, ReusableView {
             .trailingToSuperview(constant: -margin, toSafeArea: true)
             .bottomToSuperview(constant: -margin)
             .leadingToSuperview(constant: margin, toSafeArea: true)
+            .height(greaterThanOrEqualToConstant: minimumHeight)
             .activate()
         
         containerView.addSubview(chartStackView)
@@ -68,7 +69,7 @@ class BarChartTableViewCell: UITableViewCell, ReusableView {
             .leadingToSuperview(constant: margin)
             .activate()
     }
-    
+
     
     func configure(with items: [Qualificationable]) {
         chartStackView.removeAllArrangedSubviews()
@@ -93,9 +94,6 @@ class BarChartTableViewCell: UITableViewCell, ReusableView {
             .trailingToSuperview()
             .leadingToSuperview()
             .activate()
-        
-        let constraint = backView.widthAnchor.constraint(equalToConstant: 30)
-        widthConstraints.append(constraint)
         
         let numberLabel = IPLabel()
         numberLabel.text = "\(index + 1)"

@@ -25,7 +25,7 @@ class TermDetailViewController: BaseViewController {
         title = term.name
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateSubject))
-        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: nil)
+        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(goToEditTerm))
         navigationItem.setRightBarButtonItems([addButton, editButton], animated: false)
     }
     
@@ -59,7 +59,7 @@ class TermDetailViewController: BaseViewController {
     }
     
     @objc private func goToEditTerm() {
-        let viewController = CreateTermViewController()
+        let viewController = EditTermViewController()
         viewController.delegate = self
         present(UINavigationController(rootViewController: viewController), animated: true)
     }
@@ -140,11 +140,11 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let index = indexPath.row - 1
+        let index = indexPath.row - TableRows.allCases.count + 1
         if editingStyle == .delete {
             subjects.remove(at: index)
             tableView.deleteRows(at: [indexPath], with: .left)
-            tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+            tableView.reloadRows(at: [IndexPath(row: TableRows.chartRow.rawValue, section: 0)], with: .none)
         }
     }
 }
@@ -153,6 +153,12 @@ extension TermDetailViewController: CreateSubjectViewControllerDelegate, CreateT
     func shouldRefresh() {
         fetchSubjects()
         delegate?.shouldRefresh()
+    }
+}
+
+extension TermDetailViewController: EditTermViewControllerDelegate {
+    func didEditTerm(_ term: Term) {
+        
     }
 }
 

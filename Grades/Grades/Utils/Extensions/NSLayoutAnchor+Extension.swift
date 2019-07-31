@@ -243,6 +243,9 @@ public struct Anchor {
     public func height(to dimension: NSLayoutDimension, multiplier m: CGFloat = 1) -> Anchor {
         return update(edge: .height, constraint: view.heightAnchor.constraint(equalTo: dimension, multiplier: m))
     }
+    public func height(greaterThanOrEqualToConstant constant: CGFloat) -> Anchor {
+        return update(edge: .height, constraint: view.heightAnchor.constraint(greaterThanOrEqualToConstant: constant))
+    }
     public func width(constant c: CGFloat, priority: UILayoutPriority? = nil) -> Anchor {
         return update(edge: .width, constraint: view.widthAnchor.constraint(equalToConstant: c), priority: priority)
     }
