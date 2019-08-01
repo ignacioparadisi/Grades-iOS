@@ -17,12 +17,12 @@ extension UIColor {
         self.init(red: (hex >> 16) & 0xFF, green: (hex >> 8) & 0xFF, blue: hex & 0xFF)
     }
     
-    static func getColor(for qualificationable: Qualificationable) -> UIColor {
-        let roundedQualification = qualificationable.qualification.rounded()
-        let minGreenQualification = qualificationable.maxQualification - ((qualificationable.maxQualification - qualificationable.minQualification) / 3)
-        if roundedQualification <= qualificationable.maxQualification, roundedQualification >= minGreenQualification {
+    static func getColor(for gradable: Gradable) -> UIColor {
+        let roundedGrade = gradable.grade.rounded()
+        let minGreenGrade = gradable.maxGrade - ((gradable.maxGrade - gradable.minGrade) / 3)
+        if roundedGrade <= gradable.maxGrade, roundedGrade >= minGreenGrade {
             return ThemeManager.currentTheme.greenColor
-        } else if roundedQualification < minGreenQualification, roundedQualification >= qualificationable.minQualification {
+        } else if roundedGrade < minGreenGrade, roundedGrade >= gradable.minGrade {
             return ThemeManager.currentTheme.yellowColor
         } else {
             return ThemeManager.currentTheme.redColor

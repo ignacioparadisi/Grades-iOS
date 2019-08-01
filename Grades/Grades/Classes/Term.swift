@@ -9,13 +9,13 @@
 import UIKit
 import RealmSwift
 
-class Term: Object, Qualificationable, Orderable, NSCopying {
+class Term: Object, Gradable, Orderable, NSCopying {
 
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var name: String = ""
-    @objc dynamic var qualification: Float = 0.0
-    @objc dynamic var maxQualification: Float = 0.0
-    @objc dynamic var minQualification: Float = 0.0
+    @objc dynamic var grade: Float = 0.0
+    @objc dynamic var maxGrade: Float = 0.0
+    @objc dynamic var minGrade: Float = 0.0
     @objc dynamic var startDate: Date = Date()
     @objc dynamic var endDate: Date = Date()
     @objc dynamic var position: Int = 0
@@ -30,9 +30,9 @@ class Term: Object, Qualificationable, Orderable, NSCopying {
         let term = Term()
         term.id = id
         term.name = name
-        term.qualification = qualification
-        term.maxQualification = maxQualification
-        term.minQualification = minQualification
+        term.grade = grade
+        term.maxGrade = maxGrade
+        term.minGrade = minGrade
         term.startDate = startDate
         term.endDate = endDate
         term.position = position

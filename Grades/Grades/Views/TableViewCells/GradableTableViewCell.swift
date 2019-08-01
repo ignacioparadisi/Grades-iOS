@@ -1,5 +1,5 @@
 //
-//  QualificationableTableViewCell.swift
+//  GradableTableViewCell.swift
 //  Grades
 //
 //  Created by Ignacio Paradisi on 6/18/19.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-class QualificationableTableViewCell: UITableViewCell, ReusableView {
+class GradableTableViewCell: UITableViewCell, ReusableView {
     
     /// The radius of the graph
     private let circleRadius: CGFloat = 26
     /// Margin for leading and trailing
     private let margin: CGFloat = 16
     private var progressRingView: ProgressRingView!
-    /// Label for the qualificationable's name
+    /// Label for the gradable's name
     private let nameLabel: IPLabel = {
         let label = IPLabel()
         label.text = "Name"
@@ -66,11 +66,11 @@ class QualificationableTableViewCell: UITableViewCell, ReusableView {
     }
     
     
-    /// Configures the cell with the qualificationable information and adds the semi-circle that is in the front
+    /// Configures the cell with the gradable information and adds the semi-circle that is in the front
     ///
-    /// - Parameter qualificationable: Qualificationable to be displayed
-    func configure(with qualificationable: Qualificationable) {
-        nameLabel.text = qualificationable.name
+    /// - Parameter gradable: Gradable to be displayed
+    func configure(with gradable: Gradable) {
+        nameLabel.text = gradable.name
         
         progressRingView.removeFromSuperview()
         progressRingView = ProgressRingView(radius: circleRadius)
@@ -80,7 +80,7 @@ class QualificationableTableViewCell: UITableViewCell, ReusableView {
             .leading(to: nameLabel.trailingAnchor, constant: margin)
             .centerYToSuperview(constant: 5)
             .activate()
-        progressRingView.configure(with: qualificationable)
+        progressRingView.configure(with: gradable)
     }
     
 }

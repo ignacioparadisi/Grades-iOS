@@ -20,17 +20,21 @@ extension ScrollableView where Self: UIViewController {
         scrollView.backgroundColor = .clear
         view.addSubview(scrollView)
         
-        scrollView.anchor.edgesToSuperview(toSafeArea: true).activate()
+        print(UIScreen.main.bounds.width)
+        scrollView.anchor
+            .edgesToSuperview(toSafeArea: true)
+            .width(constant: UIScreen.main.bounds.width)
+            .activate()
         
         contentView = UIView()
         contentView.backgroundColor = .clear
         
         scrollView.addSubview(contentView)
-        contentView.anchor.edgesToSuperview().activate()
-        contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-        let heightContratint = contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
-        heightContratint.priority = .defaultLow
-        heightContratint.isActive = true
+        contentView.anchor
+            .edgesToSuperview()
+            .width(to: scrollView.widthAnchor)
+            .height(to: scrollView.heightAnchor, priority: .defaultLow)
+            .activate()
     }
     
 }

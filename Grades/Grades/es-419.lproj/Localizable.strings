@@ -19,29 +19,33 @@
 "Add Term" = "Agregar Período";
 "Enter a name for the term" = "Ingresa un nombre para el período";
 "Term name" = "Nombre del período";
-"Qualifications" = "Calificaciones";
-"Enter max and min qualification to pass" = "Ingresa la calificación máxima y la calificación mínima para aprobar";
-"Max. Qualification" = "Calificación máxima";
-"Min. Qualification" = "Calificación mínima";
+"Grades" = "Notas";
+"Enter max and min grade to pass" = "Ingresa la nota máxima y la nota mínima para aprobar";
+"Max. Grade" = "Nota máxima";
+"Min. Grade" = "Nota mínima";
 "Duration" = "Duración";
 "Enter the duration of the term" = "Ingrese la duración del período";
 "From" = "Desde";
 "To" = "Hasta";
+"Edit Terms" = "Editar Períodos";
 
 // Subjects
+"Subjects" = "Materias";
 "Add Subject" = "Agregar Materia";
 "Enter a name for the subject" = "Ingresa un nombre para la materia";
 "Subject name" = "Nombre de la materia";
 
-"Qualifications must be greater than 0." = "Las calificaciones deben ser mayores a 0.";
+"Grades must be greater than 0." = "Las notas deben ser mayores a 0.";
 "Percentage must be greater than 0." = "El porcentaje debe ser mayor a 0.";
-"Maximum qualification must be greater than minimum qualification." = "La calificación máxima debe ser mayor a la calificación mínima.";
-"Qualification mush be between minimum qualification and maximum qualification" = "La calificación debe estar entre la calificación mímina y la calificación máxima.";
+"Maximum grade must be greater than minimum grade." = "La nota máxima debe ser mayor a la nota mínima.";
 "Percentage must be equal or less than 100." = "El porcentaje debe ser menor o igual a 100.";
 "End date of the term must be greater than start date." = "La fecha final del período debe ser mayor a la fecha de inicio.";
+
+"Assignments" = "Asignaciones";
 
 // General
 "Name" = "Nombre";
 "Cancel" = "Cancelar";
 "Save" = "Guardar";
 "Error" = "Error";
+"Stats" = "Estadísticas";

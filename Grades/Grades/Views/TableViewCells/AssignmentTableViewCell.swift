@@ -15,7 +15,7 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
     /// Margin for leading and trailing
     private let margin: CGFloat = 16
     private var progressRingView: ProgressRingView!
-    /// Label for the qualificationable's name
+    /// Label for the gradable's name
     private let nameLabel: IPLabel = {
         let label = IPLabel()
         label.text = "Name"
@@ -80,11 +80,14 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
     }
     
     
-    /// Configures the cell with the qualificationable information and adds the semi-circle that is in the front
+    /// Configures the cell with the gradable information and adds the semi-circle that is in the front
     ///
-    /// - Parameter qualificationable: Qualificationable to be displayed
-    func configure(with qualificationable: Qualificationable) {
-        nameLabel.text = qualificationable.name
+    /// - Parameter gradable: Gradable to be displayed
+    func configure(with assignment: Assignment) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, yyyy h:mma"
+        nameLabel.text = assignment.name
+        dateLabel.text = "Date".localized + ": \(dateFormatter.string(from: assignment.date))"
         
         progressRingView.removeFromSuperview()
         progressRingView = ProgressRingView(radius: circleRadius)
@@ -94,7 +97,7 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
             .leading(to: nameLabel.trailingAnchor, constant: margin)
             .centerYToSuperview(constant: 5)
             .activate()
-        progressRingView.configure(with: qualificationable)
+        progressRingView.configure(with: assignment)
     }
 
 }

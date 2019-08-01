@@ -31,13 +31,13 @@ class CreateTermViewController: BaseViewController, ScrollableView {
         return textField
     }()
     let addButton = IPButton()
-    let minQualificationTextField: IPTextField = {
+    let minGradeTextField: IPTextField = {
         let textField = IPTextField()
         textField.keyboardType = .decimalPad
         textField.isRequired = true
         return textField
     }()
-    let maxQualificationTextField: IPTextField = {
+    let maxGradeTextField: IPTextField = {
         let textField = IPTextField()
         textField.keyboardType = .decimalPad
         textField.isRequired = true
@@ -62,7 +62,7 @@ class CreateTermViewController: BaseViewController, ScrollableView {
         super.setupView()
         addScrollView()
         setupNameSection()
-        setupQualificationsSection()
+        setupGradesSection()
         setupDuration()
         setupSaveButton()
     }
@@ -108,39 +108,39 @@ class CreateTermViewController: BaseViewController, ScrollableView {
             .activate()
     }
     
-    private func setupQualificationsSection() {
-        let qualificationsLabel = IPTitleLabel()
-        let qualificationDescriptionLabel = IPLabel()
+    private func setupGradesSection() {
+        let gradesLabel = IPTitleLabel()
+        let gradesDescriptionLabel = IPLabel()
         
-        qualificationsLabel.text = "Qualifications".localized
-        qualificationDescriptionLabel.text = "Enter max and min qualification to pass".localized
-        maxQualificationTextField.placeholder = "Max. Qualification".localized
-        minQualificationTextField.placeholder = "Min. Qualification".localized
-        maxQualificationTextField.delegate = self
-        minQualificationTextField.delegate = self
+        gradesLabel.text = "Grades".localized
+        gradesDescriptionLabel.text = "Enter max and min grade to pass".localized
+        maxGradeTextField.placeholder = "Max. Grade".localized
+        minGradeTextField.placeholder = "Min. Grade".localized
+        maxGradeTextField.delegate = self
+        minGradeTextField.delegate = self
         
-        contentView.addSubview(qualificationsLabel)
-        contentView.addSubview(qualificationDescriptionLabel)
-        contentView.addSubview(minQualificationTextField)
-        contentView.addSubview(maxQualificationTextField)
+        contentView.addSubview(gradesLabel)
+        contentView.addSubview(gradesDescriptionLabel)
+        contentView.addSubview(minGradeTextField)
+        contentView.addSubview(maxGradeTextField)
         
-        qualificationsLabel.anchor
+        gradesLabel.anchor
             .top(to: nameTextField.bottomAnchor, constant: titleTopConstant)
             .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
             .leading(to: contentView.leadingAnchor, constant: leadingConstant)
             .activate()
-        qualificationDescriptionLabel.anchor
-            .top(to: qualificationsLabel.bottomAnchor, constant: descriptionTopConstant)
+        gradesDescriptionLabel.anchor
+            .top(to: gradesLabel.bottomAnchor, constant: descriptionTopConstant)
             .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
             .leading(to: contentView.leadingAnchor, constant: leadingConstant)
             .activate()
-        minQualificationTextField.anchor
-            .top(to: qualificationDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
+        minGradeTextField.anchor
+            .top(to: gradesDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
             .trailing(to: contentView.centerXAnchor, constant: trailingConstant / 2)
             .leading(to: contentView.leadingAnchor, constant: leadingConstant)
             .activate()
-        maxQualificationTextField.anchor
-            .top(to: qualificationDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
+        maxGradeTextField.anchor
+            .top(to: gradesDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
             .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
             .leading(to: contentView.centerXAnchor, constant: leadingConstant / 2)
             .activate()
@@ -161,7 +161,7 @@ class CreateTermViewController: BaseViewController, ScrollableView {
         contentView.addSubview(endDateTextField)
         
         durationTitleLabel.anchor
-            .top(to: minQualificationTextField.bottomAnchor, constant: titleTopConstant)
+            .top(to: minGradeTextField.bottomAnchor, constant: titleTopConstant)
             .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
             .leading(to: contentView.leadingAnchor, constant: leadingConstant)
             .activate()
@@ -189,17 +189,16 @@ class CreateTermViewController: BaseViewController, ScrollableView {
         addButton.isEnabled = false
         contentView.addSubview(addButton)
         addButton.anchor
+            .top(greaterOrEqual: startDateTextField.bottomAnchor, constant: 20)
             .bottom(to: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -20)
             .trailing(to: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -16)
             .leading(to: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 16)
             .activate()
-        let topConstraint = addButton.topAnchor.constraint(greaterThanOrEqualTo: startDateTextField.bottomAnchor, constant: 20)
-        topConstraint.isActive = true
     }
     
     private func checkRequiredFields() {
-        if nameTextField.isEmpty || minQualificationTextField.isEmpty
-            || maxQualificationTextField.isEmpty {
+        if nameTextField.isEmpty || minGradeTextField.isEmpty
+            || maxGradeTextField.isEmpty {
             addButton.isEnabled = false
             return
         }
@@ -207,18 +206,18 @@ class CreateTermViewController: BaseViewController, ScrollableView {
     }
     
     @objc private func createTerm() {
-        if let name = nameTextField.text, let minQualificationText = minQualificationTextField.text,
-            let maxQualificationText = maxQualificationTextField.text,
-            let minQualification = Float(minQualificationText),
-            let maxQualification = Float(maxQualificationText),
+        if let name = nameTextField.text, let minGradeText = minGradeTextField.text,
+            let maxGradeText = maxGradeTextField.text,
+            let minGrade = Float(minGradeText),
+            let maxGrade = Float(maxGradeText),
             let startDate = startDateTextField.date,
             let endDate = endDateTextField.date {
             
-            if valuesAreValid(maxQualification: maxQualification, minQualification: minQualification) {
+            if valuesAreValid(maxGrade: maxGrade, minGrade: minGrade) {
                 let term = Term()
                 term.name = name
-                term.minQualification = minQualification
-                term.maxQualification = maxQualification
+                term.minGrade = minGrade
+                term.maxGrade = maxGrade
                 term.startDate = startDate
                 term.endDate = endDate
                 term.position = termsCount
@@ -230,22 +229,22 @@ class CreateTermViewController: BaseViewController, ScrollableView {
         }
     }
     
-    private func valuesAreValid(maxQualification: Float, minQualification: Float) -> Bool {
-        if maxQualification <= 0 || minQualification < 0 {
-            showErrorMessage("Qualifications must be greater than 0.".localized)
-            if maxQualification <= 0 {
-                maxQualificationTextField.showErrorBorder()
+    private func valuesAreValid(maxGrade: Float, minGrade: Float) -> Bool {
+        if maxGrade <= 0 || minGrade < 0 {
+            showErrorMessage("Grades must be greater than 0.".localized)
+            if maxGrade <= 0 {
+                maxGradeTextField.showErrorBorder()
             }
-            if minQualification <= 0 {
-                minQualificationTextField.showErrorBorder()
+            if minGrade <= 0 {
+                minGradeTextField.showErrorBorder()
             }
             return false
         }
         
-        if maxQualification <= minQualification {
-            maxQualificationTextField.showErrorBorder()
-            minQualificationTextField.showErrorBorder()
-            showErrorMessage("Maximum qualification must be greater than minimum qualification.".localized)
+        if maxGrade <= minGrade {
+            maxGradeTextField.showErrorBorder()
+            minGradeTextField.showErrorBorder()
+            showErrorMessage("Maximum grade must be greater than minimum grade.".localized)
             return false
         }
         
@@ -265,10 +264,10 @@ extension CreateTermViewController: UITextFieldDelegate {
         switch textField {
         case nameTextField:
             _ = nameTextField.resignFirstResponder()
-            _ = minQualificationTextField.becomeFirstResponder()
-        case minQualificationTextField:
-            _ = minQualificationTextField.resignFirstResponder()
-            _ = maxQualificationTextField.becomeFirstResponder()
+            _ = minGradeTextField.becomeFirstResponder()
+        case minGradeTextField:
+            _ = minGradeTextField.resignFirstResponder()
+            _ = maxGradeTextField.becomeFirstResponder()
         default:
             return true
         }

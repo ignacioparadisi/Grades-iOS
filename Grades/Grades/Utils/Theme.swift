@@ -122,7 +122,7 @@ enum Theme: Int {
     }
     
     var yellowColor: UIColor {
-        return UIColor(hex: 0xD8B627)
+        return UIColor(hex: 0xF9BA00)
     }
 }
 

@@ -28,7 +28,6 @@ class BarChartTableViewCell: UITableViewCell, ReusableView {
         stackView.spacing = 5.0
         return stackView
     }()
-    var isExpanded: Bool = false
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -47,9 +46,9 @@ class BarChartTableViewCell: UITableViewCell, ReusableView {
         addSubview(containerView)
         
         containerView.anchor
-            .topToSuperview(constant: margin)
+            .topToSuperview(constant: 4)
             .trailingToSuperview(constant: -margin, toSafeArea: true)
-            .bottomToSuperview(constant: -margin)
+            .bottomToSuperview(constant: -4)
             .leadingToSuperview(constant: margin, toSafeArea: true)
             .height(greaterThanOrEqualToConstant: minimumHeight)
             .activate()
@@ -71,7 +70,7 @@ class BarChartTableViewCell: UITableViewCell, ReusableView {
     }
 
     
-    func configure(with items: [Qualificationable]) {
+    func configure(with items: [Gradable]) {
         chartStackView.removeAllArrangedSubviews()
         namesStackView.removeAllArrangedSubviews()
         for (index, item) in items.enumerated() {
@@ -80,7 +79,7 @@ class BarChartTableViewCell: UITableViewCell, ReusableView {
         }
     }
     
-    private func setupChartBar(with item: Qualificationable, at index: Int) {
+    private func setupChartBar(with item: Gradable, at index: Int) {
         let containerView = UIView()
         
         let backView = UIView()
@@ -114,7 +113,7 @@ class BarChartTableViewCell: UITableViewCell, ReusableView {
         backView.addSubview(topView)
 
         topView.anchor
-            .height(to: backView.heightAnchor, multiplier: CGFloat(item.qualification / item.maxQualification))
+            .height(to: backView.heightAnchor, multiplier: CGFloat(item.grade / item.maxGrade))
             .trailingToSuperview()
             .bottomToSuperview()
             .leadingToSuperview()

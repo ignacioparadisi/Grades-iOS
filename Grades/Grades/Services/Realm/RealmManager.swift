@@ -73,19 +73,19 @@ class RealmManager {
         return results.toArray(ofType: type) as [Object]
     }
     
-    func updateQualification(_ object: Object, qualification: Float) {
-        if var qualificationable = object as? Qualificationable {
+    func updateGrade(_ object: Object, grade: Float) {
+        if var gradable = object as? Gradable {
             try! self.database.write {
-                qualificationable.qualification = qualification
+                gradable.grade = grade
             }
         }
     }
     
     func updateAssignment(_ oldAssignment: Assignment, _ newAssignment: Assignment) {
         try! database.write {
-            oldAssignment.maxQualification = newAssignment.maxQualification
-            oldAssignment.minQualification = newAssignment.minQualification
-            oldAssignment.qualification = newAssignment.qualification
+            oldAssignment.maxGrade = newAssignment.maxGrade
+            oldAssignment.minGrade = newAssignment.minGrade
+            oldAssignment.grade = newAssignment.grade
             oldAssignment.percentage = newAssignment.percentage
         }
     }

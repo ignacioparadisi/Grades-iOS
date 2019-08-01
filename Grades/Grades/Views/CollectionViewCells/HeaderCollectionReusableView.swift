@@ -10,7 +10,7 @@ import UIKit
 
 class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
     
-    let qualificationContainerDiameter: CGFloat = 60
+    let gradeContainerDiameter: CGFloat = 60
     let termNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = ThemeManager.currentTheme.textColor
@@ -19,7 +19,7 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
         label.textAlignment = .center
         return label
     }()
-    let qualificationLabel: UILabel = {
+    let gradeLabel: UILabel = {
         let label = UILabel()
         label.textColor = ThemeManager.currentTheme.textColor
         label.font = UIFont.preferredFont(forTextStyle: .title2)
@@ -55,28 +55,28 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
             .centerY(to: nameLabelContainer.centerYAnchor)
             .activate()
 
-        let qualificationContainer = UIView()
-        addSubview(qualificationContainer)
-        qualificationContainer.anchor
-            .height(constant: qualificationContainerDiameter)
-            .width(to: qualificationContainer.heightAnchor)
+        let gradeContainer = UIView()
+        addSubview(gradeContainer)
+        gradeContainer.anchor
+            .height(constant: gradeContainerDiameter)
+            .width(to: gradeContainer.heightAnchor)
             .bottom(to: bottomAnchor, constant: -4)
             .centerX(to: centerXAnchor)
             .activate()
-        qualificationContainer.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
-        qualificationContainer.layer.cornerRadius = qualificationContainerDiameter / 2
+        gradeContainer.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
+        gradeContainer.layer.cornerRadius = gradeContainerDiameter / 2
 
-        qualificationContainer.addSubview(qualificationLabel)
-        qualificationLabel.anchor
-            .centerX(to: qualificationContainer.centerXAnchor)
-            .centerY(to: qualificationContainer.centerYAnchor)
+        gradeContainer.addSubview(gradeLabel)
+        gradeLabel.anchor
+            .centerX(to: gradeContainer.centerXAnchor)
+            .centerY(to: gradeContainer.centerYAnchor)
             .activate()
         
         nameLabelContainer.anchor
             .top(to: topAnchor, constant: 20)
             .leading(to: leadingAnchor)
             .trailing(to: trailingAnchor)
-            .bottom(to: qualificationContainer.topAnchor, constant: -20)
+            .bottom(to: gradeContainer.topAnchor, constant: -20)
             .activate()
         
         layer.shadowRadius = 6
@@ -111,7 +111,7 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
     public func configureWith(term: Term) {
         self.term = term
         termNameLabel.text = term.name
-        qualificationLabel.text = "\(Int(term.qualification.rounded()))"
+        gradeLabel.text = "\(Int(term.grade.rounded()))"
         setNeedsDisplay()
     }
     

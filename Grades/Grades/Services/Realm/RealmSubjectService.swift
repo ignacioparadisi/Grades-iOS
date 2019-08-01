@@ -20,18 +20,18 @@ class RealmSubjectService: SubjectService {
     
     func createSubject(_ subject: Subject) {
         RealmManager.shared.create(subject)
-        updateQualificationForParent(of: subject)
+        updateGradeForParent(of: subject)
     }
     
-    /// Updates the qualification of the parent of the subject passed as a parameter.
+    /// Updates the grade of the parent of the subject passed as a parameter.
     /// IMPORTANT: To use this method you first need to save the subject in Realm.
     ///
     /// - Parameter subject: Subject that was created or updated.
-    func updateQualificationForParent(of subject: Subject) {
+    func updateGradeForParent(of subject: Subject) {
         if let term = subject.term {
             let subjects = fetchSubjects(for: term)
-            let qualification = Calculator.getAverageQualification(for: subjects)
-            RealmManager.shared.updateQualification(term, qualification: qualification)
+            let grade = Calculator.getAverageGrade(for: subjects)
+            RealmManager.shared.updateGrade(term, grade: grade)
         }
     }
     

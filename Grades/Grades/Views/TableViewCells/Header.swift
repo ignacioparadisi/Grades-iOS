@@ -10,11 +10,11 @@ import UIKit
 
 class DetailHeader: UIView {
     
-    let qualificationContainerDiameter: CGFloat = 80.0
-    let minMaxQualificationContainerDiameter: CGFloat = 60.0
-    let qualificationLabel = IPTitleLabel()
-    let minQualificationLabel = IPLabel()
-    let maxQualificationLabel = IPLabel()
+    let gradeContainerDiameter: CGFloat = 80.0
+    let minMaxGradeContainerDiameter: CGFloat = 60.0
+    let gradeLabel = IPTitleLabel()
+    let minGradeLabel = IPLabel()
+    let maxGradeLabel = IPLabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,49 +36,49 @@ class DetailHeader: UIView {
         layer.shadowOffset = CGSize(width: 0, height: 5)
         layer.shadowOpacity = 0.30
         
-        setupQualificationContainer()
+        setupGradeContainer()
         
-        let minQualificationContainer = setupMinMaxQualificationContainer(label: minQualificationLabel, description: "Min. Qualification")
-        minQualificationContainer.anchor
-            .centerX(to: centerXAnchor, constant: -frame.width / 4 - (qualificationContainerDiameter - minMaxQualificationContainerDiameter))
+        let minGradeContainer = setupMinMaxGradeContainer(label: minGradeLabel, description: "Min. Grade")
+        minGradeContainer.anchor
+            .centerX(to: centerXAnchor, constant: -frame.width / 4 - (gradeContainerDiameter - minMaxGradeContainerDiameter))
             .activate()
         
-        let maxQualificationContainer = setupMinMaxQualificationContainer(label: maxQualificationLabel, description: "Max. Qualification")
-        maxQualificationContainer.anchor
-            .centerX(to: centerXAnchor, constant: frame.width / 4 + (qualificationContainerDiameter - minMaxQualificationContainerDiameter))
+        let maxGradeContainer = setupMinMaxGradeContainer(label: maxGradeLabel, description: "Max. Grade")
+        maxGradeContainer.anchor
+            .centerX(to: centerXAnchor, constant: frame.width / 4 + (gradeContainerDiameter - minMaxGradeContainerDiameter))
             .activate()
         
     }
     
-    private func setupQualificationContainer() {
-        let qualificationContainer = UIView()
-        addSubview(qualificationContainer)
-        qualificationContainer.anchor
-            .height(constant: qualificationContainerDiameter)
-            .width(to: qualificationContainer.heightAnchor)
+    private func setupGradeContainer() {
+        let gradeContainer = UIView()
+        addSubview(gradeContainer)
+        gradeContainer.anchor
+            .height(constant: gradeContainerDiameter)
+            .width(to: gradeContainer.heightAnchor)
             .centerToSuperview()
             .activate()
-        qualificationContainer.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
-        qualificationContainer.layer.cornerRadius = qualificationContainerDiameter / 2
+        gradeContainer.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
+        gradeContainer.layer.cornerRadius = gradeContainerDiameter / 2
         
-        qualificationContainer.addSubview(qualificationLabel)
-        qualificationLabel.anchor.centerToSuperview().activate()
-        qualificationLabel.text = "0"
+        gradeContainer.addSubview(gradeLabel)
+        gradeLabel.anchor.centerToSuperview().activate()
+        gradeLabel.text = "0"
     }
     
-    private func setupMinMaxQualificationContainer(label: UILabel, description: String) -> UIView {
+    private func setupMinMaxGradeContainer(label: UILabel, description: String) -> UIView {
         let view = UIView()
         let descriptionLabel = IPLabel()
         descriptionLabel.font = UIFont.preferredFont(forTextStyle: .caption2)
         descriptionLabel.text = description
         addSubview(view)
         view.anchor
-            .height(constant: minMaxQualificationContainerDiameter)
+            .height(constant: minMaxGradeContainerDiameter)
             .width(to: view.heightAnchor)
             .centerYToSuperview()
             .activate()
         view.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
-        view.layer.cornerRadius = minMaxQualificationContainerDiameter / 2
+        view.layer.cornerRadius = minMaxGradeContainerDiameter / 2
         
         view.addSubview(label)
         label.anchor.centerToSuperview().activate()
@@ -92,12 +92,12 @@ class DetailHeader: UIView {
         return view
     }
     
-    func configure(with qualificationable: Qualificationable) {
-        qualificationLabel.text = "\(Int(qualificationable.qualification.rounded()))"
-        minQualificationLabel.text = "\(Int(qualificationable.minQualification.rounded()))"
-        maxQualificationLabel.text = "\(Int(qualificationable.maxQualification.rounded()))"
+    func configure(with gradable: Gradable) {
+        gradeLabel.text = "\(Int(gradable.grade.rounded()))"
+        minGradeLabel.text = "\(Int(gradable.minGrade.rounded()))"
+        maxGradeLabel.text = "\(Int(gradable.maxGrade.rounded()))"
         
-        backgroundColor = UIColor.getColor(for: qualificationable)
+        backgroundColor = UIColor.getColor(for: gradable)
     }
 
     

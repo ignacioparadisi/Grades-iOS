@@ -19,32 +19,36 @@
 "Add Term" = "Add Term";
 "Enter a name for the term" = "Enter a name for the term";
 "Term name" = "Term name";
-"Qualifications" = "Qualifications";
-"Enter max and min qualification to pass" = "Enter max and min qualification to pass";
-"Max. Qualification" = "Max. Qualification";
-"Min. Qualification" = "Min. Qualification";
+"Grades" = "Grades";
+"Enter max and min grade to pass" = "Enter max and min grade to pass";
+"Max. Grade" = "Max. Grade";
+"Min. Grade" = "Min. Grade";
 "Duration" = "Duration";
 "Enter the duration of the term" = "Enter the duration of the term";
 "From" = "From";
 "To" = "To";
+"Edit Terms" = "Edit Terms";
 
 // Subjects
+"Subjects" = "Subjects";
 "Add Subject" = "Add Subjct";
 "Enter a name for the subject" = "Enter a name for the subject";
 "Subject name" = "Subject name";
 
-"Qualifications must be greater than 0." = "Qualifications must be greater than 0.";
+"Grades must be greater than 0." = "Grades must be greater than 0.";
 "Percentage must be greater than 0." = "Percentage must be greater than 0.";
-"Maximum qualification must be greater than minimum qualification." = "Maximum qualification must be greater than minimum qualification.";
-"Qualification mush be between minimum qualification and maximum qualification" = "Qualification mush be between minimum qualification and maximum qualification";
+"Maximum grade must be greater than minimum grade." = "Maximum grade must be greater than minimum grade.";
 "Percentage must be equal or less than 100." = "Percentage must be equal or less than 100.";
 "End date of the term must be greater than start date." = "End date of the term must be greater than start date.";
+
+"Assignments" = "Assignments";
 
 // General
 "Name" = "Name";
 "Cancel" = "Cancel";
 "Save" = "Save";
 "Error" = "Error";
+"Stats" = "Stats";
 
 
 

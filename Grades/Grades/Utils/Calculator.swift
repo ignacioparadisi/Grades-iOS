@@ -10,18 +10,18 @@ import Foundation
 
 class Calculator {
     
-    static func getAverageQualification(for items: [Qualificationable]) -> Float {
+    static func getAverageGrade(for items: [Gradable]) -> Float {
         var total: Float = 0.0
         for item in items {
-            total += item.qualification
+            total += item.grade
         }
         return total / Float(items.count)
     }
     
-    static func getQualification(for assignments: [Assignment]) -> Float {
+    static func getGrade(for assignments: [Assignment]) -> Float {
         var total: Float = 0.0
         for assignment in assignments {
-            total += assignment.qualification * assignment.percentage
+            total += assignment.grade * assignment.percentage
         }
         return total
     }
