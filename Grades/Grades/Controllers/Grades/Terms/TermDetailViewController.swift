@@ -47,6 +47,7 @@ class TermDetailViewController: BaseViewController {
         tableView.anchor
             .edgesToSuperview(toSafeArea: true)
             .activate()
+        tableView.register(TermDateTableViewCell.self)
         tableView.register(TitleLabelTableViewCell.self)
         tableView.register(GradableTableViewCell.self)
         tableView.register(BarChartTableViewCell.self)
@@ -101,13 +102,8 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch TableSections(rawValue: section) {
         case .dateSection?:
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMM d, yyyy"
-            let cell = UITableViewCell()
-            cell.textLabel?.textColor = ThemeManager.currentTheme.textColor
-            cell.textLabel?.text = "\(dateFormatter.string(from: term.startDate)) - \(dateFormatter.string(from: term.endDate))"
-            cell.textLabel?.textAlignment = .center
-            cell.selectionStyle = .none
+            let cell = tableView.dequeueReusableCell(for: indexPath) as TermDateTableViewCell
+            cell.configure(startDate: term.startDate, endDate: term.endDate)
             return cell
         case .chartSection?:
             if row == 0 {

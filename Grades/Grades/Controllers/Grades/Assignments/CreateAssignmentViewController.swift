@@ -82,6 +82,15 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
         dismiss(animated: true)
     }
     
+    private func setupLabelConstraints(for label: UILabel, topAnchor: NSLayoutYAxisAnchor, topConstant: CGFloat) {
+        label.anchor
+            .top(to: topAnchor, constant: topConstant)
+            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
+            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
+            .width(constant: view.frame.width - 2 * leadingConstant)
+            .activate()
+    }
+    
     private func setupNameSection() {
         let nameTitleLabel = IPTitleLabel()
         let nameDescriptionLabel = IPLabel()
@@ -95,20 +104,12 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
         contentView.addSubview(nameDescriptionLabel)
         contentView.addSubview(nameTextField)
         
-        nameTitleLabel.anchor
-            .top(to: contentView.safeAreaLayoutGuide.topAnchor, constant: titleTopConstant)
-            .trailing(to: contentView.safeAreaLayoutGuide.trailingAnchor, constant: trailingConstant)
-            .leading(to: contentView.safeAreaLayoutGuide.leadingAnchor, constant: leadingConstant)
-            .activate()
-        nameDescriptionLabel.anchor
-            .top(to: nameTitleLabel.bottomAnchor, constant: descriptionTopConstant)
-            .trailing(to: contentView.safeAreaLayoutGuide.trailingAnchor, constant: trailingConstant)
-            .leading(to: contentView.safeAreaLayoutGuide.leadingAnchor, constant: leadingConstant)
-            .activate()
+        setupLabelConstraints(for: nameTitleLabel, topAnchor: contentView.safeAreaLayoutGuide.topAnchor, topConstant: titleTopConstant)
+        setupLabelConstraints(for: nameDescriptionLabel, topAnchor: nameTitleLabel.bottomAnchor, topConstant: descriptionTopConstant)
         nameTextField.anchor
             .top(to: nameDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
-            .trailing(to: contentView.safeAreaLayoutGuide.trailingAnchor, constant: trailingConstant)
-            .leading(to: contentView.safeAreaLayoutGuide.leadingAnchor, constant: leadingConstant)
+            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
+            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
             .activate()
     }
     
@@ -128,24 +129,16 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
         contentView.addSubview(minGradeTextField)
         contentView.addSubview(maxGradeTextField)
         
-        gradesLabel.anchor
-            .top(to: nameTextField.bottomAnchor, constant: titleTopConstant)
-            .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
-            .leading(to: contentView.leadingAnchor, constant: leadingConstant)
-            .activate()
-        gradesDescriptionLabel.anchor
-            .top(to: gradesLabel.bottomAnchor, constant: descriptionTopConstant)
-            .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
-            .leading(to: contentView.leadingAnchor, constant: leadingConstant)
-            .activate()
+        setupLabelConstraints(for: gradesLabel, topAnchor: nameTextField.bottomAnchor, topConstant: titleTopConstant)
+        setupLabelConstraints(for: gradesDescriptionLabel, topAnchor: gradesLabel.bottomAnchor, topConstant: descriptionTopConstant)
         minGradeTextField.anchor
             .top(to: gradesDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
             .trailing(to: contentView.centerXAnchor, constant: trailingConstant / 2)
-            .leading(to: contentView.leadingAnchor, constant: leadingConstant)
+            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
             .activate()
         maxGradeTextField.anchor
             .top(to: gradesDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
-            .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
+            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
             .leading(to: contentView.centerXAnchor, constant: leadingConstant / 2)
             .activate()
         
@@ -176,16 +169,8 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
         contentView.addSubview(dateDescriptionLabel)
         contentView.addSubview(datePickerTextField)
         
-        dateLabel.anchor
-            .top(to: gradeTextField.bottomAnchor, constant: titleTopConstant)
-            .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
-            .leading(to: contentView.leadingAnchor, constant: leadingConstant)
-            .activate()
-        dateDescriptionLabel.anchor
-            .top(to: dateLabel.bottomAnchor, constant: descriptionTopConstant)
-            .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
-            .leading(to: contentView.leadingAnchor, constant: leadingConstant)
-            .activate()
+        setupLabelConstraints(for: dateLabel, topAnchor: gradeTextField.bottomAnchor, topConstant: titleTopConstant)
+        setupLabelConstraints(for: dateDescriptionLabel, topAnchor: dateLabel.bottomAnchor, topConstant: descriptionTopConstant)
         datePickerTextField.anchor
             .top(to: dateDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
             .trailing(to: contentView.trailingAnchor, constant: trailingConstant)

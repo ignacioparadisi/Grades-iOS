@@ -20,10 +20,8 @@ extension ScrollableView where Self: UIViewController {
         scrollView.backgroundColor = .clear
         view.addSubview(scrollView)
         
-        print(UIScreen.main.bounds.width)
         scrollView.anchor
             .edgesToSuperview(toSafeArea: true)
-            .width(constant: UIScreen.main.bounds.width)
             .activate()
         
         contentView = UIView()

@@ -88,6 +88,7 @@
 		4FF6F481227A70AB000F14D2 /* SubjectCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F480227A70AB000F14D2 /* SubjectCardCollectionViewCell.swift */; };
 		4FF6F483227A72BE000F14D2 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F482227A72BE000F14D2 /* HeaderCollectionReusableView.swift */; };
 		4FF9AA0622F205CA00FE59AE /* AssignmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF9AA0522F205CA00FE59AE /* AssignmentTableViewCell.swift */; };
+		4FFCBC0F22F37BF900A7172A /* TermDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCBC0E22F37BF900A7172A /* TermDateTableViewCell.swift */; };
 		B31F06935769A866DBA4BA86 /* Pods_Grades.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3331F2C02BBE33564DB3E91E /* Pods_Grades.framework */; };
 /* End PBXBuildFile section */
 
@@ -218,6 +219,7 @@
 		4FF6F480227A70AB000F14D2 /* SubjectCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		4FF6F482227A72BE000F14D2 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		4FF9AA0522F205CA00FE59AE /* AssignmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentTableViewCell.swift; sourceTree = "<group>"; };
+		4FFCBC0E22F37BF900A7172A /* TermDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDateTableViewCell.swift; sourceTree = "<group>"; };
 		526CC43AE900E43BAB2BD4E8 /* Pods_GradesWatch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GradesWatch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67446F864585CE8DCB9A795F /* Pods-Grades.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grades.debug.xcconfig"; path = "Target Support Files/Pods-Grades/Pods-Grades.debug.xcconfig"; sourceTree = "<group>"; };
 		9E87735B25A00D384A3E5190 /* Pods-GradesWatch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GradesWatch Extension.debug.xcconfig"; path = "Target Support Files/Pods-GradesWatch Extension/Pods-GradesWatch Extension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				4FACFF5822F0FBD0000997E1 /* LabelTableViewCell.swift */,
 				4FF9AA0522F205CA00FE59AE /* AssignmentTableViewCell.swift */,
 				4F3B693122F22F9F002C6263 /* TitleLabelTableViewCell.swift */,
+				4FFCBC0E22F37BF900A7172A /* TermDateTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -822,6 +825,7 @@
 				4F75399D22C05B9400276742 /* RealmAssignmentService.swift in Sources */,
 				4FF6F45C227A0CA4000F14D2 /* Images+Enum.swift in Sources */,
 				4F75399022C054BE00276742 /* AssignmentService.swift in Sources */,
+				4FFCBC0F22F37BF900A7172A /* TermDateTableViewCell.swift in Sources */,
 				4FF6F45E227A1074000F14D2 /* Theme.swift in Sources */,
 				4F4A650122B99D40003A1199 /* GradableTableViewCell.swift in Sources */,
 				4F75399622C057B500276742 /* RealmTermService.swift in Sources */,

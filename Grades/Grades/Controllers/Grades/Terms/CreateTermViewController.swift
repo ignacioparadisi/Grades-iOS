@@ -78,6 +78,15 @@ class CreateTermViewController: BaseViewController, ScrollableView {
         dismiss(animated: true)
     }
     
+    private func setupLabelConstraints(for label: UILabel, topAnchor: NSLayoutYAxisAnchor, topConstant: CGFloat) {
+        label.anchor
+            .top(to: topAnchor, constant: topConstant)
+            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
+            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
+            .width(constant: view.frame.width - 2 * leadingConstant)
+            .activate()
+    }
+    
     private func setupNameSection() {
         let nameTitleLabel = IPTitleLabel()
         let nameDescriptionLabel = IPLabel()
@@ -91,20 +100,12 @@ class CreateTermViewController: BaseViewController, ScrollableView {
         contentView.addSubview(nameDescriptionLabel)
         contentView.addSubview(nameTextField)
         
-        nameTitleLabel.anchor
-            .top(to: contentView.safeAreaLayoutGuide.topAnchor, constant: titleTopConstant)
-            .trailing(to: contentView.safeAreaLayoutGuide.trailingAnchor, constant: trailingConstant)
-            .leading(to: contentView.safeAreaLayoutGuide.leadingAnchor, constant: leadingConstant)
-            .activate()
-        nameDescriptionLabel.anchor
-            .top(to: nameTitleLabel.bottomAnchor, constant: descriptionTopConstant)
-            .trailing(to: contentView.safeAreaLayoutGuide.trailingAnchor, constant: trailingConstant)
-            .leading(to: contentView.safeAreaLayoutGuide.leadingAnchor, constant: leadingConstant)
-            .activate()
+        setupLabelConstraints(for: nameTitleLabel, topAnchor: contentView.safeAreaLayoutGuide.topAnchor, topConstant: titleTopConstant)
+        setupLabelConstraints(for: nameDescriptionLabel, topAnchor: nameTitleLabel.bottomAnchor, topConstant: descriptionTopConstant)
         nameTextField.anchor
             .top(to: nameDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
-            .trailing(to: contentView.safeAreaLayoutGuide.trailingAnchor, constant: trailingConstant)
-            .leading(to: contentView.safeAreaLayoutGuide.leadingAnchor, constant: leadingConstant)
+            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
+            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
             .activate()
     }
     
@@ -124,24 +125,16 @@ class CreateTermViewController: BaseViewController, ScrollableView {
         contentView.addSubview(minGradeTextField)
         contentView.addSubview(maxGradeTextField)
         
-        gradesLabel.anchor
-            .top(to: nameTextField.bottomAnchor, constant: titleTopConstant)
-            .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
-            .leading(to: contentView.leadingAnchor, constant: leadingConstant)
-            .activate()
-        gradesDescriptionLabel.anchor
-            .top(to: gradesLabel.bottomAnchor, constant: descriptionTopConstant)
-            .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
-            .leading(to: contentView.leadingAnchor, constant: leadingConstant)
-            .activate()
+        setupLabelConstraints(for: gradesLabel, topAnchor: nameTextField.bottomAnchor, topConstant: titleTopConstant)
+        setupLabelConstraints(for: gradesDescriptionLabel, topAnchor: gradesLabel.bottomAnchor, topConstant: descriptionTopConstant)
         minGradeTextField.anchor
             .top(to: gradesDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
             .trailing(to: contentView.centerXAnchor, constant: trailingConstant / 2)
-            .leading(to: contentView.leadingAnchor, constant: leadingConstant)
+            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
             .activate()
         maxGradeTextField.anchor
             .top(to: gradesDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
-            .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
+            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
             .leading(to: contentView.centerXAnchor, constant: leadingConstant / 2)
             .activate()
     }
@@ -160,24 +153,16 @@ class CreateTermViewController: BaseViewController, ScrollableView {
         contentView.addSubview(startDateTextField)
         contentView.addSubview(endDateTextField)
         
-        durationTitleLabel.anchor
-            .top(to: minGradeTextField.bottomAnchor, constant: titleTopConstant)
-            .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
-            .leading(to: contentView.leadingAnchor, constant: leadingConstant)
-            .activate()
-        durationDescriptionLabel.anchor
-            .top(to: durationTitleLabel.bottomAnchor, constant: descriptionTopConstant)
-            .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
-            .leading(to: contentView.leadingAnchor, constant: leadingConstant)
-            .activate()
+        setupLabelConstraints(for: durationTitleLabel, topAnchor: minGradeTextField.bottomAnchor, topConstant: titleTopConstant)
+        setupLabelConstraints(for: durationDescriptionLabel, topAnchor: durationTitleLabel.bottomAnchor, topConstant: descriptionTopConstant)
         startDateTextField.anchor
             .top(to: durationDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
             .trailing(to: contentView.centerXAnchor, constant: trailingConstant / 2)
-            .leading(to: contentView.leadingAnchor, constant: leadingConstant)
+            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
             .activate()
         endDateTextField.anchor
             .top(to: durationDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
-            .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
+            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
             .leading(to: contentView.centerXAnchor, constant: leadingConstant / 2)
             .activate()
     }
