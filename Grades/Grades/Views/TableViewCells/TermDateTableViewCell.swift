@@ -10,6 +10,7 @@ import UIKit
 
 class TermDateTableViewCell: UITableViewCell, ReusableView {
 
+    private let separatorWidth: CGFloat = 2
     private let margin: CGFloat = 16
     private let startDateLabel: IPLabel = {
         let label = IPLabel()
@@ -44,6 +45,7 @@ class TermDateTableViewCell: UITableViewCell, ReusableView {
         
         let separator = UIView()
         separator.backgroundColor = UIColor(hex: 0x707070)
+        separator.layer.cornerRadius = separatorWidth / 2
         
         let containerView = UIView()
         containerView.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
@@ -67,7 +69,7 @@ class TermDateTableViewCell: UITableViewCell, ReusableView {
             .centerXToSuperview()
             .topToSuperview(constant: margin)
             .bottomToSuperview(constant: -margin)
-            .width(constant: 1)
+            .width(constant: separatorWidth)
             .activate()
         
         endDateLabel.anchor

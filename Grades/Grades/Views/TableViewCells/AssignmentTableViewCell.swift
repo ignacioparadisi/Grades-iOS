@@ -10,6 +10,7 @@ import UIKit
 
 class AssignmentTableViewCell: UITableViewCell, ReusableView {
 
+    private let separatorWidth: CGFloat = 2
     /// The radius of the graph
     private let circleRadius: CGFloat = 26
     /// Margin for leading and trailing
@@ -23,11 +24,15 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
     }()
     private let dateLabel: IPLabel = {
         let label = IPLabel()
-        label.text = "Date:"
         label.textColor = ThemeManager.currentTheme.placeholderColor
         return label
     }()
     private let containerView = UIView()
+    private let separator: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(hex: 0x707070)
+        return view
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -42,6 +47,7 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
     /// Adds all the components to the view
     private func initialize() {
         selectionStyle = .none
+        separator.layer.cornerRadius = separatorWidth / 2
         setupContainerView()
         
         containerView.addSubview(nameLabel)
@@ -50,10 +56,18 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
             .leadingToSuperview(constant: margin)
             .activate()
         
+        containerView.addSubview(separator)
         containerView.addSubview(dateLabel)
+        
+        separator.anchor
+            .top(to: nameLabel.bottomAnchor, constant: 5)
+            .bottomToSuperview(constant: -margin)
+            .leadingToSuperview(constant: margin)
+            .width(constant: separatorWidth)
+            .activate()
         dateLabel.anchor
             .top(to: nameLabel.bottomAnchor, constant: 5)
-            .leadingToSuperview(constant: margin)
+            .leading(to: separator.trailingAnchor, constant: 8)
             .bottomToSuperview(constant: -margin)
             .trailing(to: nameLabel.trailingAnchor)
             .activate()
@@ -84,10 +98,16 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
     ///
     /// - Parameter gradable: Gradable to be displayed
     func configure(with assignment: Assignment) {
+        if assignment.date >= Date() {
+            separator.backgroundColor = ThemeManager.currentTheme.accentColor
+        } else {
+            separator.backgroundColor = UIColor(hex: 0x707070)
+        }
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy h:mma"
         nameLabel.text = assignment.name
-        dateLabel.text = "Date".localized + ": \(dateFormatter.string(from: assignment.date))"
+        dateLabel.text = "\(dateFormatter.string(from: assignment.date))"
         
         progressRingView.removeFromSuperview()
         progressRingView = ProgressRingView(radius: circleRadius)
