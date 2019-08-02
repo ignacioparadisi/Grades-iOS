@@ -89,6 +89,8 @@
 		4FF6F483227A72BE000F14D2 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F482227A72BE000F14D2 /* HeaderCollectionReusableView.swift */; };
 		4FF9AA0622F205CA00FE59AE /* AssignmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF9AA0522F205CA00FE59AE /* AssignmentTableViewCell.swift */; };
 		4FFCBC0F22F37BF900A7172A /* TermDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCBC0E22F37BF900A7172A /* TermDateTableViewCell.swift */; };
+		4FFCBC1522F3993800A7172A /* CalculableGradable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCBC1422F3993800A7172A /* CalculableGradable.swift */; };
+		4FFCBC1622F3999400A7172A /* CalculableGradable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCBC1422F3993800A7172A /* CalculableGradable.swift */; };
 		B31F06935769A866DBA4BA86 /* Pods_Grades.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3331F2C02BBE33564DB3E91E /* Pods_Grades.framework */; };
 /* End PBXBuildFile section */
 
@@ -220,6 +222,7 @@
 		4FF6F482227A72BE000F14D2 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		4FF9AA0522F205CA00FE59AE /* AssignmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentTableViewCell.swift; sourceTree = "<group>"; };
 		4FFCBC0E22F37BF900A7172A /* TermDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDateTableViewCell.swift; sourceTree = "<group>"; };
+		4FFCBC1422F3993800A7172A /* CalculableGradable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculableGradable.swift; sourceTree = "<group>"; };
 		526CC43AE900E43BAB2BD4E8 /* Pods_GradesWatch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GradesWatch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67446F864585CE8DCB9A795F /* Pods-Grades.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grades.debug.xcconfig"; path = "Target Support Files/Pods-Grades/Pods-Grades.debug.xcconfig"; sourceTree = "<group>"; };
 		9E87735B25A00D384A3E5190 /* Pods-GradesWatch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GradesWatch Extension.debug.xcconfig"; path = "Target Support Files/Pods-GradesWatch Extension/Pods-GradesWatch Extension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -467,6 +470,7 @@
 				4F6C601E22B5B3F800C7A931 /* Assignment.swift */,
 				4FACFF5022F0EE68000997E1 /* Orderable.swift */,
 				4FE7BD0722B5277600EB9590 /* Gradable.swift */,
+				4FFCBC1422F3993800A7172A /* CalculableGradable.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -814,6 +818,7 @@
 				4F3FDF1222EBC6E400C1DEF1 /* Subject.swift in Sources */,
 				4FACFF5222F0EEEC000997E1 /* Orderable.swift in Sources */,
 				4F3EC75322EB2C21006AA47C /* ExtensionDelegate.swift in Sources */,
+				4FFCBC1622F3999400A7172A /* CalculableGradable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -866,6 +871,7 @@
 				4FF6F473227A1F90000F14D2 /* UIFont+Extension.swift in Sources */,
 				4FF6F46D227A15AF000F14D2 /* UITableView+Extension.swift in Sources */,
 				4FF6F46B227A159A000F14D2 /* NibLoadableView.swift in Sources */,
+				4FFCBC1522F3993800A7172A /* CalculableGradable.swift in Sources */,
 				4FF6F462227A119F000F14D2 /* NSLayoutAnchor+Extension.swift in Sources */,
 				4F66289C22A1462D001F2CD9 /* CreateTermViewController.swift in Sources */,
 				4F75399222C0564C00276742 /* RealmServiceFactory.swift in Sources */,

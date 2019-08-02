@@ -10,6 +10,7 @@ import UIKit
 
 protocol TermCollectionViewCellDelegate: class {
     func goToTermDetail(item: Int)
+    func showDeleteAlert(item: Int)
 }
 
 class TermCollectionViewCell: UICollectionViewCell, ReusableView {
@@ -73,6 +74,12 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(goToTermDetail(gestureRecognizer:)))
         addGestureRecognizer(tapGesture)
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(showAlert))
+        addGestureRecognizer(longPressGesture)
+    }
+    
+    @objc func showAlert() {
+        delegate?.showDeleteAlert(item: tag)
     }
     
     private func addSubjectView() {

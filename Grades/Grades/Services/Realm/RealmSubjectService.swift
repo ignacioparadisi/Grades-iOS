@@ -15,6 +15,11 @@ class RealmSubjectService: SubjectService {
     /// - Returns: Stored subjects in the database
     func fetchSubjects(for term: Term) -> [Subject] {
         let subjects = RealmManager.shared.getArray(ofType: Subject.self, filter: "term.id == '\(term.id)'") as! [Subject]
+        for subject in subjects {
+            let assignments = AbstractServiceFactory.getServiceFactory(for: .realm).assignmentService.fetchAssignments(for: subject)
+            subject.lowerGrade = Calculator.getGradesForAssignment(assignments, type: .lower)
+            subject.greaterGrade = Calculator.getGradesForAssignment(assignments, type: .greater)
+        }
         return subjects
     }
     

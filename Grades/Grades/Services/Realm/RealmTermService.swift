@@ -19,6 +19,13 @@ class RealmTermService: TermService {
         for term in terms {
             let factory = AbstractServiceFactory.getServiceFactory(for: .realm)
             let subjects = factory.subjectService.fetchSubjects(for: term)
+            for subject in subjects {
+                let assignments = AbstractServiceFactory.getServiceFactory(for: .realm).assignmentService.fetchAssignments(for: subject)
+                subject.lowerGrade = Calculator.getGradesForAssignment(assignments, type: .lower)
+                subject.greaterGrade = Calculator.getGradesForAssignment(assignments, type: .greater)
+            }
+            term.greaterGrade = Calculator.getGradesForSubjects(subjects, type: .greater)
+            term.lowerGrade = Calculator.getGradesForSubjects(subjects, type: .lower)
             term.subjects = subjects
         }
         return terms
@@ -26,6 +33,10 @@ class RealmTermService: TermService {
     
     func createTerm(_ term: Term) {
         RealmManager.shared.create(term)
+    }
+    
+    func deleteTerm(_ term: Term) {
+        RealmManager.shared.delete(term)
     }
     
     func deleteTerms(_ terms: [Term]) {

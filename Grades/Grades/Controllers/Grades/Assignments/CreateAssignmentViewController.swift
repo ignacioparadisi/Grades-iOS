@@ -219,6 +219,7 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
             let minGrade = Float(minGradeText),
             let maxGrade = Float(maxGradeText),
             let percentage = Float(percentageText),
+            let date = datePickerTextField.date,
             !name.isEmpty {
             
             var grade: Float = 0
@@ -234,6 +235,7 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
                 assignment.maxGrade = maxGrade
                 assignment.percentage = percentage * 0.01
                 assignment.grade = grade
+                assignment.date = date
                 
                 if self.assignment != nil {
                     self.assignment = assignment

@@ -20,8 +20,9 @@ class TermsViewController: BaseViewController {
         navigationItem.title = "Terms".localized
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateTerm))
-        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(goToEditTerms))
-        navigationItem.setRightBarButtonItems([addButton, editButton], animated: false)
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(fetchTerms))
+        // let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(goToEditTerms))
+        navigationItem.setRightBarButtonItems([refreshButton, addButton], animated: false)
     }
     
     override func setupView() {
@@ -47,7 +48,7 @@ class TermsViewController: BaseViewController {
         collectionView.register(TermCollectionViewCell.self)
     }
     
-    private func fetchTerms() {
+    @objc private func fetchTerms() {
         terms = AbstractServiceFactory.getServiceFactory(for: .realm).termService.fetchTerms()
         terms = terms.sorted(by: { (term1, term2) -> Bool in
             return term1.position < term2.position
@@ -107,6 +108,27 @@ extension TermsViewController: CreateTermViewControllerDelegate {
 }
 
 extension TermsViewController: TermCollectionViewCellDelegate {
+    
+    func showDeleteAlert(item: Int) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet, blurStyle: .dark)
+        let deleteAction = UIAlertAction(title: "Delete".localized, style: .destructive) { [weak self] _ in
+            self?.deleteTerm(at: item)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
+        
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
+    }
+    
+    private func deleteTerm(at index: Int) {
+        let term = terms[index]
+        terms.remove(at: index)
+        collectionView.deleteItems(at: [IndexPath(item: index, section: 0)])
+        AbstractServiceFactory.getServiceFactory(for: .realm).termService.deleteTerm(term)
+        
+        // fetchTerms()
+    }
     
     func goToTermDetail(item: Int) {
         selectedCell = item

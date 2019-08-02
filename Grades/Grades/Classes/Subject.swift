@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class Subject: Object, Gradable, Orderable {
+class Subject: Object, CalculableGradable, Orderable {
 
     @objc dynamic var term: Term?
     @objc dynamic var id: String = UUID().uuidString
@@ -19,6 +19,8 @@ class Subject: Object, Gradable, Orderable {
     @objc dynamic var minGrade: Float = 0.0
     @objc dynamic var position: Int = 0
     @objc dynamic var dateCreated: Date = Date()
+    var greaterGrade: Float = 0.0
+    var lowerGrade: Float = 0.0
 
     override static func primaryKey() -> String? {
         return "id"

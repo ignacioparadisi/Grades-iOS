@@ -10,10 +10,11 @@ import UIKit
 
 class TermDetailViewController: BaseViewController {
     
-    enum TableSections: Int {
-        case dateSection = 0
-        case chartSection = 1
-        case subjectsSection = 2
+    enum TableRows: Int, CaseIterable {
+        case dateRow = 0
+        case chartTitleRow = 1
+        case chartRow = 2
+        case subjectsTitleRow = 3
     }
     
     var tableView: UITableView!
@@ -79,62 +80,46 @@ class TermDetailViewController: BaseViewController {
 
 extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch TableSections(rawValue: section) {
-        case .dateSection?:
+        if subjects.isEmpty {
             return 1
-        case .chartSection?:
-            return (subjects.isEmpty) ? 0 : 2
-        case .subjectsSection?:
-            return (subjects.isEmpty) ? 0 : subjects.count + 1
-        default:
-            return 0
         }
+        return subjects.count + TableRows.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = indexPath.section
         let row = indexPath.row
         
-        switch TableSections(rawValue: section) {
-        case .dateSection?:
+        switch TableRows(rawValue: row) {
+        case .dateRow?:
             let cell = tableView.dequeueReusableCell(for: indexPath) as TermDateTableViewCell
             cell.configure(startDate: term.startDate, endDate: term.endDate)
             return cell
-        case .chartSection?:
-            if row == 0 {
-                let cell = tableView.dequeueReusableCell(for: indexPath) as TitleLabelTableViewCell
-                cell.titleLabel.text = "Stats".localized
-                return cell
-            } else {
-                let cell = tableView.dequeueReusableCell(for: indexPath) as BarChartTableViewCell
-                cell.configure(with: subjects)
-                return cell
-            }
+        case .chartTitleRow?:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as TitleLabelTableViewCell
+            cell.titleLabel.text = "Stats".localized
+            return cell
+        case .chartRow?:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as BarChartTableViewCell
+            cell.configure(with: subjects)
+            return cell
+        case .subjectsTitleRow?:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as TitleLabelTableViewCell
+            cell.titleLabel.text = "Subjects".localized
+            return cell
         default:
-            if row == 0 {
-                let cell = tableView.dequeueReusableCell(for: indexPath) as TitleLabelTableViewCell
-                cell.titleLabel.text = "Subjects".localized
-                return cell
-            } else {
-                let index = row - 1
-                let cell = tableView.dequeueReusableCell(for: indexPath) as GradableTableViewCell
-                cell.configure(with: subjects[index])
-                return cell
-            }
+            let index = row - TableRows.allCases.count
+            let cell = tableView.dequeueReusableCell(for: indexPath) as GradableTableViewCell
+            cell.configure(with: subjects[index])
+            return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let section = indexPath.section
         let row = indexPath.row
         
-        if section == TableSections.subjectsSection.rawValue && row > 0 {
-            let index = row - 1
+        if row >= TableRows.allCases.count {
+            let index = row - TableRows.allCases.count
             let subject = subjects[index]
             let viewController = SubjectDetailViewController()
             viewController.delegate = self
@@ -164,7 +149,7 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.section == TableSections.subjectsSection.rawValue && indexPath.row != 0
+        return indexPath.row >= TableRows.allCases.count
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -172,7 +157,7 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             subjects.remove(at: index)
             tableView.deleteRows(at: [indexPath], with: .left)
-            tableView.reloadRows(at: [IndexPath(row: 1, section: TableSections.chartSection.rawValue)], with: .none)
+            tableView.reloadRows(at: [IndexPath(row: TableRows.chartRow.rawValue, section: 0)], with: .none)
         }
     }
 }

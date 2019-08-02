@@ -10,9 +10,10 @@ import UIKit
 
 class SubjectDetailViewController: BaseViewController {
     
-    enum TableSections: Int {
-        case chartSection = 0
-        case assignmentsSection = 1
+    enum TableRows: Int, CaseIterable {
+        case chartTitleRow = 0
+        case chartRow = 1
+        case assignmentsTitleRow = 2
     }
 
     var tableView: UITableView!
@@ -25,8 +26,7 @@ class SubjectDetailViewController: BaseViewController {
         title = subject.name
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateAssignment))
-        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: nil)
-        navigationItem.setRightBarButtonItems([addButton, editButton], animated: false)
+        navigationItem.rightBarButtonItem = addButton
     }
     
     override func setupView() {
@@ -78,55 +78,41 @@ class SubjectDetailViewController: BaseViewController {
 
 extension SubjectDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch TableSections(rawValue: section) {
-        case .chartSection?:
-            return (assignments.isEmpty) ? 0 : 2
-        case .assignmentsSection?:
-            return (assignments.isEmpty) ? 0 : assignments.count + 1
-        default:
+        if assignments.isEmpty {
             return 0
         }
+        return assignments.count + TableRows.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = indexPath.section
         let row = indexPath.row
         
-        switch TableSections(rawValue: section) {
-        case .chartSection?:
-            if row == 0 {
-                let cell = tableView.dequeueReusableCell(for: indexPath) as TitleLabelTableViewCell
-                cell.titleLabel.text = "Stats".localized
-                return cell
-            } else {
-                let cell = tableView.dequeueReusableCell(for: indexPath) as BarChartTableViewCell
-                cell.configure(with: assignments)
-                return cell
-            }
+        switch TableRows(rawValue: row) {
+        case .chartTitleRow?:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as TitleLabelTableViewCell
+            cell.titleLabel.text = "Stats".localized
+            return cell
+        case .chartRow?:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as BarChartTableViewCell
+            cell.configure(with: assignments)
+            return cell
+        case .assignmentsTitleRow?:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as TitleLabelTableViewCell
+            cell.titleLabel.text = "Assignments".localized
+            return cell
         default:
-            if row == 0 {
-                let cell = tableView.dequeueReusableCell(for: indexPath) as TitleLabelTableViewCell
-                cell.titleLabel.text = "Assignments".localized
-                return cell
-            } else {
-                let index = row - 1
-                let cell = tableView.dequeueReusableCell(for: indexPath) as AssignmentTableViewCell
-                cell.configure(with: assignments[index])
-                return cell
-            }
+            let index = row - TableRows.allCases.count
+            let cell = tableView.dequeueReusableCell(for: indexPath) as AssignmentTableViewCell
+            cell.configure(with: assignments[index])
+            return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let section = indexPath.section
         let row = indexPath.row
         
-        if section == TableSections.assignmentsSection.rawValue && row > 0 {
+        if row >= TableRows.allCases.count {
             showActionSheet()
         }
     }
@@ -152,7 +138,7 @@ extension SubjectDetailViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.section == TableSections.assignmentsSection.rawValue && indexPath.row != 0
+        return indexPath.row >= TableRows.allCases.count
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -160,7 +146,7 @@ extension SubjectDetailViewController: UITableViewDelegate, UITableViewDataSourc
         if editingStyle == .delete {
             assignments.remove(at: index)
             tableView.deleteRows(at: [indexPath], with: .left)
-            tableView.reloadRows(at: [IndexPath(row: 1, section: TableSections.chartSection.rawValue)], with: .none)
+            tableView.reloadRows(at: [IndexPath(row: TableRows.chartRow.rawValue, section: 0)], with: .none)
         }
     }
 }

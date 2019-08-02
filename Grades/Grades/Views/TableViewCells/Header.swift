@@ -94,8 +94,8 @@ class DetailHeader: UIView {
     
     func configure(with gradable: Gradable) {
         gradeLabel.text = "\(Int(gradable.grade.rounded()))"
-        minGradeLabel.text = "\(Int(gradable.minGrade.rounded()))"
-        maxGradeLabel.text = "\(Int(gradable.maxGrade.rounded()))"
+        minGradeLabel.text = "\(Int(gradable.maxGrade.rounded()))"
+        maxGradeLabel.text = "\(Int(gradable.minGrade.rounded()))"
         
         backgroundColor = UIColor.getColor(for: gradable)
     }
