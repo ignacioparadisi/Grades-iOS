@@ -18,4 +18,8 @@ protocol AssignmentService {
     
     func updateAssignment(old oldAssignment: Assignment, new newAssignment: Assignment, completion: @escaping (Result<Assignment, NetworkError>) -> Void)
     
+    func deleteAssignment(_ assignment: Assignment, completion: @escaping (Result<Int, NetworkError>) -> Void)
+    
+    func deleteAssignments(_ assignments: [Assignment], completion: ServiceResult<Int>?)
+    
 }

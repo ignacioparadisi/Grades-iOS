@@ -86,6 +86,7 @@ class TermDetailViewController: BaseViewController {
     
     private func deleteSubject(at indexPath: IndexPath) {
         let index = indexPath.row -  TableRows.allCases.count
+        let subject = subjects[index]
         subjects.remove(at: index)
         if !subjects.isEmpty {
             tableView.deleteRows(at: [indexPath], with: .left)
@@ -98,6 +99,15 @@ class TermDetailViewController: BaseViewController {
                 IndexPath(row: TableRows.subjectsTitleRow.rawValue, section: 0)
             ]
             tableView.deleteRows(at: indexPaths, with: .fade)
+        }
+        let service = AbstractServiceFactory.getServiceFactory(for: .realm).subjectService
+        service.deleteSubject(subject) { result in
+            switch result {
+            case .success:
+                self.delegate?.shouldRefresh()
+            case .failure:
+                print("Failed deleting subject")
+            }
         }
     }
 }

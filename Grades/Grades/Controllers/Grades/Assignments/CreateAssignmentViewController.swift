@@ -147,6 +147,7 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
         contentView.addSubview(percentageTextField)
         gradeTextField.placeholder = "Grade".localized
         percentageTextField.placeholder = "Percentage".localized
+        percentageTextField.delegate = self
         gradeTextField.anchor
             .top(to: minGradeTextField.bottomAnchor, constant: titleTopConstant)
             .trailing(to: contentView.centerXAnchor, constant: trailingConstant / 2)
@@ -165,6 +166,7 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
         
         dateLabel.text = "Date and time".localized
         dateDescriptionLabel.text = "Enter the date and time of the assignment".localized
+        datePickerTextField.delegate = self
         
         contentView.addSubview(dateLabel)
         contentView.addSubview(dateDescriptionLabel)
@@ -205,8 +207,11 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
     }
     
     private func checkRequiredFields() {
-        if nameTextField.isEmpty || minGradeTextField.isEmpty
-            || maxGradeTextField.isEmpty {
+        if nameTextField.isEmpty
+            || minGradeTextField.isEmpty
+            || maxGradeTextField.isEmpty
+            || percentageTextField.isEmpty
+            || datePickerTextField.isEmpty {
             addButton.isEnabled = false
             return
         }

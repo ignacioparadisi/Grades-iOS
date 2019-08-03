@@ -38,6 +38,24 @@ class RealmSubjectService: SubjectService {
         }
     }
     
+    func deleteSubject(_ subject: Subject, completion: @escaping (Result<Int, NetworkError>) -> Void) {
+        deleteCascade(subject)
+    }
+    
+    func deleteSubjects(_ subjects: [Subject], completion: ServiceResult<Int>?) {
+        for subject in subjects {
+            deleteCascade(subject)
+        }
+        completion?(.success(0))
+    }
+    
+    private func deleteCascade(_ subject: Subject) {
+        let assignments = RealmManager.shared.getArray(ofType: Assignment.self, filter: "subject.id == '\(subject.id)'") as! [Assignment]
+        let service = AbstractServiceFactory.getServiceFactory(for: .realm).assignmentService
+        service.deleteAssignments(assignments, completion: nil)
+        RealmManager.shared.delete(subject)
+    }
+    
     /// Updates the grade of the parent of the subject passed as a parameter.
     /// IMPORTANT: To use this method you first need to save the subject in Realm.
     ///

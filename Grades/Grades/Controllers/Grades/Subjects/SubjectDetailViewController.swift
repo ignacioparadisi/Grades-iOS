@@ -84,6 +84,7 @@ class SubjectDetailViewController: BaseViewController {
     
     private func deleteAssignment(at indexPath: IndexPath) {
         let index = indexPath.row -  TableRows.allCases.count
+        let assignment = assignments[index]
         assignments.remove(at: index)
         if !assignments.isEmpty {
             tableView.deleteRows(at: [indexPath], with: .left)
@@ -96,6 +97,16 @@ class SubjectDetailViewController: BaseViewController {
                 IndexPath(row: TableRows.assignmentsTitleRow.rawValue, section: 0)
             ]
             tableView.deleteRows(at: indexPaths, with: .fade)
+        }
+        
+        let service = AbstractServiceFactory.getServiceFactory(for: .realm).assignmentService
+        service.deleteAssignment(assignment) { result in
+            switch result {
+            case .success:
+                self.delegate?.shouldRefresh()
+            case .failure:
+                print("Failed deleting assignment")
+            }
         }
     }
 

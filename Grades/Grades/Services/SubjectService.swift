@@ -17,4 +17,8 @@ protocol SubjectService {
     
     func createSubject(_ subject: Subject, completion: @escaping (Result<Subject, NetworkError>) -> Void)
     
+    func deleteSubject(_ subject: Subject, completion: @escaping (Result<Int, NetworkError>) -> Void)
+    
+    func deleteSubjects(_ subjects: [Subject], completion: ServiceResult<Int>?)
+    
 }

@@ -33,6 +33,26 @@ class RealmAssignmentService: AssignmentService {
         completion(.success(newAssignment))
     }
     
+    func deleteAssignment(_ assignment: Assignment, completion: @escaping (Result<Int, NetworkError>) -> Void) {
+        deleteCascade(assignment)
+        completion(.success(0))
+    }
+    
+    func deleteAssignments(_ assignments: [Assignment], completion: ServiceResult<Int>?) {
+        for assignment in assignments {
+            deleteCascade(assignment)
+        }
+        completion?(.success(0))
+    }
+    
+    private func deleteCascade(_ assignment: Assignment) {
+        let childAssignments = RealmManager.shared.getArray(ofType: Assignment.self, filter: "assignment.id == '\(assignment.id)'") as! [Assignment]
+        if !childAssignments.isEmpty {
+            RealmManager.shared.delete(childAssignments)
+        }
+        RealmManager.shared.delete(assignment)
+    }
+    
     /// Updates the grade of the parent of the assignment passed as a parameter.
     /// IMPORTANT: To use this method you first need to save the assignment in Realm.
     ///

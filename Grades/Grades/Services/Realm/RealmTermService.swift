@@ -54,12 +54,14 @@ class RealmTermService: TermService {
     }
     
     func deleteTerm(_ term: Term, completion: @escaping (Result<Int, NetworkError>) -> Void) {
-        RealmManager.shared.delete(term)
+        deleteCascade(term)
         completion(.success(0))
     }
     
     func deleteTerms(_ terms: [Term], completion: @escaping (Result<Int, NetworkError>) -> Void) {
-        RealmManager.shared.delete(terms)
+        for term in terms {
+            deleteCascade(term)
+        }
         completion(.success(0))
     }
     
@@ -73,6 +75,13 @@ class RealmTermService: TermService {
     func updateTerm(_ term: Term, completion: @escaping (Result<Term, NetworkError>) -> Void) {
         RealmManager.shared.update(term)
         completion(.success(term))
+    }
+    
+    private func deleteCascade(_ term: Term) {
+        let subjects = RealmManager.shared.getArray(ofType: Subject.self, filter: "term.id == '\(term.id)'") as! [Subject]
+        let service = AbstractServiceFactory.getServiceFactory(for: .realm).subjectService
+        service.deleteSubjects(subjects, completion: nil)
+        RealmManager.shared.delete(term)
     }
     
 }

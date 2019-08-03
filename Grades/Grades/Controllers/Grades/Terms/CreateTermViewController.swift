@@ -147,6 +147,8 @@ class CreateTermViewController: BaseViewController, ScrollableView {
         durationDescriptionLabel.text = "Enter the duration of the term".localized
         startDateTextField.placeholder = "From".localized
         endDateTextField.placeholder = "To".localized
+        startDateTextField.delegate = self
+        endDateTextField.delegate = self
         
         contentView.addSubview(durationTitleLabel)
         contentView.addSubview(durationDescriptionLabel)
@@ -182,8 +184,11 @@ class CreateTermViewController: BaseViewController, ScrollableView {
     }
     
     private func checkRequiredFields() {
-        if nameTextField.isEmpty || minGradeTextField.isEmpty
-            || maxGradeTextField.isEmpty {
+        if nameTextField.isEmpty
+            || minGradeTextField.isEmpty
+            || maxGradeTextField.isEmpty
+            || startDateTextField.isEmpty
+            || endDateTextField.isEmpty {
             addButton.isEnabled = false
             return
         }

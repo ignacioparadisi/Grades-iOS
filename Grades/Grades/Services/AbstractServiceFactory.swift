@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias ServiceResult<T> = (Result<T, NetworkError>) -> Void
+
 enum ServiceType {
     case realm
 }
