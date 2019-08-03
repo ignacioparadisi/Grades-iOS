@@ -17,6 +17,7 @@ class SubjectDetailViewController: BaseViewController {
     }
 
     var tableView: UITableView!
+    let header: DetailHeader = DetailHeader(frame: .zero)
     var subject: Subject = Subject()
     var assignments: [Assignment] = []
     weak var delegate: CreateSubjectViewControllerDelegate?

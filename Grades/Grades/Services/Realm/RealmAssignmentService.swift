@@ -40,13 +40,13 @@ class RealmAssignmentService: AssignmentService {
     
     func deleteAssignments(_ assignments: [Assignment], completion: ServiceResult<Int>?) {
         for assignment in assignments {
-            deleteCascade(assignment, excludeSubject: false)
+            deleteCascade(assignment, excludeSubject: true)
         }
         completion?(.success(0))
     }
     
-    private func deleteCascade(_ assignment: Assignment, excludeSubject: Bool = true) {
-        updateGradeForParent(of: assignment, excludeSubject: excludeSubject)
+    private func deleteCascade(_ assignment: Assignment, excludeSubject: Bool = false) {
+        updateGradeForParent(of: assignment, exclude: true, excludeSubject: excludeSubject)
         let childAssignments = RealmManager.shared.getArray(ofType: Assignment.self, filter: "assignment.id == '\(assignment.id)'") as! [Assignment]
         if !childAssignments.isEmpty {
             RealmManager.shared.delete(childAssignments)
@@ -63,12 +63,18 @@ class RealmAssignmentService: AssignmentService {
             fetchAssignments(for: subject) { result in
                 switch result {
                 case .success(let assignments):
+                    print(assignment.id)
+                    for assignment in assignments {
+                        print(assignment.id)
+                    }
                     var assignmentsToCalculate = assignments
                     if exclude {
                         assignmentsToCalculate = assignments.filter { $0.id != assignment.id }
                     }
                     let grade = Calculator.getGrade(for: assignmentsToCalculate)
+                    print("Subject grade: \(grade)")
                     RealmManager.shared.updateGrade(subject, grade: grade)
+                    print("Subject grade: \(subject.grade)")
                     if !excludeSubject {
                         self.updateGradeForParent(of: subject)
                     }
