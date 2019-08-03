@@ -50,6 +50,7 @@ class IPTextField: UITextField {
     internal func initialize() {
         backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
         textColor = ThemeManager.currentTheme.textColor
+        keyboardAppearance = .dark
         layer.cornerRadius = 10
         layer.masksToBounds = false
         layer.borderWidth = 2

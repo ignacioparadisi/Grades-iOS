@@ -9,23 +9,33 @@
 import Foundation
 
 class RealmSubjectService: SubjectService {
-    
+        
     /// Gets all subjects
     ///
     /// - Returns: Stored subjects in the database
-    func fetchSubjects(for term: Term) -> [Subject] {
+    func fetchSubjects(for term: Term, completion: @escaping (Result<[Subject], NetworkError>) -> Void) {
         let subjects = RealmManager.shared.getArray(ofType: Subject.self, filter: "term.id == '\(term.id)'") as! [Subject]
         for subject in subjects {
-            let assignments = AbstractServiceFactory.getServiceFactory(for: .realm).assignmentService.fetchAssignments(for: subject)
-            subject.lowerGrade = Calculator.getGradesForAssignment(assignments, type: .lower)
-            subject.greaterGrade = Calculator.getGradesForAssignment(assignments, type: .greater)
+            let service = AbstractServiceFactory.getServiceFactory(for: .realm)
+            service.assignmentService.fetchAssignments(for: subject) { result in
+                switch result {
+                case .success(let assignments):
+                    subject.lowerGrade = Calculator.getGradesForAssignment(assignments, type: .lower)
+                    subject.greaterGrade = Calculator.getGradesForAssignment(assignments, type: .greater)
+                case .failure(let error):
+                    completion(.failure(error))
+                    break
+                }
+            }
         }
-        return subjects
+        completion(.success(subjects))
     }
     
-    func createSubject(_ subject: Subject) {
-        RealmManager.shared.create(subject)
-        updateGradeForParent(of: subject)
+    func createSubject(_ subject: Subject, completion: @escaping (Result<Subject, NetworkError>) -> Void) {
+        if let createdSubject = RealmManager.shared.create(subject) as? Subject {
+            updateGradeForParent(of: subject)
+            completion(.success(createdSubject))
+        }
     }
     
     /// Updates the grade of the parent of the subject passed as a parameter.
@@ -34,9 +44,15 @@ class RealmSubjectService: SubjectService {
     /// - Parameter subject: Subject that was created or updated.
     func updateGradeForParent(of subject: Subject) {
         if let term = subject.term {
-            let subjects = fetchSubjects(for: term)
-            let grade = Calculator.getAverageGrade(for: subjects)
-            RealmManager.shared.updateGrade(term, grade: grade)
+            fetchSubjects(for: term) { result in
+                switch result {
+                case .success(let subjects):
+                    let grade = Calculator.getAverageGrade(for: subjects)
+                    RealmManager.shared.updateGrade(term, grade: grade)
+                case .failure(let error):
+                    print(error)
+                }
+            }
         }
     }
     

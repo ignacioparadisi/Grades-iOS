@@ -127,7 +127,15 @@ class EditTermViewController: BaseViewController {
             let updatedTerm = term.copy() as? Term {
             updatedTerm.startDate = startDate
             updatedTerm.endDate = endDate
-            AbstractServiceFactory.getServiceFactory(for: .realm).termService.updateTerm(updatedTerm)
+            let service = AbstractServiceFactory.getServiceFactory(for: .realm)
+            service.termService.updateTerm(updatedTerm) { result in
+                switch result {
+                case .success:
+                    print("Successfully updated term")
+                case .failure:
+                    print("Failed updating term")
+                }
+            }
             delegate?.didEditTerm(updatedTerm)
             dismissView()
         }

@@ -9,6 +9,7 @@
 import UIKit
 import IQKeyboardManagerSwift
 import RealmSwift
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        requestNotificationsAuthorization()
         WatchSessionManager.shared.start()
         
         // Enables putting text fields on top of keyboard
@@ -55,6 +57,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    private func requestNotificationsAuthorization() {
+        let notificationCenter = UNUserNotificationCenter.current()
+        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
+        notificationCenter.requestAuthorization(options: options) { granted, error in
+            if !granted {
+                print("User did not authorize notifications")
+            }
+            if let error = error {
+                print(error)
+            }
+        }
     }
 
 }

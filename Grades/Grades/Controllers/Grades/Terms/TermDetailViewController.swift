@@ -43,7 +43,7 @@ class TermDetailViewController: BaseViewController {
         tableView.dataSource = self
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
         view.addSubview(tableView)
         tableView.anchor
             .edgesToSuperview(toSafeArea: true)
@@ -71,8 +71,16 @@ class TermDetailViewController: BaseViewController {
     }
     
     private func fetchSubjects() {
-        subjects = AbstractServiceFactory.getServiceFactory(for: .realm).subjectService.fetchSubjects(for: term)
-        term.subjects = subjects
+        let service = AbstractServiceFactory.getServiceFactory(for: .realm)
+        service.subjectService.fetchSubjects(for: term) { result in
+            switch result {
+            case .success(let subjects):
+                self.subjects = subjects
+                self.term.subjects = subjects
+            case .failure:
+                print("Failed fetching subjects")
+            }
+        }
         tableView.reloadData()
     }
     
@@ -153,7 +161,7 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let index = indexPath.row -  1
+        let index = indexPath.row - TableRows.allCases.count
         if editingStyle == .delete {
             subjects.remove(at: index)
             tableView.deleteRows(at: [indexPath], with: .left)

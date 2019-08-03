@@ -37,7 +37,7 @@ class SubjectDetailViewController: BaseViewController {
         tableView.dataSource = self
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 16, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
         view.addSubview(tableView)
         tableView.anchor
             .edgesToSuperview(toSafeArea: true)
@@ -57,7 +57,15 @@ class SubjectDetailViewController: BaseViewController {
     }
     
     private func fetchAssignments() {
-        assignments = AbstractServiceFactory.getServiceFactory(for: .realm).assignmentService.fetchAssignments(for: subject)
+        let service = AbstractServiceFactory.getServiceFactory(for: .realm)
+        service.assignmentService.fetchAssignments(for: subject) { result in
+            switch result {
+            case .success(let assignments):
+                self.assignments = assignments
+            case .failure:
+                break
+            } 
+        }
         tableView.reloadData()
     }
     

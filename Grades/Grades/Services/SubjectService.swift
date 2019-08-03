@@ -13,8 +13,8 @@ protocol SubjectService {
     /// Gets all the subjects
     ///
     /// - Returns: Subjects stored
-    func fetchSubjects(for term: Term) -> [Subject]
+    func fetchSubjects(for term: Term, completion: @escaping (Result<[Subject], NetworkError>) -> Void)
     
-    func createSubject(_ subject: Subject)
+    func createSubject(_ subject: Subject, completion: @escaping (Result<Subject, NetworkError>) -> Void)
     
 }

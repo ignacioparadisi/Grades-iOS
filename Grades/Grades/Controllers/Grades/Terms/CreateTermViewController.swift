@@ -207,7 +207,15 @@ class CreateTermViewController: BaseViewController, ScrollableView {
                 term.endDate = endDate
                 term.position = termsCount
                 
-                AbstractServiceFactory.getServiceFactory(for: .realm).termService.createTerm(term)
+                let service = AbstractServiceFactory.getServiceFactory(for: .realm)
+                service.termService.createTerm(term) { result in
+                    switch result {
+                    case .success:
+                        print("Successfully created term")
+                    case .failure:
+                        print("Failed creating term")
+                    }
+                }
                 dismissView()
                 delegate?.shouldRefresh()
             }

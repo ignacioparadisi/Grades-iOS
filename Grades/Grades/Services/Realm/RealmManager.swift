@@ -26,9 +26,14 @@ class RealmManager {
     /// Creates an object to the Realm database
     ///
     /// - Parameter object: Object to be created
-    func create(_ object: Object) {
-        try! self.database.write {
-            self.database.add(object)
+    func create(_ object: Object) -> Object? {
+        do {
+            try self.database.write {
+                self.database.add(object)
+            }
+            return object
+        } catch {
+            return nil
         }
     }
     

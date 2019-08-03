@@ -63,7 +63,7 @@ class IPDatePickerTextField: IPTextField {
     
     internal override func initialize() {
         super.initialize()
-        
+        keyboardAppearance = .default
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(pickDate))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         

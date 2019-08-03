@@ -49,7 +49,16 @@ class TermsViewController: BaseViewController {
     }
     
     @objc private func fetchTerms() {
-        terms = AbstractServiceFactory.getServiceFactory(for: .realm).termService.fetchTerms()
+        let service = AbstractServiceFactory.getServiceFactory(for: .realm)
+        service.termService.fetchTerms() { result in
+            switch result {
+            case .success(let terms):
+                self.terms = terms
+            case.failure:
+                print("Failed fetching terms")
+                break
+            }
+        }
         terms = terms.sorted(by: { (term1, term2) -> Bool in
             return term1.position < term2.position
         })
@@ -125,7 +134,15 @@ extension TermsViewController: TermCollectionViewCellDelegate {
         let term = terms[index]
         terms.remove(at: index)
         collectionView.deleteItems(at: [IndexPath(item: index, section: 0)])
-        AbstractServiceFactory.getServiceFactory(for: .realm).termService.deleteTerm(term)
+        let service = AbstractServiceFactory.getServiceFactory(for: .realm)
+        service.termService.deleteTerm(term) { result in
+            switch result {
+            case .success:
+                print("Successfully deleted term")
+            case .failure:
+                print("Failed deleting term")
+            }
+        }
         
         // fetchTerms()
     }

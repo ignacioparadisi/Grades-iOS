@@ -10,12 +10,12 @@ import Foundation
 
 protocol AssignmentService {
     
-    func fetchAssignments(for subject: Subject) -> [Assignment]
+    func fetchAssignments(for subject: Subject, completion: @escaping (Result<[Assignment], NetworkError>) -> Void)
     
-    func fetchAssignments(for assignment: Assignment) -> [Assignment]
+    func fetchAssignments(for assignment: Assignment, completion: @escaping (Result<[Assignment], NetworkError>) -> Void)
     
-    func createAssignment(_ assignment: Assignment)
+    func createAssignment(_ assignment: Assignment, completion: @escaping (Result<Assignment, NetworkError>) -> Void)
     
-    func updateAssignment(old oldAssignment: Assignment, new newAssignment: Assignment)
+    func updateAssignment(old oldAssignment: Assignment, new newAssignment: Assignment, completion: @escaping (Result<Assignment, NetworkError>) -> Void)
     
 }

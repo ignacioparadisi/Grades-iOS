@@ -73,8 +73,23 @@ class EditTermsViewController: BaseViewController {
     
     @objc private func editTerms() {
         let termService = AbstractServiceFactory.getServiceFactory(for: .realm).termService
-        termService.deleteTerms(termsToBeDeleted)
-        termService.updateTerms(terms)
+        termService.deleteTerms(termsToBeDeleted) { result in
+            switch result {
+            case .success:
+                print("Successfully deleted terms")
+            case .failure:
+                print("Failed deleting terms")
+            }
+        }
+        termService.updateTerms(terms) { result in
+            switch result {
+            case .success:
+                print("Successfully updated terms")
+            case .failure:
+                print("Failed updating terms")
+            }
+        }
+        
         delegate?.didEditTerms()
         dismissView()
     }

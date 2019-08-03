@@ -9,7 +9,8 @@
 import Foundation
 import RealmSwift
 
-class Assignment: Object, Gradable, Orderable {
+// TODO: Quitar Orderable
+class Assignment: Object, Gradable, Orderable, NSCopying {
     
     @objc dynamic var subject: Subject?
     @objc dynamic var assignment: Assignment?
@@ -25,6 +26,22 @@ class Assignment: Object, Gradable, Orderable {
     
     override static func primaryKey() -> String? {
         return "id"
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        let assignment = Assignment()
+        assignment.subject = self.subject?.copy() as? Subject
+        assignment.assignment = self.assignment?.copy() as? Assignment
+        assignment.id = self.id
+        assignment.name = self.name
+        assignment.grade = self.grade
+        assignment.maxGrade = self.maxGrade
+        assignment.minGrade = self.minGrade
+        assignment.percentage = self.percentage
+        assignment.position = self.position
+        assignment.date = self.date
+        assignment.dateCreated = self.dateCreated
+        return assignment
     }
     
 }

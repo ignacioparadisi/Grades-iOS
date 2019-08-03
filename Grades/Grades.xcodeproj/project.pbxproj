@@ -51,6 +51,7 @@
 		4F75399F22C05CFE00276742 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75399E22C05CFE00276742 /* ServiceFactory.swift */; };
 		4F7EE95B22A18C6500E34672 /* IPButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EE95A22A18C6500E34672 /* IPButton.swift */; };
 		4F7EE96322A1914300E34672 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F7EE96522A1914300E34672 /* Localizable.strings */; };
+		4FA7E01422F50FEA00C493AE /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA7E01322F50FEA00C493AE /* NetworkError.swift */; };
 		4FACFF4F22F0DB71000997E1 /* IPDatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF4E22F0DB71000997E1 /* IPDatePickerTextField.swift */; };
 		4FACFF5122F0EE68000997E1 /* Orderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF5022F0EE68000997E1 /* Orderable.swift */; };
 		4FACFF5222F0EEEC000997E1 /* Orderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF5022F0EE68000997E1 /* Orderable.swift */; };
@@ -183,6 +184,7 @@
 		4F7EE96022A190F200E34672 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		4F7EE96422A1914300E34672 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4F7EE96622A1914800E34672 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		4FA7E01322F50FEA00C493AE /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		4FACFF4E22F0DB71000997E1 /* IPDatePickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPDatePickerTextField.swift; sourceTree = "<group>"; };
 		4FACFF5022F0EE68000997E1 /* Orderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orderable.swift; sourceTree = "<group>"; };
 		4FACFF5622F0F38E000997E1 /* EditTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTermsViewController.swift; sourceTree = "<group>"; };
@@ -333,6 +335,14 @@
 			path = Realm;
 			sourceTree = "<group>";
 		};
+		4FA7E01222F50FD700C493AE /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				4FA7E01322F50FEA00C493AE /* NetworkError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 		4FACFF5322F0F2EE000997E1 /* Terms */ = {
 			isa = PBXGroup;
 			children = (
@@ -410,6 +420,7 @@
 		4FF6F41E227A04B6000F14D2 /* Grades */ = {
 			isa = PBXGroup;
 			children = (
+				4FA7E01222F50FD700C493AE /* Errors */,
 				4FDC23E122A0C2C70088FF3C /* Services */,
 				4FF6F458227A0C14000F14D2 /* Utils */,
 				4FF6F44F227A0BBF000F14D2 /* Views */,
@@ -875,6 +886,7 @@
 				4FF6F462227A119F000F14D2 /* NSLayoutAnchor+Extension.swift in Sources */,
 				4F66289C22A1462D001F2CD9 /* CreateTermViewController.swift in Sources */,
 				4F75399222C0564C00276742 /* RealmServiceFactory.swift in Sources */,
+				4FA7E01422F50FEA00C493AE /* NetworkError.swift in Sources */,
 				4F3B693222F22F9F002C6263 /* TitleLabelTableViewCell.swift in Sources */,
 				4F2FFB2222F1D1E40086B8B2 /* ProgressRingView.swift in Sources */,
 				4F6628A022A14B7E001F2CD9 /* UIViewController+Extension.swift in Sources */,

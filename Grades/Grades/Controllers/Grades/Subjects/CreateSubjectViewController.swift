@@ -161,7 +161,15 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
                 subject.minGrade = minGrade
                 subject.maxGrade = maxGrade
                 
-                AbstractServiceFactory.getServiceFactory(for: .realm).subjectService.createSubject(subject)
+                let service = AbstractServiceFactory.getServiceFactory(for: .realm)
+                service.subjectService.createSubject(subject) { result in
+                    switch result {
+                    case .success:
+                        print("Successfully created subject")
+                    case .failure:
+                        print("Failed creating subject")
+                    }
+                }
                 dismissView()
                 delegate?.shouldRefresh()
             }
