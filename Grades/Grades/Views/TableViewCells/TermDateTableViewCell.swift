@@ -52,7 +52,7 @@ class TermDateTableViewCell: UITableViewCell, ReusableView {
         containerView.layer.cornerRadius = 10
         
         addSubview(containerView)
-        containerView.anchor.edgesToSuperview(insets: UIEdgeInsets(top: 8, left: 16, bottom: -8, right: -16)).activate()
+        containerView.anchor.edgesToSuperview(insets: UIEdgeInsets(top: 16, left: 16, bottom: 0, right: -16)).activate()
         
         containerView.addSubview(startDateLabel)
         containerView.addSubview(separator)

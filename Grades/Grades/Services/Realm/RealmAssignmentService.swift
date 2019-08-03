@@ -63,18 +63,12 @@ class RealmAssignmentService: AssignmentService {
             fetchAssignments(for: subject) { result in
                 switch result {
                 case .success(let assignments):
-                    print(assignment.id)
-                    for assignment in assignments {
-                        print(assignment.id)
-                    }
                     var assignmentsToCalculate = assignments
                     if exclude {
                         assignmentsToCalculate = assignments.filter { $0.id != assignment.id }
                     }
                     let grade = Calculator.getGrade(for: assignmentsToCalculate)
-                    print("Subject grade: \(grade)")
                     RealmManager.shared.updateGrade(subject, grade: grade)
-                    print("Subject grade: \(subject.grade)")
                     if !excludeSubject {
                         self.updateGradeForParent(of: subject)
                     }

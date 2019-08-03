@@ -104,6 +104,9 @@ class TermDetailViewController: BaseViewController {
         service.deleteSubject(subject) { result in
             switch result {
             case .success:
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                    self.tableView.reloadData()
+                })
                 self.term.subjects = self.subjects
                 self.delegate?.shouldRefresh()
             case .failure:

@@ -104,6 +104,9 @@ class SubjectDetailViewController: BaseViewController {
         service.deleteAssignment(assignment) { result in
             switch result {
             case .success:
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                    self.tableView.reloadData()
+                })
                 self.delegate?.shouldRefresh()
             case .failure:
                 print("Failed deleting assignment")
