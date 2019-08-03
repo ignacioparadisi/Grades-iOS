@@ -53,6 +53,19 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
         textField.isRequired = true
         return textField
     }()
+    let switchContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    let testView: UIView = {
+        let view = UIView()
+        view.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    var testHeightAnchor: NSLayoutConstraint?
     let datePickerTextField: IPDatePickerTextField = {
         let picker = IPDatePickerTextField()
         picker.isRequired = true
@@ -68,6 +81,7 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
         addScrollView()
         setupNameSection()
         setupGradesSection()
+        setupChildSwitchSection()
         setupDateSection()
         setupSaveButton()
     }
@@ -160,6 +174,54 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
             .activate()
     }
     
+    private func setupChildSwitchSection() {
+        let titleLabel = IPTitleLabel()
+        let switchLabel = IPLabel()
+        let childsSwitch = UISwitch()
+        childsSwitch.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
+        
+        titleLabel.text = "Composition".localized
+        switchLabel.text = "The assignments is composed by other assignments".localized
+        switchLabel.numberOfLines = 0
+        
+        contentView.addSubview(titleLabel)
+        setupLabelConstraints(for: titleLabel, topAnchor: percentageTextField.bottomAnchor, topConstant: titleTopConstant)
+        
+        contentView.addSubview(switchContainerView)
+        switchContainerView.anchor
+            .top(to: titleLabel.bottomAnchor, constant: fieldTopConstant)
+            .trailingToSuperview(constant: trailingConstant)
+            .leadingToSuperview(constant: leadingConstant)
+            .width(constant: view.frame.width - 2 * leadingConstant)
+            .activate()
+        
+        switchContainerView.addSubview(switchLabel)
+        switchContainerView.addSubview(childsSwitch)
+        
+        switchLabel.anchor
+            .topToSuperview(constant: leadingConstant)
+            .trailing(to: childsSwitch.leadingAnchor, constant: trailingConstant)
+            .bottomToSuperview(constant: trailingConstant)
+            .leadingToSuperview(constant: leadingConstant)
+            .activate()
+        childsSwitch.anchor
+            .centerYToSuperview()
+            .trailingToSuperview(constant: trailingConstant)
+            .width(constant: 47)
+            .activate()
+        
+        contentView.addSubview(testView)
+        testView.anchor
+            .top(to: switchContainerView.bottomAnchor, constant: fieldTopConstant)
+            .trailingToSuperview(constant: trailingConstant)
+            .leadingToSuperview(constant: leadingConstant)
+            .width(constant: view.frame.width - 2 * leadingConstant)
+            .activate()
+        
+        testHeightAnchor = testView.heightAnchor.constraint(equalToConstant: 0)
+        testHeightAnchor?.isActive = true
+    }
+    
     private func setupDateSection() {
         let dateLabel = IPTitleLabel()
         let dateDescriptionLabel = IPLabel()
@@ -172,7 +234,7 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
         contentView.addSubview(dateDescriptionLabel)
         contentView.addSubview(datePickerTextField)
         
-        setupLabelConstraints(for: dateLabel, topAnchor: gradeTextField.bottomAnchor, topConstant: titleTopConstant)
+        setupLabelConstraints(for: dateLabel, topAnchor: testView.bottomAnchor, topConstant: titleTopConstant)
         setupLabelConstraints(for: dateDescriptionLabel, topAnchor: dateLabel.bottomAnchor, topConstant: descriptionTopConstant)
         datePickerTextField.anchor
             .top(to: dateDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
@@ -195,6 +257,14 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
             .activate()
         let topConstraint = addButton.topAnchor.constraint(greaterThanOrEqualTo: minGradeTextField.bottomAnchor, constant: 20)
         topConstraint.isActive = true
+    }
+    
+    @objc private func switchValueChanged(_ childsSwitch: UISwitch) {
+        testHeightAnchor?.constant = childsSwitch.isOn ? 100 : 0
+        UIView.animate(withDuration: 0.3) {
+            self.testView.alpha = childsSwitch.isOn ? 1 : 0
+            self.view.layoutIfNeeded()
+        }
     }
     
     func edit(_ assignment: Assignment) {
@@ -278,27 +348,29 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
     }
     
     private func scheduleNotification(for assignment: Assignment, subjectName: String, notificationCenter center: UNUserNotificationCenter) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
-        let day = dateFormatter.string(from: assignment.date)
-        dateFormatter.dateFormat = "h:mma"
-        let time = dateFormatter.string(from: assignment.date)
-        
-        let content = UNMutableNotificationContent()
-        content.title = "\(assignment.name) of \(subjectName)"
-        content.body = "You have \(assignment.name) on \(day) at \(time)"
-        content.sound = .default
-        
-        let date = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: assignment.date)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
-        let identifier = assignment.id
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-        
-        center.add(request) { error in
-            if let error = error {
-                print(error)
-            } else {
-                print("Scheduled Notification")
+        if assignment.date > Date() {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "EEEE"
+            let day = dateFormatter.string(from: assignment.date)
+            dateFormatter.dateFormat = "h:mma"
+            let time = dateFormatter.string(from: assignment.date)
+            
+            let content = UNMutableNotificationContent()
+            content.title = "\(assignment.name) of \(subjectName)"
+            content.body = "You have \(assignment.name) on \(day) at \(time)"
+            content.sound = .default
+            
+            let date = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: assignment.date)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
+            let identifier = assignment.id
+            let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+            
+            center.add(request) { error in
+                if let error = error {
+                    print(error)
+                } else {
+                    print("Scheduled Notification")
+                }
             }
         }
     }
