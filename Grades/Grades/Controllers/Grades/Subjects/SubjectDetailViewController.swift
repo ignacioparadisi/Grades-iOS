@@ -81,6 +81,23 @@ class SubjectDetailViewController: BaseViewController {
         
         present(actionSheet, animated: true)
     }
+    
+    private func deleteAssignment(at indexPath: IndexPath) {
+        let index = indexPath.row -  TableRows.allCases.count
+        assignments.remove(at: index)
+        if !assignments.isEmpty {
+            tableView.deleteRows(at: [indexPath], with: .left)
+            tableView.reloadRows(at: [IndexPath(row: TableRows.chartRow.rawValue, section: 0)], with: .none)
+        } else {
+            let indexPaths = [
+                indexPath,
+                IndexPath(row: TableRows.chartTitleRow.rawValue, section: 0),
+                IndexPath(row: TableRows.chartRow.rawValue, section: 0),
+                IndexPath(row: TableRows.assignmentsTitleRow.rawValue, section: 0)
+            ]
+            tableView.deleteRows(at: indexPaths, with: .fade)
+        }
+    }
 
 }
 
@@ -150,11 +167,8 @@ extension SubjectDetailViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let index = indexPath.row -  TableRows.allCases.count
         if editingStyle == .delete {
-            assignments.remove(at: index)
-            tableView.deleteRows(at: [indexPath], with: .left)
-            tableView.reloadRows(at: [IndexPath(row: TableRows.chartRow.rawValue, section: 0)], with: .none)
+            deleteAssignment(at: indexPath)
         }
     }
 }

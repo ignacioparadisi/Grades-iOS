@@ -84,6 +84,22 @@ class TermDetailViewController: BaseViewController {
         tableView.reloadData()
     }
     
+    private func deleteSubject(at indexPath: IndexPath) {
+        let index = indexPath.row -  TableRows.allCases.count
+        subjects.remove(at: index)
+        if !subjects.isEmpty {
+            tableView.deleteRows(at: [indexPath], with: .left)
+            tableView.reloadRows(at: [IndexPath(row: TableRows.chartRow.rawValue, section: 0)], with: .none)
+        } else {
+            let indexPaths = [
+                indexPath,
+                IndexPath(row: TableRows.chartTitleRow.rawValue, section: 0),
+                IndexPath(row: TableRows.chartRow.rawValue, section: 0),
+                IndexPath(row: TableRows.subjectsTitleRow.rawValue, section: 0)
+            ]
+            tableView.deleteRows(at: indexPaths, with: .fade)
+        }
+    }
 }
 
 extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -161,11 +177,8 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let index = indexPath.row - TableRows.allCases.count
         if editingStyle == .delete {
-            subjects.remove(at: index)
-            tableView.deleteRows(at: [indexPath], with: .left)
-            tableView.reloadRows(at: [IndexPath(row: TableRows.chartRow.rawValue, section: 0)], with: .none)
+            deleteSubject(at: indexPath)
         }
     }
 }
