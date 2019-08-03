@@ -104,6 +104,7 @@ class TermDetailViewController: BaseViewController {
         service.deleteSubject(subject) { result in
             switch result {
             case .success:
+                self.term.subjects = self.subjects
                 self.delegate?.shouldRefresh()
             case .failure:
                 print("Failed deleting subject")

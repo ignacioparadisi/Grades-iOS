@@ -17,6 +17,7 @@ class Subject: Object, CalculableGradable, NSCopying {
     @objc dynamic var grade: Float = 0.0
     @objc dynamic var maxGrade: Float = 0.0
     @objc dynamic var minGrade: Float = 0.0
+    // @objc dynamic var percentage: Float = 0.0
     @objc dynamic var dateCreated: Date = Date()
     var greaterGrade: Float = 0.0
     var lowerGrade: Float = 0.0

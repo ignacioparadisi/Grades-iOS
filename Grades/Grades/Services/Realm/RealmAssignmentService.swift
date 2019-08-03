@@ -40,12 +40,13 @@ class RealmAssignmentService: AssignmentService {
     
     func deleteAssignments(_ assignments: [Assignment], completion: ServiceResult<Int>?) {
         for assignment in assignments {
-            deleteCascade(assignment)
+            deleteCascade(assignment, excludeSubject: false)
         }
         completion?(.success(0))
     }
     
-    private func deleteCascade(_ assignment: Assignment) {
+    private func deleteCascade(_ assignment: Assignment, excludeSubject: Bool = true) {
+        updateGradeForParent(of: assignment, excludeSubject: excludeSubject)
         let childAssignments = RealmManager.shared.getArray(ofType: Assignment.self, filter: "assignment.id == '\(assignment.id)'") as! [Assignment]
         if !childAssignments.isEmpty {
             RealmManager.shared.delete(childAssignments)
@@ -57,14 +58,20 @@ class RealmAssignmentService: AssignmentService {
     /// IMPORTANT: To use this method you first need to save the assignment in Realm.
     ///
     /// - Parameter assignment: Assignment that was created or updated.
-    private func updateGradeForParent(of assignment: Assignment) {
+    private func updateGradeForParent(of assignment: Assignment, exclude: Bool = false, excludeSubject: Bool = false) {
         if let subject = assignment.subject {
             fetchAssignments(for: subject) { result in
                 switch result {
                 case .success(let assignments):
-                    let grade = Calculator.getGrade(for: assignments)
+                    var assignmentsToCalculate = assignments
+                    if exclude {
+                        assignmentsToCalculate = assignments.filter { $0.id != assignment.id }
+                    }
+                    let grade = Calculator.getGrade(for: assignmentsToCalculate)
                     RealmManager.shared.updateGrade(subject, grade: grade)
-                    self.updateGradeForParent(of: subject)
+                    if !excludeSubject {
+                        self.updateGradeForParent(of: subject)
+                    }
                 case .failure(let error):
                     print(error)
                     break
@@ -74,7 +81,11 @@ class RealmAssignmentService: AssignmentService {
             fetchAssignments(for: parentAssignment) { result in
                 switch result {
                 case .success(let assignments):
-                    let grade = Calculator.getAverageGrade(for: assignments)
+                    var assignmentsToCalculate = assignments
+                    if exclude {
+                        assignmentsToCalculate = assignments.filter { $0.id != assignment.id }
+                    }
+                    let grade = Calculator.getGrade(for: assignmentsToCalculate)
                     RealmManager.shared.updateGrade(parentAssignment, grade: grade)
                     self.updateGradeForParent(of: assignment)
                 case .failure(let error):

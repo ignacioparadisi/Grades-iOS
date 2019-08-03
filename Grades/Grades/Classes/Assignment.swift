@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 // TODO: Quitar Orderable
-class Assignment: Object, Gradable, Orderable, NSCopying {
+class Assignment: Object, Gradable, NSCopying {
     
     @objc dynamic var subject: Subject?
     @objc dynamic var assignment: Assignment?
@@ -20,7 +20,6 @@ class Assignment: Object, Gradable, Orderable, NSCopying {
     @objc dynamic var maxGrade: Float = 0.0
     @objc dynamic var minGrade: Float = 0.0
     @objc dynamic var percentage: Float = 0.0
-    @objc dynamic var position: Int = 0
     @objc dynamic var date: Date = Date()
     @objc dynamic var dateCreated: Date = Date()
     
@@ -38,7 +37,6 @@ class Assignment: Object, Gradable, Orderable, NSCopying {
         assignment.maxGrade = self.maxGrade
         assignment.minGrade = self.minGrade
         assignment.percentage = self.percentage
-        assignment.position = self.position
         assignment.date = self.date
         assignment.dateCreated = self.dateCreated
         return assignment
