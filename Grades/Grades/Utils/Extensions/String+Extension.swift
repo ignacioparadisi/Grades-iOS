@@ -10,6 +10,7 @@ import UIKit
 
 extension String {
     
+    /// Localized a string
     var localized: String {
         return NSLocalizedString(self, comment: "")
     }

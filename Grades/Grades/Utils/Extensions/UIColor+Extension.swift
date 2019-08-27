@@ -9,14 +9,32 @@
 import UIKit
 
 extension UIColor {
+    
+    /// Creates a UIColor from RGB
+    ///
+    /// - Parameters:
+    ///   - red: Red quantity
+    ///   - green: Green quantity
+    ///   - blue: Blue quantity
     convenience init(red: Int, green: Int, blue: Int) {
         self.init(red: CGFloat(red)/255, green: CGFloat(green)/255, blue: CGFloat(blue)/255, alpha: 1)
     }
     
+    
+    /// Creates a UIColor from an hexadecimal value
+    ///
+    /// - Parameter hex: Hexadecimal value (0xFFFFFF)
     convenience init(hex: Int) {
         self.init(red: (hex >> 16) & 0xFF, green: (hex >> 8) & 0xFF, blue: hex & 0xFF)
     }
     
+    /// Get color depending on grade
+    /// Green if is a good grade
+    /// Yellow if is a normal grade
+    /// Red if is a bad grade
+    ///
+    /// - Parameter gradable: Gradable to evaluate
+    /// - Returns: UIColor depending on grade
     static func getColor(for gradable: Gradable) -> UIColor {
         let roundedGrade = gradable.grade.rounded()
         let minGreenGrade = gradable.maxGrade - ((gradable.maxGrade - gradable.minGrade) / 3)
@@ -29,6 +47,10 @@ extension UIColor {
         }
     }
     
+    /// Darkests a color
+    ///
+    /// - Parameter percentage: Percentage of darkness
+    /// - Returns: A darker shade of same color
     func darker(by percentage: CGFloat = 10.0) -> UIColor? {
         return self.adjust(by: -1 * abs(percentage) )
     }

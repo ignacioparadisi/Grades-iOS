@@ -64,7 +64,6 @@
 		4FF6F462227A119F000F14D2 /* NSLayoutAnchor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F461227A119F000F14D2 /* NSLayoutAnchor+Extension.swift */; };
 		4FF6F467227A14AC000F14D2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F466227A14AC000F14D2 /* BaseViewController.swift */; };
 		4FF6F469227A1585000F14D2 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F468227A1585000F14D2 /* ReusableView.swift */; };
-		4FF6F46B227A159A000F14D2 /* NibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F46A227A159A000F14D2 /* NibLoadableView.swift */; };
 		4FF6F46D227A15AF000F14D2 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F46C227A15AF000F14D2 /* UITableView+Extension.swift */; };
 		4FF6F46F227A15BE000F14D2 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F46E227A15BE000F14D2 /* UICollectionView+Extension.swift */; };
 		4FF6F471227A17F8000F14D2 /* ScrollableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F470227A17F8000F14D2 /* ScrollableView.swift */; };
@@ -170,7 +169,6 @@
 		4FF6F461227A119F000F14D2 /* NSLayoutAnchor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutAnchor+Extension.swift"; sourceTree = "<group>"; };
 		4FF6F466227A14AC000F14D2 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		4FF6F468227A1585000F14D2 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
-		4FF6F46A227A159A000F14D2 /* NibLoadableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadableView.swift; sourceTree = "<group>"; };
 		4FF6F46C227A15AF000F14D2 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		4FF6F46E227A15BE000F14D2 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		4FF6F470227A17F8000F14D2 /* ScrollableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableView.swift; sourceTree = "<group>"; };
@@ -467,7 +465,6 @@
 			isa = PBXGroup;
 			children = (
 				4FF6F468227A1585000F14D2 /* ReusableView.swift */,
-				4FF6F46A227A159A000F14D2 /* NibLoadableView.swift */,
 				4FF6F470227A17F8000F14D2 /* ScrollableView.swift */,
 			);
 			path = Protocols;
@@ -763,7 +760,6 @@
 				4FF6F475227A211D000F14D2 /* String+Extension.swift in Sources */,
 				4FF6F473227A1F90000F14D2 /* UIFont+Extension.swift in Sources */,
 				4FF6F46D227A15AF000F14D2 /* UITableView+Extension.swift in Sources */,
-				4FF6F46B227A159A000F14D2 /* NibLoadableView.swift in Sources */,
 				4FFCBC1522F3993800A7172A /* CalculableGradable.swift in Sources */,
 				4FF6F462227A119F000F14D2 /* NSLayoutAnchor+Extension.swift in Sources */,
 				4F66289C22A1462D001F2CD9 /* CreateTermViewController.swift in Sources */,

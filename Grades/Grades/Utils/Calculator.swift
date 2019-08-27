@@ -15,6 +15,11 @@ class Calculator {
         case lower
     }
     
+    
+    /// Gets average grade from an array of gradables
+    ///
+    /// - Parameter items: Gradables to be averaged
+    /// - Returns: Average grade
     static func getAverageGrade(for items: [Gradable]) -> Float {
         var total: Float = 0.0
         for item in items {
@@ -23,6 +28,12 @@ class Calculator {
         return total / Float(items.count)
     }
     
+    // TODO: This might change
+    /// Get average grade for assignments
+    /// It multiplies the grade times the percentage to get the actual grade
+    ///
+    /// - Parameter assignments: Assignments to be averaged
+    /// - Returns: Average grade
     static func getGrade(for assignments: [Assignment]) -> Float {
         var total: Float = 0.0
         for assignment in assignments {
@@ -31,6 +42,7 @@ class Calculator {
         return total
     }
     
+    // TODO: Probably delete this
     static func getGradesForAssignment(_ assignments: [Assignment], type: GradeType) -> Float {
         var grade: Float = 0.0
         let now = Date()
@@ -44,6 +56,7 @@ class Calculator {
         return grade
     }
     
+    // TODO: Probably delete this
     static func getGradesForSubjects(_ subjects: [Subject], type: GradeType) -> Float {
         var grade: Float = 0.0
         for subject in subjects {

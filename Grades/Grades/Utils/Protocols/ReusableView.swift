@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+/// Adds a reuse identifier to the View
 protocol ReusableView: class {
     static var reusableIdentifier: String { get }
 }

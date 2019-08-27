@@ -10,6 +10,10 @@ import UIKit
 
 let themeKey = "SelectedTheme"
 
+
+/// Themes available for the app
+///
+/// - dark: Dark theme
 enum Theme: Int {
     case dark
     
@@ -22,13 +26,6 @@ enum Theme: Int {
         switch self {
         case .dark:
             return .black
-        }
-    }
-    
-    var statusBarStyle: UIStatusBarStyle {
-        switch self {
-        case .dark:
-            return .lightContent
         }
     }
     
@@ -52,13 +49,6 @@ enum Theme: Int {
         switch self {
         case .dark:
             return UIColor(hex: 0x1C1C1E)
-        }
-    }
-    
-    var tabBarBackgroundColor: UIColor {
-        switch self {
-        case .dark:
-            return UIColor(hex: 0x1B1B1B)
         }
     }
     

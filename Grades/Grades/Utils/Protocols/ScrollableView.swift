@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Adds a UIScrollView as a subview
 protocol ScrollableView: class {
     var contentView: UIView { get set }
     func addScrollView()
@@ -15,6 +16,7 @@ protocol ScrollableView: class {
 
 extension ScrollableView where Self: UIViewController {
     
+    /// Adds a UIScrollView as a subview
     func addScrollView() {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .clear

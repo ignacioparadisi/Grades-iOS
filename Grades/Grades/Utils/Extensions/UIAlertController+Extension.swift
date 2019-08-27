@@ -8,6 +8,7 @@
 
 import UIKit
 
+// TODO: Probably delete this when iOS 13 comes out
 extension UIAlertController {
     
     private struct AssociatedKeys {

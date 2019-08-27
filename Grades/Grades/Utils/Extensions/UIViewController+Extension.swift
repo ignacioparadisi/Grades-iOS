@@ -9,12 +9,15 @@
 import UIKit
 
 extension UIViewController {
+    
+    /// Hides keyboard when user tappes anywhere else
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
     
+    /// Hides the keyboard
     @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
@@ -22,6 +25,8 @@ extension UIViewController {
 
 extension UIStackView {
     
+    
+    /// Removes all arranged subviews from a UIStackView
     func removeAllArrangedSubviews() {
         
         let removedSubviews = arrangedSubviews.reduce([]) { (allSubviews, subview) -> [UIView] in

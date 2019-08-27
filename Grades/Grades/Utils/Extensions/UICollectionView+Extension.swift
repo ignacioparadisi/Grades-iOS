@@ -9,17 +9,17 @@ import UIKit
 
 extension UICollectionView {
     
-    /// Register cell from Nib if Collection View comforms ReusableView and NibLoadableView protocols
-    func register<T: UICollectionViewCell>(_: T.Type) where T: ReusableView, T: NibLoadableView {
-        let nib = UINib(nibName: T.nibName, bundle: nil)
-        register(nib, forCellWithReuseIdentifier: T.reusableIdentifier)
-    }
-    
+    /// Registers a UICollectionViewCell into a UICollectionView
+    ///
+    /// - Parameter _: UICollectionViewCell subclass to be registered
     func register<T: UICollectionViewCell>(_: T.Type) where T: ReusableView {
         register(T.self, forCellWithReuseIdentifier: T.reusableIdentifier)
     }
     
-    /// Dequeue cell if C ollection View comforms ReusableView protocol
+    /// Dequeues cell if UICollectionViewCell subclass comforms ReusableView protocol
+    ///
+    /// - Parameter indexPath: IndexPath of UICollectionViewCell
+    /// - Returns: UICollectionViewCell dequed
     func dequeueReusableCell<T: UICollectionViewCell>(for indexPath: IndexPath) -> T where T: ReusableView {
         guard let cell = dequeueReusableCell(withReuseIdentifier: T.reusableIdentifier, for: indexPath) as? T else {
             fatalError("Could not dequeue cell with identifier: \(T.reusableIdentifier)")
