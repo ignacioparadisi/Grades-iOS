@@ -8,14 +8,21 @@
 
 import Foundation
 
-typealias ServiceResult<T> = (Result<T, NetworkError>) -> Void
+typealias ServiceResult<T> = (Result<T, RequestError>) -> Void
 
+/// Types of services
+///
+/// - realm: Realm Database service
 enum ServiceType {
     case realm
 }
 
 class AbstractServiceFactory {
     
+    /// Gets a service for the specified type
+    ///
+    /// - Parameter type: Type of service to be created
+    /// - Returns: A new instance of the service specified
     static func getServiceFactory(for type: ServiceType) -> ServiceFactory {
         switch type {
         case .realm:

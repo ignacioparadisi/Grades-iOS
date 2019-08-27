@@ -44,7 +44,6 @@ enum Theme: Int {
     var backgroundColor: UIColor {
         switch self {
         case .dark:
-            // return UIColor(hex: 0x393939)
             return .black
         }
     }
@@ -52,7 +51,6 @@ enum Theme: Int {
     var cardBackgroundColor: UIColor {
         switch self {
         case .dark:
-            // return UIColor(hex: 0x2D2D2D)
             return UIColor(hex: 0x1C1C1E)
         }
     }

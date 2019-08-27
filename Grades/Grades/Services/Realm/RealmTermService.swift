@@ -13,8 +13,9 @@ class RealmTermService: TermService {
     /// Gets all Terms
     ///
     /// - Returns: Stored terms in the database
-    func fetchTerms(completion: @escaping (Result<[Term], NetworkError>) -> Void) {
+    func fetchTerms(completion: @escaping (Result<[Term], RequestError>) -> Void) {
         let terms = RealmManager.shared.getArray(ofType: Term.self) as! [Term]
+        print(terms)
         
         for term in terms {
             let service = AbstractServiceFactory.getServiceFactory(for: .realm)
@@ -45,7 +46,12 @@ class RealmTermService: TermService {
         completion(.success(terms))
     }
     
-    func createTerm(_ term: Term, completion: @escaping (Result<Term, NetworkError>) -> Void) {
+    /// Creates a term in Realm
+    ///
+    /// - Parameters:
+    ///   - term: Term to be created
+    ///   - completion: Code to be executed after the creation or failure
+    func createTerm(_ term: Term, completion: @escaping (Result<Term, RequestError>) -> Void) {
         if let savedTerm = RealmManager.shared.create(term) as? Term {
             completion(.success(savedTerm))
             return
@@ -53,30 +59,48 @@ class RealmTermService: TermService {
         completion(.failure(.badRequest))
     }
     
-    func deleteTerm(_ term: Term, completion: @escaping (Result<Int, NetworkError>) -> Void) {
+    
+    /// Deletes a term from Realm
+    ///
+    /// - Parameters:
+    ///   - term: Term to be deleted
+    ///   - completion: Code to be executed after the deletion or failure
+    func deleteTerm(_ term: Term, completion: @escaping (Result<Int, RequestError>) -> Void) {
         deleteCascade(term)
         completion(.success(0))
     }
     
-    func deleteTerms(_ terms: [Term], completion: @escaping (Result<Int, NetworkError>) -> Void) {
+    // TODO: Quitar este método
+    func deleteTerms(_ terms: [Term], completion: @escaping (Result<Int, RequestError>) -> Void) {
         for term in terms {
             deleteCascade(term)
         }
         completion(.success(0))
     }
     
-    func updateTerms(_ terms: [Term], completion: @escaping (Result<[Term], NetworkError>) -> Void) {
+    // TODO: Quitar este método
+    func updateTerms(_ terms: [Term], completion: @escaping (Result<[Term], RequestError>) -> Void) {
         for term in terms {
             RealmManager.shared.update(term)
         }
         completion(.success(terms))
     }
     
-    func updateTerm(_ term: Term, completion: @escaping (Result<Term, NetworkError>) -> Void) {
+    
+    /// Updates a term in Realm
+    ///
+    /// - Parameters:
+    ///   - term: Term with the updated information
+    ///   - completion: Code to be executed after the update of failure
+    func updateTerm(_ term: Term, completion: @escaping (Result<Term, RequestError>) -> Void) {
         RealmManager.shared.update(term)
         completion(.success(term))
     }
     
+    
+    /// Deletes all childs of the term
+    ///
+    /// - Parameter term: Term to be deleted
     private func deleteCascade(_ term: Term) {
         let subjects = RealmManager.shared.getArray(ofType: Subject.self, filter: "term.id == '\(term.id)'") as! [Subject]
         let service = AbstractServiceFactory.getServiceFactory(for: .realm).subjectService

@@ -9,12 +9,18 @@
 import Foundation
 
 class RealmServiceFactory: ServiceFactory {
+    
+    /// Term Repository
     var termService: TermService = {
         return RealmTermService()
     }()
+    
+    /// Subject Repository
     var subjectService: SubjectService = {
         return RealmSubjectService()
     }()
+    
+    /// Assignment Respository
     var assignmentService: AssignmentService = {
         return RealmAssignmentService()
     }()

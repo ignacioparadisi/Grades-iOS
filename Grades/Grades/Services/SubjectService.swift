@@ -12,13 +12,25 @@ protocol SubjectService {
     
     /// Gets all the subjects
     ///
-    /// - Returns: Subjects stored
-    func fetchSubjects(for term: Term, completion: @escaping (Result<[Subject], NetworkError>) -> Void)
+    /// - Parameters:
+    ///   - completion: Code to be executed after fetch or failure
+    func fetchSubjects(for term: Term, completion: @escaping (Result<[Subject], RequestError>) -> Void)
     
-    func createSubject(_ subject: Subject, completion: @escaping (Result<Subject, NetworkError>) -> Void)
+    /// Creates a new subject
+    ///
+    /// - Parameters:
+    ///   - subject: Subject to be created
+    ///   - completion: Code to be executed after creation or failure
+    func createSubject(_ subject: Subject, completion: @escaping (Result<Subject, RequestError>) -> Void)
     
-    func deleteSubject(_ subject: Subject, completion: @escaping (Result<Int, NetworkError>) -> Void)
+    /// Deletes a subject
+    ///
+    /// - Parameters:
+    ///   - subject: Subject to be deleted
+    ///   - completion: Code to be executed after deletion or failure
+    func deleteSubject(_ subject: Subject, completion: @escaping (Result<Int, RequestError>) -> Void)
     
+    // TODO: This might be deleted
     func deleteSubjects(_ subjects: [Subject], completion: ServiceResult<Int>?)
     
 }

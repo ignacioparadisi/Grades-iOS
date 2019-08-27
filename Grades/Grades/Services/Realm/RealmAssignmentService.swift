@@ -10,30 +10,30 @@ import Foundation
 
 class RealmAssignmentService: AssignmentService {
     
-    func fetchAssignments(for subject: Subject, completion: @escaping (Result<[Assignment], NetworkError>) -> Void){
+    func fetchAssignments(for subject: Subject, completion: @escaping (Result<[Assignment], RequestError>) -> Void){
         let assignments = RealmManager.shared.getArray(ofType: Assignment.self, filter: "subject.id == '\(subject.id)'") as! [Assignment]
         completion(.success(assignments))
     }
     
-    func fetchAssignments(for assignment: Assignment, completion: @escaping (Result<[Assignment], NetworkError>) -> Void) {
+    func fetchAssignments(for assignment: Assignment, completion: @escaping (Result<[Assignment], RequestError>) -> Void) {
         let assignments = RealmManager.shared.getArray(ofType: Assignment.self, filter: "assignment.id == '\(assignment.id)'") as! [Assignment]
         completion(.success(assignments))
     }
     
-    func createAssignment(_ assignment: Assignment, completion: @escaping (Result<Assignment, NetworkError>) -> Void) {
+    func createAssignment(_ assignment: Assignment, completion: @escaping (Result<Assignment, RequestError>) -> Void) {
         let createdAssignment = RealmManager.shared.create(assignment) as! Assignment
         updateGradeForParent(of: createdAssignment)
         completion(.success(createdAssignment))
     }
     
-    func updateAssignment(old oldAssignment: Assignment, new newAssignment: Assignment, completion: @escaping (Result<Assignment, NetworkError>) -> Void) {
+    func updateAssignment(old oldAssignment: Assignment, new newAssignment: Assignment, completion: @escaping (Result<Assignment, RequestError>) -> Void) {
         RealmManager.shared.updateAssignment(oldAssignment, newAssignment)
         // Now the old assignment is updated
         updateGradeForParent(of: oldAssignment)
         completion(.success(newAssignment))
     }
     
-    func deleteAssignment(_ assignment: Assignment, completion: @escaping (Result<Int, NetworkError>) -> Void) {
+    func deleteAssignment(_ assignment: Assignment, completion: @escaping (Result<Int, RequestError>) -> Void) {
         deleteCascade(assignment)
         completion(.success(0))
     }

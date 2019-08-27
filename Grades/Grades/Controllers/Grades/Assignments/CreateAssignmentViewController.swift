@@ -311,7 +311,7 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
                 assignment.maxGrade = maxGrade
                 assignment.percentage = percentage * 0.01
                 assignment.grade = grade
-                assignment.date = date
+                assignment.deadline = date
                 
                 if self.assignment != nil {
                     self.assignment = assignment
@@ -348,19 +348,19 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
     }
     
     private func scheduleNotification(for assignment: Assignment, subjectName: String, notificationCenter center: UNUserNotificationCenter) {
-        if assignment.date > Date() {
+        if assignment.deadline > Date() {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "EEEE"
-            let day = dateFormatter.string(from: assignment.date)
+            let day = dateFormatter.string(from: assignment.deadline)
             dateFormatter.dateFormat = "h:mma"
-            let time = dateFormatter.string(from: assignment.date)
+            let time = dateFormatter.string(from: assignment.deadline)
             
             let content = UNMutableNotificationContent()
             content.title = "\(assignment.name) of \(subjectName)"
             content.body = "You have \(assignment.name) on \(day) at \(time)"
             content.sound = .default
             
-            let date = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: assignment.date)
+            let date = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: assignment.deadline)
             let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
             let identifier = assignment.id
             let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)

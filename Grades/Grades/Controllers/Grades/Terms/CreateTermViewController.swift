@@ -60,6 +60,8 @@ class CreateTermViewController: BaseViewController, ScrollableView {
     
     override func setupView() {
         super.setupView()
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         addScrollView()
         setupNameSection()
         setupGradesSection()
@@ -255,6 +257,7 @@ class CreateTermViewController: BaseViewController, ScrollableView {
         
         return true
     }
+
 }
 
 extension CreateTermViewController: UITextFieldDelegate {

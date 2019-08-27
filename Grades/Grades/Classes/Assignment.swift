@@ -20,7 +20,7 @@ class Assignment: Object, Gradable, NSCopying {
     @objc dynamic var maxGrade: Float = 0.0
     @objc dynamic var minGrade: Float = 0.0
     @objc dynamic var percentage: Float = 0.0
-    @objc dynamic var date: Date = Date()
+    @objc dynamic var deadline: Date = Date()
     @objc dynamic var dateCreated: Date = Date()
     
     override static func primaryKey() -> String? {
@@ -37,7 +37,7 @@ class Assignment: Object, Gradable, NSCopying {
         assignment.maxGrade = self.maxGrade
         assignment.minGrade = self.minGrade
         assignment.percentage = self.percentage
-        assignment.date = self.date
+        assignment.deadline = self.deadline
         assignment.dateCreated = self.dateCreated
         return assignment
     }

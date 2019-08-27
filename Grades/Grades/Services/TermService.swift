@@ -12,17 +12,35 @@ protocol TermService {
     
     /// Gets all the terms
     ///
-    /// - Returns: Terms stored
-    func fetchTerms(completion: @escaping (Result<[Term], NetworkError>) -> Void)
+    /// - Parameters:
+    ///   - completion: Code to be executed after fetch or failure
+    func fetchTerms(completion: @escaping (Result<[Term], RequestError>) -> Void)
     
-    func createTerm(_ term: Term, completion: @escaping (Result<Term, NetworkError>) -> Void)
+    /// Creates a new Term
+    ///
+    /// - Parameters:
+    ///   - term: Term to be created
+    ///   - completion: Code to be executed after creation of failure
+    func createTerm(_ term: Term, completion: @escaping (Result<Term, RequestError>) -> Void)
     
-    func deleteTerms(_ terms: [Term], completion: @escaping (Result<Int, NetworkError>) -> Void)
+    // TODO: Delete this
+    func deleteTerms(_ terms: [Term], completion: @escaping (Result<Int, RequestError>) -> Void)
     
-    func deleteTerm(_ term: Term, completion: @escaping (Result<Int, NetworkError>) -> Void)
+    /// Deletes a Term
+    ///
+    /// - Parameters:
+    ///   - term: Term to be deleted
+    ///   - completion: Code to be executed after deletion or failure
+    func deleteTerm(_ term: Term, completion: @escaping (Result<Int, RequestError>) -> Void)
     
-    func updateTerms(_ terms: [Term], completion: @escaping (Result<[Term], NetworkError>) -> Void)
+    // TODO: Delete this
+    func updateTerms(_ terms: [Term], completion: @escaping (Result<[Term], RequestError>) -> Void)
     
-    func updateTerm(_ term: Term, completion: @escaping (Result<Term, NetworkError>) -> Void)
+    /// Updates a term
+    ///
+    /// - Parameters:
+    ///   - term: Term with updated information
+    ///   - completion: Code to be executed after update or failure
+    func updateTerm(_ term: Term, completion: @escaping (Result<Term, RequestError>) -> Void)
     
 }

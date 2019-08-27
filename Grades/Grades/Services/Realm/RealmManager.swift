@@ -19,11 +19,11 @@ class RealmManager {
     /// Creates an instance of Realm
     private init() {        
         database = try! Realm()
-        print("Realm File: \(database.configuration.fileURL)")
+        print("Realm File: \(String(describing: database.configuration.fileURL))")
     }
     
     
-    /// Creates an object to the Realm database
+    /// Creates an object in the Realm database
     ///
     /// - Parameter object: Object to be created
     func create(_ object: Object) -> Object? {
@@ -37,18 +37,27 @@ class RealmManager {
         }
     }
     
+    /// Deletes an object from the Realm dtabase
+    ///
+    /// - Parameter object: object to be deleted
     func delete(_ object: Object) {
         try! self.database.write {
             self.database.delete(object)
         }
     }
     
+    /// Deletes an array of objects from Realm database
+    ///
+    /// - Parameter objects: Objects to be deleted
     func delete(_ objects: [Object]) {
         try! self.database.write {
             self.database.delete(objects)
         }
     }
     
+    /// Updates an object in Realm database
+    ///
+    /// - Parameter object: Object with updated data
     func update(_ object: Object) {
         try! self.database.write {
             self.database.add(object, update: .modified)
@@ -78,6 +87,12 @@ class RealmManager {
         return results.toArray(ofType: type) as [Object]
     }
     
+    
+    /// Updates and object's grade
+    ///
+    /// - Parameters:
+    ///   - object: Object to be updated
+    ///   - grade: New grade
     func updateGrade(_ object: Object, grade: Float) {
         if var gradable = object as? Gradable {
             try! self.database.write {
@@ -86,6 +101,8 @@ class RealmManager {
         }
     }
     
+    
+    // TODO: No usar este método
     func updateAssignment(_ oldAssignment: Assignment, _ newAssignment: Assignment) {
         try! database.write {
             oldAssignment.maxGrade = newAssignment.maxGrade

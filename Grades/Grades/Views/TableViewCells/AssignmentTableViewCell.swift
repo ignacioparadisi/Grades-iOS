@@ -98,7 +98,7 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
     ///
     /// - Parameter gradable: Gradable to be displayed
     func configure(with assignment: Assignment) {
-        if assignment.date >= Date() {
+        if assignment.deadline >= Date() {
             separator.backgroundColor = ThemeManager.currentTheme.accentColor
         } else {
             separator.backgroundColor = UIColor(hex: 0x707070)
@@ -107,7 +107,7 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy h:mma"
         nameLabel.text = assignment.name
-        dateLabel.text = "\(dateFormatter.string(from: assignment.date))"
+        dateLabel.text = "\(dateFormatter.string(from: assignment.deadline))"
         
         progressRingView.removeFromSuperview()
         progressRingView = ProgressRingView(radius: circleRadius)

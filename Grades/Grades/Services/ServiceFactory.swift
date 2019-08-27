@@ -10,8 +10,11 @@ import Foundation
 
 protocol ServiceFactory {
     
+    /// Term Respository
     var termService: TermService { get }
+    /// Subject Repository
     var subjectService: SubjectService { get }
+    /// Assignment Repository
     var assignmentService: AssignmentService { get }
     
 }

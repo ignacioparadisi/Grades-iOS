@@ -35,7 +35,7 @@ class Calculator {
         var grade: Float = 0.0
         let now = Date()
         for assignment in assignments {
-            if assignment.date > now, type == .greater {
+            if assignment.deadline > now, type == .greater {
                 grade += assignment.maxGrade * assignment.percentage
             } else {
                 grade += assignment.grade * assignment.percentage

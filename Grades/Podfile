@@ -14,8 +14,12 @@ target 'Grades' do
   pod 'SwiftMessages'
 end
 
-target 'GradesWatch Extension' do
-  platform :watchos, '5.3'
-  # Pods for GradesWatch Extension
+target 'GradesTests' do
   shared_pods
 end
+
+#target 'GradesWatch Extension' do
+#  platform :watchos, '5.3'
+#  # Pods for GradesWatch Extension
+#  shared_pods
+#end
