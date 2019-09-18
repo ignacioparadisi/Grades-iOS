@@ -128,7 +128,7 @@ extension TermsViewController: CreateTermViewControllerDelegate {
 extension TermsViewController: TermCollectionViewCellDelegate {
     
     func showDeleteAlert(item: Int) {
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet, blurStyle: .dark)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let deleteAction = UIAlertAction(title: "Delete".localized, style: .destructive) { [weak self] _ in
             self?.deleteTerm(at: item)
         }

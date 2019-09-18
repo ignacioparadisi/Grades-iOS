@@ -100,7 +100,7 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
         if assignment.deadline >= Date() {
             separator.backgroundColor = UIColor(named: "accentColor")
         } else {
-            separator.backgroundColor = .systemGray3
+            separator.backgroundColor = .systemGray2
         }
         
         let dateFormatter = DateFormatter()

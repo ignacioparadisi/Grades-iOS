@@ -15,7 +15,6 @@
 		4F368AAD233251E400F3B6A7 /* JTAppleCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 4F368AAC233251E400F3B6A7 /* JTAppleCalendar */; };
 		4F368AB02332526200F3B6A7 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4F368AAF2332526200F3B6A7 /* IQKeyboardManagerSwift */; };
 		4F368AB22332569700F3B6A7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F368AB12332569700F3B6A7 /* SceneDelegate.swift */; };
-		4F3B693022F22EC2002C6263 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3B692F22F22EC2002C6263 /* UIAlertController+Extension.swift */; };
 		4F3B693222F22F9F002C6263 /* TitleLabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3B693122F22F9F002C6263 /* TitleLabelTableViewCell.swift */; };
 		4F4A64FE22B99C1F003A1199 /* TermDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A64FD22B99C1F003A1199 /* TermDetailViewController.swift */; };
 		4F4A650122B99D40003A1199 /* GradableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A650022B99D40003A1199 /* GradableTableViewCell.swift */; };
@@ -113,7 +112,6 @@
 		4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectDetailViewController.swift; sourceTree = "<group>"; };
 		4F2FFB2122F1D1E40086B8B2 /* ProgressRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRingView.swift; sourceTree = "<group>"; };
 		4F368AB12332569700F3B6A7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4F3B692F22F22EC2002C6263 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		4F3B693122F22F9F002C6263 /* TitleLabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabelTableViewCell.swift; sourceTree = "<group>"; };
 		4F4A64FD22B99C1F003A1199 /* TermDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDetailViewController.swift; sourceTree = "<group>"; };
 		4F4A650022B99D40003A1199 /* GradableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradableTableViewCell.swift; sourceTree = "<group>"; };
@@ -442,7 +440,6 @@
 				4FF6F474227A211D000F14D2 /* String+Extension.swift */,
 				4FF6F47E227A410B000F14D2 /* UIView+Extension.swift */,
 				4F66289F22A14B7E001F2CD9 /* UIViewController+Extension.swift */,
-				4F3B692F22F22EC2002C6263 /* UIAlertController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -707,7 +704,6 @@
 				4FE7BD0822B5277600EB9590 /* Gradable.swift in Sources */,
 				4FF6F483227A72BE000F14D2 /* HeaderCollectionReusableView.swift in Sources */,
 				4F6C602122B5B57A00C7A931 /* Calculator.swift in Sources */,
-				4F3B693022F22EC2002C6263 /* UIAlertController+Extension.swift in Sources */,
 				4FF6F479227A2B94000F14D2 /* TermCollectionViewCell.swift in Sources */,
 				4FF6F475227A211D000F14D2 /* String+Extension.swift in Sources */,
 				4FF6F473227A1F90000F14D2 /* UIFont+Extension.swift in Sources */,

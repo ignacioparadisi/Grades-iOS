@@ -71,7 +71,7 @@ class SubjectDetailViewController: BaseViewController {
     }
     
     private func showActionSheet() {
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet, blurStyle: .dark)
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let editDateAction = UIAlertAction(title: "Edit date".localized, style: .default, handler: nil)
         let editGradeAction = UIAlertAction(title: "Edit grade".localized, style: .default, handler: nil)
         let cancelAction = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
