@@ -1,0 +1,43 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "IQKeyboardManagerSwift",
+        "repositoryURL": "https://github.com/hackiftekhar/IQKeyboardManager",
+        "state": {
+          "branch": null,
+          "revision": "be563396713fa3a6bf286c1b98bfb0d85ef0e650",
+          "version": "6.4.2"
+        }
+      },
+      {
+        "package": "JTAppleCalendar",
+        "repositoryURL": "https://github.com/patchthecode/JTAppleCalendar.git",
+        "state": {
+          "branch": null,
+          "revision": "6ffb85de7f6dcd9d20b8a3eab81fdce304c9bb4e",
+          "version": "8.0.2"
+        }
+      },
+      {
+        "package": "Realm",
+        "repositoryURL": "https://github.com/realm/realm-cocoa.git",
+        "state": {
+          "branch": null,
+          "revision": "42bb79373687faa52b43eba7388152230a14e37a",
+          "version": "3.18.0"
+        }
+      },
+      {
+        "package": "RealmCore",
+        "repositoryURL": "https://github.com/realm/realm-core",
+        "state": {
+          "branch": null,
+          "revision": "3aa55b372577751f30a9aba8534b08e4229b556e",
+          "version": "5.23.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
