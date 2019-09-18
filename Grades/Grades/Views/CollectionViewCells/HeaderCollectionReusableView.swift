@@ -13,7 +13,6 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
     let gradeContainerDiameter: CGFloat = 60
     let termNameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = ThemeManager.currentTheme.textColor
         label.font = UIFont.preferredFont(forTextStyle: .title2)
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -21,7 +20,6 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
     }()
     let gradeLabel: UILabel = {
         let label = UILabel()
-        label.textColor = ThemeManager.currentTheme.textColor
         label.font = UIFont.preferredFont(forTextStyle: .title2)
         label.textAlignment = .center
         label.text = "17"
@@ -63,7 +61,7 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
             .bottom(to: bottomAnchor, constant: -4)
             .centerX(to: centerXAnchor)
             .activate()
-        gradeContainer.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
+        gradeContainer.backgroundColor = .systemGray5
         gradeContainer.layer.cornerRadius = gradeContainerDiameter / 2
 
         gradeContainer.addSubview(gradeLabel)

@@ -39,7 +39,6 @@ class IPLabel: UILabel {
     private func initialize() {
         font = UIFont.preferredFont(forTextStyle: .body)
         adjustsFontForContentSizeCategory = true
-        textColor = ThemeManager.currentTheme.textColor
         numberOfLines = 0
     }
     

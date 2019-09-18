@@ -14,8 +14,6 @@ class IPDatePickerTextField: IPTextField {
     private let dateFormatter = DateFormatter()
     private let datePicker: UIDatePicker =  {
         let picker = UIDatePicker()
-        picker.backgroundColor = ThemeManager.currentTheme.backgroundColor.withAlphaComponent(0.9)
-        picker.setValue(UIColor.white, forKey: "textColor")
         return picker
     }()
     var datePickerMode: UIDatePicker.Mode = .date {
@@ -63,13 +61,12 @@ class IPDatePickerTextField: IPTextField {
     
     internal override func initialize() {
         super.initialize()
-        keyboardAppearance = .default
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(pickDate))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
         let toolbar = UIToolbar()
-        toolbar.barStyle = UIBarStyle.blackTranslucent
-        toolbar.tintColor = ThemeManager.currentTheme.accentColor
+        toolbar.isTranslucent = true
+        toolbar.tintColor = UIColor(named: "accentColor")
         toolbar.sizeToFit()
         toolbar.setItems([spaceButton, doneButton], animated: false)
         

@@ -27,7 +27,7 @@ class DetailHeader: UIView {
     }
     
     private func initialize() {
-        backgroundColor = ThemeManager.currentTheme.greenColor
+        backgroundColor = .systemGreen
         layer.cornerRadius = 10
         clipsToBounds = true
         layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
@@ -58,7 +58,7 @@ class DetailHeader: UIView {
             .width(to: gradeContainer.heightAnchor)
             .centerToSuperview()
             .activate()
-        gradeContainer.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
+        gradeContainer.backgroundColor = .systemGray5
         gradeContainer.layer.cornerRadius = gradeContainerDiameter / 2
         
         gradeContainer.addSubview(gradeLabel)
@@ -77,7 +77,7 @@ class DetailHeader: UIView {
             .width(to: view.heightAnchor)
             .centerYToSuperview()
             .activate()
-        view.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
+        view.backgroundColor = .systemGray5
         view.layer.cornerRadius = minMaxGradeContainerDiameter / 2
         
         view.addSubview(label)

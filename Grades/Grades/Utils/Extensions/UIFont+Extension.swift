@@ -21,4 +21,9 @@ extension UIFont {
         self.init(name: name + "\(style.rawValue)", size: size)!
     }
     
+    static func metrics(style: FontStyle, size: CGFloat, forTextSyle: UIFont.TextStyle) -> UIFont {
+        let font = UIFont(name: "HelveticaNeue", style: style, size: size)
+        return UIFontMetrics(forTextStyle: forTextSyle).scaledFont(for: font)
+    }
+    
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class HomeViewController: BaseViewController, ScrollableView {
     
@@ -24,7 +25,6 @@ class HomeViewController: BaseViewController, ScrollableView {
         addScrollView()
         
         let notificationsLabel = IPTitleLabel()
-        notificationsLabel.textColor = ThemeManager.currentTheme.textColor
         notificationsLabel.text = "Notifications".localized
         
         contentView.addSubview(notificationsLabel)

@@ -17,7 +17,7 @@ class IPTextField: UITextField {
             setPlaceholder(placeholder)
         }
     }
-    var borderColor: UIColor = ThemeManager.currentTheme.redColor
+    var borderColor: UIColor = .systemRed
     var isEmpty: Bool {
         return text?.isEmpty ?? true
     }
@@ -48,12 +48,11 @@ class IPTextField: UITextField {
     }
     
     internal func initialize() {
-        backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
-        textColor = ThemeManager.currentTheme.textColor
-        keyboardAppearance = .dark
+        backgroundColor = .systemGray5
         layer.cornerRadius = 10
         layer.masksToBounds = false
         layer.borderWidth = 2
+        layer.borderColor = UIColor.clear.cgColor
     }
     
     override open func textRect(forBounds bounds: CGRect) -> CGRect {
@@ -73,7 +72,7 @@ class IPTextField: UITextField {
             if isRequired {
                 placeholder += "*"
             }
-            attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.currentTheme.placeholderColor])
+            attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         }
     }
     
@@ -89,7 +88,7 @@ class IPTextField: UITextField {
     override func becomeFirstResponder() -> Bool {
         super.becomeFirstResponder()
         UIView.animate(withDuration: 0.1) {
-            self.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor.darker(by: 4)
+            self.backgroundColor = UIColor.systemGray5.darker(by: 4)
         }
         
         return true
@@ -98,7 +97,7 @@ class IPTextField: UITextField {
     override func resignFirstResponder() -> Bool {
         super.resignFirstResponder()
         UIView.animate(withDuration: 0.1) {
-            self.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
+            self.backgroundColor = .systemGray5
         }
         
         let color = CABasicAnimation(keyPath: "borderColor")

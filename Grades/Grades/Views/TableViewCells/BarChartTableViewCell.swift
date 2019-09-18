@@ -41,7 +41,7 @@ class BarChartTableViewCell: UITableViewCell, ReusableView {
     private func initialize() {
         selectionStyle = .none
         let containerView = UIView()
-        containerView.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
+        containerView.backgroundColor = .systemGray5
         containerView.layer.cornerRadius = 10
         addSubview(containerView)
         
@@ -83,7 +83,7 @@ class BarChartTableViewCell: UITableViewCell, ReusableView {
         let containerView = UIView()
         
         let backView = UIView()
-        backView.backgroundColor = UIColor(hex: 0x707070)
+        backView.backgroundColor = .systemGray3
         backView.layer.cornerRadius = 5
         backView.layer.masksToBounds = false
         

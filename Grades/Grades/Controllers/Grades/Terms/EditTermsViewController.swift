@@ -20,7 +20,7 @@ class EditTermsViewController: BaseViewController {
     private var termsToBeDeleted: [Term] = []
     var saveButton: IPButton = {
         let button = IPButton()
-        button.backgroundColor = ThemeManager.currentTheme.accentColor
+        button.backgroundColor = UIColor(named: "accentColor")
         button.setTitle("Save".localized, for: .normal)
         button.addTarget(self, action: #selector(editTerms), for: .touchUpInside)
         return button

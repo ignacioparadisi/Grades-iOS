@@ -28,7 +28,7 @@ class IPButton: UIButton {
     }
     override var isEnabled: Bool {
         didSet {
-            self.backgroundColor = self.isEnabled ? self.color : ThemeManager.currentTheme.disabledButtonBackgroundColor
+            self.backgroundColor = self.isEnabled ? self.color : .systemGray3
         }
     }
 
@@ -58,8 +58,8 @@ class IPButton: UIButton {
     
     private func initialize() {
         layer.cornerRadius = 10.0
-        setTitleColor(ThemeManager.currentTheme.textColor, for: .normal)
-        setTitleColor(ThemeManager.currentTheme.disabledButtonTextColor, for: .disabled)
+//        setTitleColor(ThemeManager.currentTheme.textColor, for: .normal)
+//        setTitleColor(ThemeManager.currentTheme.disabledButtonTextColor, for: .disabled)
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .title3)
         titleLabel?.adjustsFontForContentSizeCategory = true
         contentEdgeInsets = padding

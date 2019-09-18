@@ -55,13 +55,13 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
     }()
     let switchContainerView: UIView = {
         let view = UIView()
-        view.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
+        view.backgroundColor = .systemGray5
         view.layer.cornerRadius = 10
         return view
     }()
     let testView: UIView = {
         let view = UIView()
-        view.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
+        view.backgroundColor = .systemGray5
         view.layer.cornerRadius = 10
         return view
     }()
@@ -246,7 +246,7 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
     private func setupSaveButton() {
         addButton.setTitle("Save".localized, for: .normal)
         addButton.addTarget(self, action: #selector(createAssignment), for: .touchUpInside)
-        addButton.color = ThemeManager.currentTheme.accentColor
+        addButton.color = UIColor(named: "accendColor")
         addButton.isEnabled = false
         contentView.addSubview(addButton)
         addButton.anchor

@@ -7,6 +7,18 @@
 //
 
 import UIKit
+import SwiftUI
+
+struct BaseViewControllerWrapper: UIViewControllerRepresentable {
+    typealias UIViewControllerType = BaseViewController
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<BaseViewControllerWrapper>) -> BaseViewControllerWrapper.UIViewControllerType {
+        return BaseViewController()
+    }
+    
+    func updateUIViewController(_ uiViewController: BaseViewControllerWrapper.UIViewControllerType, context: UIViewControllerRepresentableContext<BaseViewControllerWrapper>) {
+    }
+}
 
 class BaseViewController: UIViewController {
 
@@ -15,18 +27,18 @@ class BaseViewController: UIViewController {
         hideKeyboardWhenTappedAround()
         setupView()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
     }
-    
+
     func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
-    
+
     func setupView() {
-        view.backgroundColor = ThemeManager.currentTheme.backgroundColor
+        view.backgroundColor = .systemBackground
     }
 
 }

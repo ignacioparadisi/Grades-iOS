@@ -19,7 +19,6 @@ class SubjectCardCollectionViewCell: UICollectionViewCell, ReusableView {
        let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.adjustsFontForContentSizeCategory = true
-        label.textColor = ThemeManager.currentTheme.textColor
         label.text = "Subject Name"
         return label
     }()
@@ -40,7 +39,7 @@ class SubjectCardCollectionViewCell: UICollectionViewCell, ReusableView {
     /// Adds all the components to the view
     private func initialize() {
         let bottomLine = UIView()
-        bottomLine.backgroundColor = UIColor(hex: 0x707070)
+        bottomLine.backgroundColor = .systemGray3
         addSubview(bottomLine)
         bottomLine.anchor
             .trailing(to: trailingAnchor)

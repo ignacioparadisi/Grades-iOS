@@ -44,11 +44,11 @@ class TermDateTableViewCell: UITableViewCell, ReusableView {
         isUserInteractionEnabled = false
         
         let separator = UIView()
-        separator.backgroundColor = UIColor(hex: 0x707070)
+        separator.backgroundColor = .systemGray3
         separator.layer.cornerRadius = separatorWidth / 2
         
         let containerView = UIView()
-        containerView.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
+        containerView.backgroundColor = .systemGray5
         containerView.layer.cornerRadius = 10
         
         addSubview(containerView)

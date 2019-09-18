@@ -49,21 +49,16 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
     }
     
     private func initialize() {
-        backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
+        backgroundColor = .systemGray5
         layer.cornerRadius = 10
-        
-        self.layer.shadowOffset = .zero
-        self.layer.shadowRadius = 10
-        self.layer.shadowOpacity = 0.6
-        self.layer.masksToBounds = false
         
         let layout = StretchyHeaderLayout()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: frame.width, height: 60)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .systemGray5
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = .clear
         collectionView.layer.cornerRadius = 10
         collectionView.scrollIndicatorInsets = UIEdgeInsets(top: frame.height * 0.3 + 16, left: 0, bottom: 16, right: 0)
         contentView.addSubview(collectionView)
@@ -85,7 +80,7 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
     private func addSubjectView() {
         let label = UILabel()
         label.text = "This term has no subjects"
-        label.textColor = ThemeManager.currentTheme.placeholderColor
+        // label.textColor = ThemeManager.currentTheme.placeholderColor
         
         addSubview(label)
         label.anchor

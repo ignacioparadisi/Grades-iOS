@@ -126,7 +126,7 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
     private func setupSaveButton() {
         addButton.setTitle("Save".localized, for: .normal)
         addButton.addTarget(self, action: #selector(createSubject), for: .touchUpInside)
-        addButton.color = ThemeManager.currentTheme.accentColor
+        addButton.color = UIColor(named: "accentColor")
         addButton.isEnabled = false
         contentView.addSubview(addButton)
         addButton.anchor

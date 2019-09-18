@@ -38,7 +38,7 @@ class EditTermViewController: BaseViewController {
     }()
     let saveButton: IPButton = {
         let button = IPButton()
-        button.backgroundColor = ThemeManager.currentTheme.accentColor
+        button.backgroundColor = UIColor(named: "accentColor")
         button.setTitle("Save".localized, for: .normal)
         button.addTarget(self, action: #selector(didEditTerm), for: .touchUpInside)
         return button

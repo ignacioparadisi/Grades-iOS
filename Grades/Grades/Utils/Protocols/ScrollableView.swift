@@ -19,15 +19,15 @@ extension ScrollableView where Self: UIViewController {
     /// Adds a UIScrollView as a subview
     func addScrollView() {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .clear
+        scrollView.backgroundColor = .systemBackground
         view.addSubview(scrollView)
         
         scrollView.anchor
-            .edgesToSuperview(toSafeArea: true)
+            .edgesToSuperview()
             .activate()
         
         contentView = UIView()
-        contentView.backgroundColor = .clear
+        contentView.backgroundColor = .systemBackground
         
         scrollView.addSubview(contentView)
         contentView.anchor

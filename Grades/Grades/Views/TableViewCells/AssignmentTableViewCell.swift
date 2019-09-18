@@ -24,13 +24,12 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
     }()
     private let dateLabel: IPLabel = {
         let label = IPLabel()
-        label.textColor = ThemeManager.currentTheme.placeholderColor
         return label
     }()
     private let containerView = UIView()
     private let separator: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(hex: 0x707070)
+        view.backgroundColor = .systemGray3
         return view
     }()
     
@@ -83,7 +82,7 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
     }
     
     private func setupContainerView() {
-        containerView.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
+        containerView.backgroundColor = .systemGray5
         containerView.layer.cornerRadius = 10
         containerView.layer.masksToBounds = false
         
@@ -99,9 +98,9 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
     /// - Parameter gradable: Gradable to be displayed
     func configure(with assignment: Assignment) {
         if assignment.deadline >= Date() {
-            separator.backgroundColor = ThemeManager.currentTheme.accentColor
+            separator.backgroundColor = UIColor(named: "accentColor")
         } else {
-            separator.backgroundColor = UIColor(hex: 0x707070)
+            separator.backgroundColor = .systemGray3
         }
         
         let dateFormatter = DateFormatter()

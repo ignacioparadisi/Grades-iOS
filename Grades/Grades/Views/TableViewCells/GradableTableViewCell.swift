@@ -54,7 +54,7 @@ class GradableTableViewCell: UITableViewCell, ReusableView {
     }
     
     private func setupContainerView() {
-        containerView.backgroundColor = ThemeManager.currentTheme.cardBackgroundColor
+        containerView.backgroundColor = .systemGray5
         containerView.layer.cornerRadius = 10
         containerView.layer.masksToBounds = false
         

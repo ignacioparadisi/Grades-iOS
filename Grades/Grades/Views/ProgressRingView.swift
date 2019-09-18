@@ -25,7 +25,6 @@ class ProgressRingView: UIView {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .title3)
         label.adjustsFontForContentSizeCategory = true
-        label.textColor = ThemeManager.currentTheme.textColor
         return label
     }()
 
@@ -64,7 +63,7 @@ class ProgressRingView: UIView {
         let backgroundCircularPath = UIBezierPath(arcCenter: circleCenter, radius: circleRadius, startAngle: circleStartAngle, endAngle: circleEndAngle, clockwise: true)
         backgroundShapeLayer.path = backgroundCircularPath.cgPath
         backgroundShapeLayer.fillColor = UIColor.clear.cgColor
-        backgroundShapeLayer.strokeColor = UIColor(hex: 0x707070).cgColor
+        backgroundShapeLayer.strokeColor = UIColor.systemGray3.cgColor
         backgroundShapeLayer.lineWidth = lineWidth
         backgroundShapeLayer.lineCap = .round
         chartContainer.layer.addSublayer(backgroundShapeLayer)

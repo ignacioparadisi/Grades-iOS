@@ -7,8 +7,17 @@
 //
 
 import UIKit
+import SwiftUI
 
-class TermsViewController: BaseViewController {
+final class TermsViewController: BaseViewController, UIViewControllerRepresentable {
+    typealias UIViewControllerType = TermsViewController
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<TermsViewController>) -> TermsViewController {
+        return TermsViewController()
+    }
+    
+    func updateUIViewController(_ uiViewController: TermsViewController, context: UIViewControllerRepresentableContext<TermsViewController>) {
+    }
     
     var collectionView: UICollectionView!
     private var terms: [Term] = []

@@ -39,11 +39,11 @@ extension UIColor {
         let roundedGrade = gradable.grade.rounded()
         let minGreenGrade = gradable.maxGrade - ((gradable.maxGrade - gradable.minGrade) / 3)
         if roundedGrade <= gradable.maxGrade, roundedGrade >= minGreenGrade {
-            return ThemeManager.currentTheme.greenColor
+            return .systemGreen
         } else if roundedGrade < minGreenGrade, roundedGrade >= gradable.minGrade {
-            return ThemeManager.currentTheme.yellowColor
+            return .systemYellow
         } else {
-            return ThemeManager.currentTheme.redColor
+            return .systemRed
         }
     }
     
