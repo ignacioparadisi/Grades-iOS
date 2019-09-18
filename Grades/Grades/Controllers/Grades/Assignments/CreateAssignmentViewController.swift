@@ -377,7 +377,6 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
     
     private func valuesAreValid(maxGrade: Float, minGrade: Float, grade: Float, percentage: Float) -> Bool {
         if maxGrade <= 0 || minGrade < 0 || grade < 0 {
-            showErrorMessage("Grades must be greater than 0.".localized)
             if maxGrade <= 0 {
                 maxGradeTextField.showErrorBorder()
             }
@@ -392,20 +391,17 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
         
         if percentage <= 0 {
             percentageTextField.showErrorBorder()
-            showErrorMessage("Percentage must be greater than 0.".localized)
             return false
         }
         
         if percentage > 100 {
             percentageTextField.showErrorBorder()
-            showErrorMessage("Percentage must be equal or less than 100.".localized)
             return false
         }
         
         if maxGrade <= minGrade {
             maxGradeTextField.showErrorBorder()
             minGradeTextField.showErrorBorder()
-            showErrorMessage("Maximum grade must be greater than minimum grade.".localized)
             return false
         }
         

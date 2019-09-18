@@ -3,14 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		306AF01782EFADD73A8B7963 /* Pods_GradesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC5F38069565D94C56593CD1 /* Pods_GradesTests.framework */; };
 		4F09643D22B583B700D72277 /* CreateSubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */; };
 		4F09643F22B588FA00D72277 /* SubjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */; };
 		4F2FFB2222F1D1E40086B8B2 /* ProgressRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FFB2122F1D1E40086B8B2 /* ProgressRingView.swift */; };
+		4F368AA8233251A500F3B6A7 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4F368AA7233251A500F3B6A7 /* Realm */; };
+		4F368AAA233251A500F3B6A7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4F368AA9233251A500F3B6A7 /* RealmSwift */; };
+		4F368AAD233251E400F3B6A7 /* JTAppleCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 4F368AAC233251E400F3B6A7 /* JTAppleCalendar */; };
+		4F368AB02332526200F3B6A7 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4F368AAF2332526200F3B6A7 /* IQKeyboardManagerSwift */; };
 		4F3B693022F22EC2002C6263 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3B692F22F22EC2002C6263 /* UIAlertController+Extension.swift */; };
 		4F3B693222F22F9F002C6263 /* TitleLabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3B693122F22F9F002C6263 /* TitleLabelTableViewCell.swift */; };
 		4F4A64FE22B99C1F003A1199 /* TermDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A64FD22B99C1F003A1199 /* TermDetailViewController.swift */; };
@@ -79,7 +82,6 @@
 		4FFE0F84231369B60019244F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE0F83231369B60019244F /* Logger.swift */; };
 		4FFE0F8C23136C9F0019244F /* GradesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE0F8B23136C9F0019244F /* GradesTests.swift */; };
 		4FFE0F9423136D480019244F /* RealmTermServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE0F9323136D480019244F /* RealmTermServiceTest.swift */; };
-		B31F06935769A866DBA4BA86 /* Pods_Grades.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3331F2C02BBE33564DB3E91E /* Pods_Grades.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,9 +108,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07275EA9DE87859383BBC4AA /* Pods-Grades.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grades.release.xcconfig"; path = "Target Support Files/Pods-Grades/Pods-Grades.release.xcconfig"; sourceTree = "<group>"; };
-		3331F2C02BBE33564DB3E91E /* Pods_Grades.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grades.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		43386E085E1C24166EB05113 /* Pods-GradesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GradesTests.debug.xcconfig"; path = "Target Support Files/Pods-GradesTests/Pods-GradesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubjectViewController.swift; sourceTree = "<group>"; };
 		4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectDetailViewController.swift; sourceTree = "<group>"; };
 		4F2FFB2122F1D1E40086B8B2 /* ProgressRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRingView.swift; sourceTree = "<group>"; };
@@ -153,7 +152,7 @@
 		4FE7BD0722B5277600EB9590 /* Gradable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradable.swift; sourceTree = "<group>"; };
 		4FE7BD0922B55CE800EB9590 /* FixedHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeaderLayout.swift; sourceTree = "<group>"; };
 		4FED757522A0CFAC002C3F98 /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
-		4FF6F41C227A04B6000F14D2 /* Grades.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grades.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FF6F41C227A04B6000F14D2 /* Grades2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grades2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FF6F41F227A04B6000F14D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FF6F426227A04B8000F14D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FF6F429227A04B8000F14D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -186,12 +185,6 @@
 		4FFE0F8B23136C9F0019244F /* GradesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesTests.swift; sourceTree = "<group>"; };
 		4FFE0F8D23136C9F0019244F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FFE0F9323136D480019244F /* RealmTermServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTermServiceTest.swift; sourceTree = "<group>"; };
-		526CC43AE900E43BAB2BD4E8 /* Pods_GradesWatch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GradesWatch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		67446F864585CE8DCB9A795F /* Pods-Grades.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grades.debug.xcconfig"; path = "Target Support Files/Pods-Grades/Pods-Grades.debug.xcconfig"; sourceTree = "<group>"; };
-		9E87735B25A00D384A3E5190 /* Pods-GradesWatch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GradesWatch Extension.debug.xcconfig"; path = "Target Support Files/Pods-GradesWatch Extension/Pods-GradesWatch Extension.debug.xcconfig"; sourceTree = "<group>"; };
-		AC5F38069565D94C56593CD1 /* Pods_GradesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GradesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C95992EC3083FBE679C2B114 /* Pods-GradesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GradesTests.release.xcconfig"; path = "Target Support Files/Pods-GradesTests/Pods-GradesTests.release.xcconfig"; sourceTree = "<group>"; };
-		FE089B8CD5645E86A86B7DCC /* Pods-GradesWatch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GradesWatch Extension.release.xcconfig"; path = "Target Support Files/Pods-GradesWatch Extension/Pods-GradesWatch Extension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,7 +192,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B31F06935769A866DBA4BA86 /* Pods_Grades.framework in Frameworks */,
+				4F368AB02332526200F3B6A7 /* IQKeyboardManagerSwift in Frameworks */,
+				4F368AAA233251A500F3B6A7 /* RealmSwift in Frameworks */,
+				4F368AAD233251E400F3B6A7 /* JTAppleCalendar in Frameworks */,
+				4F368AA8233251A500F3B6A7 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +203,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				306AF01782EFADD73A8B7963 /* Pods_GradesTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,9 +212,6 @@
 		023612A8EE307CB21239CBCB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3331F2C02BBE33564DB3E91E /* Pods_Grades.framework */,
-				526CC43AE900E43BAB2BD4E8 /* Pods_GradesWatch_Extension.framework */,
-				AC5F38069565D94C56593CD1 /* Pods_GradesTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -317,7 +309,6 @@
 				4FF6F41E227A04B6000F14D2 /* Grades */,
 				4FFE0F8A23136C9F0019244F /* GradesTests */,
 				4FF6F41D227A04B6000F14D2 /* Products */,
-				93A718D2B2158A500C743908 /* Pods */,
 				023612A8EE307CB21239CBCB /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -325,7 +316,7 @@
 		4FF6F41D227A04B6000F14D2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4FF6F41C227A04B6000F14D2 /* Grades.app */,
+				4FF6F41C227A04B6000F14D2 /* Grades2.0.app */,
 				4FFE0F8923136C9F0019244F /* GradesTests.xctest */,
 			);
 			name = Products;
@@ -491,19 +482,6 @@
 			path = GradesTests;
 			sourceTree = "<group>";
 		};
-		93A718D2B2158A500C743908 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				67446F864585CE8DCB9A795F /* Pods-Grades.debug.xcconfig */,
-				07275EA9DE87859383BBC4AA /* Pods-Grades.release.xcconfig */,
-				9E87735B25A00D384A3E5190 /* Pods-GradesWatch Extension.debug.xcconfig */,
-				FE089B8CD5645E86A86B7DCC /* Pods-GradesWatch Extension.release.xcconfig */,
-				43386E085E1C24166EB05113 /* Pods-GradesTests.debug.xcconfig */,
-				C95992EC3083FBE679C2B114 /* Pods-GradesTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -511,12 +489,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FF6F42E227A04B8000F14D2 /* Build configuration list for PBXNativeTarget "Grades" */;
 			buildPhases = (
-				1A66B62E0C1B1505B0FD91E0 /* [CP] Check Pods Manifest.lock */,
 				4FF6F418227A04B6000F14D2 /* Sources */,
 				4FF6F419227A04B6000F14D2 /* Frameworks */,
 				4FF6F41A227A04B6000F14D2 /* Resources */,
 				4F3EC76422EB2C22006AA47C /* Embed Watch Content */,
-				28E699C157030CF49D2C8271 /* [CP] Embed Pods Frameworks */,
 				4F2FFB2022F1D1320086B8B2 /* ShellScript */,
 			);
 			buildRules = (
@@ -524,8 +500,14 @@
 			dependencies = (
 			);
 			name = Grades;
+			packageProductDependencies = (
+				4F368AA7233251A500F3B6A7 /* Realm */,
+				4F368AA9233251A500F3B6A7 /* RealmSwift */,
+				4F368AAC233251E400F3B6A7 /* JTAppleCalendar */,
+				4F368AAF2332526200F3B6A7 /* IQKeyboardManagerSwift */,
+			);
 			productName = Grades;
-			productReference = 4FF6F41C227A04B6000F14D2 /* Grades.app */;
+			productReference = 4FF6F41C227A04B6000F14D2 /* Grades2.0.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4FFE0F8823136C9F0019244F /* GradesTests */ = {
@@ -582,6 +564,11 @@
 				"es-419",
 			);
 			mainGroup = 4FF6F413227A04B6000F14D2;
+			packageReferences = (
+				4F368AA6233251A500F3B6A7 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				4F368AAB233251E400F3B6A7 /* XCRemoteSwiftPackageReference "JTAppleCalendar" */,
+				4F368AAE2332526200F3B6A7 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+			);
 			productRefGroup = 4FF6F41D227A04B6000F14D2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -613,45 +600,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1A66B62E0C1B1505B0FD91E0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Grades-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		28E699C157030CF49D2C8271 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Grades/Pods-Grades-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Grades/Pods-Grades-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Grades/Pods-Grades-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		45C6FF9E2DC2ED86EDBC0EFA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -945,7 +893,6 @@
 		};
 		4FF6F42F227A04B8000F14D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67446F864585CE8DCB9A795F /* Pods-Grades.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -956,8 +903,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ignacioparadisi.Grades;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ignacioparadisi.Grades2-0";
+				PRODUCT_NAME = Grades2.0;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -965,7 +912,6 @@
 		};
 		4FF6F430227A04B8000F14D2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07275EA9DE87859383BBC4AA /* Pods-Grades.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -976,8 +922,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ignacioparadisi.Grades;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ignacioparadisi.Grades2-0";
+				PRODUCT_NAME = Grades2.0;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -985,7 +931,6 @@
 		};
 		4FFE0F9123136C9F0019244F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 43386E085E1C24166EB05113 /* Pods-GradesTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1007,7 +952,6 @@
 		};
 		4FFE0F9223136C9F0019244F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C95992EC3083FBE679C2B114 /* Pods-GradesTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1058,6 +1002,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4F368AA6233251A500F3B6A7 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.18.0;
+			};
+		};
+		4F368AAB233251E400F3B6A7 /* XCRemoteSwiftPackageReference "JTAppleCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/patchthecode/JTAppleCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.2;
+			};
+		};
+		4F368AAE2332526200F3B6A7 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.4.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4F368AA7233251A500F3B6A7 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F368AA6233251A500F3B6A7 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		4F368AA9233251A500F3B6A7 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F368AA6233251A500F3B6A7 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+		4F368AAC233251E400F3B6A7 /* JTAppleCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F368AAB233251E400F3B6A7 /* XCRemoteSwiftPackageReference "JTAppleCalendar" */;
+			productName = JTAppleCalendar;
+		};
+		4F368AAF2332526200F3B6A7 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F368AAE2332526200F3B6A7 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4FF6F414227A04B6000F14D2 /* Project object */;
 }

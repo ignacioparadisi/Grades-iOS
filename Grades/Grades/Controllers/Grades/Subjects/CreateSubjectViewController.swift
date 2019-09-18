@@ -179,7 +179,6 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
     
     private func valuesAreValid(maxGrade: Float, minGrade: Float) -> Bool {
         if maxGrade <= 0 || minGrade < 0 {
-            showErrorMessage("Grades must be greater than 0.".localized)
             if maxGrade <= 0 {
                 maxGradeTextField.showErrorBorder()
             }
@@ -192,7 +191,6 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
         if maxGrade <= minGrade {
             maxGradeTextField.showErrorBorder()
             minGradeTextField.showErrorBorder()
-            showErrorMessage("Maximum grade must be greater than minimum grade.".localized)
             return false
         }
         return true

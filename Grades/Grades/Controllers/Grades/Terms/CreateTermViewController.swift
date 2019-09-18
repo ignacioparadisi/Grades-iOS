@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftMessages
 
 protocol CreateTermViewControllerDelegate: class {
     func shouldRefresh()
@@ -231,7 +230,6 @@ class CreateTermViewController: BaseViewController, ScrollableView {
     
     private func valuesAreValid(maxGrade: Float, minGrade: Float) -> Bool {
         if maxGrade <= 0 || minGrade < 0 {
-            showErrorMessage("Grades must be greater than 0.".localized)
             if maxGrade <= 0 {
                 maxGradeTextField.showErrorBorder()
             }
@@ -244,14 +242,12 @@ class CreateTermViewController: BaseViewController, ScrollableView {
         if maxGrade <= minGrade {
             maxGradeTextField.showErrorBorder()
             minGradeTextField.showErrorBorder()
-            showErrorMessage("Maximum grade must be greater than minimum grade.".localized)
             return false
         }
         
         if let startDate = startDateTextField.date, let endDate = endDateTextField.date, startDate >= endDate {
             startDateTextField.showErrorBorder()
             endDateTextField.showErrorBorder()
-            showErrorMessage("End date of the term must be greater than start date.".localized)
             return false
         }
         

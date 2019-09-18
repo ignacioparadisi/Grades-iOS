@@ -18,7 +18,6 @@ class Logger {
         case none
     }
     
-    
     /// Logs a message
     ///
     /// - Parameters:

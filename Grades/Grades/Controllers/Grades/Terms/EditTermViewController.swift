@@ -114,7 +114,6 @@ class EditTermViewController: BaseViewController {
         if let startDate = startDateTextField.date, let endDate = endDateTextField.date, startDate >= endDate {
             startDateTextField.showErrorBorder()
             endDateTextField.showErrorBorder()
-            showErrorMessage("End date of the term must be greater than start date.".localized)
             return false
         }
         
