@@ -13,7 +13,7 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
     let gradeContainerDiameter: CGFloat = 60
     let termNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: .title2)
+        label.font = UIFont.preferredFont(forTextStyle: .title1)
         label.numberOfLines = 0
         label.textAlignment = .center
         return label

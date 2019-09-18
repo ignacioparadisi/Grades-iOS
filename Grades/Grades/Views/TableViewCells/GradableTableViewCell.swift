@@ -7,22 +7,10 @@
 //
 
 import UIKit
+import SwiftUI
 
 class GradableTableViewCell: UITableViewCell, ReusableView {
-    
-    /// The radius of the graph
-    private let circleRadius: CGFloat = 26
-    /// Margin for leading and trailing
-    private let margin: CGFloat = 16
-    private var progressRingView: ProgressRingView!
-    /// Label for the gradable's name
-    private let nameLabel: IPLabel = {
-        let label = IPLabel()
-        label.text = "Name"
-        return label
-    }()
-    private let containerView = UIView()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         initialize()
@@ -36,33 +24,6 @@ class GradableTableViewCell: UITableViewCell, ReusableView {
     /// Adds all the components to the view
     private func initialize() {
         selectionStyle = .none
-        setupContainerView()
-        
-        containerView.addSubview(nameLabel)
-        nameLabel.anchor
-            .leadingToSuperview(constant: margin)
-            .centerYToSuperview()
-            .activate()
-        
-        progressRingView = ProgressRingView(radius: circleRadius)
-        containerView.addSubview(progressRingView)
-        progressRingView.anchor
-            .trailingToSuperview(constant: -margin)
-            .leading(to: nameLabel.trailingAnchor, constant: margin)
-            .centerYToSuperview(constant: 5)
-            .activate()
-    }
-    
-    private func setupContainerView() {
-        containerView.backgroundColor = .systemGray5
-        containerView.layer.cornerRadius = 10
-        containerView.layer.masksToBounds = false
-        
-        addSubview(containerView)
-        containerView.anchor
-            .edgesToSuperview(insets: UIEdgeInsets(top: 4, left: 16, bottom: -4, right: -16))
-            .height(constant: 70)
-            .activate()
     }
     
     
@@ -70,17 +31,60 @@ class GradableTableViewCell: UITableViewCell, ReusableView {
     ///
     /// - Parameter gradable: Gradable to be displayed
     func configure(with gradable: Gradable) {
-        nameLabel.text = gradable.name
-        
-        progressRingView.removeFromSuperview()
-        progressRingView = ProgressRingView(radius: circleRadius)
-        containerView.addSubview(progressRingView)
-        progressRingView.anchor
-            .trailingToSuperview(constant: -margin)
-            .leading(to: nameLabel.trailingAnchor, constant: margin)
-            .centerYToSuperview(constant: 5)
-            .activate()
-        progressRingView.configure(with: gradable)
+        if let view = UIHostingController(rootView: GradableView(gradable: gradable)).view {
+            addSubview(view)
+            view.anchor.edgesToSuperview(insets: UIEdgeInsets(top: 8, left: 16, bottom: -8, right: -16)).activate()
+        }
     }
     
+}
+
+struct GradableView: View {
+    var gradable: Gradable
+    var body: some View {
+        HStack {
+            Text("Materia 1")
+            Spacer()
+            GradableCharView(gradable: gradable)
+                .frame(width: 52, height: 52)
+        }
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
+    }
+}
+
+struct GradableCharView: View {
+    var gradable: Gradable
+    /// The start angle of the grade graph
+    private let startAngle: CGFloat = 0.0
+    /// The end angle of the grade graph
+    private let endAngle: CGFloat = 0.66
+    private let lineWidth: CGFloat = 7
+    
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack {
+                Circle()
+                    .trim(from: self.startAngle, to: self.endAngle)
+                    .stroke(Color(.systemGray3), style: StrokeStyle(lineWidth: self.lineWidth, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [], dashPhase: 0))
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .rotationEffect(Angle(degrees: -210))
+                    .offset(x: 0, y: 1)
+                
+                
+                Circle()
+                    .trim(from: 0.0, to: self.getEndPoint(self.gradable))
+                    .stroke(Color(UIColor.getColor(for: self.gradable)), style: StrokeStyle(lineWidth: self.lineWidth, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [], dashPhase: 0))
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .rotationEffect(Angle(degrees: -210))
+                .offset(x: 0, y: 1)
+                
+                Text("\(Int(self.gradable.grade))")
+            }
+        }
+    }
+    
+    func getEndPoint(_ gradable: Gradable) -> CGFloat {
+        return (CGFloat(self.gradable.grade) * self.endAngle) / CGFloat(self.gradable.maxGrade)
+    }
 }

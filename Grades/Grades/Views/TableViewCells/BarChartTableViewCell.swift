@@ -29,7 +29,7 @@ class BarChartTableViewCell: UITableViewCell, ReusableView {
     func configure(with items: [Gradable]) {
         if let view = UIHostingController(rootView: BarChartView(gradables: items)).view {
                addSubview(view)
-               view.anchor.edgesToSuperview(insets: UIEdgeInsets(top: 4, left: margin, bottom: 4, right: -margin)).activate()
+               view.anchor.edgesToSuperview(insets: UIEdgeInsets(top: 4, left: margin, bottom: -4, right: -margin)).activate()
         }
     }
     
