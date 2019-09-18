@@ -7,28 +7,10 @@
 //
 
 import UIKit
+import SwiftUI
 
 class TermDateTableViewCell: UITableViewCell, ReusableView {
 
-    private let separatorWidth: CGFloat = 2
-    private let margin: CGFloat = 16
-    private let startDateLabel: IPLabel = {
-        let label = IPLabel()
-        label.textAlignment = .center
-        return label
-    }()
-    private let endDateLabel: IPLabel = {
-        let label = IPLabel()
-        label.textAlignment = .center
-        return label
-    }()
-    private let dateFormatter: DateFormatter = {
-       let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d, yyyy"
-        return formatter
-    }()
-    
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         initialize()
@@ -42,46 +24,37 @@ class TermDateTableViewCell: UITableViewCell, ReusableView {
     private func initialize() {
         selectionStyle = .none
         isUserInteractionEnabled = false
-        
-        let separator = UIView()
-        separator.backgroundColor = .systemGray3
-        separator.layer.cornerRadius = separatorWidth / 2
-        
-        let containerView = UIView()
-        containerView.backgroundColor = .systemGray5
-        containerView.layer.cornerRadius = 10
-        
-        addSubview(containerView)
-        containerView.anchor.edgesToSuperview(insets: UIEdgeInsets(top: 16, left: 16, bottom: 0, right: -16)).activate()
-        
-        containerView.addSubview(startDateLabel)
-        containerView.addSubview(separator)
-        containerView.addSubview(endDateLabel)
-        
-        startDateLabel.anchor
-            .topToSuperview(constant: margin)
-            .trailing(to: containerView.centerXAnchor, constant: -margin)
-            .bottomToSuperview(constant: -margin)
-            .leadingToSuperview(constant: margin)
-            .activate()
-        
-        separator.anchor
-            .centerXToSuperview()
-            .topToSuperview(constant: margin)
-            .bottomToSuperview(constant: -margin)
-            .width(constant: separatorWidth)
-            .activate()
-        
-        endDateLabel.anchor
-            .topToSuperview(constant: margin)
-            .trailingToSuperview(constant: -margin)
-            .bottomToSuperview(constant: -margin)
-            .leading(to: containerView.centerXAnchor, constant: margin)
-            .activate()
     }
     
     func configure(startDate: Date, endDate: Date) {
-        startDateLabel.text = dateFormatter.string(from: startDate)
-        endDateLabel.text = dateFormatter.string(from: endDate)
+        if let view = UIHostingController(rootView: TermDatesView(startDate: startDate, endDate: endDate)).view {
+            view.removeFromSuperview()
+            addSubview(view)
+            view.anchor.edgesToSuperview(insets: UIEdgeInsets(top: 16, left: 16, bottom: 0, right: -16)).activate()
+        }
+    }
+}
+
+struct TermDatesView: View {
+    var startDate: Date
+    var endDate: Date
+    private let dateFormatter: DateFormatter = {
+       let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d, yyyy"
+        return formatter
+    }()
+    
+    var body: some View {
+        HStack {
+            Spacer()
+            Text(dateFormatter.string(from: startDate))
+            Spacer()
+            Divider()
+            Spacer()
+            Text(dateFormatter.string(from: endDate))
+            Spacer()
+        }
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
     }
 }

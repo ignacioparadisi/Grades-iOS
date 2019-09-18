@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class Subject: Object, CalculableGradable, NSCopying {
+class Subject: Object, CalculableGradable, NSCopying, Identifiable {
 
     @objc dynamic var term: Term?
     @objc dynamic var id: String = UUID().uuidString
