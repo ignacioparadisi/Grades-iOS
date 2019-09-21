@@ -103,7 +103,7 @@ class RealmManager {
     
     
     // TODO: No usar este método
-    func updateAssignment(_ oldAssignment: Assignment, _ newAssignment: Assignment) {
+    func updateAssignment(_ oldAssignment: AssignmentRealm, _ newAssignment: AssignmentRealm) {
         try! database.write {
             oldAssignment.maxGrade = newAssignment.maxGrade
             oldAssignment.minGrade = newAssignment.minGrade

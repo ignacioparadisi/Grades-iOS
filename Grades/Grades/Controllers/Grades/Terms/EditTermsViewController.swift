@@ -16,8 +16,8 @@ class EditTermsViewController: BaseViewController {
     
     weak var delegate: EditTermsViewControllerDelegate?
     var tableView: UITableView!
-    var terms: [Term] = []
-    private var termsToBeDeleted: [Term] = []
+    var terms: [TermRealm] = []
+    private var termsToBeDeleted: [TermRealm] = []
     var saveButton: IPButton = {
         let button = IPButton()
         button.backgroundColor = UIColor(named: "accentColor")
@@ -95,9 +95,9 @@ class EditTermsViewController: BaseViewController {
     }
     
     private func updatePositions() {
-            var aux: [Term] = []
+            var aux: [TermRealm] = []
             for (index, term) in self.terms.enumerated() {
-                if let auxTerm = term.copy() as? Term {
+                if let auxTerm = term.copy() as? TermRealm {
                     auxTerm.position = index
                     aux.append(auxTerm)
                 }

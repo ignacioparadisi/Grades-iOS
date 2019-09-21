@@ -10,10 +10,10 @@ import Foundation
 import RealmSwift
 
 // TODO: Quitar Orderable
-class Assignment: Object, Gradable, NSCopying {
+class AssignmentRealm: Object, Gradable, NSCopying {
     
-    @objc dynamic var subject: Subject?
-    @objc dynamic var assignment: Assignment?
+    @objc dynamic var subject: SubjectRealm?
+    @objc dynamic var assignment: AssignmentRealm?
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var name: String = ""
     @objc dynamic var grade: Float = 0.0
@@ -28,9 +28,9 @@ class Assignment: Object, Gradable, NSCopying {
     }
     
     func copy(with zone: NSZone? = nil) -> Any {
-        let assignment = Assignment()
-        assignment.subject = self.subject?.copy() as? Subject
-        assignment.assignment = self.assignment?.copy() as? Assignment
+        let assignment = AssignmentRealm()
+        assignment.subject = self.subject?.copy() as? SubjectRealm
+        assignment.assignment = self.assignment?.copy() as? AssignmentRealm
         assignment.id = self.id
         assignment.name = self.name
         assignment.grade = self.grade

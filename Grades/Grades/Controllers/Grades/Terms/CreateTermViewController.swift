@@ -21,7 +21,7 @@ class CreateTermViewController: BaseViewController, ScrollableView {
     let leadingConstant: CGFloat = 16.0
     
     weak var delegate: CreateTermViewControllerDelegate?
-    var term: Term?
+    var term: TermRealm?
     var termsCount: Int = 0
     var contentView: UIView = UIView()
     let nameTextField: IPTextField = {
@@ -205,23 +205,7 @@ class CreateTermViewController: BaseViewController, ScrollableView {
             let endDate = endDateTextField.date {
             
             if valuesAreValid(maxGrade: maxGrade, minGrade: minGrade) {
-                let term = Term()
-                term.name = name
-                term.minGrade = minGrade
-                term.maxGrade = maxGrade
-                term.startDate = startDate
-                term.endDate = endDate
-                term.position = termsCount
-                
-                let service = AbstractServiceFactory.getServiceFactory(for: .realm)
-                service.termService.createTerm(term) { result in
-                    switch result {
-                    case .success:
-                        print("Successfully created term")
-                    case .failure:
-                        print("Failed creating term")
-                    }
-                }
+                Term.create(name: name, maxGrade: maxGrade, minGrade: minGrade, startDate: startDate, endDate: endDate)
                 dismissView()
                 delegate?.shouldRefresh()
             }

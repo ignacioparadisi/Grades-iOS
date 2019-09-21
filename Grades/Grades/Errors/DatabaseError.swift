@@ -8,6 +8,9 @@
 
 import Foundation
 
-enum  RequestError: Error {
-    case badRequest
+enum  DatabaseError: Error {
+    case onSave
+    case onDelete
+    case onUpdate
+    case onFetch
 }

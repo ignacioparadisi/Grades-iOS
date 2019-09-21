@@ -122,20 +122,9 @@ class EditTermViewController: BaseViewController {
     
     @objc private func didEditTerm() {
         if valuesAreValid(), let startDate = startDateTextField.date,
-            let endDate = endDateTextField.date,
-            let updatedTerm = term.copy() as? Term {
-            updatedTerm.startDate = startDate
-            updatedTerm.endDate = endDate
-            let service = AbstractServiceFactory.getServiceFactory(for: .realm)
-            service.termService.updateTerm(updatedTerm) { result in
-                switch result {
-                case .success:
-                    print("Successfully updated term")
-                case .failure:
-                    print("Failed updating term")
-                }
-            }
-            delegate?.didEditTerm(updatedTerm)
+            let endDate = endDateTextField.date {
+            term.update(name: term.name, startDate: startDate, endDate: endDate)
+            delegate?.didEditTerm(term)
             dismissView()
         }
     }

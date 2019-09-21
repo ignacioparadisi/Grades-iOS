@@ -18,7 +18,7 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
     weak var delegate: TermCollectionViewCellDelegate?
     var collectionView: UICollectionView!
     var isInitialized: Bool = false
-    var term: Term = Term()  {
+    var term: Term = Term() {
         didSet {
             refreshTable()
         }
@@ -103,7 +103,7 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
     }
     
     private func refreshTable() {
-        if term.subjects.isEmpty {
+        if term.getSubjects().isEmpty {
             addSubjectView()
         }
         collectionView.reloadData()
@@ -115,7 +115,7 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
 extension TermCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return term.subjects.count
+        return term.subjects?.count ?? 0
     }
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -135,7 +135,9 @@ extension TermCollectionViewCell: UICollectionViewDelegate, UICollectionViewData
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = indexPath.item
         let cell = collectionView.dequeueReusableCell(for: indexPath) as SubjectCardCollectionViewCell
-        cell.configure(with: term.subjects[item])
+        if let subjectsSet = term.subjects, let subjects = subjectsSet.allObjects as? [Subject] {
+            cell.configure(with: subjects[item])
+        }
         return cell
     }
     

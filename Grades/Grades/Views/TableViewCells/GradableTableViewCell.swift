@@ -71,13 +71,13 @@ struct GradableCharView: View {
                     .rotationEffect(Angle(degrees: -210))
                     .offset(x: 0, y: 1)
                 
-                
                 Circle()
                     .trim(from: 0.0, to: self.getEndPoint(self.gradable))
                     .stroke(Color(UIColor.getColor(for: self.gradable)), style: StrokeStyle(lineWidth: self.lineWidth, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [], dashPhase: 0))
-                .frame(width: geometry.size.width, height: geometry.size.height)
-                .rotationEffect(Angle(degrees: -210))
-                .offset(x: 0, y: 1)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .rotationEffect(Angle(degrees: -210))
+                    .offset(x: 0, y: 1)
+                    .animation(.default)
                 
                 Text("\(Int(self.gradable.grade))")
             }

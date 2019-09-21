@@ -8,13 +8,13 @@
 
 import Foundation
 
-class RealmSubjectService: SubjectService {
+class RealmSubjectService: SubjectRepository {
         
     /// Gets all subjects
     ///
     /// - Returns: Stored subjects in the database
-    func fetchSubjects(for term: Term, completion: @escaping (Result<[Subject], RequestError>) -> Void) {
-        let subjects = RealmManager.shared.getArray(ofType: Subject.self, filter: "term.id == '\(term.id)'") as! [Subject]
+    func fetchSubjects(for term: TermRealm, completion: @escaping (Result<[SubjectRealm], DatabaseError>) -> Void) {
+        let subjects = RealmManager.shared.getArray(ofType: SubjectRealm.self, filter: "term.id == '\(term.id)'") as! [SubjectRealm]
         for subject in subjects {
             let service = AbstractServiceFactory.getServiceFactory(for: .realm)
             service.assignmentService.fetchAssignments(for: subject) { result in
@@ -36,8 +36,8 @@ class RealmSubjectService: SubjectService {
     /// - Parameters:
     ///   - subject: Subject to be created
     ///   - completion: Code to be executed after the completion or failure
-    func createSubject(_ subject: Subject, completion: @escaping (Result<Subject, RequestError>) -> Void) {
-        if let createdSubject = RealmManager.shared.create(subject) as? Subject {
+    func createSubject(_ subject: SubjectRealm, completion: @escaping (Result<SubjectRealm, DatabaseError>) -> Void) {
+        if let createdSubject = RealmManager.shared.create(subject) as? SubjectRealm {
             updateGradeForParent(of: subject)
             completion(.success(createdSubject))
         }
@@ -49,7 +49,7 @@ class RealmSubjectService: SubjectService {
     /// - Parameters:
     ///   - subject: Subject to be deleted
     ///   - completion: Code to be executed after the deletion of failure
-    func deleteSubject(_ subject: Subject, completion: @escaping (Result<Int, RequestError>) -> Void) {
+    func deleteSubject(_ subject: SubjectRealm, completion: @escaping (Result<Int, DatabaseError>) -> Void) {
         deleteCascade(subject)
         completion(.success(0))
     }
@@ -60,7 +60,7 @@ class RealmSubjectService: SubjectService {
     /// - Parameters:
     ///   - subjects: Array of subjects to be deleted
     ///   - completion: Code to be executed after the deletion of failure
-    func deleteSubjects(_ subjects: [Subject], completion: ServiceResult<Int>?) {
+    func deleteSubjects(_ subjects: [SubjectRealm], completion: ServiceResult<Int>?) {
         for subject in subjects {
             deleteCascade(subject)
         }
@@ -71,9 +71,9 @@ class RealmSubjectService: SubjectService {
     /// Deletes all childs of a subject and the subject
     ///
     /// - Parameter subject: Subject to be deleted
-    private func deleteCascade(_ subject: Subject) {
+    private func deleteCascade(_ subject: SubjectRealm) {
         updateGradeForParent(of: subject, exclude: true)
-        let assignments = RealmManager.shared.getArray(ofType: Assignment.self, filter: "subject.id == '\(subject.id)'") as! [Assignment]
+        let assignments = RealmManager.shared.getArray(ofType: AssignmentRealm.self, filter: "subject.id == '\(subject.id)'") as! [AssignmentRealm]
         let service = AbstractServiceFactory.getServiceFactory(for: .realm).assignmentService
         service.deleteAssignments(assignments, completion: nil)
         RealmManager.shared.delete(subject)
@@ -83,7 +83,7 @@ class RealmSubjectService: SubjectService {
     /// IMPORTANT: To use this method you first need to save the subject in Realm.
     ///
     /// - Parameter subject: Subject that was created or updated.
-    func updateGradeForParent(of subject: Subject, exclude: Bool = false) {
+    func updateGradeForParent(of subject: SubjectRealm, exclude: Bool = false) {
         if let term = subject.term {
             fetchSubjects(for: term) { result in
                 switch result {

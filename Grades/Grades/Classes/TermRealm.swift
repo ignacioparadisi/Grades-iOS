@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class Term: Object, CalculableGradable, Orderable, NSCopying {
+class TermRealm: Object, CalculableGradable, Orderable, NSCopying {
 
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var name: String = ""
@@ -20,7 +20,7 @@ class Term: Object, CalculableGradable, Orderable, NSCopying {
     @objc dynamic var endDate: Date = Date()
     @objc dynamic var position: Int = 0
     @objc dynamic var dateCreated: Date = Date()
-    var subjects: [Subject] = []
+    var subjects: [SubjectRealm] = []
     var greaterGrade: Float = 0.0
     var lowerGrade: Float = 0.0
 
@@ -29,7 +29,7 @@ class Term: Object, CalculableGradable, Orderable, NSCopying {
     }
     
     func copy(with zone: NSZone? = nil) -> Any {
-        let term = Term()
+        let term = TermRealm()
         term.id = id
         term.name = name
         term.grade = grade

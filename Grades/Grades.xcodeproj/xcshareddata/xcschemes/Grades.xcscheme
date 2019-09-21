@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4FF6F41B227A04B6000F14D2"
-               BuildableName = "Grades2.0.app"
+               BuildableName = "Grades.app"
                BlueprintName = "Grades"
                ReferencedContainer = "container:Grades.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4FF6F41B227A04B6000F14D2"
-            BuildableName = "Grades2.0.app"
+            BuildableName = "Grades.app"
             BlueprintName = "Grades"
             ReferencedContainer = "container:Grades.xcodeproj">
          </BuildableReference>
@@ -69,7 +69,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4FF6F41B227A04B6000F14D2"
-            BuildableName = "Grades2.0.app"
+            BuildableName = "Grades.app"
             BlueprintName = "Grades"
             ReferencedContainer = "container:Grades.xcodeproj">
          </BuildableReference>
@@ -86,7 +86,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4FF6F41B227A04B6000F14D2"
-            BuildableName = "Grades2.0.app"
+            BuildableName = "Grades.app"
             BlueprintName = "Grades"
             ReferencedContainer = "container:Grades.xcodeproj">
          </BuildableReference>

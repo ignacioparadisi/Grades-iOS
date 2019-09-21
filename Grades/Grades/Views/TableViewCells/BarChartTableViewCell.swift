@@ -39,7 +39,7 @@ struct BarChartView: View {
     var gradables: [Gradable]
     var body: some View {
         HStack {
-            VStack {
+            VStack(alignment: .leading) {
                 ForEach(0..<gradables.count, id: \.self) { index in
                     Text("\(index + 1). \(self.gradables[index].name)")
                         .padding(2)
@@ -69,6 +69,7 @@ struct BarChartView: View {
                     RoundedRectangle(cornerRadius: 5)
                         .frame(width: 10, height: geometry.size.height * heightFactor)
                         .foregroundColor(Color(UIColor.getColor(for: gradable)))
+                        
                 }
             }
             Text("\(index + 1)")

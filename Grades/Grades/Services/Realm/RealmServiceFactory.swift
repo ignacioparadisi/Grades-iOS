@@ -8,15 +8,15 @@
 
 import Foundation
 
-class RealmServiceFactory: ServiceFactory {
+class RealmServiceFactory: RepositoryFactory {
     
     /// Term Repository
-    var termService: TermService = {
+    var termService: TermRepository = {
         return RealmTermService()
     }()
     
     /// Subject Repository
-    var subjectService: SubjectService = {
+    var subjectService: SubjectRepository = {
         return RealmSubjectService()
     }()
     

@@ -21,7 +21,7 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
     let leadingConstant: CGFloat = 16.0
     
     weak var delegate: CreateSubjectViewControllerDelegate?
-    var subject: Subject?
+    var subject: SubjectRealm?
     var contentView: UIView = UIView()
     let nameTextField: IPTextField = {
         let textField = IPTextField()
@@ -41,7 +41,7 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
         textField.isRequired = true
         return textField
     }()
-    var term: Term = Term()
+    var term: TermRealm = TermRealm()
     
     override func setupView() {
         super.setupView()
@@ -155,7 +155,7 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
             let maxGrade = Float(maxGradeText) {
             
             if valuesAreValid(maxGrade: maxGrade, minGrade: minGrade) {
-                let subject = Subject()
+                let subject = SubjectRealm()
                 subject.term = term
                 subject.name = name
                 subject.minGrade = minGrade

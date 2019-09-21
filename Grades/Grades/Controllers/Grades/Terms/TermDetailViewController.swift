@@ -19,7 +19,9 @@ class TermDetailViewController: BaseViewController {
     
     var tableView: UITableView!
     var term: Term = Term()
-    var subjects: [Subject] = []
+    private lazy var subjects: [Subject] = {
+        return term.getSubjects()
+    }()
     weak var delegate: CreateTermViewControllerDelegate?
     
     override func setupNavigationBar() {
@@ -59,7 +61,7 @@ class TermDetailViewController: BaseViewController {
     @objc private func goToCreateSubject() {
         let viewController = CreateSubjectViewController()
         viewController.delegate = self
-        viewController.term = term
+        // viewController.term = term
         present(UINavigationController(rootViewController: viewController), animated: true)
     }
     
@@ -71,22 +73,13 @@ class TermDetailViewController: BaseViewController {
     }
     
     private func fetchSubjects() {
-        let service = AbstractServiceFactory.getServiceFactory(for: .realm)
-        service.subjectService.fetchSubjects(for: term) { result in
-            switch result {
-            case .success(let subjects):
-                self.subjects = subjects
-                self.term.subjects = subjects
-            case .failure:
-                print("Failed fetching subjects")
-            }
-        }
+
         tableView.reloadData()
     }
     
     private func deleteSubject(at indexPath: IndexPath) {
         let index = indexPath.row -  TableRows.allCases.count
-        let subject = subjects[index]
+        let subject: [Subject] = term.getSubjects()
         subjects.remove(at: index)
         if !subjects.isEmpty {
             tableView.deleteRows(at: [indexPath], with: .left)
@@ -101,18 +94,18 @@ class TermDetailViewController: BaseViewController {
             tableView.deleteRows(at: indexPaths, with: .fade)
         }
         let service = AbstractServiceFactory.getServiceFactory(for: .realm).subjectService
-        service.deleteSubject(subject) { result in
-            switch result {
-            case .success:
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                    self.tableView.reloadData()
-                })
-                self.term.subjects = self.subjects
-                self.delegate?.shouldRefresh()
-            case .failure:
-                print("Failed deleting subject")
-            }
-        }
+//        service.deleteSubject(subject) { result in
+//            switch result {
+//            case .success:
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+//                    self.tableView.reloadData()
+//                })
+//                self.term.subjects = self.subjects
+//                self.delegate?.shouldRefresh()
+//            case .failure:
+//                print("Failed deleting subject")
+//            }
+//        }
     }
 }
 
@@ -161,7 +154,7 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
             let subject = subjects[index]
             let viewController = SubjectDetailViewController()
             viewController.delegate = self
-            viewController.subject = subject
+            // viewController.subject = subject
             navigationController?.pushViewController(viewController, animated: true)
         }
     }

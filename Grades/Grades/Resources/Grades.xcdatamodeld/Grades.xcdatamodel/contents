@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Assignment" representedClassName=".Assignment" syncable="YES">
+        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="deadline" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="grade" attributeType="Float" minValueString="0" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="maxGrade" attributeType="Float" minValueString="0" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="minGrade" attributeType="Float" minValueString="0" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="percentage" optional="YES" attributeType="Float" minValueString="0" maxValueString="1" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="assignments" inverseEntity="Assignment"/>
+        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Assignment" inverseName="assignment" inverseEntity="Assignment"/>
+        <relationship name="subject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subject" inverseName="assignments" inverseEntity="Subject"/>
+    </entity>
+    <entity name="Subject" representedClassName=".Subject" syncable="YES">
+        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="grade" attributeType="Float" minValueString="0" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="maxGrade" attributeType="Float" minValueString="0" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="minGrade" attributeType="Float" minValueString="0" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Assignment" inverseName="subject" inverseEntity="Assignment"/>
+        <relationship name="term" maxCount="1" deletionRule="Nullify" destinationEntity="Term" inverseName="subjects" inverseEntity="Term"/>
+    </entity>
+    <entity name="Term" representedClassName=".Term" syncable="YES">
+        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="endDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="grade" attributeType="Float" minValueString="0" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="maxGrade" attributeType="Float" minValueString="0" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="minGrade" attributeType="Float" minValueString="0" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="startDate" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="subjects" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Subject" inverseName="term" inverseEntity="Subject"/>
+    </entity>
+    <elements>
+        <element name="Assignment" positionX="-6.12109375" positionY="-21.72265625" width="128" height="193"/>
+        <element name="Subject" positionX="-164.68359375" positionY="-6.2890625" width="128" height="148"/>
+        <element name="Term" positionX="-321.44140625" positionY="-10.69140625" width="128" height="163"/>
+    </elements>
+</model>

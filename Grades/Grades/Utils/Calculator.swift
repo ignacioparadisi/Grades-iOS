@@ -34,7 +34,7 @@ class Calculator {
     ///
     /// - Parameter assignments: Assignments to be averaged
     /// - Returns: Average grade
-    static func getGrade(for assignments: [Assignment]) -> Float {
+    static func getGrade(for assignments: [AssignmentRealm]) -> Float {
         var total: Float = 0.0
         for assignment in assignments {
             total += assignment.grade * assignment.percentage
@@ -43,7 +43,7 @@ class Calculator {
     }
     
     // TODO: Probably delete this
-    static func getGradesForAssignment(_ assignments: [Assignment], type: GradeType) -> Float {
+    static func getGradesForAssignment(_ assignments: [AssignmentRealm], type: GradeType) -> Float {
         var grade: Float = 0.0
         let now = Date()
         for assignment in assignments {
@@ -57,7 +57,7 @@ class Calculator {
     }
     
     // TODO: Probably delete this
-    static func getGradesForSubjects(_ subjects: [Subject], type: GradeType) -> Float {
+    static func getGradesForSubjects(_ subjects: [SubjectRealm], type: GradeType) -> Float {
         var grade: Float = 0.0
         for subject in subjects {
             if type == .greater {

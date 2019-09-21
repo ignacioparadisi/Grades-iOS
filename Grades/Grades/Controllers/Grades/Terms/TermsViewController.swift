@@ -21,7 +21,6 @@ final class TermsViewController: BaseViewController, UIViewControllerRepresentab
     
     var collectionView: UICollectionView!
     private var terms: [Term] = []
-//    let transition = PopAnimator()
     var selectedCell: Int = -1
     
     override func setupNavigationBar() {
@@ -30,7 +29,6 @@ final class TermsViewController: BaseViewController, UIViewControllerRepresentab
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateTerm))
         let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(fetchTerms))
-        // let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(goToEditTerms))
         navigationItem.setRightBarButtonItems([refreshButton, addButton], animated: false)
     }
     
@@ -58,19 +56,11 @@ final class TermsViewController: BaseViewController, UIViewControllerRepresentab
     }
     
     @objc private func fetchTerms() {
-        let service = AbstractServiceFactory.getServiceFactory(for: .realm)
-        service.termService.fetchTerms() { result in
-            switch result {
-            case .success(let terms):
-                self.terms = terms
-            case.failure:
-                print("Failed fetching terms")
-                break
-            }
+        do {
+            self.terms = try Term.fetchAll()
+        } catch {
+            print("Error fetching terms")
         }
-        terms = terms.sorted(by: { (term1, term2) -> Bool in
-            return term1.position < term2.position
-        })
         collectionView.reloadData()
         if !terms.isEmpty {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
@@ -90,7 +80,7 @@ final class TermsViewController: BaseViewController, UIViewControllerRepresentab
     @objc private func goToEditTerms() {
         let viewController = EditTermsViewController()
         viewController.delegate = self
-        viewController.terms = terms
+        // viewController.terms = terms
         present(UINavigationController(rootViewController: viewController), animated: true)
     }
 
@@ -143,17 +133,8 @@ extension TermsViewController: TermCollectionViewCellDelegate {
         let term = terms[index]
         terms.remove(at: index)
         collectionView.deleteItems(at: [IndexPath(item: index, section: 0)])
-        let service = AbstractServiceFactory.getServiceFactory(for: .realm)
-        service.termService.deleteTerm(term) { result in
-            switch result {
-            case .success:
-                print("Successfully deleted term")
-            case .failure:
-                print("Failed deleting term")
-            }
-        }
-        
-        // fetchTerms()
+        term.delete()
+        fetchTerms()
     }
     
     func goToTermDetail(item: Int) {
@@ -162,39 +143,12 @@ extension TermsViewController: TermCollectionViewCellDelegate {
         let viewController = TermDetailViewController()
         viewController.delegate = self
         viewController.term = term
-//        navigationController?.delegate = self
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
 extension TermsViewController: EditTermsViewControllerDelegate {
-    
     func didEditTerms() {
         fetchTerms()
     }
-    
 }
-
-// TODO: Make the transition animation
-//extension GradesViewController: UINavigationControllerDelegate {
-//    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        guard
-//            let selectedCell = collectionView.cellForItem(at: IndexPath(item: selectedCell, section: 0))
-//                as? TermCollectionViewCell,
-//            let selectedCellSuperview = selectedCell.superview
-//            else {
-//                return nil
-//        }
-//
-//        transition.originFrame = selectedCellSuperview.convert(selectedCell.frame, to: nil)
-//        transition.originFrame = CGRect(
-//            x: transition.originFrame.origin.x,
-//            y: transition.originFrame.origin.y - 50,
-//            width: transition.originFrame.size.width,
-//            height: transition.originFrame.size.height + 50
-//        )
-//
-//        transition.presenting = true
-//        return transition
-//    }
-//}

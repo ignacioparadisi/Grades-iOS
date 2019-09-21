@@ -18,8 +18,8 @@ class SubjectDetailViewController: BaseViewController {
 
     var tableView: UITableView!
     let header: DetailHeader = DetailHeader(frame: .zero)
-    var subject: Subject = Subject()
-    var assignments: [Assignment] = []
+    var subject: SubjectRealm = SubjectRealm()
+    var assignments: [AssignmentRealm] = []
     weak var delegate: CreateSubjectViewControllerDelegate?
     
     override func setupNavigationBar() {

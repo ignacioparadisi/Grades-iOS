@@ -16,33 +16,33 @@ protocol AssignmentService {
     /// - Parameters:
     ///   - subject: Parent subject of assignments to be fetched
     ///   - completion: Code to be executed after fecth or failure
-    func fetchAssignments(for subject: Subject, completion: @escaping (Result<[Assignment], RequestError>) -> Void)
+    func fetchAssignments(for subject: SubjectRealm, completion: @escaping (Result<[AssignmentRealm], DatabaseError>) -> Void)
     
     /// Gets all assignments from an assignment
     ///
     /// - Parameters:
     ///   - assignment: Parent assignment of assignments to be fetched
     ///   - completion: Code to be executed after fecth or failure
-    func fetchAssignments(for assignment: Assignment, completion: @escaping (Result<[Assignment], RequestError>) -> Void)
+    func fetchAssignments(for assignment: AssignmentRealm, completion: @escaping (Result<[AssignmentRealm], DatabaseError>) -> Void)
     
     /// Creates a new assignment
     ///
     /// - Parameters:
     ///   - assignment: Assignment to be created
     ///   - completion: Code to be executed after creation or failure
-    func createAssignment(_ assignment: Assignment, completion: @escaping (Result<Assignment, RequestError>) -> Void)
+    func createAssignment(_ assignment: AssignmentRealm, completion: @escaping (Result<AssignmentRealm, DatabaseError>) -> Void)
     
     // TODO: Update assignment in another way
-    func updateAssignment(old oldAssignment: Assignment, new newAssignment: Assignment, completion: @escaping (Result<Assignment, RequestError>) -> Void)
+    func updateAssignment(old oldAssignment: AssignmentRealm, new newAssignment: AssignmentRealm, completion: @escaping (Result<AssignmentRealm, DatabaseError>) -> Void)
     
     /// Deletes an assignment
     ///
     /// - Parameters:
     ///   - assignment: Assignment to be deleted
     ///   - completion: Code to be executed after deletion or failure
-    func deleteAssignment(_ assignment: Assignment, completion: @escaping (Result<Int, RequestError>) -> Void)
+    func deleteAssignment(_ assignment: AssignmentRealm, completion: @escaping (Result<Int, DatabaseError>) -> Void)
     
     // TODO: Probably delete this
-    func deleteAssignments(_ assignments: [Assignment], completion: ServiceResult<Int>?)
+    func deleteAssignments(_ assignments: [AssignmentRealm], completion: ServiceResult<Int>?)
     
 }

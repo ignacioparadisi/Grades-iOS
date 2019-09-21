@@ -9,9 +9,9 @@
 import Foundation
 import RealmSwift
 
-class Subject: Object, CalculableGradable, NSCopying, Identifiable {
+class SubjectRealm: Object, CalculableGradable, NSCopying, Identifiable {
 
-    @objc dynamic var term: Term?
+    @objc dynamic var term: TermRealm?
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var name: String = ""
     @objc dynamic var grade: Float = 0.0
@@ -27,8 +27,8 @@ class Subject: Object, CalculableGradable, NSCopying, Identifiable {
     }
     
     func copy(with zone: NSZone? = nil) -> Any {
-        let subject = Subject()
-        subject.term = self.term?.copy() as? Term
+        let subject = SubjectRealm()
+        subject.term = self.term?.copy() as? TermRealm
         subject.id = self.id
         subject.name = self.name
         subject.maxGrade = self.maxGrade
