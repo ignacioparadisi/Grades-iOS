@@ -9,7 +9,7 @@
 import UIKit
 
 class TermDetailViewController: BaseViewController {
-    
+    /// Type of rows inside the Table View
     enum TableRows: Int, CaseIterable {
         case dateRow = 0
         case chartTitleRow = 1
@@ -17,13 +17,15 @@ class TermDetailViewController: BaseViewController {
         case subjectsTitleRow = 3
     }
     
+    /// Tabla View to display Subjects
     var tableView: UITableView!
+    /// Term to be displayed
     var term: Term = Term()
-    private lazy var subjects: [Subject] = {
-        return term.getSubjects()
-    }()
+    /// Subjects of the selected Term
+    var subjects: [Subject] = []
     weak var delegate: CreateTermViewControllerDelegate?
     
+    /// Setups the navigation bar buttons an title
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = term.name
@@ -33,10 +35,12 @@ class TermDetailViewController: BaseViewController {
         navigationItem.setRightBarButtonItems([addButton, editButton], animated: false)
     }
     
+    /// Goes to the previous View Controller
     @objc func goBack() {
         dismiss(animated: true)
     }
     
+    /// Setups the view
     override func setupView() {
         super.setupView()
 
@@ -58,13 +62,15 @@ class TermDetailViewController: BaseViewController {
         fetchSubjects()
     }
     
+    /// Presents the View Controller to create a new Subject
     @objc private func goToCreateSubject() {
         let viewController = CreateSubjectViewController()
         viewController.delegate = self
-        // viewController.term = term
+        viewController.term = term
         present(UINavigationController(rootViewController: viewController), animated: true)
     }
     
+    /// Presents View Controller to edit Term
     @objc private func goToEditTerm() {
         let viewController = EditTermViewController()
         viewController.delegate = self
@@ -72,14 +78,16 @@ class TermDetailViewController: BaseViewController {
         present(UINavigationController(rootViewController: viewController), animated: true)
     }
     
+    /// Gets subjects from Term
     private func fetchSubjects() {
-
+        subjects = term.getSubjects()
         tableView.reloadData()
     }
     
+    /// Deletes a subject from Table View with animation and then deletes it from Core Data
     private func deleteSubject(at indexPath: IndexPath) {
         let index = indexPath.row -  TableRows.allCases.count
-        let subject: [Subject] = term.getSubjects()
+        let subject: Subject = subjects[index]
         subjects.remove(at: index)
         if !subjects.isEmpty {
             tableView.deleteRows(at: [indexPath], with: .left)
@@ -93,19 +101,7 @@ class TermDetailViewController: BaseViewController {
             ]
             tableView.deleteRows(at: indexPaths, with: .fade)
         }
-        let service = AbstractServiceFactory.getServiceFactory(for: .realm).subjectService
-//        service.deleteSubject(subject) { result in
-//            switch result {
-//            case .success:
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-//                    self.tableView.reloadData()
-//                })
-//                self.term.subjects = self.subjects
-//                self.delegate?.shouldRefresh()
-//            case .failure:
-//                print("Failed deleting subject")
-//            }
-//        }
+        subject.delete()
     }
 }
 
@@ -154,7 +150,7 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
             let subject = subjects[index]
             let viewController = SubjectDetailViewController()
             viewController.delegate = self
-            // viewController.subject = subject
+            viewController.subject = subject
             navigationController?.pushViewController(viewController, animated: true)
         }
     }

@@ -9,17 +9,6 @@
 import UIKit
 import SwiftUI
 
-struct BaseViewControllerWrapper: UIViewControllerRepresentable {
-    typealias UIViewControllerType = BaseViewController
-    
-    func makeUIViewController(context: UIViewControllerRepresentableContext<BaseViewControllerWrapper>) -> BaseViewControllerWrapper.UIViewControllerType {
-        return BaseViewController()
-    }
-    
-    func updateUIViewController(_ uiViewController: BaseViewControllerWrapper.UIViewControllerType, context: UIViewControllerRepresentableContext<BaseViewControllerWrapper>) {
-    }
-}
-
 class BaseViewController: UIViewController {
 
     override func viewDidLoad() {

@@ -11,6 +11,25 @@ import Foundation
 import CoreData
 
 
-public class Assignment: NSManagedObject, Identifiable {
+public class Assignment: NSManagedObject, Identifiable, Gradable {
+    
+    static func create(name: String, grade: Float = 0.0, maxGrade: Float, minGrade: Float, percentage: Float = 100, deadline: Date, subject: Subject) -> Assignment {
+        let assignment = Assignment(context: CoreDataManager.shared.context)
+        assignment.name = name
+        assignment.grade = grade
+        assignment.maxGrade = maxGrade
+        assignment.minGrade = minGrade
+        assignment.percentage = percentage * 0.01
+        assignment.deadline = deadline
+        assignment.subject = subject
+        assignment.dateCreated = Date()
+        subject.calculateGrade()
+        return assignment
+    }
 
+    func delete() {
+        CoreDataManager.shared.context.delete(self)
+        subject?.calculateGrade()
+    }
+    
 }

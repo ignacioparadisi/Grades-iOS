@@ -9,20 +9,16 @@
 import UIKit
 import SwiftUI
 
+
 final class TermsViewController: BaseViewController, UIViewControllerRepresentable {
-    typealias UIViewControllerType = TermsViewController
-    
-    func makeUIViewController(context: UIViewControllerRepresentableContext<TermsViewController>) -> TermsViewController {
-        return TermsViewController()
-    }
-    
-    func updateUIViewController(_ uiViewController: TermsViewController, context: UIViewControllerRepresentableContext<TermsViewController>) {
-    }
-    
+    /// Collection View containing Terms
     var collectionView: UICollectionView!
+    /// Terms to be displayed
     private var terms: [Term] = []
+    /// Current selected cell
     var selectedCell: Int = -1
     
+    /// Sets up Navigation Bar buttons and title
     override func setupNavigationBar() {
         super.setupNavigationBar()
         navigationItem.title = "Terms".localized
@@ -32,12 +28,14 @@ final class TermsViewController: BaseViewController, UIViewControllerRepresentab
         navigationItem.setRightBarButtonItems([refreshButton, addButton], animated: false)
     }
     
+    /// Sets up elements in the view
     override func setupView() {
         super.setupView()
         setupCollectionView()
         fetchTerms()
     }
     
+    /// Creates a new Collection View and registers its cells
     func setupCollectionView() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -55,6 +53,7 @@ final class TermsViewController: BaseViewController, UIViewControllerRepresentab
         collectionView.register(TermCollectionViewCell.self)
     }
     
+    /// Fetches Terms from Database
     @objc private func fetchTerms() {
         do {
             self.terms = try Term.fetchAll()
@@ -70,22 +69,28 @@ final class TermsViewController: BaseViewController, UIViewControllerRepresentab
         }
     }
     
+    /// Presents the View Controller to create a new Term
     @objc private func goToCreateTerm() {
         let viewController = CreateTermViewController()
         viewController.delegate = self
-        viewController.termsCount = terms.count
         present(UINavigationController(rootViewController: viewController), animated: true)
     }
-    
-    @objc private func goToEditTerms() {
-        let viewController = EditTermsViewController()
-        viewController.delegate = self
-        // viewController.terms = terms
-        present(UINavigationController(rootViewController: viewController), animated: true)
-    }
-
 }
 
+// MARK: - Required UIViewControllerRepresentable functions
+
+extension TermsViewController {
+    typealias UIViewControllerType = TermsViewController
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<TermsViewController>) -> TermsViewController {
+        return TermsViewController()
+    }
+    
+    func updateUIViewController(_ uiViewController: TermsViewController, context: UIViewControllerRepresentableContext<TermsViewController>) {}
+}
+
+
+// MARK: - UICollectionView Data Source, Delegate and Delegate Flow Layout
 extension TermsViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -108,7 +113,7 @@ extension TermsViewController: UICollectionViewDelegate, UICollectionViewDelegat
 }
 
 extension TermsViewController: CreateTermViewControllerDelegate {
-    
+    /// Fetches the Terms
     func shouldRefresh() {
         fetchTerms()
     }
@@ -117,10 +122,12 @@ extension TermsViewController: CreateTermViewControllerDelegate {
 
 extension TermsViewController: TermCollectionViewCellDelegate {
     
-    func showDeleteAlert(item: Int) {
+    /// Show an alert to confirm the deletion of a Term
+    /// - Parameter item: Index of the term to be deleted
+    func showDeleteAlert(index: Int) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let deleteAction = UIAlertAction(title: "Delete".localized, style: .destructive) { [weak self] _ in
-            self?.deleteTerm(at: item)
+            self?.deleteTerm(at: index)
         }
         let cancelAction = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
         
@@ -129,6 +136,8 @@ extension TermsViewController: TermCollectionViewCellDelegate {
         present(alertController, animated: true)
     }
     
+    /// Deletes a Term with animation from the CollectionVIew
+    /// - Parameter index: Index of the Term to be deleted
     private func deleteTerm(at index: Int) {
         let term = terms[index]
         terms.remove(at: index)
@@ -137,18 +146,14 @@ extension TermsViewController: TermCollectionViewCellDelegate {
         fetchTerms()
     }
     
-    func goToTermDetail(item: Int) {
-        selectedCell = item
-        let term = terms[item]
+    /// Pushes the View Controller to Term Detail into the Navigation Stack
+    /// - Parameter item: Index of the term to shown
+    func goToTermDetail(index: Int) {
+        selectedCell = index
+        let term = terms[index]
         let viewController = TermDetailViewController()
         viewController.delegate = self
         viewController.term = term
         navigationController?.pushViewController(viewController, animated: true)
-    }
-}
-
-extension TermsViewController: EditTermsViewControllerDelegate {
-    func didEditTerms() {
-        fetchTerms()
     }
 }

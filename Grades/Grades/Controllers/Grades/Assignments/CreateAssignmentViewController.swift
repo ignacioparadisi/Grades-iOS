@@ -22,7 +22,6 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
     let leadingConstant: CGFloat = 16.0
     
     weak var delegate: CreateAssignmentViewControllerDelegate?
-    var assignment: AssignmentRealm?
     var contentView: UIView = UIView()
     let nameTextField: IPTextField = {
         let textField = IPTextField()
@@ -74,7 +73,7 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
         picker.placeholder = "On date".localized
         return picker
     }()
-    var subject: SubjectRealm = SubjectRealm()
+    var subject: Subject = Subject()
     
     override func setupView() {
         super.setupView()
@@ -267,14 +266,14 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
         }
     }
     
-    func edit(_ assignment: AssignmentRealm) {
-        self.assignment = assignment
-        nameTextField.text = assignment.name
-        minGradeTextField.text = "\(assignment.minGrade)"
-        maxGradeTextField.text = "\(assignment.maxGrade)"
-        gradeTextField.text = "\(assignment.grade)"
-        percentageTextField.text = "\(assignment.percentage * 100)"
-    }
+//    func edit(_ assignment: Assignment) {
+//        self.assignment = assignment
+//        nameTextField.text = assignment.name
+//        minGradeTextField.text = "\(assignment.minGrade)"
+//        maxGradeTextField.text = "\(assignment.maxGrade)"
+//        gradeTextField.text = "\(assignment.grade)"
+//        percentageTextField.text = "\(assignment.percentage * 100)"
+//    }
     
     private func checkRequiredFields() {
         if nameTextField.isEmpty
@@ -295,7 +294,7 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
             let minGrade = Float(minGradeText),
             let maxGrade = Float(maxGradeText),
             let percentage = Float(percentageText),
-            let date = datePickerTextField.date,
+            let deadline = datePickerTextField.date,
             !name.isEmpty {
             
             var grade: Float = 0
@@ -304,50 +303,26 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
             }
             
             if valuesAreValid(maxGrade: maxGrade, minGrade: minGrade, grade: grade, percentage: percentage) {
-                let assignment = AssignmentRealm()
-                assignment.subject = subject
-                assignment.name = name
-                assignment.minGrade = minGrade
-                assignment.maxGrade = maxGrade
-                assignment.percentage = percentage * 0.01
-                assignment.grade = grade
-                assignment.deadline = date
-                
-                if self.assignment != nil {
-                    self.assignment = assignment
-                } else {
-                    let service = AbstractServiceFactory.getServiceFactory(for: .realm)
-                    service.assignmentService.createAssignment(assignment) { result in
-                        switch result {
-                        case .success(let assignment):
-                            self.createNotification(for: assignment.copy() as! AssignmentRealm, subjectName: self.subject.name)
-                        case .failure(let error):
-                            print(error)
-                        }
-                        
-                    }
-                }
-                
+                let assignment = Assignment.create(name: name, grade: grade, maxGrade: maxGrade, minGrade: minGrade, percentage: percentage, deadline: deadline, subject: subject)
+                createNotification(for: assignment, subjectName: subject.name)
                 dismissView()
                 delegate?.didCreateAssignment()
             }
         }
     }
     
-    private func createNotification(for assignment: AssignmentRealm, subjectName: String) {
+    private func createNotification(for assignment: Assignment, subjectName: String) {
         let center = UNUserNotificationCenter.current()
         center.getNotificationSettings { settings in
             guard settings.authorizationStatus == .authorized else { return }
             
             if settings.alertSetting == .enabled {
                 self.scheduleNotification(for: assignment, subjectName: subjectName, notificationCenter: center)
-            } else {
-                
             }
         }
     }
     
-    private func scheduleNotification(for assignment: AssignmentRealm, subjectName: String, notificationCenter center: UNUserNotificationCenter) {
+    private func scheduleNotification(for assignment: Assignment, subjectName: String, notificationCenter center: UNUserNotificationCenter) {
         if assignment.deadline > Date() {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "EEEE"
@@ -362,7 +337,8 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
             
             let date = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: assignment.deadline)
             let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
-            let identifier = assignment.id
+            // TODO: Poner el id como string
+            let identifier = String(describing: Date())
             let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
             
             center.add(request) { error in

@@ -12,6 +12,8 @@ protocol CreateSubjectViewControllerDelegate: class {
     func shouldRefresh()
 }
 
+// TODO: Hacer esta vista con SwiftUI
+
 class CreateSubjectViewController: BaseViewController, ScrollableView {
 
     let titleTopConstant: CGFloat = 20.0
@@ -21,7 +23,6 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
     let leadingConstant: CGFloat = 16.0
     
     weak var delegate: CreateSubjectViewControllerDelegate?
-    var subject: SubjectRealm?
     var contentView: UIView = UIView()
     let nameTextField: IPTextField = {
         let textField = IPTextField()
@@ -41,7 +42,7 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
         textField.isRequired = true
         return textField
     }()
-    var term: TermRealm = TermRealm()
+    var term: Term = Term()
     
     override func setupView() {
         super.setupView()
@@ -155,21 +156,7 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
             let maxGrade = Float(maxGradeText) {
             
             if valuesAreValid(maxGrade: maxGrade, minGrade: minGrade) {
-                let subject = SubjectRealm()
-                subject.term = term
-                subject.name = name
-                subject.minGrade = minGrade
-                subject.maxGrade = maxGrade
-                
-                let service = AbstractServiceFactory.getServiceFactory(for: .realm)
-                service.subjectService.createSubject(subject) { result in
-                    switch result {
-                    case .success:
-                        print("Successfully created subject")
-                    case .failure:
-                        print("Failed creating subject")
-                    }
-                }
+                Subject.create(name: name, maxGrade: maxGrade, minGrade: minGrade, term: term)
                 dismissView()
                 delegate?.shouldRefresh()
             }

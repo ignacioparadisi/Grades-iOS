@@ -9,8 +9,8 @@
 import UIKit
 
 protocol TermCollectionViewCellDelegate: class {
-    func goToTermDetail(item: Int)
-    func showDeleteAlert(item: Int)
+    func goToTermDetail(index: Int)
+    func showDeleteAlert(index: Int)
 }
 
 class TermCollectionViewCell: UICollectionViewCell, ReusableView {
@@ -74,7 +74,7 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
     }
     
     @objc func showAlert() {
-        delegate?.showDeleteAlert(item: tag)
+        delegate?.showDeleteAlert(index: tag)
     }
     
     private func addSubjectView() {
@@ -91,7 +91,7 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
     @objc private func goToTermDetail(gestureRecognizer: UIGestureRecognizer) {
         switch gestureRecognizer.state {
         case .ended:
-            delegate?.goToTermDetail(item: tag)
+            delegate?.goToTermDetail(index: tag)
         default:
             break
         }

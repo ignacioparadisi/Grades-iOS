@@ -27,6 +27,7 @@ class MainTabBarController: UITabBarController {
        
     }
     
+    /// Add the Tab Bar Items to the View Controllers
     private func addItemsToViewControllers() {
         let homeImage = UIImage(named: .home)
         let homeItem = UITabBarItem(title: "Home".localized, image: homeImage, selectedImage: homeImage)

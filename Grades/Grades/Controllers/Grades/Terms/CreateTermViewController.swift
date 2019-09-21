@@ -8,6 +8,8 @@
 
 import UIKit
 
+// TODO: Hacer esta vista en SwiftUI
+
 protocol CreateTermViewControllerDelegate: class {
     func shouldRefresh()
 }
@@ -21,8 +23,6 @@ class CreateTermViewController: BaseViewController, ScrollableView {
     let leadingConstant: CGFloat = 16.0
     
     weak var delegate: CreateTermViewControllerDelegate?
-    var term: TermRealm?
-    var termsCount: Int = 0
     var contentView: UIView = UIView()
     let nameTextField: IPTextField = {
         let textField = IPTextField()
@@ -59,8 +59,6 @@ class CreateTermViewController: BaseViewController, ScrollableView {
     
     override func setupView() {
         super.setupView()
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         addScrollView()
         setupNameSection()
         setupGradesSection()

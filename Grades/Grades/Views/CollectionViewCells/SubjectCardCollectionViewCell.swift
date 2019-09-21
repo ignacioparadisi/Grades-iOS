@@ -23,8 +23,6 @@ class SubjectCardCollectionViewCell: UICollectionViewCell, ReusableView {
         return label
     }()
     private var progressRingView: ProgressRingView!
-    /// Subjects to be displayed
-    var subject: SubjectRealm = SubjectRealm()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

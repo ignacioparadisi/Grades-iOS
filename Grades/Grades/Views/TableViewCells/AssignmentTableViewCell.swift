@@ -96,7 +96,7 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
     /// Configures the cell with the gradable information and adds the semi-circle that is in the front
     ///
     /// - Parameter gradable: Gradable to be displayed
-    func configure(with assignment: AssignmentRealm) {
+    func configure(with assignment: Assignment) {
         if assignment.deadline >= Date() {
             separator.backgroundColor = UIColor(named: "accentColor")
         } else {

@@ -18,8 +18,8 @@ class SubjectDetailViewController: BaseViewController {
 
     var tableView: UITableView!
     let header: DetailHeader = DetailHeader(frame: .zero)
-    var subject: SubjectRealm = SubjectRealm()
-    var assignments: [AssignmentRealm] = []
+    var subject: Subject = Subject()
+    var assignments: [Assignment] = []
     weak var delegate: CreateSubjectViewControllerDelegate?
     
     override func setupNavigationBar() {
@@ -58,15 +58,7 @@ class SubjectDetailViewController: BaseViewController {
     }
     
     private func fetchAssignments() {
-        let service = AbstractServiceFactory.getServiceFactory(for: .realm)
-        service.assignmentService.fetchAssignments(for: subject) { result in
-            switch result {
-            case .success(let assignments):
-                self.assignments = assignments
-            case .failure:
-                break
-            } 
-        }
+        assignments = subject.getAssignments()
         tableView.reloadData()
     }
     
@@ -99,19 +91,7 @@ class SubjectDetailViewController: BaseViewController {
             ]
             tableView.deleteRows(at: indexPaths, with: .fade)
         }
-        
-        let service = AbstractServiceFactory.getServiceFactory(for: .realm).assignmentService
-        service.deleteAssignment(assignment) { result in
-            switch result {
-            case .success:
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                    self.tableView.reloadData()
-                })
-                self.delegate?.shouldRefresh()
-            case .failure:
-                print("Failed deleting assignment")
-            }
-        }
+        assignment.delete()
     }
 
 }

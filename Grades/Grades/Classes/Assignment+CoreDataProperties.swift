@@ -21,9 +21,9 @@ extension Assignment {
     @NSManaged public var maxGrade: Float
     @NSManaged public var minGrade: Float
     @NSManaged public var grade: Float
-    @NSManaged public var dateCreated: Date?
+    @NSManaged public var dateCreated: Date
     @NSManaged public var percentage: Float
-    @NSManaged public var deadline: Date?
+    @NSManaged public var deadline: Date
     @NSManaged public var subject: Subject?
     @NSManaged public var assignment: Assignment?
     @NSManaged public var assignments: NSSet?

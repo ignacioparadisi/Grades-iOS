@@ -8,7 +8,6 @@
 
 import UIKit
 import IQKeyboardManagerSwift
-import RealmSwift
 import UserNotifications
 import CoreData
 

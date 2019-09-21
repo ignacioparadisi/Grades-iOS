@@ -43,7 +43,7 @@ struct GradableView: View {
     var gradable: Gradable
     var body: some View {
         HStack {
-            Text("Materia 1")
+            Text(gradable.name)
             Spacer()
             GradableCharView(gradable: gradable)
                 .frame(width: 52, height: 52)
