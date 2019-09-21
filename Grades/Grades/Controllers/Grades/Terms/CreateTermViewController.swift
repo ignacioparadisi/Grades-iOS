@@ -59,6 +59,8 @@ class CreateTermViewController: BaseViewController, ScrollableView {
     
     override func setupView() {
         super.setupView()
+        isModalInPresentation = true
+        navigationController?.presentationController?.delegate = self
         addScrollView()
         setupNameSection()
         setupGradesSection()
@@ -69,6 +71,7 @@ class CreateTermViewController: BaseViewController, ScrollableView {
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = "Add Term".localized
+        navigationController?.navigationBar.prefersLargeTitles = false
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
         navigationItem.rightBarButtonItem = cancelButton
     }
@@ -261,4 +264,20 @@ extension CreateTermViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         checkRequiredFields()
     }
+}
+
+extension CreateTermViewController: UIAdaptivePresentationControllerDelegate {
+    
+    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        let alert = UIAlertController(title: "Dismiss", message: "Dismiss", preferredStyle: .alert)
+        let acceptButton = UIAlertAction(title: "Dismiss", style: .destructive) { _ in
+            self.dismiss(animated: true)
+        }
+        let cancelButton = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
+        alert.addAction(acceptButton)
+        alert.addAction(cancelButton)
+
+        present(alert, animated: true)
+    }
+    
 }

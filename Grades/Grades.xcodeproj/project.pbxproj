@@ -35,6 +35,7 @@
 		4FACFF5922F0FBD0000997E1 /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF5822F0FBD0000997E1 /* LabelTableViewCell.swift */; };
 		4FACFF5B22F124A8000997E1 /* EditTermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF5A22F124A8000997E1 /* EditTermViewController.swift */; };
 		4FCEA14C229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */; };
+		4FD3EB612335BCA8003BBD30 /* CreateTermView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD3EB602335BCA8003BBD30 /* CreateTermView.swift */; };
 		4FE7BD0822B5277600EB9590 /* Gradable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BD0722B5277600EB9590 /* Gradable.swift */; };
 		4FE7BD0A22B55CE800EB9590 /* FixedHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BD0922B55CE800EB9590 /* FixedHeaderLayout.swift */; };
 		4FEF7C702333DD3D00B155A9 /* Grades.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF7C6E2333DD3D00B155A9 /* Grades.xcdatamodeld */; };
@@ -126,6 +127,7 @@
 		4FACFF5822F0FBD0000997E1 /* LabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTableViewCell.swift; sourceTree = "<group>"; };
 		4FACFF5A22F124A8000997E1 /* EditTermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTermViewController.swift; sourceTree = "<group>"; };
 		4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyHeaderLayout.swift; sourceTree = "<group>"; };
+		4FD3EB602335BCA8003BBD30 /* CreateTermView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTermView.swift; sourceTree = "<group>"; };
 		4FE7BD0722B5277600EB9590 /* Gradable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradable.swift; sourceTree = "<group>"; };
 		4FE7BD0922B55CE800EB9590 /* FixedHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeaderLayout.swift; sourceTree = "<group>"; };
 		4FEF7C6F2333DD3D00B155A9 /* Grades.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Grades.xcdatamodel; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				4F66289B22A1462D001F2CD9 /* CreateTermViewController.swift */,
 				4F4A64FD22B99C1F003A1199 /* TermDetailViewController.swift */,
 				4FACFF5A22F124A8000997E1 /* EditTermViewController.swift */,
+				4FD3EB602335BCA8003BBD30 /* CreateTermView.swift */,
 			);
 			path = Terms;
 			sourceTree = "<group>";
@@ -684,6 +687,7 @@
 				4F3B693222F22F9F002C6263 /* TitleLabelTableViewCell.swift in Sources */,
 				4F54CD532333B6D800444FE1 /* CoreDataManager.swift in Sources */,
 				4F2FFB2222F1D1E40086B8B2 /* ProgressRingView.swift in Sources */,
+				4FD3EB612335BCA8003BBD30 /* CreateTermView.swift in Sources */,
 				4F6628A022A14B7E001F2CD9 /* UIViewController+Extension.swift in Sources */,
 				4F61FA8022EBE6F8008C6555 /* WatchSessionManager.swift in Sources */,
 				4FF6F420227A04B6000F14D2 /* AppDelegate.swift in Sources */,

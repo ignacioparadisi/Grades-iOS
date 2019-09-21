@@ -71,7 +71,7 @@ final class TermsViewController: BaseViewController, UIViewControllerRepresentab
     
     /// Presents the View Controller to create a new Term
     @objc private func goToCreateTerm() {
-        let viewController = CreateTermViewController()
+        let viewController =  CreateTermViewController()
         viewController.delegate = self
         present(UINavigationController(rootViewController: viewController), animated: true)
     }

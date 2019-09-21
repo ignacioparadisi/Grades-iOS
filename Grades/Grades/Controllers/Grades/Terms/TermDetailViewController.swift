@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum Section: CaseIterable {
+    case first
+}
+
 class TermDetailViewController: BaseViewController {
     /// Type of rows inside the Table View
     enum TableRows: Int, CaseIterable {

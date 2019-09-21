@@ -148,6 +148,16 @@ public struct Anchor {
     }
     public func edgesToSuperview(
         omitEdge edge: NSLayoutConstraint.Attribute = .notAnAttribute,
+        insets: UIEdgeInsets = .zero, toSafeAreaTop: Bool = false, toSafeAreaLeading: Bool = false, toSafeAreaBottom: Bool = false, toSafeAreaTrailing: Bool = false) -> Anchor {
+        let superviewAnchors = topToSuperview(constant: insets.top, toSafeArea: toSafeAreaTop)
+            .leadingToSuperview(constant: insets.left, toSafeArea: toSafeAreaLeading)
+            .bottomToSuperview(constant: insets.bottom, toSafeArea: toSafeAreaBottom)
+            .trailingToSuperview(constant: insets.right, toSafeArea: toSafeAreaTrailing)
+            .update(edge: edge, constraint: nil)
+        return self.insert(anchor: superviewAnchors)
+    }
+    public func edgesToSuperview(
+        omitEdge edge: NSLayoutConstraint.Attribute = .notAnAttribute,
         insets: UIEdgeInsets = .zero, toSafeArea: Bool = false) -> Anchor {
         let superviewAnchors = topToSuperview(constant: insets.top, toSafeArea: toSafeArea)
             .leadingToSuperview(constant: insets.left, toSafeArea: toSafeArea)

@@ -46,6 +46,8 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
     
     override func setupView() {
         super.setupView()
+        isModalInPresentation = false
+        navigationController?.presentationController?.delegate = self
         addScrollView()
         setupNameSection()
         setupGradesSection()
@@ -55,6 +57,7 @@ class CreateSubjectViewController: BaseViewController, ScrollableView {
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = "Add Subject".localized
+        navigationController?.navigationBar.prefersLargeTitles = false
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
         navigationItem.rightBarButtonItem = cancelButton
     }
@@ -207,4 +210,20 @@ extension CreateSubjectViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         checkRequiredFields()
     }
+}
+
+extension CreateSubjectViewController: UIAdaptivePresentationControllerDelegate {
+    
+    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        let alert = UIAlertController(title: "Dismiss", message: "Dismiss", preferredStyle: .alert)
+        let acceptButton = UIAlertAction(title: "Dismiss", style: .destructive) { _ in
+            self.dismiss(animated: true)
+        }
+        let cancelButton = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
+        alert.addAction(acceptButton)
+        alert.addAction(cancelButton)
+
+        present(alert, animated: true)
+    }
+    
 }
