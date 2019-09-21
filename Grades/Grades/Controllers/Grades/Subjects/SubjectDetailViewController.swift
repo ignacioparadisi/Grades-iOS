@@ -92,6 +92,7 @@ class SubjectDetailViewController: BaseViewController {
             tableView.deleteRows(at: indexPaths, with: .fade)
         }
         assignment.delete()
+        delegate?.shouldRefresh()
     }
 
 }

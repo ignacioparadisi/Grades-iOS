@@ -36,7 +36,9 @@ public class Subject: NSManagedObject, Identifiable, Gradable {
     
     func getAssignments() -> [Assignment] {
         if let assignmentsSet = assignments, let assignments = assignmentsSet.allObjects as? [Assignment] {
-            return assignments
+            return assignments.sorted {
+                $0.dateCreated.compare($1.dateCreated) == .orderedAscending
+            }
         }
         return []
     }

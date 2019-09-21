@@ -206,9 +206,13 @@ class CreateTermViewController: BaseViewController, ScrollableView {
             let endDate = endDateTextField.date {
             
             if valuesAreValid(maxGrade: maxGrade, minGrade: minGrade) {
-                Term.create(name: name, maxGrade: maxGrade, minGrade: minGrade, startDate: startDate, endDate: endDate)
-                dismissView()
-                delegate?.shouldRefresh()
+                do {
+                    try _ = Term.create(name: name, maxGrade: maxGrade, minGrade: minGrade, startDate: startDate, endDate: endDate)
+                    dismissView()
+                    delegate?.shouldRefresh()
+                } catch {
+                    print(error)
+                }
             }
         }
     }

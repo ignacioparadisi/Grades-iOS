@@ -23,6 +23,9 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
             refreshTable()
         }
     }
+    private lazy var subjects = {
+        return term.getSubjects()
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -103,7 +106,7 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
     }
     
     private func refreshTable() {
-        if term.getSubjects().isEmpty {
+        if subjects.isEmpty {
             addSubjectView()
         }
         collectionView.reloadData()
@@ -115,7 +118,7 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
 extension TermCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return term.subjects?.count ?? 0
+        return subjects.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -135,9 +138,7 @@ extension TermCollectionViewCell: UICollectionViewDelegate, UICollectionViewData
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = indexPath.item
         let cell = collectionView.dequeueReusableCell(for: indexPath) as SubjectCardCollectionViewCell
-        if let subjectsSet = term.subjects, let subjects = subjectsSet.allObjects as? [Subject] {
-            cell.configure(with: subjects[item])
-        }
+        cell.configure(with: subjects[item])
         return cell
     }
     

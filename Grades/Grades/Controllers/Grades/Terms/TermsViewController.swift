@@ -24,8 +24,8 @@ final class TermsViewController: BaseViewController, UIViewControllerRepresentab
         navigationItem.title = "Terms".localized
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateTerm))
-        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(fetchTerms))
-        navigationItem.setRightBarButtonItems([refreshButton, addButton], animated: false)
+        let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(fetchTerms))
+        navigationItem.setRightBarButtonItems([addButton, deleteButton], animated: false)
     }
     
     /// Sets up elements in the view

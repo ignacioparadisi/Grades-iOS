@@ -21,7 +21,7 @@ extension Subject {
     @NSManaged public var grade: Float
     @NSManaged public var maxGrade: Float
     @NSManaged public var minGrade: Float
-    @NSManaged public var dateCreated: Date?
+    @NSManaged public var dateCreated: Date
     @NSManaged public var term: Term?
     @NSManaged public var assignments: NSSet?
 

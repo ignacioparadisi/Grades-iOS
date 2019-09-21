@@ -1,5 +1,5 @@
 //
-//  GradesTests.swift
+//  CoreDataTermTests.swift
 //  GradesTests
 //
 //  Created by Ignacio Paradisi on 9/21/19.
@@ -7,14 +7,13 @@
 //
 
 import XCTest
+import CoreData
+// @testable import Term
 
-class GradesTests: XCTestCase {
-    
-    var coreDataManager: CoreDataManager!
+class CoreDataTermTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        coreDataManager = CoreDataManager.shared
     }
 
     override func tearDown() {
@@ -28,13 +27,15 @@ class GradesTests: XCTestCase {
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        measure {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
     
-    func testCoreStackInitialization() {
-        XCTAssertNotNil(coreDataManager.persistentContainer)
+    func testCreateTerm() {
+        let term = try! Term.create(name: "Semestre 1", maxGrade: 20.0, minGrade: 10.0, startDate: Date(), endDate: Date() + 1)
+        print(term)
+        XCTAssertNotNil(term)
     }
 
 }

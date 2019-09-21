@@ -106,6 +106,7 @@ class TermDetailViewController: BaseViewController {
             tableView.deleteRows(at: indexPaths, with: .fade)
         }
         subject.delete()
+        delegate?.shouldRefresh()
     }
 }
 

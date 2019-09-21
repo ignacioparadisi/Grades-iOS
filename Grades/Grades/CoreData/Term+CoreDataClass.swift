@@ -10,6 +10,12 @@
 import UIKit
 import CoreData
 
+enum TermError: Error {
+    case invalidMinGradeOrMaxGrade
+    case invalidStartDateOrEndDate
+    case invalidName
+}
+
 
 public class Term: NSManagedObject, Identifiable, Gradable {
     
@@ -19,7 +25,16 @@ public class Term: NSManagedObject, Identifiable, Gradable {
     /// - Parameter minGrade: Minimum grade to pass the Term
     /// - Parameter startDate: Start date of the Term
     /// - Parameter endDate: Final date of the Term
-    static func create(name: String, maxGrade: Float, minGrade: Float, startDate: Date, endDate: Date) {
+    static func create(name: String, maxGrade: Float, minGrade: Float, startDate: Date, endDate: Date) throws -> Term {
+        if maxGrade < minGrade {
+            throw TermError.invalidMinGradeOrMaxGrade
+        }
+        if endDate < startDate {
+            throw TermError.invalidStartDateOrEndDate
+        }
+        if name == "" {
+            throw TermError.invalidName
+        }
         let term = Term(context: CoreDataManager.shared.context)
         term.name = name
         term.grade = 0.0
@@ -28,11 +43,14 @@ public class Term: NSManagedObject, Identifiable, Gradable {
         term.startDate = startDate
         term.endDate = endDate
         term.dateCreated = Date()
+        return term
     }
     
     /// Fetches all Term stored in Core Data
     static func fetchAll() throws -> [Term] {
         let request: NSFetchRequest<Term> = Term.fetchRequest()
+        let sort = NSSortDescriptor(key: "dateCreated", ascending: false)
+        request.sortDescriptors = [sort]
         let result = try CoreDataManager.shared.context.fetch(request)
         return result
     }
@@ -55,7 +73,9 @@ public class Term: NSManagedObject, Identifiable, Gradable {
     /// Converts the NSSet of subjects into an Array of Subjects
     func getSubjects() -> [Subject] {
         if let subjectsSet = subjects, let subjects = subjectsSet.allObjects as? [Subject] {
-            return subjects
+            return subjects.sorted {
+                $0.dateCreated.compare($1.dateCreated) == .orderedAscending
+            }
         }
         return []
     }

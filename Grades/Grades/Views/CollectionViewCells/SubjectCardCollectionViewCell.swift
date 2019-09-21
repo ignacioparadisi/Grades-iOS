@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class SubjectCardCollectionViewCell: UICollectionViewCell, ReusableView {
     
@@ -36,31 +37,31 @@ class SubjectCardCollectionViewCell: UICollectionViewCell, ReusableView {
     
     /// Adds all the components to the view
     private func initialize() {
-        let bottomLine = UIView()
-        bottomLine.backgroundColor = .systemGray3
-        addSubview(bottomLine)
-        bottomLine.anchor
-            .trailing(to: trailingAnchor)
-            .bottom(to: bottomAnchor)
-            .leading(to: leadingAnchor, constant: margin)
-            .height(constant: 1)
-            .activate()
-
-        addSubview(nameLabel)
-        nameLabel.anchor
-            .top(to: topAnchor)
-            .leading(to: leadingAnchor, constant: margin)
-            .bottom(to: bottomAnchor, constant: -10)
-            .centerY(to: centerYAnchor)
-            .activate()
-        
-        progressRingView = ProgressRingView(radius: circleRadius)
-        addSubview(progressRingView)
-        progressRingView.anchor
-            .leading(to: nameLabel.trailingAnchor, constant: 8)
-            .trailing(to: trailingAnchor, constant: -margin)
-            .centerY(to: centerYAnchor)
-            .activate()
+//        let bottomLine = UIView()
+//        bottomLine.backgroundColor = .systemGray3
+//        addSubview(bottomLine)
+//        bottomLine.anchor
+//            .trailing(to: trailingAnchor)
+//            .bottom(to: bottomAnchor)
+//            .leading(to: leadingAnchor, constant: margin)
+//            .height(constant: 1)
+//            .activate()
+//
+//        addSubview(nameLabel)
+//        nameLabel.anchor
+//            .top(to: topAnchor)
+//            .leading(to: leadingAnchor, constant: margin)
+//            .bottom(to: bottomAnchor, constant: -10)
+//            .centerY(to: centerYAnchor)
+//            .activate()
+//
+//        progressRingView = ProgressRingView(radius: circleRadius)
+//        addSubview(progressRingView)
+//        progressRingView.anchor
+//            .leading(to: nameLabel.trailingAnchor, constant: 8)
+//            .trailing(to: trailingAnchor, constant: -margin)
+//            .centerY(to: centerYAnchor)
+//            .activate()
     }
     
     
@@ -68,16 +69,38 @@ class SubjectCardCollectionViewCell: UICollectionViewCell, ReusableView {
     ///
     /// - Parameter subject: Subject to be displayed
     func configure(with subject: Subject) {
-        nameLabel.text = subject.name
+        if let view = UIHostingController(rootView: SubjectCardView(subject: subject)).view {
+            addSubview(view)
+            view.backgroundColor = .clear
+            view.anchor.edgesToSuperview().activate()
+        }
+//        nameLabel.text = subject.name
+//
+//        progressRingView.removeFromSuperview()
+//        progressRingView = ProgressRingView(radius: circleRadius)
+//        addSubview(progressRingView)
+//        progressRingView.anchor
+//            .leading(to: nameLabel.trailingAnchor, constant: 8)
+//            .trailing(to: trailingAnchor, constant: -margin)
+//            .centerY(to: centerYAnchor)
+//            .activate()
+//        progressRingView.configure(with: subject)
+    }
+}
+
+struct SubjectCardView: View {
+    let subject: Subject
+    var body: some View {
+        VStack {
+            HStack {
+                Text(subject.name)
+                Spacer()
+                GradableCharView(gradable: subject).frame(width: 52, height: 52)
+            }
+            Spacer()
+            Rectangle().fill(Color(.systemGray3)).frame(height: 1)
+        }
         
-        progressRingView.removeFromSuperview()
-        progressRingView = ProgressRingView(radius: circleRadius)
-        addSubview(progressRingView)
-        progressRingView.anchor
-            .leading(to: nameLabel.trailingAnchor, constant: 8)
-            .trailing(to: trailingAnchor, constant: -margin)
-            .centerY(to: centerYAnchor)
-            .activate()
-        progressRingView.configure(with: subject)
+        .padding()
     }
 }
