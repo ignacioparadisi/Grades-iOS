@@ -28,7 +28,7 @@ class TermDateTableViewCell: UITableViewCell, ReusableView {
     
     func configure(startDate: Date, endDate: Date) {
         if let view = UIHostingController(rootView: TermDatesView(startDate: startDate, endDate: endDate)).view {
-            view.removeFromSuperview()
+            subviews.last?.removeFromSuperview()
             addSubview(view)
             view.anchor.edgesToSuperview(insets: UIEdgeInsets(top: 16, left: 16, bottom: 0, right: -16)).activate()
         }
@@ -49,7 +49,7 @@ struct TermDatesView: View {
             Spacer()
             Text(dateFormatter.string(from: startDate))
             Spacer()
-            Divider()
+            Divider().frame(width: 2)
             Spacer()
             Text(dateFormatter.string(from: endDate))
             Spacer()
