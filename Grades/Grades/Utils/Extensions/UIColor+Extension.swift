@@ -10,6 +10,8 @@ import UIKit
 
 extension UIColor {
     
+    static let accentColor = UIColor(named: "accentColor")
+    
     /// Creates a UIColor from RGB
     ///
     /// - Parameters:

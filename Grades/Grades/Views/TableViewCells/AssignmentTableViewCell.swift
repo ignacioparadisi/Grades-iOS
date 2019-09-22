@@ -53,8 +53,9 @@ struct AssignmentView: View {
                 Text(assignment.name)
                 HStack{
                     Divider()
-                    .background(getDividerColor())
                         .frame(width: 2)
+                        .background(getDividerColor())
+                        
                     Text(dateFormatter.string(from: assignment.deadline))
                         .font(.body)
                         .foregroundColor(getDateTextColor())
@@ -68,7 +69,7 @@ struct AssignmentView: View {
     }
     
     private func getDividerColor() -> Color {
-        return (assignment.deadline >= Date()) ? Color("accentColor") : Color(.systemGray3)
+        return (assignment.deadline >= Date()) ? Color(UIColor.accentColor!) : Color(.systemGray3)
     }
     
     private func getDateTextColor() -> Color {
