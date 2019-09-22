@@ -6,10 +6,21 @@
 //  Copyright © 2019 Ignacio Paradisi. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
 
 enum Section: CaseIterable {
     case first
+}
+
+struct TermDetailViewControllerWrapper: UIViewControllerRepresentable {
+    typealias UIViewControllerType = TermDetailViewController
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<TermDetailViewControllerWrapper>) -> TermDetailViewController {
+        return TermDetailViewController()
+    }
+    
+    func updateUIViewController(_ uiViewController: TermDetailViewController, context: UIViewControllerRepresentableContext<TermDetailViewControllerWrapper>) {
+    }
 }
 
 class TermDetailViewController: BaseViewController {

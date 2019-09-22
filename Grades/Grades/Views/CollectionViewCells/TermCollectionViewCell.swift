@@ -18,14 +18,13 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
     weak var delegate: TermCollectionViewCellDelegate?
     var collectionView: UICollectionView!
     var isInitialized: Bool = false
-    var term: Term = Term() {
-        didSet {
-            refreshTable()
-        }
+    var term: Term = Term()
+    var subjects: [Subject] = []
+    
+    init(term: Term) {
+        super.init(frame: .zero)
+        initialize()
     }
-    private lazy var subjects = {
-        return term.getSubjects()
-    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,14 +38,6 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
         super.init(coder: aDecoder)
         if !isInitialized {
            initialize()
-            isInitialized = true
-        }
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        if !isInitialized {
-            initialize()
             isInitialized = true
         }
     }
@@ -72,12 +63,12 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(goToTermDetail(gestureRecognizer:)))
         addGestureRecognizer(tapGesture)
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(showAlert))
-        addGestureRecognizer(longPressGesture)
     }
     
-    @objc func showAlert() {
-        delegate?.showDeleteAlert(index: tag)
+    func configure(with term: Term) {
+        self.term = term
+        subjects = term.getSubjects()
+        refreshTable()
     }
     
     private func addSubjectView() {
@@ -106,9 +97,9 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
     }
     
     private func refreshTable() {
-        if subjects.isEmpty {
-            addSubjectView()
-        }
+//        if subjects.isEmpty {
+//            addSubjectView()
+//        }
         collectionView.reloadData()
         collectionView.collectionViewLayout.invalidateLayout()
     }

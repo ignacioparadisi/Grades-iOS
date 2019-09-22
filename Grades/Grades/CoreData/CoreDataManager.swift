@@ -20,7 +20,7 @@ class CoreDataManager {
     }
     
     lazy var context =  {
-        persistentContainer.newBackgroundContext()
+        persistentContainer.viewContext
     }()
     
     // MARK: - Core Data stack

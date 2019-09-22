@@ -44,7 +44,7 @@ public class Subject: NSManagedObject, Identifiable, Gradable {
     }
     
     func calculateGrade() {
-        grade = Calculator.getGrade(for: getAssignments())
+        grade = Calculator.getGrade(for: getAssignments(), parent: self)
         term?.calculateGrade()
     }
 }

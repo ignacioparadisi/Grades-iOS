@@ -42,10 +42,11 @@ struct BarChartView: View {
             VStack(alignment: .leading) {
                 ForEach(0..<gradables.count, id: \.self) { index in
                     Text("\(index + 1). \(self.gradables[index].name)")
+                        .lineLimit(0)
                         .padding(2)
                 }
             }
-            Spacer()
+//            Spacer()
             HStack {
                 Spacer()
                 ForEach(0..<gradables.count, id: \.self) { index in
@@ -72,7 +73,7 @@ struct BarChartView: View {
                         
                 }
             }
-            Text("\(index + 1)")
+            Text("\(index + 1)").font(.caption)
         }
     }
 }

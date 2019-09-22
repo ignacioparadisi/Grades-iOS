@@ -82,7 +82,7 @@ public class Term: NSManagedObject, Identifiable, Gradable {
     
     /// Calculate Term grade by calculating the average of Subjects
     func calculateGrade() {
-        grade = Calculator.getAverageGrade(for: getSubjects())
+        grade = Calculator.getAverageGrade(for: getSubjects(), parent: self)
     }
     
 }

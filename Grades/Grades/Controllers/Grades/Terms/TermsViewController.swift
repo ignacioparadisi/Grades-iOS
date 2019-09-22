@@ -10,7 +10,7 @@ import UIKit
 import SwiftUI
 
 
-final class TermsViewController: BaseViewController, UIViewControllerRepresentable {
+final class TermsViewController: BaseViewController {
     /// Collection View containing Terms
     var collectionView: UICollectionView!
     /// Terms to be displayed
@@ -24,8 +24,7 @@ final class TermsViewController: BaseViewController, UIViewControllerRepresentab
         navigationItem.title = "Terms".localized
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateTerm))
-        let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(fetchTerms))
-        navigationItem.setRightBarButtonItems([addButton, deleteButton], animated: false)
+        navigationItem.setRightBarButtonItems([addButton], animated: false)
     }
     
     /// Sets up elements in the view
@@ -61,12 +60,6 @@ final class TermsViewController: BaseViewController, UIViewControllerRepresentab
             print("Error fetching terms")
         }
         collectionView.reloadData()
-        if !terms.isEmpty {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                let indexPath = IndexPath(item: self.terms.count - 1, section: 0)
-                self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-            }
-        }
     }
     
     /// Presents the View Controller to create a new Term
@@ -77,19 +70,6 @@ final class TermsViewController: BaseViewController, UIViewControllerRepresentab
     }
 }
 
-// MARK: - Required UIViewControllerRepresentable functions
-
-extension TermsViewController {
-    typealias UIViewControllerType = TermsViewController
-    
-    func makeUIViewController(context: UIViewControllerRepresentableContext<TermsViewController>) -> TermsViewController {
-        return TermsViewController()
-    }
-    
-    func updateUIViewController(_ uiViewController: TermsViewController, context: UIViewControllerRepresentableContext<TermsViewController>) {}
-}
-
-
 // MARK: - UICollectionView Data Source, Delegate and Delegate Flow Layout
 extension TermsViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
@@ -98,11 +78,11 @@ extension TermsViewController: UICollectionViewDelegate, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = indexPath.item
+        let index = indexPath.item
         let cell = collectionView.dequeueReusableCell(for: indexPath) as TermCollectionViewCell
         cell.delegate = self
-        cell.tag = item
-        cell.term = terms[item]
+        cell.tag = index
+        cell.configure(with: terms[index])
         return cell
     }
     
