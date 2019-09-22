@@ -48,7 +48,8 @@ struct GradableView: View {
             GradableCharView(gradable: gradable)
                 .frame(width: 52, height: 52)
         }
-        .padding()
+        .padding([.horizontal])
+        .padding([.vertical], 7)
         .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
     }
 }
@@ -73,14 +74,14 @@ struct GradableCharView: View {
                     .stroke(Color(.systemGray3), style: StrokeStyle(lineWidth: self.lineWidth, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [], dashPhase: 0))
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .rotationEffect(Angle(degrees: -210))
-                    .offset(x: 0, y: 2)
+                    .offset(x: 0, y: 1)
                 
                 Circle()
                     .trim(from: self.startAngle, to: self.gradableEndAngle)
                     .stroke(Color(UIColor.getColor(for: self.gradable)), style: StrokeStyle(lineWidth: self.lineWidth, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [], dashPhase: 0))
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .rotationEffect(Angle(degrees: -210))
-                    .offset(x: 0, y: 2)
+                    .offset(x: 0, y: 1)
                     .onAppear {
                         self.animateRing(self.gradable)
                 }
@@ -88,6 +89,7 @@ struct GradableCharView: View {
                 Text("\(Int(self.gradable.grade))")
             }
         }
+        .padding(.top, 9)
     }
     
     func animateRing(_ gradable: Gradable) {
