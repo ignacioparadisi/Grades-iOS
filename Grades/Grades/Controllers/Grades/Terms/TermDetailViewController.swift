@@ -215,5 +215,10 @@ extension TermDetailViewController: EditTermViewControllerDelegate {
         tableView.reloadData()
         delegate?.shouldRefresh()
     }
+    
+    func didDeleteTerm() {
+        delegate?.shouldRefresh()
+        navigationController?.popViewController(animated: true)
+    }
 }
 

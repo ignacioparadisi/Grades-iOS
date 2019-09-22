@@ -10,6 +10,7 @@ import UIKit
 
 protocol EditTermViewControllerDelegate: class {
     func didEditTerm(_ term: Term)
+    func didDeleteTerm()
 }
 
 class EditTermViewController: BaseViewController {
@@ -47,6 +48,7 @@ class EditTermViewController: BaseViewController {
     override func setupView() {
         super.setupView()
         setupDuration()
+        setupDeleteButton()
         setupSaveButton()
         
         startDateTextField.date = term.startDate
@@ -99,6 +101,28 @@ class EditTermViewController: BaseViewController {
             .trailingToSuperview(constant: trailingConstant)
             .leading(to: view.centerXAnchor, constant: leadingConstant / 2)
             .activate()
+    }
+    
+    private func setupDeleteButton() {
+        let deleteButton = IPButton()
+        deleteButton.backgroundColor = .systemGray4
+        deleteButton.setTitle("Delete".localized, for: .normal)
+        deleteButton.setTitleColor(.systemRed, for: .normal)
+        deleteButton.addTarget(self, action: #selector(deleteTerm), for: .touchUpInside)
+        
+        view.addSubview(deleteButton)
+        
+        deleteButton.anchor
+            .top(to: startDateTextField.bottomAnchor, constant: titleTopConstant)
+            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
+            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
+            .activate()
+    }
+    
+    @objc private func deleteTerm() {
+        term.delete()
+        delegate?.didDeleteTerm()
+        dismiss(animated: true)
     }
     
     private func setupSaveButton() {

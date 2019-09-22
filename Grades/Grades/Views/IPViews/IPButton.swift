@@ -20,9 +20,9 @@ class IPButton: UIButton {
     }
     override var isHighlighted: Bool {
         didSet {
-            UIView.animate(withDuration: 0.3) {
-                self.backgroundColor = self.isHighlighted ? self.color?.darker(by: self.highlightDarknessPercentage) : self.color
-            }
+//            UIView.animate(withDuration: 0.3) {
+//                self.backgroundColor = self.isHighlighted ? self.color?.darker(by: self.highlightDarknessPercentage) : self.color
+//            }
             shrink(down: isHighlighted)
         }
     }

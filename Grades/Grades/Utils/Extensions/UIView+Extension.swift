@@ -13,7 +13,7 @@ extension UIView {
     func shrink(down: Bool) {
         UIView.animate(withDuration: 0.3) {
             if down {
-                self.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
+                self.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
             } else {
                 self.transform = .identity
             }
