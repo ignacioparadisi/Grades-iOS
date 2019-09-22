@@ -58,6 +58,7 @@ class IPButton: UIButton {
     
     private func initialize() {
         layer.cornerRadius = 10.0
+        backgroundColor = UIColor(named: "accentColor")
 //        setTitleColor(ThemeManager.currentTheme.textColor, for: .normal)
 //        setTitleColor(ThemeManager.currentTheme.disabledButtonTextColor, for: .disabled)
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .title3)

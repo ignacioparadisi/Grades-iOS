@@ -73,14 +73,14 @@ struct GradableCharView: View {
                     .stroke(Color(.systemGray3), style: StrokeStyle(lineWidth: self.lineWidth, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [], dashPhase: 0))
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .rotationEffect(Angle(degrees: -210))
-                    .offset(x: 0, y: 1)
+                    .offset(x: 0, y: 2)
                 
                 Circle()
                     .trim(from: self.startAngle, to: self.gradableEndAngle)
                     .stroke(Color(UIColor.getColor(for: self.gradable)), style: StrokeStyle(lineWidth: self.lineWidth, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [], dashPhase: 0))
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .rotationEffect(Angle(degrees: -210))
-                    .offset(x: 0, y: 1)
+                    .offset(x: 0, y: 2)
                     .onAppear {
                         self.animateRing(self.gradable)
                 }

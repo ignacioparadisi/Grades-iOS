@@ -28,7 +28,7 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
         textField.isRequired = true
         return textField
     }()
-    let addButton = IPButton()
+    let saveButton = IPButton()
     let minGradeTextField: IPTextField = {
         let textField = IPTextField()
         textField.keyboardType = .decimalPad
@@ -246,18 +246,18 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
     }
     
     private func setupSaveButton() {
-        addButton.setTitle("Save".localized, for: .normal)
-        addButton.addTarget(self, action: #selector(createAssignment), for: .touchUpInside)
-        addButton.color = UIColor(named: "accendColor")
-        addButton.isEnabled = false
-        contentView.addSubview(addButton)
-        addButton.anchor
+        saveButton.setTitle("Save".localized, for: .normal)
+        saveButton.addTarget(self, action: #selector(createAssignment), for: .touchUpInside)
+        saveButton.color = UIColor(named: "accentColor")
+        saveButton.isEnabled = false
+        contentView.addSubview(saveButton)
+        saveButton.anchor
             .top(greaterOrEqual: datePickerTextField.bottomAnchor, constant: titleTopConstant)
             .bottom(to: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -20)
             .trailing(to: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -16)
             .leading(to: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 16)
             .activate()
-        let topConstraint = addButton.topAnchor.constraint(greaterThanOrEqualTo: minGradeTextField.bottomAnchor, constant: 20)
+        let topConstraint = saveButton.topAnchor.constraint(greaterThanOrEqualTo: minGradeTextField.bottomAnchor, constant: 20)
         topConstraint.isActive = true
     }
     
@@ -269,25 +269,16 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
         }
     }
     
-//    func edit(_ assignment: Assignment) {
-//        self.assignment = assignment
-//        nameTextField.text = assignment.name
-//        minGradeTextField.text = "\(assignment.minGrade)"
-//        maxGradeTextField.text = "\(assignment.maxGrade)"
-//        gradeTextField.text = "\(assignment.grade)"
-//        percentageTextField.text = "\(assignment.percentage * 100)"
-//    }
-    
     private func checkRequiredFields() {
         if nameTextField.isEmpty
             || minGradeTextField.isEmpty
             || maxGradeTextField.isEmpty
             || percentageTextField.isEmpty
             || datePickerTextField.isEmpty {
-            addButton.isEnabled = false
+            saveButton.isEnabled = false
             return
         }
-        addButton.isEnabled = true
+        saveButton.isEnabled = true
     }
     
     @objc private func createAssignment() {
