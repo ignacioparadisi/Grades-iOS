@@ -46,6 +46,11 @@
 		4FCD778B233838F400A2FA5E /* Subject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD7783233838F400A2FA5E /* Subject+CoreDataProperties.swift */; };
 		4FCD778C233838F400A2FA5E /* Term+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD7784233838F400A2FA5E /* Term+CoreDataClass.swift */; };
 		4FCD778D233838F400A2FA5E /* Term+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD7785233838F400A2FA5E /* Term+CoreDataProperties.swift */; };
+		4FCD778F23384B0000A2FA5E /* AssignmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD778E23384B0000A2FA5E /* AssignmentDetailViewController.swift */; };
+		4FCD779523384CEC00A2FA5E /* CircularSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FCD779123384CEC00A2FA5E /* CircularSlider.xib */; };
+		4FCD779623384CEC00A2FA5E /* RotationGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD779223384CEC00A2FA5E /* RotationGesture.swift */; };
+		4FCD779723384CEC00A2FA5E /* CircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD779323384CEC00A2FA5E /* CircularSlider.swift */; };
+		4FCD779823384CEC00A2FA5E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD779423384CEC00A2FA5E /* Utils.swift */; };
 		4FCEA14C229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */; };
 		4FD3EB612335BCA8003BBD30 /* CreateTermView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD3EB602335BCA8003BBD30 /* CreateTermView.swift */; };
 		4FE7BD0A22B55CE800EB9590 /* FixedHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BD0922B55CE800EB9590 /* FixedHeaderLayout.swift */; };
@@ -139,6 +144,11 @@
 		4FCD7783233838F400A2FA5E /* Subject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4FCD7784233838F400A2FA5E /* Term+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Term+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4FCD7785233838F400A2FA5E /* Term+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Term+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4FCD778E23384B0000A2FA5E /* AssignmentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailViewController.swift; sourceTree = "<group>"; };
+		4FCD779123384CEC00A2FA5E /* CircularSlider.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircularSlider.xib; sourceTree = "<group>"; };
+		4FCD779223384CEC00A2FA5E /* RotationGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationGesture.swift; sourceTree = "<group>"; };
+		4FCD779323384CEC00A2FA5E /* CircularSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularSlider.swift; sourceTree = "<group>"; };
+		4FCD779423384CEC00A2FA5E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyHeaderLayout.swift; sourceTree = "<group>"; };
 		4FD3EB602335BCA8003BBD30 /* CreateTermView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTermView.swift; sourceTree = "<group>"; };
 		4FE7BD0922B55CE800EB9590 /* FixedHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeaderLayout.swift; sourceTree = "<group>"; };
@@ -255,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				4F6C602222B5BAC800C7A931 /* CreateAssignmentViewController.swift */,
+				4FCD778E23384B0000A2FA5E /* AssignmentDetailViewController.swift */,
 			);
 			path = Assignments;
 			sourceTree = "<group>";
@@ -268,6 +279,17 @@
 				4FCD777B2338371B00A2FA5E /* Grades.xcdatamodeld */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4FCD779023384CDD00A2FA5E /* CircularSlider */ = {
+			isa = PBXGroup;
+			children = (
+				4FCD779323384CEC00A2FA5E /* CircularSlider.swift */,
+				4FCD779123384CEC00A2FA5E /* CircularSlider.xib */,
+				4FCD779223384CEC00A2FA5E /* RotationGesture.swift */,
+				4FCD779423384CEC00A2FA5E /* Utils.swift */,
+			);
+			path = CircularSlider;
 			sourceTree = "<group>";
 		};
 		4FCEA14D229F557400CD4AC6 /* Layouts */ = {
@@ -397,6 +419,7 @@
 		4FF6F458227A0C14000F14D2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4FCD779023384CDD00A2FA5E /* CircularSlider */,
 				4FF6F463227A128F000F14D2 /* Protocols */,
 				4FF6F45A227A0C93000F14D2 /* Enums */,
 				4FF6F459227A0C1E000F14D2 /* Extensions */,
@@ -555,6 +578,7 @@
 				4FF6F42A227A04B8000F14D2 /* LaunchScreen.storyboard in Resources */,
 				4F7EE96322A1914300E34672 /* Localizable.strings in Resources */,
 				4FF6F427227A04B8000F14D2 /* Assets.xcassets in Resources */,
+				4FCD779523384CEC00A2FA5E /* CircularSlider.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,6 +627,7 @@
 				4FFCBC0F22F37BF900A7172A /* TermDateTableViewCell.swift in Sources */,
 				4F4A650122B99D40003A1199 /* GradableTableViewCell.swift in Sources */,
 				4FF6F47F227A410B000F14D2 /* UIView+Extension.swift in Sources */,
+				4FCD779623384CEC00A2FA5E /* RotationGesture.swift in Sources */,
 				4F09643D22B583B700D72277 /* CreateSubjectViewController.swift in Sources */,
 				4FF6F44C227A0BAE000F14D2 /* CalendarViewController.swift in Sources */,
 				4FF6F469227A1585000F14D2 /* ReusableView.swift in Sources */,
@@ -616,7 +641,9 @@
 				4FACFF5B22F124A8000997E1 /* EditTermViewController.swift in Sources */,
 				4FF6F46F227A15BE000F14D2 /* UICollectionView+Extension.swift in Sources */,
 				4F6C601D22B59DC300C7A931 /* PopAnimator.swift in Sources */,
+				4FCD779823384CEC00A2FA5E /* Utils.swift in Sources */,
 				4FCD7787233838F400A2FA5E /* Gradable+CoreDataProperties.swift in Sources */,
+				4FCD778F23384B0000A2FA5E /* AssignmentDetailViewController.swift in Sources */,
 				4FF6F44B227A0BAE000F14D2 /* TermsViewController.swift in Sources */,
 				4FF6F44D227A0BAE000F14D2 /* MainTabBarController.swift in Sources */,
 				4FCD7786233838F400A2FA5E /* Gradable+CoreDataClass.swift in Sources */,
@@ -634,6 +661,7 @@
 				4FF6F475227A211D000F14D2 /* String+Extension.swift in Sources */,
 				4FF6F473227A1F90000F14D2 /* UIFont+Extension.swift in Sources */,
 				4FF6F46D227A15AF000F14D2 /* UITableView+Extension.swift in Sources */,
+				4FCD779723384CEC00A2FA5E /* CircularSlider.swift in Sources */,
 				4FF6F462227A119F000F14D2 /* NSLayoutAnchor+Extension.swift in Sources */,
 				4FCD778D233838F400A2FA5E /* Term+CoreDataProperties.swift in Sources */,
 				4F66289C22A1462D001F2CD9 /* CreateTermViewController.swift in Sources */,

@@ -360,36 +360,37 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
     }
     
     private func valuesAreValid(maxGrade: Float, minGrade: Float, grade: Float, percentage: Float) -> Bool {
-        if maxGrade <= 0 || minGrade < 0 || grade < 0 {
-            if maxGrade <= 0 {
-                maxGradeTextField.showErrorBorder()
-            }
-            if minGrade <= 0 {
-                minGradeTextField.showErrorBorder()
-            }
-            if grade <= 0 {
-                gradeTextField.showErrorBorder()
-            }
-            return false
+        var valid = true
+        if maxGrade <= 0 {
+            maxGradeTextField.showErrorBorder()
+            valid = false
         }
-        
+        if minGrade <= 0 {
+            minGradeTextField.showErrorBorder()
+            valid = false
+        }
+        if grade <= 0 {
+            gradeTextField.showErrorBorder()
+            valid = false
+        }
         if percentage <= 0 {
             percentageTextField.showErrorBorder()
-            return false
+            valid = false
         }
-        
-        if percentage > 100 {
+        if percentage > 100  || percentage < 0 {
             percentageTextField.showErrorBorder()
-            return false
+            valid = false
         }
-        
         if maxGrade <= minGrade {
             maxGradeTextField.showErrorBorder()
             minGradeTextField.showErrorBorder()
-            return false
+            valid = false
         }
-        
-        return true
+        if grade > maxGrade || grade < minGrade {
+            gradeTextField.showErrorBorder()
+            valid = false
+        }
+        return valid
     }
     
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CircularSlider" customModule="Grades" customModuleProvider="target">
+            <connections>
+                <outlet property="textfield" destination="ZBy-16-9Op" id="EGp-oD-0kh"/>
+                <outlet property="titleLabel" destination="Lbn-0y-dio" id="yiJ-t3-HUO"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbn-0y-dio">
+                    <rect key="frame" x="20" y="97.5" width="280" height="36"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="20,00" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZBy-16-9Op">
+                    <rect key="frame" x="20" y="141.5" width="280" height="37.5"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="KRF-FF-zcp"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="KRF-FF-zcp"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="nyW-nn-ScH"/>
+                    </connections>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ZBy-16-9Op" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="4RU-hN-87r"/>
+                <constraint firstItem="ZBy-16-9Op" firstAttribute="top" secondItem="Lbn-0y-dio" secondAttribute="bottom" constant="8" id="5ZU-J7-q5t"/>
+                <constraint firstItem="Lbn-0y-dio" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="QRh-iE-94t"/>
+                <constraint firstAttribute="trailing" secondItem="ZBy-16-9Op" secondAttribute="trailing" constant="20" id="S3n-BC-O4d"/>
+                <constraint firstItem="Lbn-0y-dio" firstAttribute="leading" secondItem="ZBy-16-9Op" secondAttribute="leading" id="byH-uC-GeC"/>
+                <constraint firstItem="Lbn-0y-dio" firstAttribute="trailing" secondItem="ZBy-16-9Op" secondAttribute="trailing" id="qnA-es-gtU"/>
+                <constraint firstItem="ZBy-16-9Op" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="x8m-87-fYw"/>
+                <constraint firstItem="ZBy-16-9Op" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="yuk-95-msE"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="139" y="125"/>
+        </view>
+    </objects>
+</document>

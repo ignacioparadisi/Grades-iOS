@@ -137,7 +137,8 @@ extension SubjectDetailViewController: UITableViewDelegate, UITableViewDataSourc
         let row = indexPath.row
         
         if row >= TableRows.allCases.count {
-            showActionSheet()
+            let index = row - TableRows.allCases.count
+            goToAssignmentDetail(assignments[index])
         }
     }
     
@@ -169,6 +170,12 @@ extension SubjectDetailViewController: UITableViewDelegate, UITableViewDataSourc
         if editingStyle == .delete {
             deleteAssignment(at: indexPath)
         }
+    }
+    
+    private func goToAssignmentDetail(_ assignment: Assignment) {
+        let controller = AssignmentDetailViewController()
+        controller.assignment = assignment
+        present(UINavigationController(rootViewController: controller), animated: true)
     }
 }
 
