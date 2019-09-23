@@ -12,46 +12,67 @@ protocol AssignmentDetailViewControllerDelegate: class {
     func didEditAssignment()
 }
 
-class AssignmentDetailViewController: BaseViewController {
+class AssignmentDetailViewController: BaseViewController, ScrollableView {
     
+    let titleTopConstant: CGFloat = 20.0
+    let descriptionTopConstant: CGFloat = 5.0
+    let fieldTopConstant: CGFloat = 10.0
+    let trailingConstant: CGFloat = -16.0
+    let leadingConstant: CGFloat = 16.0
+    
+    var contentView: UIView = UIView()
     weak var delegate: AssignmentDetailViewControllerDelegate?
     var assignment: Assignment = Assignment()
     var circularSlider: CircularSlider!
-    var incrementBySegmentedControl: UISegmentedControl!
+    var decimalsSegmentedControl: UISegmentedControl = {
+        let items = ["1", "0.1", "0.01"]
+        let segmentedControl = UISegmentedControl(items: items)
+        return segmentedControl
+    }()
+    var deadlineTextField: IPDatePickerTextField = {
+        let picker = IPDatePickerTextField()
+        picker.isRequired = true
+        picker.datePickerMode = .dateAndTime
+        picker.dateFormat = "MMM d, yyyy h:mma"
+        picker.placeholder = "Deadline".localized
+        return picker
+    }()
 
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = assignment.name
+        navigationController?.navigationBar.prefersLargeTitles = false
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveAssignment))
         navigationItem.rightBarButtonItem = saveButton
     }
     
     override func setupView() {
         super.setupView()
-        setupIncrementBySection()
+        addScrollView()
+        setupDecimalsSection()
         setupCircularSlider()
+        setupDeadline()
     }
     
-    private func setupIncrementBySection() {
-        let label = IPLabel()
-        label.text = "Increment by"
-        label.font = UIFont.preferredFont(forTextStyle: .title1)
-        view.addSubview(label)
-        label.anchor
-            .topToSuperview(constant: 20, toSafeArea: true)
-            .leadingToSuperview(constant: 16)
-            .trailingToSuperview(constant: -16)
-            .activate()
+    private func setupDecimalsSection() {
+        let label = IPTitleLabel()
+        let descriptionLabel = IPLabel()
         
-        let items = ["1", "0.1", "0.01"]
-        incrementBySegmentedControl = UISegmentedControl(items: items)
-        incrementBySegmentedControl.selectedSegmentIndex = 0
-        incrementBySegmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
-        view.addSubview(incrementBySegmentedControl)
-        incrementBySegmentedControl.anchor
-            .top(to: label.bottomAnchor, constant: 20)
-            .trailingToSuperview(constant: -16)
-            .leadingToSuperview(constant: 16)
+        label.text = "Decimals".localized
+        descriptionLabel.text = "Select the amount of decimals to show".localized
+        decimalsSegmentedControl.selectedSegmentIndex = Int(assignment.decimals)
+        decimalsSegmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
+        
+        contentView.addSubview(label)
+        contentView.addSubview(descriptionLabel)
+        contentView.addSubview(decimalsSegmentedControl)
+        
+        setupLabelConstraints(for: label, topAnchor: contentView.topAnchor, topConstant: titleTopConstant)
+        setupLabelConstraints(for: descriptionLabel, topAnchor: label.bottomAnchor, topConstant: descriptionTopConstant)
+        decimalsSegmentedControl.anchor
+            .top(to: descriptionLabel.bottomAnchor, constant: titleTopConstant)
+            .trailingToSuperview(constant: trailingConstant)
+            .leadingToSuperview(constant: leadingConstant)
             .activate()
     }
     
@@ -59,16 +80,48 @@ class AssignmentDetailViewController: BaseViewController {
         circularSlider = CircularSlider(frame: .zero)
         circularSlider.title = "Grade".localized
         circularSlider.gradable = assignment
-        circularSlider.radiansOffset = 0.8
+        circularSlider.radiansOffset = 1
         circularSlider.lineWidth = 20
         circularSlider.knobRadius = 30
+        circularSlider.numberOfDecimals = decimalsSegmentedControl.selectedSegmentIndex
         
-        view.addSubview(circularSlider)
+        contentView.addSubview(circularSlider)
         circularSlider.anchor
-            .top(to: incrementBySegmentedControl.bottomAnchor, constant: 20)
+            .top(to: decimalsSegmentedControl.bottomAnchor, constant: 60)
             .trailingToSuperview(constant: -50)
             .leadingToSuperview(constant: 50)
             .height(to: circularSlider.widthAnchor)
+            .activate()
+    }
+    
+    private func setupDeadline() {
+        let dateLabel = IPTitleLabel()
+        let dateDescriptionLabel = IPLabel()
+        deadlineTextField.date = assignment.deadline
+        
+        dateLabel.text = "Date and time".localized
+        dateDescriptionLabel.text = "Enter the date and time of the assignment".localized
+        
+        contentView.addSubview(dateLabel)
+        contentView.addSubview(dateDescriptionLabel)
+        contentView.addSubview(deadlineTextField)
+        
+        setupLabelConstraints(for: dateLabel, topAnchor: circularSlider.bottomAnchor)
+        setupLabelConstraints(for: dateDescriptionLabel, topAnchor: dateLabel.bottomAnchor, topConstant: descriptionTopConstant)
+        deadlineTextField.anchor
+            .top(to: dateDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
+            .leadingToSuperview(constant: leadingConstant)
+            .trailingToSuperview(constant: trailingConstant)
+            .bottomToSuperview(constant: -30, toSafeArea: true)
+            .activate()
+    }
+    
+    private func setupLabelConstraints(for label: UILabel, topAnchor: NSLayoutYAxisAnchor, topConstant: CGFloat = 0) {
+        label.anchor
+            .top(to: topAnchor, constant: topConstant)
+            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
+            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
+            .width(constant: view.frame.width - 2 * leadingConstant)
             .activate()
     }
     
@@ -77,7 +130,7 @@ class AssignmentDetailViewController: BaseViewController {
     }
     
     @objc private func saveAssignment() {
-        assignment.update(grade: circularSlider.value)
+        assignment.update(grade: circularSlider.value, decimals: decimalsSegmentedControl.selectedSegmentIndex)
         delegate?.didEditAssignment()
         dismiss(animated: true)
     }

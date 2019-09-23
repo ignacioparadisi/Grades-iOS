@@ -17,13 +17,14 @@ public class Subject: Gradable {
     /// - Parameter name: Name of the subjects
     /// - Parameter maxGrade: Maximum grade of the subject
     /// - Parameter minGrade: Minimum grade to pass the subject
-    static func create(name: String, maxGrade: Float, minGrade: Float, term: Term) {
+    static func create(name: String, maxGrade: Float, minGrade: Float, decimals: Int = 0, term: Term) {
         let subject = Subject(context: CoreDataManager.shared.context)
         subject.term = term
         subject.name = name
         subject.maxGrade = maxGrade
         subject.minGrade = minGrade
         subject.grade = 0.0
+        subject.decimals = Int16(decimals)
         subject.dateCreated = Date()
         term.calculateGrade()
     }

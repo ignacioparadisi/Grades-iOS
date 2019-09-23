@@ -86,7 +86,7 @@ struct GradableChartView: View {
                         self.animateRing(self.gradable)
                 }
                 
-                Text("\(Int(self.gradable.grade.rounded()))")
+                Text(self.gradable.grade.toString(with: self.gradable.decimals))
             }
         }
         .padding(.top, 9)

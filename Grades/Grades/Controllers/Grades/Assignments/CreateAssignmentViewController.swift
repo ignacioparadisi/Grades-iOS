@@ -23,6 +23,12 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
     
     weak var delegate: CreateAssignmentViewControllerDelegate?
     var contentView: UIView = UIView()
+    var decimalsSegmentedControl: UISegmentedControl = {
+        let items = ["1", "0.1", "0.01"]
+        let segmentedControl = UISegmentedControl(items: items)
+        segmentedControl.selectedSegmentIndex = 0
+        return segmentedControl
+    }()
     let nameTextField: IPTextField = {
         let textField = IPTextField()
         textField.isRequired = true
@@ -81,6 +87,7 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
         navigationController?.presentationController?.delegate = self
         addScrollView()
         setupNameSection()
+        setupDecimalsSection()
         setupGradesSection()
         setupChildSwitchSection()
         setupDateSection()
@@ -130,6 +137,26 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
             .activate()
     }
     
+    private func setupDecimalsSection() {
+        let label = IPTitleLabel()
+        let descriptionLabel = IPLabel()
+        
+        label.text = "Decimals".localized
+        descriptionLabel.text = "Select the amount of decimals to show".localized
+        
+        contentView.addSubview(label)
+        contentView.addSubview(descriptionLabel)
+        contentView.addSubview(decimalsSegmentedControl)
+        
+        setupLabelConstraints(for: label, topAnchor: nameTextField.bottomAnchor, topConstant: titleTopConstant)
+        setupLabelConstraints(for: descriptionLabel, topAnchor: label.bottomAnchor, topConstant: descriptionTopConstant)
+        decimalsSegmentedControl.anchor
+            .top(to: descriptionLabel.bottomAnchor, constant: fieldTopConstant)
+            .trailingToSuperview(constant: trailingConstant)
+            .leadingToSuperview(constant: leadingConstant)
+            .activate()
+    }
+    
     private func setupGradesSection() {
         let gradesLabel = IPTitleLabel()
         let gradesDescriptionLabel = IPLabel()
@@ -146,7 +173,7 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
         contentView.addSubview(minGradeTextField)
         contentView.addSubview(maxGradeTextField)
         
-        setupLabelConstraints(for: gradesLabel, topAnchor: nameTextField.bottomAnchor, topConstant: titleTopConstant)
+        setupLabelConstraints(for: gradesLabel, topAnchor: decimalsSegmentedControl.bottomAnchor, topConstant: titleTopConstant)
         setupLabelConstraints(for: gradesDescriptionLabel, topAnchor: gradesLabel.bottomAnchor, topConstant: descriptionTopConstant)
         minGradeTextField.anchor
             .top(to: gradesDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
@@ -297,7 +324,8 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
             }
             
             if valuesAreValid(maxGrade: maxGrade, minGrade: minGrade, grade: grade, percentage: percentage) {
-                let assignment = Assignment.create(name: name, grade: grade, maxGrade: maxGrade, minGrade: minGrade, percentage: percentage, deadline: deadline, subject: subject)
+                let decimals = decimalsSegmentedControl.selectedSegmentIndex
+                let assignment = Assignment.create(name: name, grade: grade, maxGrade: maxGrade, minGrade: minGrade, percentage: percentage, decimals: decimals, deadline: deadline, subject: subject)
                 requestNotificationsAuthorization()
                 createNotification(for: assignment, subjectName: subject.name)
                 dismissView()

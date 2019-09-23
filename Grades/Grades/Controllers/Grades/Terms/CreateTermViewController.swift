@@ -29,6 +29,12 @@ class CreateTermViewController: BaseViewController, ScrollableView {
         textField.isRequired = true
         return textField
     }()
+    var decimalsSegmentedControl: UISegmentedControl = {
+        let items = ["1", "0.1", "0.01"]
+        let segmentedControl = UISegmentedControl(items: items)
+        segmentedControl.selectedSegmentIndex = 0
+        return segmentedControl
+    }()
     let addButton = IPButton()
     let minGradeTextField: IPTextField = {
         let textField = IPTextField()
@@ -63,6 +69,7 @@ class CreateTermViewController: BaseViewController, ScrollableView {
         navigationController?.presentationController?.delegate = self
         addScrollView()
         setupNameSection()
+        setupDecimalsSection()
         setupGradesSection()
         setupDuration()
         setupSaveButton()
@@ -111,6 +118,27 @@ class CreateTermViewController: BaseViewController, ScrollableView {
             .activate()
     }
     
+    private func setupDecimalsSection() {
+        let label = IPTitleLabel()
+        let descriptionLabel = IPLabel()
+        
+        label.text = "Decimals".localized
+        descriptionLabel.text = "Select the amount of decimals to show".localized
+        decimalsSegmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
+        
+        contentView.addSubview(label)
+        contentView.addSubview(descriptionLabel)
+        contentView.addSubview(decimalsSegmentedControl)
+        
+        setupLabelConstraints(for: label, topAnchor: nameTextField.bottomAnchor, topConstant: titleTopConstant)
+        setupLabelConstraints(for: descriptionLabel, topAnchor: label.bottomAnchor, topConstant: descriptionTopConstant)
+        decimalsSegmentedControl.anchor
+            .top(to: descriptionLabel.bottomAnchor, constant: fieldTopConstant)
+            .trailingToSuperview(constant: trailingConstant)
+            .leadingToSuperview(constant: leadingConstant)
+            .activate()
+    }
+    
     private func setupGradesSection() {
         let gradesLabel = IPTitleLabel()
         let gradesDescriptionLabel = IPLabel()
@@ -127,7 +155,7 @@ class CreateTermViewController: BaseViewController, ScrollableView {
         contentView.addSubview(minGradeTextField)
         contentView.addSubview(maxGradeTextField)
         
-        setupLabelConstraints(for: gradesLabel, topAnchor: nameTextField.bottomAnchor, topConstant: titleTopConstant)
+        setupLabelConstraints(for: gradesLabel, topAnchor: decimalsSegmentedControl.bottomAnchor, topConstant: titleTopConstant)
         setupLabelConstraints(for: gradesDescriptionLabel, topAnchor: gradesLabel.bottomAnchor, topConstant: descriptionTopConstant)
         minGradeTextField.anchor
             .top(to: gradesDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
@@ -171,6 +199,10 @@ class CreateTermViewController: BaseViewController, ScrollableView {
             .activate()
     }
     
+    @objc private func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        
+    }
+    
     private func setupSaveButton() {
         addButton.setTitle("Save".localized, for: .normal)
         addButton.addTarget(self, action: #selector(createTerm), for: .touchUpInside)
@@ -206,8 +238,9 @@ class CreateTermViewController: BaseViewController, ScrollableView {
             let endDate = endDateTextField.date {
             
             if valuesAreValid(maxGrade: maxGrade, minGrade: minGrade) {
+                let decimals = decimalsSegmentedControl.selectedSegmentIndex
                 do {
-                    try _ = Term.create(name: name, maxGrade: maxGrade, minGrade: minGrade, startDate: startDate, endDate: endDate)
+                    try _ = Term.create(name: name, maxGrade: maxGrade, minGrade: minGrade, decimals: decimals, startDate: startDate, endDate: endDate)
                     dismissView()
                     delegate?.shouldRefresh()
                 } catch {
