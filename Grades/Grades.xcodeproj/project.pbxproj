@@ -22,15 +22,7 @@
 		4F5F65FF2336A309004DA7E9 /* GradesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F65FE2336A309004DA7E9 /* GradesTests.swift */; };
 		4F5F66062336A336004DA7E9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54CD522333B6D800444FE1 /* CoreDataManager.swift */; };
 		4F5F66082336A3C8004DA7E9 /* CoreDataTermTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F66072336A3C8004DA7E9 /* CoreDataTermTests.swift */; };
-		4F5F660A2336A409004DA7E9 /* Term+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF7C762333DF6300B155A9 /* Term+CoreDataProperties.swift */; };
-		4F5F660B2336A5FC004DA7E9 /* Term+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF7C752333DF6300B155A9 /* Term+CoreDataClass.swift */; };
-		4F5F660C2336A658004DA7E9 /* Gradable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BD0722B5277600EB9590 /* Gradable.swift */; };
-		4F5F660D2336A67D004DA7E9 /* Subject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF7C732333DF6300B155A9 /* Subject+CoreDataClass.swift */; };
-		4F5F660E2336A681004DA7E9 /* Subject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF7C742333DF6300B155A9 /* Subject+CoreDataProperties.swift */; };
-		4F5F660F2336A683004DA7E9 /* Assignment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF7C722333DF6300B155A9 /* Assignment+CoreDataProperties.swift */; };
-		4F5F66102336A686004DA7E9 /* Assignment+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF7C712333DF6300B155A9 /* Assignment+CoreDataClass.swift */; };
 		4F5F66112336A6CB004DA7E9 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C602022B5B57A00C7A931 /* Calculator.swift */; };
-		4F5F66122336A78F004DA7E9 /* Grades.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF7C6E2333DD3D00B155A9 /* Grades.xcdatamodeld */; };
 		4F61FA8022EBE6F8008C6555 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F61FA7F22EBE6F8008C6555 /* WatchSessionManager.swift */; };
 		4F66289A22A145AF001F2CD9 /* IPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F66289922A145AF001F2CD9 /* IPTextField.swift */; };
 		4F66289C22A1462D001F2CD9 /* CreateTermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F66289B22A1462D001F2CD9 /* CreateTermViewController.swift */; };
@@ -45,17 +37,18 @@
 		4FACFF4F22F0DB71000997E1 /* IPDatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF4E22F0DB71000997E1 /* IPDatePickerTextField.swift */; };
 		4FACFF5922F0FBD0000997E1 /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF5822F0FBD0000997E1 /* LabelTableViewCell.swift */; };
 		4FACFF5B22F124A8000997E1 /* EditTermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF5A22F124A8000997E1 /* EditTermViewController.swift */; };
+		4FCD777D2338371B00A2FA5E /* Grades.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD777B2338371B00A2FA5E /* Grades.xcdatamodeld */; };
+		4FCD7786233838F400A2FA5E /* Gradable+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD777E233838F400A2FA5E /* Gradable+CoreDataClass.swift */; };
+		4FCD7787233838F400A2FA5E /* Gradable+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD777F233838F400A2FA5E /* Gradable+CoreDataProperties.swift */; };
+		4FCD7788233838F400A2FA5E /* Assignment+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD7780233838F400A2FA5E /* Assignment+CoreDataClass.swift */; };
+		4FCD7789233838F400A2FA5E /* Assignment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD7781233838F400A2FA5E /* Assignment+CoreDataProperties.swift */; };
+		4FCD778A233838F400A2FA5E /* Subject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD7782233838F400A2FA5E /* Subject+CoreDataClass.swift */; };
+		4FCD778B233838F400A2FA5E /* Subject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD7783233838F400A2FA5E /* Subject+CoreDataProperties.swift */; };
+		4FCD778C233838F400A2FA5E /* Term+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD7784233838F400A2FA5E /* Term+CoreDataClass.swift */; };
+		4FCD778D233838F400A2FA5E /* Term+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD7785233838F400A2FA5E /* Term+CoreDataProperties.swift */; };
 		4FCEA14C229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */; };
 		4FD3EB612335BCA8003BBD30 /* CreateTermView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD3EB602335BCA8003BBD30 /* CreateTermView.swift */; };
-		4FE7BD0822B5277600EB9590 /* Gradable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BD0722B5277600EB9590 /* Gradable.swift */; };
 		4FE7BD0A22B55CE800EB9590 /* FixedHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BD0922B55CE800EB9590 /* FixedHeaderLayout.swift */; };
-		4FEF7C702333DD3D00B155A9 /* Grades.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF7C6E2333DD3D00B155A9 /* Grades.xcdatamodeld */; };
-		4FEF7C772333DF6300B155A9 /* Assignment+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF7C712333DF6300B155A9 /* Assignment+CoreDataClass.swift */; };
-		4FEF7C782333DF6300B155A9 /* Assignment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF7C722333DF6300B155A9 /* Assignment+CoreDataProperties.swift */; };
-		4FEF7C792333DF6300B155A9 /* Subject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF7C732333DF6300B155A9 /* Subject+CoreDataClass.swift */; };
-		4FEF7C7A2333DF6300B155A9 /* Subject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF7C742333DF6300B155A9 /* Subject+CoreDataProperties.swift */; };
-		4FEF7C7B2333DF6300B155A9 /* Term+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF7C752333DF6300B155A9 /* Term+CoreDataClass.swift */; };
-		4FEF7C7C2333DF6300B155A9 /* Term+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF7C762333DF6300B155A9 /* Term+CoreDataProperties.swift */; };
 		4FF6F420227A04B6000F14D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F41F227A04B6000F14D2 /* AppDelegate.swift */; };
 		4FF6F427227A04B8000F14D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FF6F426227A04B8000F14D2 /* Assets.xcassets */; };
 		4FF6F42A227A04B8000F14D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF6F428227A04B8000F14D2 /* LaunchScreen.storyboard */; };
@@ -137,17 +130,18 @@
 		4FACFF4E22F0DB71000997E1 /* IPDatePickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPDatePickerTextField.swift; sourceTree = "<group>"; };
 		4FACFF5822F0FBD0000997E1 /* LabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTableViewCell.swift; sourceTree = "<group>"; };
 		4FACFF5A22F124A8000997E1 /* EditTermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTermViewController.swift; sourceTree = "<group>"; };
+		4FCD777C2338371B00A2FA5E /* Grades.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Grades.xcdatamodel; sourceTree = "<group>"; };
+		4FCD777E233838F400A2FA5E /* Gradable+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gradable+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4FCD777F233838F400A2FA5E /* Gradable+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gradable+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4FCD7780233838F400A2FA5E /* Assignment+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assignment+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4FCD7781233838F400A2FA5E /* Assignment+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assignment+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4FCD7782233838F400A2FA5E /* Subject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subject+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4FCD7783233838F400A2FA5E /* Subject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subject+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4FCD7784233838F400A2FA5E /* Term+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Term+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4FCD7785233838F400A2FA5E /* Term+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Term+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyHeaderLayout.swift; sourceTree = "<group>"; };
 		4FD3EB602335BCA8003BBD30 /* CreateTermView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTermView.swift; sourceTree = "<group>"; };
-		4FE7BD0722B5277600EB9590 /* Gradable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradable.swift; sourceTree = "<group>"; };
 		4FE7BD0922B55CE800EB9590 /* FixedHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeaderLayout.swift; sourceTree = "<group>"; };
-		4FEF7C6F2333DD3D00B155A9 /* Grades.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Grades.xcdatamodel; sourceTree = "<group>"; };
-		4FEF7C712333DF6300B155A9 /* Assignment+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assignment+CoreDataClass.swift"; sourceTree = "<group>"; };
-		4FEF7C722333DF6300B155A9 /* Assignment+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assignment+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		4FEF7C732333DF6300B155A9 /* Subject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subject+CoreDataClass.swift"; sourceTree = "<group>"; };
-		4FEF7C742333DF6300B155A9 /* Subject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subject+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		4FEF7C752333DF6300B155A9 /* Term+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Term+CoreDataClass.swift"; sourceTree = "<group>"; };
-		4FEF7C762333DF6300B155A9 /* Term+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Term+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4FF6F41C227A04B6000F14D2 /* Grades.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grades.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FF6F41F227A04B6000F14D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FF6F426227A04B8000F14D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -269,9 +263,9 @@
 			isa = PBXGroup;
 			children = (
 				4FF6F426227A04B8000F14D2 /* Assets.xcassets */,
-				4FEF7C6E2333DD3D00B155A9 /* Grades.xcdatamodeld */,
 				4FF6F428227A04B8000F14D2 /* LaunchScreen.storyboard */,
 				4F7EE96522A1914300E34672 /* Localizable.strings */,
+				4FCD777B2338371B00A2FA5E /* Grades.xcdatamodeld */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -289,13 +283,15 @@
 		4FDC23E122A0C2C70088FF3C /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				4FCD777E233838F400A2FA5E /* Gradable+CoreDataClass.swift */,
+				4FCD777F233838F400A2FA5E /* Gradable+CoreDataProperties.swift */,
+				4FCD7780233838F400A2FA5E /* Assignment+CoreDataClass.swift */,
+				4FCD7781233838F400A2FA5E /* Assignment+CoreDataProperties.swift */,
+				4FCD7782233838F400A2FA5E /* Subject+CoreDataClass.swift */,
+				4FCD7783233838F400A2FA5E /* Subject+CoreDataProperties.swift */,
+				4FCD7784233838F400A2FA5E /* Term+CoreDataClass.swift */,
+				4FCD7785233838F400A2FA5E /* Term+CoreDataProperties.swift */,
 				4F54CD522333B6D800444FE1 /* CoreDataManager.swift */,
-				4FEF7C712333DF6300B155A9 /* Assignment+CoreDataClass.swift */,
-				4FEF7C722333DF6300B155A9 /* Assignment+CoreDataProperties.swift */,
-				4FEF7C732333DF6300B155A9 /* Subject+CoreDataClass.swift */,
-				4FEF7C742333DF6300B155A9 /* Subject+CoreDataProperties.swift */,
-				4FEF7C752333DF6300B155A9 /* Term+CoreDataClass.swift */,
-				4FEF7C762333DF6300B155A9 /* Term+CoreDataProperties.swift */,
 				4F61FA7F22EBE6F8008C6555 /* WatchSessionManager.swift */,
 			);
 			path = CoreData;
@@ -436,7 +432,6 @@
 		4FF6F463227A128F000F14D2 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				4FE7BD0722B5277600EB9590 /* Gradable.swift */,
 				4FF6F468227A1585000F14D2 /* ReusableView.swift */,
 				4FF6F470227A17F8000F14D2 /* ScrollableView.swift */,
 			);
@@ -590,18 +585,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F5F66102336A686004DA7E9 /* Assignment+CoreDataClass.swift in Sources */,
 				4F5F66082336A3C8004DA7E9 /* CoreDataTermTests.swift in Sources */,
 				4F5F66062336A336004DA7E9 /* CoreDataManager.swift in Sources */,
 				4F5F66112336A6CB004DA7E9 /* Calculator.swift in Sources */,
-				4F5F660F2336A683004DA7E9 /* Assignment+CoreDataProperties.swift in Sources */,
 				4F5F65FF2336A309004DA7E9 /* GradesTests.swift in Sources */,
-				4F5F660A2336A409004DA7E9 /* Term+CoreDataProperties.swift in Sources */,
-				4F5F660E2336A681004DA7E9 /* Subject+CoreDataProperties.swift in Sources */,
-				4F5F660D2336A67D004DA7E9 /* Subject+CoreDataClass.swift in Sources */,
-				4F5F66122336A78F004DA7E9 /* Grades.xcdatamodeld in Sources */,
-				4F5F660B2336A5FC004DA7E9 /* Term+CoreDataClass.swift in Sources */,
-				4F5F660C2336A658004DA7E9 /* Gradable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,6 +596,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FCD777D2338371B00A2FA5E /* Grades.xcdatamodeld in Sources */,
 				4FF6F481227A70AB000F14D2 /* SubjectCardCollectionViewCell.swift in Sources */,
 				4FFE0F84231369B60019244F /* Logger.swift in Sources */,
 				4FF6F45C227A0CA4000F14D2 /* Images+Enum.swift in Sources */,
@@ -617,29 +605,29 @@
 				4FF6F47F227A410B000F14D2 /* UIView+Extension.swift in Sources */,
 				4F09643D22B583B700D72277 /* CreateSubjectViewController.swift in Sources */,
 				4FF6F44C227A0BAE000F14D2 /* CalendarViewController.swift in Sources */,
-				4FEF7C782333DF6300B155A9 /* Assignment+CoreDataProperties.swift in Sources */,
 				4FF6F469227A1585000F14D2 /* ReusableView.swift in Sources */,
 				4F4A650322B99DB7003A1199 /* BarChartTableViewCell.swift in Sources */,
 				4FF6F460227A10F7000F14D2 /* UIColor+Extension.swift in Sources */,
 				4FF6F467227A14AC000F14D2 /* BaseViewController.swift in Sources */,
+				4FCD778A233838F400A2FA5E /* Subject+CoreDataClass.swift in Sources */,
+				4FCD7789233838F400A2FA5E /* Assignment+CoreDataProperties.swift in Sources */,
 				4FE7BD0A22B55CE800EB9590 /* FixedHeaderLayout.swift in Sources */,
-				4FEF7C792333DF6300B155A9 /* Subject+CoreDataClass.swift in Sources */,
 				4F66289A22A145AF001F2CD9 /* IPTextField.swift in Sources */,
 				4FACFF5B22F124A8000997E1 /* EditTermViewController.swift in Sources */,
 				4FF6F46F227A15BE000F14D2 /* UICollectionView+Extension.swift in Sources */,
 				4F6C601D22B59DC300C7A931 /* PopAnimator.swift in Sources */,
-				4FEF7C7C2333DF6300B155A9 /* Term+CoreDataProperties.swift in Sources */,
+				4FCD7787233838F400A2FA5E /* Gradable+CoreDataProperties.swift in Sources */,
 				4FF6F44B227A0BAE000F14D2 /* TermsViewController.swift in Sources */,
 				4FF6F44D227A0BAE000F14D2 /* MainTabBarController.swift in Sources */,
+				4FCD7786233838F400A2FA5E /* Gradable+CoreDataClass.swift in Sources */,
 				4F368AB22332569700F3B6A7 /* SceneDelegate.swift in Sources */,
-				4FEF7C7B2333DF6300B155A9 /* Term+CoreDataClass.swift in Sources */,
 				4FCEA14C229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift in Sources */,
 				4F66289E22A14874001F2CD9 /* IPLabel.swift in Sources */,
 				4FACFF5922F0FBD0000997E1 /* LabelTableViewCell.swift in Sources */,
 				4FF6F452227A0BBF000F14D2 /* IPTitleLabel.swift in Sources */,
 				4F4A64FE22B99C1F003A1199 /* TermDetailViewController.swift in Sources */,
 				4F4A650522B99E11003A1199 /* Header.swift in Sources */,
-				4FE7BD0822B5277600EB9590 /* Gradable.swift in Sources */,
+				4FCD778B233838F400A2FA5E /* Subject+CoreDataProperties.swift in Sources */,
 				4FF6F483227A72BE000F14D2 /* HeaderCollectionReusableView.swift in Sources */,
 				4F6C602122B5B57A00C7A931 /* Calculator.swift in Sources */,
 				4FF6F479227A2B94000F14D2 /* TermCollectionViewCell.swift in Sources */,
@@ -647,19 +635,19 @@
 				4FF6F473227A1F90000F14D2 /* UIFont+Extension.swift in Sources */,
 				4FF6F46D227A15AF000F14D2 /* UITableView+Extension.swift in Sources */,
 				4FF6F462227A119F000F14D2 /* NSLayoutAnchor+Extension.swift in Sources */,
+				4FCD778D233838F400A2FA5E /* Term+CoreDataProperties.swift in Sources */,
 				4F66289C22A1462D001F2CD9 /* CreateTermViewController.swift in Sources */,
 				4FA7E01422F50FEA00C493AE /* DatabaseError.swift in Sources */,
 				4F3B693222F22F9F002C6263 /* TitleLabelTableViewCell.swift in Sources */,
+				4FCD778C233838F400A2FA5E /* Term+CoreDataClass.swift in Sources */,
 				4F54CD532333B6D800444FE1 /* CoreDataManager.swift in Sources */,
 				4F2FFB2222F1D1E40086B8B2 /* ProgressRingView.swift in Sources */,
 				4FD3EB612335BCA8003BBD30 /* CreateTermView.swift in Sources */,
 				4F6628A022A14B7E001F2CD9 /* UIViewController+Extension.swift in Sources */,
 				4F61FA8022EBE6F8008C6555 /* WatchSessionManager.swift in Sources */,
 				4FF6F420227A04B6000F14D2 /* AppDelegate.swift in Sources */,
-				4FEF7C702333DD3D00B155A9 /* Grades.xcdatamodeld in Sources */,
-				4FEF7C772333DF6300B155A9 /* Assignment+CoreDataClass.swift in Sources */,
+				4FCD7788233838F400A2FA5E /* Assignment+CoreDataClass.swift in Sources */,
 				4FF6F471227A17F8000F14D2 /* ScrollableView.swift in Sources */,
-				4FEF7C7A2333DF6300B155A9 /* Subject+CoreDataProperties.swift in Sources */,
 				4FF9AA0622F205CA00FE59AE /* AssignmentTableViewCell.swift in Sources */,
 				4FACFF4F22F0DB71000997E1 /* IPDatePickerTextField.swift in Sources */,
 				4F7EE95B22A18C6500E34672 /* IPButton.swift in Sources */,
@@ -968,12 +956,12 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		4FEF7C6E2333DD3D00B155A9 /* Grades.xcdatamodeld */ = {
+		4FCD777B2338371B00A2FA5E /* Grades.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				4FEF7C6F2333DD3D00B155A9 /* Grades.xcdatamodel */,
+				4FCD777C2338371B00A2FA5E /* Grades.xcdatamodel */,
 			);
-			currentVersion = 4FEF7C6F2333DD3D00B155A9 /* Grades.xcdatamodel */;
+			currentVersion = 4FCD777C2338371B00A2FA5E /* Grades.xcdatamodel */;
 			path = Grades.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

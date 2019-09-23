@@ -2,7 +2,7 @@
 //  Assignment+CoreDataProperties.swift
 //  Grades
 //
-//  Created by Ignacio Paradisi on 9/19/19.
+//  Created by Ignacio Paradisi on 9/22/19.
 //  Copyright © 2019 Ignacio Paradisi. All rights reserved.
 //
 //
@@ -17,11 +17,6 @@ extension Assignment {
         return NSFetchRequest<Assignment>(entityName: "Assignment")
     }
 
-    @NSManaged public var name: String
-    @NSManaged public var maxGrade: Float
-    @NSManaged public var minGrade: Float
-    @NSManaged public var grade: Float
-    @NSManaged public var dateCreated: Date
     @NSManaged public var percentage: Float
     @NSManaged public var deadline: Date
     @NSManaged public var subject: Subject?

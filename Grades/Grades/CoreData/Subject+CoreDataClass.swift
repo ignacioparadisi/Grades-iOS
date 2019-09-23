@@ -2,7 +2,7 @@
 //  Subject+CoreDataClass.swift
 //  Grades
 //
-//  Created by Ignacio Paradisi on 9/19/19.
+//  Created by Ignacio Paradisi on 9/22/19.
 //  Copyright © 2019 Ignacio Paradisi. All rights reserved.
 //
 //
@@ -10,9 +10,9 @@
 import Foundation
 import CoreData
 
+@objc(Subject)
+public class Subject: Gradable {
 
-public class Subject: NSManagedObject, Identifiable, Gradable {
-    
     /// Creates a new subject for Core Data
     /// - Parameter name: Name of the subjects
     /// - Parameter maxGrade: Maximum grade of the subject
@@ -47,4 +47,5 @@ public class Subject: NSManagedObject, Identifiable, Gradable {
         grade = Calculator.getGrade(for: getAssignments(), parent: self)
         term?.calculateGrade()
     }
+    
 }

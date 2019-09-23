@@ -2,12 +2,12 @@
 //  Term+CoreDataClass.swift
 //  Grades
 //
-//  Created by Ignacio Paradisi on 9/19/19.
+//  Created by Ignacio Paradisi on 9/22/19.
 //  Copyright © 2019 Ignacio Paradisi. All rights reserved.
 //
 //
 
-import UIKit
+import Foundation
 import CoreData
 
 enum TermError: Error {
@@ -16,8 +16,8 @@ enum TermError: Error {
     case invalidName
 }
 
-
-public class Term: NSManagedObject, Identifiable, Gradable {
+@objc(Term)
+public class Term: Gradable {
     
     /// Creates a new Term for Core Data
     /// - Parameter name: Name of the Term

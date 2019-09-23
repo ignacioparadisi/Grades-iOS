@@ -102,6 +102,9 @@ class TermDetailViewController: BaseViewController {
             tableView.deleteRows(at: indexPaths, with: .fade)
         }
         subject.delete()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            self?.tableView.reloadData()
+        }
         delegate?.shouldRefresh()
     }
 }

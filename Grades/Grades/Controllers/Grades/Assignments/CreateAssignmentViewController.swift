@@ -298,9 +298,23 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
             
             if valuesAreValid(maxGrade: maxGrade, minGrade: minGrade, grade: grade, percentage: percentage) {
                 let assignment = Assignment.create(name: name, grade: grade, maxGrade: maxGrade, minGrade: minGrade, percentage: percentage, deadline: deadline, subject: subject)
+                requestNotificationsAuthorization()
                 createNotification(for: assignment, subjectName: subject.name)
                 dismissView()
                 delegate?.didCreateAssignment()
+            }
+        }
+    }
+    
+    private func requestNotificationsAuthorization() {
+        let notificationCenter = UNUserNotificationCenter.current()
+        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
+        notificationCenter.requestAuthorization(options: options) { granted, error in
+            if !granted {
+                print("User did not authorize notifications")
+            }
+            if let error = error {
+                print(error)
             }
         }
     }

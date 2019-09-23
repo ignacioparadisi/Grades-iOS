@@ -22,7 +22,7 @@ class Calculator {
     /// - Returns: Average grade
     static func getAverageGrade(for items: [Gradable], parent: Gradable) -> Float {
         var total: Float = 0.0
-        for item in items {
+        for item in items where !item.isDeleted {
             total += (item.grade * parent.maxGrade) / item.maxGrade
         }
         return total / Float(items.count)
@@ -35,7 +35,7 @@ class Calculator {
     /// - Returns: Average grade
     static func getGrade(for assignments: [Assignment], parent: Gradable) -> Float {
         var total: Float = 0.0
-        for assignment in assignments {
+        for assignment in assignments where !assignment.isDeleted {
             total += ((assignment.grade * parent.maxGrade) / assignment.maxGrade) * assignment.percentage
         }
         return total
