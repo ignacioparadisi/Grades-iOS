@@ -84,8 +84,14 @@ open class CircularSlider: UIView {
         }
     }
     
+    var gradable: Gradable? {
+        didSet {
+            configureViewWithGradable()
+        }
+    }
+    
     @IBInspectable
-    open var title: String = "Title" {
+    open var title: String = "Grade".localized {
         didSet {
             titleLabel.text = title
         }
@@ -108,7 +114,7 @@ open class CircularSlider: UIView {
     @IBInspectable
     open var minimumValue: Float = 0
     @IBInspectable
-    open var maximumValue: Float = 500
+    open var maximumValue: Float = 20
     @IBInspectable
     open var lineWidth: CGFloat = 5 {
         didSet {
@@ -132,6 +138,7 @@ open class CircularSlider: UIView {
     open var pgHighlightedColor: UIColor = UIColor.systemGreen {
         didSet {
             appearanceProgressLayer()
+            appearanceKnobLayer()
         }
     }
     @IBInspectable
@@ -273,6 +280,15 @@ open class CircularSlider: UIView {
         }
     }
     
+    fileprivate func configureViewWithGradable() {
+        titleLabel.text = "Grade"
+        minimumValue = 0
+        maximumValue = gradable?.maxGrade ?? 20
+        value = gradable?.grade ?? 0
+        bgColor = .systemGray3
+        pgHighlightedColor = (gradable != nil) ? .getColor(for: gradable!) : .systemGreen
+    }
+    
     
     // MARK: - appearance
     
@@ -293,13 +309,14 @@ open class CircularSlider: UIView {
     fileprivate func appearanceKnobLayer() {
         knobLayer.lineWidth = 2
         knobLayer.fillColor = highlighted ? pgHighlightedColor.cgColor : pgNormalColor.cgColor
-        knobLayer.strokeColor = UIColor.white.cgColor
+        knobLayer.strokeColor = UIColor.systemBackground.cgColor
     }
     
     
     // MARK: - update
     open func setValue(_ value: Float, animated: Bool) {
         self.value = delegate?.circularSlider?(self, valueForValue: value) ?? value
+        pgHighlightedColor = (gradable != nil) ? .getColor(for: self.value, maxGrade: gradable!.maxGrade, minGrade: gradable!.minGrade) : .systemGreen
         
         updateLabels()
         
@@ -347,7 +364,6 @@ open class CircularSlider: UIView {
     fileprivate func updateValueLabel() {
         let format = "%.\(abs(numberOfDecimals))f"
         textfield.text = String(format: format, value)
-//        textfield.attributedText = value.formatWithFractionDigits(fractionDigits, customDecimalSeparator: customDecimalSeparator).sliderAttributeString(intFont: intFont, decimalFont: decimalFont, customDecimalSeparator: customDecimalSeparator )
     }
     
     
@@ -423,7 +439,7 @@ extension CircularSlider: UITextFieldDelegate {
             
             let fmt = NumberFormatter()
             let scanner: Scanner = Scanner(string:newString.replacingOccurrences(of: customDecimalSeparator ?? fmt.decimalSeparator, with: "."))
-            let isNumeric = scanner.scanDecimal(nil) && scanner.isAtEnd
+            let isNumeric = (scanner.scanDecimal() != nil) && scanner.isAtEnd
             
             if isNumeric {
                 var decimalFound = false
@@ -452,5 +468,11 @@ extension CircularSlider: UITextFieldDelegate {
         else {
             return true
         }
+    }
+}
+
+extension CircularSlider {
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        backgroundCircleLayer.strokeColor = bgColor.cgColor
     }
 }

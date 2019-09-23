@@ -26,6 +26,16 @@ public class Assignment: Gradable {
         subject.calculateGrade()
         return assignment
     }
+    
+    func update(grade: Float? = nil, deadline: Date? = nil) {
+        if let grade = grade {
+            self.grade = grade
+        }
+        if let deadline = deadline {
+            self.deadline = deadline
+        }
+        subject?.calculateGrade()
+    }
 
     func delete() {
         CoreDataManager.shared.context.delete(self)

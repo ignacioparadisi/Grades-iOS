@@ -136,7 +136,7 @@ extension SubjectDetailViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         
-        if row >= TableRows.allCases.count {
+        if row > TableRows.assignmentsTitleRow.rawValue {
             let index = row - TableRows.allCases.count
             goToAssignmentDetail(assignments[index])
         }
@@ -174,6 +174,7 @@ extension SubjectDetailViewController: UITableViewDelegate, UITableViewDataSourc
     
     private func goToAssignmentDetail(_ assignment: Assignment) {
         let controller = AssignmentDetailViewController()
+        controller.delegate = self
         controller.assignment = assignment
         present(UINavigationController(rootViewController: controller), animated: true)
     }
@@ -186,4 +187,11 @@ extension SubjectDetailViewController: CreateAssignmentViewControllerDelegate {
         delegate?.shouldRefresh()
     }
     
+}
+
+extension SubjectDetailViewController: AssignmentDetailViewControllerDelegate {
+    func didEditAssignment() {
+        fetchAssignments()
+        delegate?.shouldRefresh()
+    }
 }

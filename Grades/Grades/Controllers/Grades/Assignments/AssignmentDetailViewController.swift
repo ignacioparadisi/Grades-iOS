@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol AssignmentDetailViewControllerDelegate: class {
+    func didEditAssignment()
+}
+
 class AssignmentDetailViewController: BaseViewController {
     
+    weak var delegate: AssignmentDetailViewControllerDelegate?
     var assignment: Assignment = Assignment()
     var circularSlider: CircularSlider!
     var incrementBySegmentedControl: UISegmentedControl!
@@ -17,6 +22,8 @@ class AssignmentDetailViewController: BaseViewController {
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = assignment.name
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveAssignment))
+        navigationItem.rightBarButtonItem = saveButton
     }
     
     override func setupView() {
@@ -43,21 +50,18 @@ class AssignmentDetailViewController: BaseViewController {
         view.addSubview(incrementBySegmentedControl)
         incrementBySegmentedControl.anchor
             .top(to: label.bottomAnchor, constant: 20)
-            .centerXToSuperview()
+            .trailingToSuperview(constant: -16)
+            .leadingToSuperview(constant: 16)
             .activate()
     }
     
     private func setupCircularSlider() {
         circularSlider = CircularSlider(frame: .zero)
         circularSlider.title = "Grade".localized
-        circularSlider.bgColor = .systemGray3
-        circularSlider.pgHighlightedColor = .systemGreen
-        circularSlider.pgNormalColor = .systemGreen
+        circularSlider.gradable = assignment
         circularSlider.radiansOffset = 0.8
         circularSlider.lineWidth = 20
-        circularSlider.minimumValue = 0
-        circularSlider.maximumValue = assignment.maxGrade
-        circularSlider.value = assignment.grade
+        circularSlider.knobRadius = 30
         
         view.addSubview(circularSlider)
         circularSlider.anchor
@@ -70,6 +74,12 @@ class AssignmentDetailViewController: BaseViewController {
     
     @objc private func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         circularSlider.numberOfDecimals = sender.selectedSegmentIndex
+    }
+    
+    @objc private func saveAssignment() {
+        assignment.update(grade: circularSlider.value)
+        delegate?.didEditAssignment()
+        dismiss(animated: true)
     }
 
 }

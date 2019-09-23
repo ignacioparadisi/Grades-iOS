@@ -45,7 +45,7 @@ struct GradableView: View {
         HStack {
             Text(gradable.name)
             Spacer()
-            GradableCharView(gradable: gradable)
+            GradableChartView(gradable: gradable)
                 .frame(width: 52, height: 52)
         }
         .padding([.horizontal])
@@ -54,7 +54,7 @@ struct GradableView: View {
     }
 }
 
-struct GradableCharView: View {
+struct GradableChartView: View {
     var gradable: Gradable
     /// The start angle of the grade graph
     private let startAngle: CGFloat = 0.0
@@ -86,7 +86,7 @@ struct GradableCharView: View {
                         self.animateRing(self.gradable)
                 }
                 
-                Text("\(Int(self.gradable.grade))")
+                Text("\(Int(self.gradable.grade.rounded()))")
             }
         }
         .padding(.top, 9)

@@ -62,7 +62,7 @@ struct AssignmentView: View {
                     Spacer()
                 }
             }
-            GradableCharView(gradable: assignment).frame(width: 52, height: 52)
+            GradableChartView(gradable: assignment).frame(width: 52, height: 52)
         }
         .padding()
         .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))

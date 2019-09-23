@@ -17,42 +17,52 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbn-0y-dio">
-                    <rect key="frame" x="20" y="97.5" width="280" height="36"/>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="20,00" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZBy-16-9Op">
-                    <rect key="frame" x="20" y="141.5" width="280" height="37.5"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ynY-LA-4wk">
+                    <rect key="frame" x="50" y="118.5" width="220" height="83.5"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="20,00" textAlignment="center" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZBy-16-9Op" customClass="IPTextField" customModule="Grades" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="46" width="220" height="37.5"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="KRF-FF-zcp"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="KRF-FF-zcp"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="nyW-nn-ScH"/>
+                            </connections>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbn-0y-dio">
+                            <rect key="frame" x="0.0" y="0.0" width="220" height="36"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="KRF-FF-zcp"/>
+                        <constraint firstItem="ZBy-16-9Op" firstAttribute="top" secondItem="Lbn-0y-dio" secondAttribute="bottom" constant="10" id="6UL-eY-L3x"/>
+                        <constraint firstItem="Lbn-0y-dio" firstAttribute="top" secondItem="ynY-LA-4wk" secondAttribute="top" id="Dzc-6a-dSW"/>
+                        <constraint firstItem="ZBy-16-9Op" firstAttribute="leading" secondItem="ynY-LA-4wk" secondAttribute="leading" id="NXK-1b-zfe"/>
+                        <constraint firstAttribute="bottom" secondItem="ZBy-16-9Op" secondAttribute="bottom" id="ezF-R6-0uI"/>
+                        <constraint firstAttribute="trailing" secondItem="ZBy-16-9Op" secondAttribute="trailing" id="jBb-Gw-D1O"/>
+                        <constraint firstAttribute="trailing" secondItem="Lbn-0y-dio" secondAttribute="trailing" id="mWe-0M-TFc"/>
+                        <constraint firstItem="Lbn-0y-dio" firstAttribute="leading" secondItem="ynY-LA-4wk" secondAttribute="leading" id="yLA-RL-G4J"/>
                     </constraints>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="KRF-FF-zcp"/>
-                        </mask>
-                    </variation>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="nyW-nn-ScH"/>
-                    </connections>
-                </textField>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="ZBy-16-9Op" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="4RU-hN-87r"/>
-                <constraint firstItem="ZBy-16-9Op" firstAttribute="top" secondItem="Lbn-0y-dio" secondAttribute="bottom" constant="8" id="5ZU-J7-q5t"/>
-                <constraint firstItem="Lbn-0y-dio" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="QRh-iE-94t"/>
-                <constraint firstAttribute="trailing" secondItem="ZBy-16-9Op" secondAttribute="trailing" constant="20" id="S3n-BC-O4d"/>
-                <constraint firstItem="Lbn-0y-dio" firstAttribute="leading" secondItem="ZBy-16-9Op" secondAttribute="leading" id="byH-uC-GeC"/>
-                <constraint firstItem="Lbn-0y-dio" firstAttribute="trailing" secondItem="ZBy-16-9Op" secondAttribute="trailing" id="qnA-es-gtU"/>
-                <constraint firstItem="ZBy-16-9Op" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="x8m-87-fYw"/>
-                <constraint firstItem="ZBy-16-9Op" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="yuk-95-msE"/>
+                <constraint firstItem="ynY-LA-4wk" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="4g1-nB-AIT"/>
+                <constraint firstAttribute="trailing" secondItem="ynY-LA-4wk" secondAttribute="trailing" constant="50" id="d0h-hb-fbL"/>
+                <constraint firstItem="ynY-LA-4wk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="g66-LW-1t9"/>
+                <constraint firstItem="ynY-LA-4wk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="50" id="u9R-85-oRx"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="139" y="125"/>
+            <point key="canvasLocation" x="-74" y="92"/>
         </view>
     </objects>
 </document>

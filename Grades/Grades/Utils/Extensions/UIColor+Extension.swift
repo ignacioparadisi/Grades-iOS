@@ -38,11 +38,15 @@ extension UIColor {
     /// - Parameter gradable: Gradable to evaluate
     /// - Returns: UIColor depending on grade
     static func getColor(for gradable: Gradable) -> UIColor {
-        let roundedGrade = gradable.grade.rounded()
-        let minGreenGrade = gradable.maxGrade - ((gradable.maxGrade - gradable.minGrade) / 3)
-        if roundedGrade <= gradable.maxGrade, roundedGrade >= minGreenGrade {
+        return getColor(for: gradable.grade, maxGrade: gradable.maxGrade, minGrade: gradable.minGrade)
+    }
+    
+    static func getColor(for grade: Float, maxGrade: Float, minGrade: Float) -> UIColor {
+        let roundedGrade = grade.rounded()
+        let minGreenGrade = maxGrade - ((maxGrade - minGrade) / 3)
+        if roundedGrade <= maxGrade, roundedGrade >= minGreenGrade {
             return .systemGreen
-        } else if roundedGrade < minGreenGrade, roundedGrade >= gradable.minGrade {
+        } else if roundedGrade < minGreenGrade, roundedGrade >= minGrade {
             return .systemYellow
         } else {
             return .systemRed
