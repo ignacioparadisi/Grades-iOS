@@ -33,6 +33,7 @@
 		4F6C602322B5BAC800C7A931 /* CreateAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C602222B5BAC800C7A931 /* CreateAssignmentViewController.swift */; };
 		4F7EE95B22A18C6500E34672 /* IPButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EE95A22A18C6500E34672 /* IPButton.swift */; };
 		4F7EE96322A1914300E34672 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F7EE96522A1914300E34672 /* Localizable.strings */; };
+		4F9922C2233980FA005B52F4 /* BaseFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9922C1233980FA005B52F4 /* BaseFormViewController.swift */; };
 		4F9BAFCE2338F75F006FE7D1 /* Float+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BAFCD2338F75F006FE7D1 /* Float+Extension.swift */; };
 		4FA7E01422F50FEA00C493AE /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA7E01322F50FEA00C493AE /* DatabaseError.swift */; };
 		4FACFF4F22F0DB71000997E1 /* IPDatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF4E22F0DB71000997E1 /* IPDatePickerTextField.swift */; };
@@ -132,6 +133,7 @@
 		4F7EE96022A190F200E34672 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		4F7EE96422A1914300E34672 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4F7EE96622A1914800E34672 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		4F9922C1233980FA005B52F4 /* BaseFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFormViewController.swift; sourceTree = "<group>"; };
 		4F9BAFCD2338F75F006FE7D1 /* Float+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Extension.swift"; sourceTree = "<group>"; };
 		4FA7E01322F50FEA00C493AE /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		4FACFF4E22F0DB71000997E1 /* IPDatePickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPDatePickerTextField.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 			children = (
 				4FF6F449227A0BAE000F14D2 /* MainTabBarController.swift */,
 				4FF6F466227A14AC000F14D2 /* BaseViewController.swift */,
+				4F9922C1233980FA005B52F4 /* BaseFormViewController.swift */,
 				4FF6F443227A0BAE000F14D2 /* Home */,
 				4FF6F445227A0BAE000F14D2 /* Grades */,
 				4FF6F447227A0BAE000F14D2 /* Calendar */,
@@ -628,6 +631,7 @@
 				4FFE0F84231369B60019244F /* Logger.swift in Sources */,
 				4FF6F45C227A0CA4000F14D2 /* Images+Enum.swift in Sources */,
 				4FFCBC0F22F37BF900A7172A /* TermDateTableViewCell.swift in Sources */,
+				4F9922C2233980FA005B52F4 /* BaseFormViewController.swift in Sources */,
 				4F4A650122B99D40003A1199 /* GradableTableViewCell.swift in Sources */,
 				4FF6F47F227A410B000F14D2 /* UIView+Extension.swift in Sources */,
 				4FCD779623384CEC00A2FA5E /* RotationGesture.swift in Sources */,

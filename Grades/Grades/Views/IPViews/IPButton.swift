@@ -13,7 +13,7 @@ class IPButton: UIButton {
     private var wasInitialized = false
     private let padding = UIEdgeInsets(top: 15, left: 10, bottom: 15, right: 10)
     var highlightDarknessPercentage: CGFloat = 10
-    var color: UIColor? {
+    var color: UIColor? = UIColor.accentColor {
         didSet {
             backgroundColor = color
         }
@@ -58,7 +58,6 @@ class IPButton: UIButton {
     
     private func initialize() {
         layer.cornerRadius = 10.0
-        backgroundColor = UIColor(named: "accentColor")
 //        setTitleColor(ThemeManager.currentTheme.textColor, for: .normal)
 //        setTitleColor(ThemeManager.currentTheme.disabledButtonTextColor, for: .disabled)
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .title3)

@@ -12,171 +12,38 @@ protocol CreateSubjectViewControllerDelegate: class {
     func shouldRefresh()
 }
 
-// TODO: Hacer esta vista con SwiftUI
-
-class CreateSubjectViewController: BaseViewController, ScrollableView {
-
-    let titleTopConstant: CGFloat = 20.0
-    let descriptionTopConstant: CGFloat = 5.0
-    let fieldTopConstant: CGFloat = 10.0
-    let trailingConstant: CGFloat = -16.0
-    let leadingConstant: CGFloat = 16.0
+class CreateSubjectViewController: BaseFormViewController {
     
     weak var delegate: CreateSubjectViewControllerDelegate?
-    var contentView: UIView = UIView()
-    let nameTextField: IPTextField = {
-        let textField = IPTextField()
-        textField.isRequired = true
-        return textField
-    }()
-    var decimalsSegmentedControl: UISegmentedControl = {
-        let items = ["1", "0.1", "0.01"]
-        let segmentedControl = UISegmentedControl(items: items)
-        segmentedControl.selectedSegmentIndex = 0
-        return segmentedControl
-    }()
-    let addButton = IPButton()
-    let minGradeTextField: IPTextField = {
-        let textField = IPTextField()
-        textField.keyboardType = .decimalPad
-        textField.isRequired = true
-        return textField
-    }()
-    let maxGradeTextField: IPTextField = {
-        let textField = IPTextField()
-        textField.keyboardType = .decimalPad
-        textField.isRequired = true
-        return textField
-    }()
     var term: Term = Term()
     
     override func setupView() {
         super.setupView()
-        isModalInPresentation = false
-        navigationController?.presentationController?.delegate = self
-        addScrollView()
-        setupNameSection()
-        setupDecimalsSection()
-        setupGradesSection()
-        setupSaveButton()
+        setupNameSection(topAnchor: contentView.safeAreaLayoutGuide.topAnchor, description: "Enter a name for the subject", placeholder: "Subject name")
+        setupDecimalsSection(topAnchor: nameTextField.bottomAnchor)
+        setupGradesSection(topAnchor: decimalsSegmentedControl.bottomAnchor)
+        setupSaveButton(topAnchor: maxGradeTextField.bottomAnchor, action: #selector(createSubject))
+        setupDelegates()
     }
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = "Add Subject".localized
-        navigationController?.navigationBar.prefersLargeTitles = false
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
-        navigationItem.rightBarButtonItem = cancelButton
     }
     
-    @objc private func dismissView() {
-        dismiss(animated: true)
-    }
-    
-    private func setupLabelConstraints(for label: UILabel, topAnchor: NSLayoutYAxisAnchor, topConstant: CGFloat) {
-        label.anchor
-            .top(to: topAnchor, constant: topConstant)
-            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
-            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
-            .width(constant: view.frame.width - 2 * leadingConstant)
-            .activate()
-    }
-    
-    private func setupNameSection() {
-        let nameTitleLabel = IPTitleLabel()
-        let nameDescriptionLabel = IPLabel()
-        
-        nameTitleLabel.text = "Name".localized
-        nameDescriptionLabel.text = "Enter a name for the subject".localized
-        nameTextField.placeholder = "Subject name".localized
+    private func setupDelegates() {
         nameTextField.delegate = self
-        
-        contentView.addSubview(nameTitleLabel)
-        contentView.addSubview(nameDescriptionLabel)
-        contentView.addSubview(nameTextField)
-        
-        setupLabelConstraints(for: nameTitleLabel, topAnchor: contentView.safeAreaLayoutGuide.topAnchor, topConstant: titleTopConstant)
-        setupLabelConstraints(for: nameDescriptionLabel, topAnchor: nameTitleLabel.bottomAnchor, topConstant: descriptionTopConstant)
-        nameTextField.anchor
-            .top(to: nameDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
-            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
-            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
-            .activate()
-    }
-    
-    private func setupDecimalsSection() {
-        let label = IPTitleLabel()
-        let descriptionLabel = IPLabel()
-        
-        label.text = "Decimals".localized
-        descriptionLabel.text = "Select the amount of decimals to show".localized
-        
-        contentView.addSubview(label)
-        contentView.addSubview(descriptionLabel)
-        contentView.addSubview(decimalsSegmentedControl)
-        
-        setupLabelConstraints(for: label, topAnchor: nameTextField.bottomAnchor, topConstant: titleTopConstant)
-        setupLabelConstraints(for: descriptionLabel, topAnchor: label.bottomAnchor, topConstant: descriptionTopConstant)
-        decimalsSegmentedControl.anchor
-            .top(to: descriptionLabel.bottomAnchor, constant: fieldTopConstant)
-            .trailingToSuperview(constant: trailingConstant)
-            .leadingToSuperview(constant: leadingConstant)
-            .activate()
-    }
-    
-    private func setupGradesSection() {
-        let gradesLabel = IPTitleLabel()
-        let gradesDescriptionLabel = IPLabel()
-        
-        gradesLabel.text = "Grades".localized
-        gradesDescriptionLabel.text = "Enter max and min grade to pass".localized
-        maxGradeTextField.placeholder = "Max. Grade".localized
-        minGradeTextField.placeholder = "Min. Grade".localized
         maxGradeTextField.delegate = self
         minGradeTextField.delegate = self
-        
-        contentView.addSubview(gradesLabel)
-        contentView.addSubview(gradesDescriptionLabel)
-        contentView.addSubview(minGradeTextField)
-        contentView.addSubview(maxGradeTextField)
-        
-        setupLabelConstraints(for: gradesLabel, topAnchor: decimalsSegmentedControl.bottomAnchor, topConstant: titleTopConstant)
-        setupLabelConstraints(for: gradesDescriptionLabel, topAnchor: gradesLabel.bottomAnchor, topConstant: descriptionTopConstant)
-        minGradeTextField.anchor
-            .top(to: gradesDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
-            .trailing(to: contentView.centerXAnchor, constant: trailingConstant / 2)
-            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
-            .activate()
-        maxGradeTextField.anchor
-            .top(to: gradesDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
-            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
-            .leading(to: contentView.centerXAnchor, constant: leadingConstant / 2)
-            .activate()
-    }
-    
-    private func setupSaveButton() {
-        addButton.setTitle("Save".localized, for: .normal)
-        addButton.addTarget(self, action: #selector(createSubject), for: .touchUpInside)
-        addButton.color = UIColor(named: "accentColor")
-        addButton.isEnabled = false
-        contentView.addSubview(addButton)
-        addButton.anchor
-            .top(greaterOrEqual: minGradeTextField.bottomAnchor, constant: 16)
-            .bottom(to: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -20)
-            .trailing(to: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -16)
-            .leading(to: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 16)
-            .activate()
-        let topConstraint = addButton.topAnchor.constraint(greaterThanOrEqualTo: minGradeTextField.bottomAnchor, constant: 20)
-        topConstraint.isActive = true
     }
     
     private func checkRequiredFields() {
         if nameTextField.isEmpty || minGradeTextField.isEmpty
             || maxGradeTextField.isEmpty {
-            addButton.isEnabled = false
+            saveButton.isEnabled = false
             return
         }
-        addButton.isEnabled = true
+        saveButton.isEnabled = true
     }
     
     @objc private func createSubject() {

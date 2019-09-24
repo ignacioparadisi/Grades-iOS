@@ -31,7 +31,7 @@ struct SubjectCardView: View {
             HStack {
                 Text(subject.name)
                 Spacer()
-                GradableChartView(gradable: subject).frame(width: 52, height: 52)
+                GradableChartView(gradable: subject).frame(width: 70, height: 70)
             }
             Spacer()
             Rectangle().fill(Color(.systemGray3)).frame(height: 1)

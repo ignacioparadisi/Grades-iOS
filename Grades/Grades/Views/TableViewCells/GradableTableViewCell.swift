@@ -46,7 +46,7 @@ struct GradableView: View {
             Text(gradable.name)
             Spacer()
             GradableChartView(gradable: gradable)
-                .frame(width: 52, height: 52)
+                .frame(width: 70, height: 70)
         }
         .padding([.horizontal])
         .padding([.vertical], 7)

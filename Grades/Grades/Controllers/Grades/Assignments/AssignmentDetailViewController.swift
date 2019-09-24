@@ -37,13 +37,21 @@ class AssignmentDetailViewController: BaseViewController, ScrollableView {
         picker.placeholder = "Deadline".localized
         return picker
     }()
+    var saveButton: IPButton = {
+        let button = IPButton()
+        return button
+    }()
 
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = assignment.name
         navigationController?.navigationBar.prefersLargeTitles = false
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveAssignment))
-        navigationItem.rightBarButtonItem = saveButton
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
+        navigationItem.rightBarButtonItem = cancelButton
+    }
+    
+    @objc private func dismissView() {
+        dismiss(animated: true)
     }
     
     override func setupView() {
@@ -52,6 +60,7 @@ class AssignmentDetailViewController: BaseViewController, ScrollableView {
         setupDecimalsSection()
         setupCircularSlider()
         setupDeadline()
+        setupSaveButton()
     }
     
     private func setupDecimalsSection() {
@@ -112,7 +121,19 @@ class AssignmentDetailViewController: BaseViewController, ScrollableView {
             .top(to: dateDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
             .leadingToSuperview(constant: leadingConstant)
             .trailingToSuperview(constant: trailingConstant)
-            .bottomToSuperview(constant: -30, toSafeArea: true)
+            .activate()
+    }
+    
+    private func setupSaveButton() {
+        saveButton.setTitle("Save".localized, for: .normal)
+        saveButton.addTarget(self, action: #selector(updateAssignment), for: .touchUpInside)
+        saveButton.color = UIColor(named: "accentColor")
+        contentView.addSubview(saveButton)
+        saveButton.anchor
+            .top(greaterOrEqual: deadlineTextField.bottomAnchor, constant: titleTopConstant)
+            .bottomToSuperview(constant: -20, toSafeArea: true)
+            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
+            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
             .activate()
     }
     
@@ -129,7 +150,7 @@ class AssignmentDetailViewController: BaseViewController, ScrollableView {
         circularSlider.numberOfDecimals = sender.selectedSegmentIndex
     }
     
-    @objc private func saveAssignment() {
+    @objc private func updateAssignment() {
         assignment.update(grade: circularSlider.value, decimals: decimalsSegmentedControl.selectedSegmentIndex)
         delegate?.didEditAssignment()
         dismiss(animated: true)
