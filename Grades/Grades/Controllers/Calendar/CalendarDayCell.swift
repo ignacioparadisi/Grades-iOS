@@ -18,6 +18,7 @@ class CalendarDayCell: JTACDayCell {
     let currentDateView: UIView = {
        let view = UIView()
         view.backgroundColor = UIColor.accentColor
+        view.isHidden = true
         return view
     }()
     
@@ -32,7 +33,9 @@ class CalendarDayCell: JTACDayCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let roundedPath = UIBezierPath(roundedRect: currentDateView.bounds, cornerRadius: currentDateView.bounds.height / 2)
+        let cornerRadius = currentDateView.frame.width > currentDateView.frame.height ?
+            (currentDateView.frame.height / 2) - 8 : (currentDateView.frame.width / 2) - 8
+        let roundedPath = UIBezierPath(roundedRect: currentDateView.bounds, cornerRadius: cornerRadius)
         let maskLayer = CAShapeLayer()
         maskLayer.path = roundedPath.cgPath
         currentDateView.layer.mask = maskLayer
@@ -44,15 +47,35 @@ class CalendarDayCell: JTACDayCell {
         
         currentDateView.anchor
             .centerToSuperview()
-            .leadingToSuperview()
-            .trailingToSuperview()
-            .height(to: currentDateView.widthAnchor)
             .activate()
+        
+        if frame.width > frame.height {
+            currentDateView.anchor
+                .height(to: heightAnchor, multiplier: 0.9)
+                .width(to: currentDateView.heightAnchor)
+                .activate()
+        } else {
+            currentDateView.anchor
+                .width(to: widthAnchor, multiplier: 0.9)
+                .height(to: currentDateView.widthAnchor)
+                .activate()
+        }
         
         dateLabel.anchor
             .leadingToSuperview()
             .trailingToSuperview()
             .centerYToSuperview()
             .activate()
+    }
+    
+    func configureToday() {
+        currentDateView.isHidden = false
+        dateLabel.textColor = .systemBackground
+        dateLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+    }
+    
+    func configureAllButToday() {
+        currentDateView.isHidden = true
+        dateLabel.font = UIFont.systemFont(ofSize: 20)
     }
 }

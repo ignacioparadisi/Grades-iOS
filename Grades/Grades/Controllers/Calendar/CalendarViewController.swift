@@ -25,7 +25,7 @@ class CalendarViewController: BaseViewController, ScrollableView {
             .topToSuperview(toSafeArea: true)
             .leadingToSuperview()
             .trailingToSuperview()
-            .height(to: calendarView.widthAnchor)
+            .height(to: calendarView.widthAnchor, multiplier: 0.9)
             .bottomToSuperview()
             .activate()
     }

@@ -13,6 +13,9 @@ class CalendarView: UIView {
 
     var reuseIdentifier = "dateCell"
     var calendar: JTACMonthView!
+    var daysOfWeek: [String] = ["S", "M", "T", "W", "T", "F", "S"]
+    let daysOfWeekStackView = UIStackView()
+    let monthLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,14 +28,57 @@ class CalendarView: UIView {
     
     private func initialize() {
         let monthView = UIView()
-        let monthLabel = UILabel()
         monthView.addSubview(monthLabel)
-        monthLabel.anchor.edgesToSuperview(toSafeArea: true).activate()
+        monthLabel.font = UIFont.preferredFont(forTextStyle: .title1)
+        
+        let todayButton = UIButton()
+        let today = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, yyyy"
+        todayButton.setTitle(dateFormatter.string(from: today), for: .normal)
+        todayButton.setTitleColor(UIColor.accentColor, for: .normal)
+        todayButton.addTarget(self, action: #selector(goToToday), for: .touchUpInside)
+        monthView.addSubview(todayButton)
+        
+        monthLabel.anchor
+            .topToSuperview(constant: 8)
+            .leadingToSuperview(constant: 20)
+            .trailing(lesserOrEqual: monthView.centerXAnchor, constant: -8)
+            .bottomToSuperview(constant: -16)
+            .activate()
+        
+        todayButton.anchor
+            .trailingToSuperview(constant: -20)
+            .centerYToSuperview()
+            .activate()
+        
+        daysOfWeekStackView.alignment = .center
+        daysOfWeekStackView.axis = .horizontal
+        daysOfWeekStackView.distribution = .fillEqually
+        for day in daysOfWeek {
+            let label = UILabel()
+            label.textAlignment = .center
+            label.text = day
+            label.textColor = .secondaryLabel
+            daysOfWeekStackView.addArrangedSubview(label)
+        }
         
         addSubview(monthView)
+        addSubview(daysOfWeekStackView)
+        
         monthView.anchor.topToSuperview().leadingToSuperview().trailingToSuperview().activate()
+        daysOfWeekStackView.anchor
+            .top(to: monthView.bottomAnchor)
+            .leadingToSuperview()
+            .trailingToSuperview()
+            .activate()
         
         backgroundColor = .systemBackground
+        setupCalendarView()
+        
+    }
+    
+    private func setupCalendarView() {
         calendar = JTACMonthView(frame: .zero)
         calendar.register(CalendarDayCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         calendar.minimumInteritemSpacing = 0
@@ -45,7 +91,12 @@ class CalendarView: UIView {
         calendar.showsHorizontalScrollIndicator = false
         calendar.scrollToDate(getSunday(from: Date()), animateScroll: false)
         addSubview(calendar)
-        calendar.anchor.edgesToSuperview().activate()
+        calendar.anchor
+            .top(to: daysOfWeekStackView.bottomAnchor)
+            .trailingToSuperview()
+            .leadingToSuperview()
+            .bottomToSuperview()
+            .activate()
     }
     
     private func getSunday(from date: Date) -> Date {
@@ -53,6 +104,10 @@ class CalendarView: UIView {
         let components = calendar.dateComponents([.weekOfYear, .yearForWeekOfYear], from: date)
         let sunday = calendar.date(from: components)!
         return sunday
+    }
+    
+    @objc private func goToToday() {
+        calendar.scrollToDate(getSunday(from: Date()), animateScroll: true)
     }
 }
 
@@ -77,6 +132,15 @@ extension CalendarView: JTACMonthViewDelegate {
         return cell
     }
     
+    func calendar(_ calendar: JTACMonthView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
+        DispatchQueue.main.async { [weak self] in
+            guard let date = visibleDates.monthDates.first?.date else { return }
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM, yyyy"
+            self?.monthLabel.text = formatter.string(from: date)
+        }
+    }
+    
     private func configureCell(_ cell: JTACDayCell, cellState: CellState) {
         guard let cell = cell as? CalendarDayCell  else { return }
         cell.dateLabel.text = cellState.text
@@ -96,10 +160,9 @@ extension CalendarView: JTACMonthViewDelegate {
         let today = Calendar.current.date(from: todayComponents)
         
         if date == today {
-            cell.currentDateView.isHidden = false
-            cell.dateLabel.textColor = .systemBackground
+            cell.configureToday()
         } else {
-            cell.currentDateView.isHidden = true
+            cell.configureAllButToday()
         }
         
     }
