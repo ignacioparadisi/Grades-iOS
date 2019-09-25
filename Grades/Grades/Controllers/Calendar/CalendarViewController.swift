@@ -21,13 +21,19 @@ class CalendarViewController: BaseViewController, ScrollableView {
         super.setupView()
         addScrollView()
         contentView.addSubview(calendarView)
+        calendarView.layer.cornerRadius = 10
+        calendarView.backgroundColor = .systemGray5
         calendarView.anchor
-            .topToSuperview(toSafeArea: true)
-            .leadingToSuperview()
-            .trailingToSuperview()
-            .height(to: calendarView.widthAnchor, multiplier: 0.9)
+            .topToSuperview(constant: 20, toSafeArea: true)
+            .leadingToSuperview(constant: 16)
+            .trailingToSuperview(constant: -16)
             .bottomToSuperview()
             .activate()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        calendarView.updateUI()
     }
 
 }

@@ -46,4 +46,12 @@ public class Assignment: Gradable {
         subject?.calculateGrade()
     }
     
+    static func fetchForCalendar() throws -> [Assignment] {
+        let request: NSFetchRequest<Assignment> = Assignment.fetchRequest()
+        let sort = NSSortDescriptor(key: "dateCreated", ascending: false)
+        request.sortDescriptors = [sort]
+        let result = try CoreDataManager.shared.context.fetch(request)
+        return result
+    }
+    
 }

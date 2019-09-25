@@ -16,6 +16,8 @@ class CalendarView: UIView {
     var daysOfWeek: [String] = ["S", "M", "T", "W", "T", "F", "S"]
     let daysOfWeekStackView = UIStackView()
     let monthLabel = UILabel()
+    var calendarDataSource: [String: [Assignment]] = [:]
+    var dateFormatter: DateFormatter = DateFormatter()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,11 +31,10 @@ class CalendarView: UIView {
     private func initialize() {
         let monthView = UIView()
         monthView.addSubview(monthLabel)
-        monthLabel.font = UIFont.preferredFont(forTextStyle: .title1)
+        monthLabel.font = UIFont.preferredFont(forTextStyle: .title3)
         
         let todayButton = UIButton()
         let today = Date()
-        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy"
         todayButton.setTitle(dateFormatter.string(from: today), for: .normal)
         todayButton.setTitleColor(UIColor.accentColor, for: .normal)
@@ -41,7 +42,7 @@ class CalendarView: UIView {
         monthView.addSubview(todayButton)
         
         monthLabel.anchor
-            .topToSuperview(constant: 8)
+            .topToSuperview(constant: 16)
             .leadingToSuperview(constant: 20)
             .trailing(lesserOrEqual: monthView.centerXAnchor, constant: -8)
             .bottomToSuperview(constant: -16)
@@ -73,9 +74,38 @@ class CalendarView: UIView {
             .trailingToSuperview()
             .activate()
         
-        backgroundColor = .systemBackground
+        backgroundColor = .clear
         setupCalendarView()
         
+        DispatchQueue.main.async { [weak self] in
+            self?.populateCalendarDataSource()
+        }
+        
+    }
+    
+    func updateUI() {
+        populateCalendarDataSource()
+    }
+    
+    private func populateCalendarDataSource() {
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        calendarDataSource.removeAll()
+        var assignments: [Assignment] = []
+        do {
+            assignments = try Assignment.fetchForCalendar()
+        } catch {
+            print(error)
+            Logger.log("Error fetching assignments for calendar", category: .assignment, type: .error)
+        }
+        for assignment in assignments {
+            let key = dateFormatter.string(from: assignment.deadline)
+            if calendarDataSource[key] == nil {
+                calendarDataSource[key] = [assignment]
+            } else {
+                calendarDataSource[key]?.append(assignment)
+            }
+        }
+        calendar.reloadData()
     }
     
     private func setupCalendarView() {
@@ -85,10 +115,11 @@ class CalendarView: UIView {
         calendar.minimumLineSpacing = 0
         calendar.ibCalendarDelegate = self
         calendar.ibCalendarDataSource = self
-        calendar.backgroundColor = .systemBackground
+        calendar.backgroundColor = .clear
         calendar.isPagingEnabled = true
         calendar.scrollDirection = .horizontal
         calendar.showsHorizontalScrollIndicator = false
+        calendar.showsVerticalScrollIndicator = false
         calendar.scrollToDate(getSunday(from: Date()), animateScroll: false)
         addSubview(calendar)
         calendar.anchor
@@ -96,6 +127,7 @@ class CalendarView: UIView {
             .trailingToSuperview()
             .leadingToSuperview()
             .bottomToSuperview()
+            .height(to: calendar.widthAnchor, multiplier: 1)
             .activate()
     }
     
@@ -113,8 +145,6 @@ class CalendarView: UIView {
 
 extension CalendarView: JTACMonthViewDataSource {
     func configureCalendar(_ calendar: JTACMonthView) -> ConfigurationParameters {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy MM dd"
         let startDate = Calendar.current.date(byAdding: .year, value: -10, to: Date())!
         let endDate = Calendar.current.date(byAdding: .year, value: 10, to: Date())!
         return ConfigurationParameters(startDate: startDate, endDate: endDate)
@@ -132,19 +162,19 @@ extension CalendarView: JTACMonthViewDelegate {
         return cell
     }
     
-    func calendar(_ calendar: JTACMonthView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-        DispatchQueue.main.async { [weak self] in
-            guard let date = visibleDates.monthDates.first?.date else { return }
-            let formatter = DateFormatter()
-            formatter.dateFormat = "MMM, yyyy"
-            self?.monthLabel.text = formatter.string(from: date)
-        }
-    }
-    
     private func configureCell(_ cell: JTACDayCell, cellState: CellState) {
         guard let cell = cell as? CalendarDayCell  else { return }
         cell.dateLabel.text = cellState.text
         handleCellTextColor(cell: cell, cellState: cellState)
+        handleCellEvents(cell: cell, cellState: cellState)
+    }
+    
+    func calendar(_ calendar: JTACMonthView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
+        DispatchQueue.main.async { [weak self] in
+            guard let date = visibleDates.monthDates.first?.date else { return }
+            self?.dateFormatter.dateFormat = "MMMM yyyy"
+            self?.monthLabel.text = self?.dateFormatter.string(from: date)
+        }
     }
     
     private func handleCellTextColor(cell: CalendarDayCell, cellState: CellState) {
@@ -164,7 +194,16 @@ extension CalendarView: JTACMonthViewDelegate {
         } else {
             cell.configureAllButToday()
         }
-        
+    }
+    
+    func handleCellEvents(cell: CalendarDayCell, cellState: CellState) {
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString = dateFormatter.string(from: cellState.date)
+        if calendarDataSource[dateString] == nil {
+            cell.notificationView.isHidden = true
+        } else {
+            cell.notificationView.isHidden = false
+        }
     }
     
 }

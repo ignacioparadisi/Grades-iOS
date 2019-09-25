@@ -21,6 +21,12 @@ class CalendarDayCell: JTACDayCell {
         view.isHidden = true
         return view
     }()
+    let notificationView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemRed
+        view.layer.cornerRadius = 4
+        return view
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,40 +48,60 @@ class CalendarDayCell: JTACDayCell {
     }
     
     private func initialize() {
+        let topLine = UIView()
+        topLine.backgroundColor = .systemGray2
+        addSubview(topLine)
         addSubview(currentDateView)
+        addSubview(notificationView)
         addSubview(dateLabel)
         
+        topLine.anchor
+            .topToSuperview()
+            .trailingToSuperview()
+            .leadingToSuperview()
+            .height(constant: 1)
+            .activate()
+        
+        notificationView.anchor
+            .top(to: currentDateView.bottomAnchor, constant: 2)
+            .centerXToSuperview()
+            .width(constant: 8)
+            .height(to: notificationView.widthAnchor)
+            .activate()
+        
+        dateLabel.anchor
+            .trailing(to: currentDateView.trailingAnchor)
+            .leading(to: currentDateView.leadingAnchor)
+            .centerX(to: currentDateView.centerXAnchor)
+            .centerY(to: currentDateView.centerYAnchor)
+            .activate()
+        
         currentDateView.anchor
-            .centerToSuperview()
+            .topToSuperview(constant: 5)
+            .centerXToSuperview()
             .activate()
         
         if frame.width > frame.height {
             currentDateView.anchor
-                .height(to: heightAnchor, multiplier: 0.9)
+                .height(to: heightAnchor, multiplier: 0.7)
                 .width(to: currentDateView.heightAnchor)
                 .activate()
         } else {
             currentDateView.anchor
-                .width(to: widthAnchor, multiplier: 0.9)
+                .width(to: widthAnchor, multiplier: 0.7)
                 .height(to: currentDateView.widthAnchor)
                 .activate()
         }
-        
-        dateLabel.anchor
-            .leadingToSuperview()
-            .trailingToSuperview()
-            .centerYToSuperview()
-            .activate()
     }
     
     func configureToday() {
         currentDateView.isHidden = false
         dateLabel.textColor = .systemBackground
-        dateLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        dateLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
     }
     
     func configureAllButToday() {
         currentDateView.isHidden = true
-        dateLabel.font = UIFont.systemFont(ofSize: 20)
+        dateLabel.font = UIFont.systemFont(ofSize: 18)
     }
 }
