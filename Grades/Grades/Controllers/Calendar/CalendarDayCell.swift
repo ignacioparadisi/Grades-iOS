@@ -49,7 +49,7 @@ class CalendarDayCell: JTACDayCell {
     
     private func initialize() {
         let topLine = UIView()
-        topLine.backgroundColor = .systemGray2
+        topLine.backgroundColor = .systemGray
         addSubview(topLine)
         addSubview(currentDateView)
         addSubview(notificationView)
@@ -59,7 +59,7 @@ class CalendarDayCell: JTACDayCell {
             .topToSuperview()
             .trailingToSuperview()
             .leadingToSuperview()
-            .height(constant: 1)
+            .height(constant: 0.5)
             .activate()
         
         notificationView.anchor
@@ -92,16 +92,5 @@ class CalendarDayCell: JTACDayCell {
                 .height(to: currentDateView.widthAnchor)
                 .activate()
         }
-    }
-    
-    func configureToday() {
-        currentDateView.isHidden = false
-        dateLabel.textColor = .systemBackground
-        dateLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-    }
-    
-    func configureAllButToday() {
-        currentDateView.isHidden = true
-        dateLabel.font = UIFont.systemFont(ofSize: 18)
     }
 }

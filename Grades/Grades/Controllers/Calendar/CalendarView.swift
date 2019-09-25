@@ -44,7 +44,6 @@ class CalendarView: UIView {
         monthLabel.anchor
             .topToSuperview(constant: 16)
             .leadingToSuperview(constant: 20)
-            .trailing(lesserOrEqual: monthView.centerXAnchor, constant: -8)
             .bottomToSuperview(constant: -16)
             .activate()
         
@@ -60,7 +59,12 @@ class CalendarView: UIView {
             let label = UILabel()
             label.textAlignment = .center
             label.text = day
-            label.textColor = .secondaryLabel
+            label.font = UIFont.systemFont(ofSize: 12)
+            if day == "S" {
+                label.textColor = .secondaryLabel
+            } else {
+                label.textColor = .label
+            }
             daysOfWeekStackView.addArrangedSubview(label)
         }
         
@@ -121,9 +125,10 @@ class CalendarView: UIView {
         calendar.showsHorizontalScrollIndicator = false
         calendar.showsVerticalScrollIndicator = false
         calendar.scrollToDate(getSunday(from: Date()), animateScroll: false)
+        calendar.selectDates([Date()])
         addSubview(calendar)
         calendar.anchor
-            .top(to: daysOfWeekStackView.bottomAnchor)
+            .top(to: daysOfWeekStackView.bottomAnchor, constant: 5)
             .trailingToSuperview()
             .leadingToSuperview()
             .bottomToSuperview()
@@ -140,6 +145,7 @@ class CalendarView: UIView {
     
     @objc private func goToToday() {
         calendar.scrollToDate(getSunday(from: Date()), animateScroll: true)
+        calendar.selectDates([Date()])
     }
 }
 
@@ -162,11 +168,11 @@ extension CalendarView: JTACMonthViewDelegate {
         return cell
     }
     
-    private func configureCell(_ cell: JTACDayCell, cellState: CellState) {
+    private func configureCell(_ cell: JTACDayCell?, cellState: CellState) {
         guard let cell = cell as? CalendarDayCell  else { return }
         cell.dateLabel.text = cellState.text
-        handleCellTextColor(cell: cell, cellState: cellState)
-        handleCellEvents(cell: cell, cellState: cellState)
+         handleCellEvents(cell: cell, cellState: cellState)
+         handlerCellSelection(cell: cell, cellState: cellState)
     }
     
     func calendar(_ calendar: JTACMonthView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
@@ -177,23 +183,12 @@ extension CalendarView: JTACMonthViewDelegate {
         }
     }
     
-    private func handleCellTextColor(cell: CalendarDayCell, cellState: CellState) {
-       if cellState.dateBelongsTo == .thisMonth {
-        cell.dateLabel.textColor = .label
-       } else {
-        cell.dateLabel.textColor = .secondaryLabel
-       }
-        
-        let dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: cellState.date)
-        let date = Calendar.current.date(from: dateComponents)
-        let todayComponents = Calendar.current.dateComponents([.year, .month, .day], from: Date())
-        let today = Calendar.current.date(from: todayComponents)
-        
-        if date == today {
-            cell.configureToday()
-        } else {
-            cell.configureAllButToday()
-        }
+    func calendar(_ calendar: JTACMonthView, didSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
+        configureCell(cell, cellState: cellState)
+    }
+    
+    func calendar(_ calendar: JTACMonthView, didDeselectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
+        configureCell(cell, cellState: cellState)
     }
     
     func handleCellEvents(cell: CalendarDayCell, cellState: CellState) {
@@ -204,6 +199,48 @@ extension CalendarView: JTACMonthViewDelegate {
         } else {
             cell.notificationView.isHidden = false
         }
+    }
+    
+    func handlerCellSelection(cell: CalendarDayCell, cellState: CellState) {
+        if cellState.dateBelongsTo != .thisMonth {
+            cell.dateLabel.textColor = .secondaryLabel
+            cell.currentDateView.isHidden = true
+            return
+        }
+        
+        let dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: cellState.date)
+        let date = Calendar.current.date(from: dateComponents)
+        let todayComponents = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+        let today = Calendar.current.date(from: todayComponents)
+        
+        if cellState.isSelected {
+            cell.currentDateView.isHidden = false
+            if date == today {
+                cell.currentDateView.backgroundColor = UIColor.accentColor
+                cell.dateLabel.textColor = .systemBackground
+                cell.dateLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+            } else {
+                cell.currentDateView.backgroundColor = .systemGray3
+                cell.dateLabel.textColor = .label
+                cell.dateLabel.font = UIFont.systemFont(ofSize: 18)
+            }
+        } else {
+            cell.currentDateView.isHidden = true
+            if date == today {
+                cell.dateLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+                cell.dateLabel.textColor = UIColor.accentColor
+            } else {
+                cell.dateLabel.font = UIFont.systemFont(ofSize: 18)
+                cell.dateLabel.textColor = .label
+            }
+        }
+    }
+    
+    func calendar(_ calendar: JTACMonthView, shouldSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) -> Bool {
+        if cellState.dateBelongsTo == .thisMonth {
+            return true
+        }
+        return false
     }
     
 }
