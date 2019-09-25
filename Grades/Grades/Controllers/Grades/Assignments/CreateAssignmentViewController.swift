@@ -272,7 +272,7 @@ class CreateAssignmentViewController: BaseFormViewController {
             minGradeTextField.showErrorBorder()
             valid = false
         }
-        if grade <= 0 {
+        if grade < 0 || grade > maxGrade {
             gradeTextField.showErrorBorder()
             valid = false
         }
@@ -287,10 +287,6 @@ class CreateAssignmentViewController: BaseFormViewController {
         if maxGrade <= minGrade {
             maxGradeTextField.showErrorBorder()
             minGradeTextField.showErrorBorder()
-            valid = false
-        }
-        if grade > maxGrade || grade < minGrade {
-            gradeTextField.showErrorBorder()
             valid = false
         }
         return valid

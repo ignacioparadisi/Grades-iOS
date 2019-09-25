@@ -19,6 +19,7 @@
 		4F4A650322B99DB7003A1199 /* BarChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A650222B99DB7003A1199 /* BarChartTableViewCell.swift */; };
 		4F4A650522B99E11003A1199 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A650422B99E11003A1199 /* Header.swift */; };
 		4F54CD532333B6D800444FE1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54CD522333B6D800444FE1 /* CoreDataManager.swift */; };
+		4F5C9FD2233ACE1100DF2034 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5C9FD1233ACE1100DF2034 /* CalendarDayCell.swift */; };
 		4F5F65FF2336A309004DA7E9 /* GradesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F65FE2336A309004DA7E9 /* GradesTests.swift */; };
 		4F5F66062336A336004DA7E9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54CD522333B6D800444FE1 /* CoreDataManager.swift */; };
 		4F5F66082336A3C8004DA7E9 /* CoreDataTermTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F66072336A3C8004DA7E9 /* CoreDataTermTests.swift */; };
@@ -55,6 +56,7 @@
 		4FCD779823384CEC00A2FA5E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD779423384CEC00A2FA5E /* Utils.swift */; };
 		4FCEA14C229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */; };
 		4FD3EB612335BCA8003BBD30 /* CreateTermView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD3EB602335BCA8003BBD30 /* CreateTermView.swift */; };
+		4FDD0EB9233AC799005E5279 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDD0EB8233AC799005E5279 /* CalendarView.swift */; };
 		4FE7BD0A22B55CE800EB9590 /* FixedHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BD0922B55CE800EB9590 /* FixedHeaderLayout.swift */; };
 		4FF6F420227A04B6000F14D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F41F227A04B6000F14D2 /* AppDelegate.swift */; };
 		4FF6F427227A04B8000F14D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FF6F426227A04B8000F14D2 /* Assets.xcassets */; };
@@ -117,6 +119,7 @@
 		4F4A650222B99DB7003A1199 /* BarChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartTableViewCell.swift; sourceTree = "<group>"; };
 		4F4A650422B99E11003A1199 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		4F54CD522333B6D800444FE1 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		4F5C9FD1233ACE1100DF2034 /* CalendarDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
 		4F5F65FC2336A309004DA7E9 /* GradesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GradesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5F65FE2336A309004DA7E9 /* GradesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesTests.swift; sourceTree = "<group>"; };
 		4F5F66002336A309004DA7E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -155,6 +158,7 @@
 		4FCD779423384CEC00A2FA5E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyHeaderLayout.swift; sourceTree = "<group>"; };
 		4FD3EB602335BCA8003BBD30 /* CreateTermView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTermView.swift; sourceTree = "<group>"; };
+		4FDD0EB8233AC799005E5279 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		4FE7BD0922B55CE800EB9590 /* FixedHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeaderLayout.swift; sourceTree = "<group>"; };
 		4FF6F41C227A04B6000F14D2 /* Grades.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grades.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FF6F41F227A04B6000F14D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -393,6 +397,8 @@
 			isa = PBXGroup;
 			children = (
 				4FF6F448227A0BAE000F14D2 /* CalendarViewController.swift */,
+				4FDD0EB8233AC799005E5279 /* CalendarView.swift */,
+				4F5C9FD1233ACE1100DF2034 /* CalendarDayCell.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -671,6 +677,7 @@
 				4FCD779723384CEC00A2FA5E /* CircularSlider.swift in Sources */,
 				4FF6F462227A119F000F14D2 /* NSLayoutAnchor+Extension.swift in Sources */,
 				4FCD778D233838F400A2FA5E /* Term+CoreDataProperties.swift in Sources */,
+				4FDD0EB9233AC799005E5279 /* CalendarView.swift in Sources */,
 				4F66289C22A1462D001F2CD9 /* CreateTermViewController.swift in Sources */,
 				4FA7E01422F50FEA00C493AE /* DatabaseError.swift in Sources */,
 				4F3B693222F22F9F002C6263 /* TitleLabelTableViewCell.swift in Sources */,
@@ -681,6 +688,7 @@
 				4F6628A022A14B7E001F2CD9 /* UIViewController+Extension.swift in Sources */,
 				4F61FA8022EBE6F8008C6555 /* WatchSessionManager.swift in Sources */,
 				4FF6F420227A04B6000F14D2 /* AppDelegate.swift in Sources */,
+				4F5C9FD2233ACE1100DF2034 /* CalendarDayCell.swift in Sources */,
 				4FCD7788233838F400A2FA5E /* Assignment+CoreDataClass.swift in Sources */,
 				4FF6F471227A17F8000F14D2 /* ScrollableView.swift in Sources */,
 				4FF9AA0622F205CA00FE59AE /* AssignmentTableViewCell.swift in Sources */,
