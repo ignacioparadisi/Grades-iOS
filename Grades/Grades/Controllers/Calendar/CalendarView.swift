@@ -9,6 +9,10 @@
 import UIKit
 import JTAppleCalendar
 
+protocol CalendarViewDelegate: class {
+    func didSelectDate(_ assignments: [Assignment]?)
+}
+
 class CalendarView: UIView {
 
     var reuseIdentifier = "dateCell"
@@ -18,6 +22,7 @@ class CalendarView: UIView {
     let monthLabel = UILabel()
     var calendarDataSource: [String: [Assignment]] = [:]
     var dateFormatter: DateFormatter = DateFormatter()
+    weak var delegate: CalendarViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -185,6 +190,9 @@ extension CalendarView: JTACMonthViewDelegate {
     
     func calendar(_ calendar: JTACMonthView, didSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
         configureCell(cell, cellState: cellState)
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let key = dateFormatter.string(from: date)
+        delegate?.didSelectDate(calendarDataSource[key])
     }
     
     func calendar(_ calendar: JTACMonthView, didDeselectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
