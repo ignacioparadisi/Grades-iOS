@@ -39,7 +39,7 @@ class CalendarView: UIView {
         setupCalendarView()
         DispatchQueue.main.async { [weak self] in
             self?.populateCalendarDataSource()
-            self?.scrollToCurrentDate()
+            self?.scrollToCurrentDate(animated: false)
         }
         
     }
@@ -117,8 +117,9 @@ class CalendarView: UIView {
             .height(to: calendar.widthAnchor)
             .activate()
     }
+
     
-    @objc private func scrollToCurrentDate(animated: Bool = false) {
+    @objc private func scrollToCurrentDate(animated: Bool = true) {
         calendar.scrollToDate(getSunday(from: Date()), animateScroll: animated)
         calendar.selectDates([Date()])
     }

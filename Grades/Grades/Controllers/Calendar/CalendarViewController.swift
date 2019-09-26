@@ -108,7 +108,11 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension CalendarViewController: CalendarTableViewCellDelegate {
     func didSelectDate(_ assignments: [Assignment]?) {
+        var animation: UITableView.RowAnimation = .none
+        if let assignments = assignments, !assignments.isEmpty, assignments != self.assignments {
+            animation = .fade
+        }
         self.assignments = assignments
-        tableView.reloadSections(IndexSet(integer: TableSection.events.rawValue), with: .fade)
+        tableView.reloadSections(IndexSet(integer: TableSection.events.rawValue), with: animation)
     }
 }
