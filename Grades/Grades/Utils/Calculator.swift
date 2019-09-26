@@ -36,7 +36,11 @@ class Calculator {
     static func getGrade(for assignments: [Assignment], parent: Gradable) -> Float {
         var total: Float = 0.0
         for assignment in assignments where !assignment.isDeleted {
-            total += ((assignment.grade * parent.maxGrade) / assignment.maxGrade) * assignment.percentage
+            if assignment.percentage != 0 {
+                total += ((assignment.grade * parent.maxGrade) / assignment.maxGrade) * assignment.percentage
+            } else {
+                total += ((assignment.grade * parent.maxGrade) / assignment.maxGrade)
+            }
         }
         return total
     }

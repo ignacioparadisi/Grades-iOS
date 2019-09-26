@@ -25,7 +25,6 @@ class CreateAssignmentViewController: BaseFormViewController {
     let percentageTextField: IPTextField = {
         let textField = IPTextField()
         textField.keyboardType = .decimalPad
-        textField.isRequired = true
         return textField
     }()
     let switchContainerView: UIView = {
@@ -175,7 +174,6 @@ class CreateAssignmentViewController: BaseFormViewController {
         if nameTextField.isEmpty
             || minGradeTextField.isEmpty
             || maxGradeTextField.isEmpty
-            || percentageTextField.isEmpty
             || deadlinePickerTextField.isEmpty {
             saveButton.isEnabled = false
             return
@@ -186,16 +184,18 @@ class CreateAssignmentViewController: BaseFormViewController {
     @objc private func createAssignment() {
         if let name = nameTextField.text, let minGradeText = minGradeTextField.text,
             let maxGradeText = maxGradeTextField.text,
-            let percentageText = percentageTextField.text,
             let minGrade = Float(minGradeText),
             let maxGrade = Float(maxGradeText),
-            let percentage = Float(percentageText),
             let deadline = deadlinePickerTextField.date,
             !name.isEmpty {
             
             var grade: Float = 0
-            if let gradeText = gradeTextField.text, let unwrappedGrade = Float(gradeText) {
-                grade = unwrappedGrade
+            var percentage: Float = 0
+            if let gradeText = gradeTextField.text, let gradeFloat = Float(gradeText) {
+                grade = gradeFloat
+            }
+            if let percentageText = percentageTextField.text, let percentageFloat = Float(percentageText) {
+                percentage = percentageFloat
             }
             
             if valuesAreValid(maxGrade: maxGrade, minGrade: minGrade, grade: grade, percentage: percentage) {
@@ -244,17 +244,22 @@ class CreateAssignmentViewController: BaseFormViewController {
             content.body = "You have \(assignment.name) on \(day) at \(time)"
             content.sound = .default
             
-            let date = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: assignment.deadline)
-            let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
-            // TODO: Poner el id como string
-            let identifier = String(describing: Date())
-            let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+            guard let weekBefore = Calendar.current.date(byAdding: .day, value: -7, to: assignment.deadline) else { return }
+            guard let dayBefore = Calendar.current.date(byAdding: .day, value: -1, to: assignment.deadline) else { return }
+            let notificationDates: [Date] = [weekBefore, dayBefore]
             
-            center.add(request) { error in
-                if let error = error {
-                    print(error)
-                } else {
-                    print("Scheduled Notification")
+            for notificationDate in notificationDates {
+                let date = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: notificationDate)
+                let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
+                let identifier = String(describing: Date())
+                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+                
+                center.add(request) { error in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        print("Scheduled Notification")
+                    }
                 }
             }
         }
@@ -274,7 +279,7 @@ class CreateAssignmentViewController: BaseFormViewController {
             gradeTextField.showErrorBorder()
             valid = false
         }
-        if percentage <= 0 {
+        if percentage < 0 {
             percentageTextField.showErrorBorder()
             valid = false
         }

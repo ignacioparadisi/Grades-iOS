@@ -13,7 +13,7 @@ import CoreData
 @objc(Assignment)
 public class Assignment: Gradable {
     
-    static func create(name: String, grade: Float = 0.0, maxGrade: Float, minGrade: Float, percentage: Float = 100, decimals: Int = 0, deadline: Date, subject: Subject) -> Assignment {
+    static func create(name: String, grade: Float = 0.0, maxGrade: Float, minGrade: Float, percentage: Float = 0, decimals: Int = 0, deadline: Date, subject: Subject) -> Assignment {
         let assignment = Assignment(context: CoreDataManager.shared.context)
         assignment.name = name
         assignment.grade = grade

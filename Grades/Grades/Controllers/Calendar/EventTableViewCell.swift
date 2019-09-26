@@ -46,7 +46,8 @@ class EventTableViewCell: UITableViewCell, ReusableView {
         titleLabel.font = UIFont.preferredFont(forTextStyle: .title3)
         contentView.addSubview(titleLabel)
         titleLabel.anchor
-            .topToSuperview(constant: 16)
+            .width(to: contentView.widthAnchor)
+            .topToSuperview(constant: 8)
             .leadingToSuperview(constant: 16)
             .trailingToSuperview(constant: -16)
             .activate()
@@ -62,7 +63,7 @@ class EventTableViewCell: UITableViewCell, ReusableView {
         dateTimeLabel.anchor
             .top(to: titleLabel.bottomAnchor, constant: 5)
             .trailingToSuperview(constant: -16)
-            .bottomToSuperview(constant: -16)
+            .bottomToSuperview(constant: -8)
             .activate()
     }
     
