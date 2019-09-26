@@ -38,20 +38,16 @@ class TermDateTableViewCell: UITableViewCell, ReusableView {
 struct TermDatesView: View {
     var startDate: Date
     var endDate: Date
-    private let dateFormatter: DateFormatter = {
-       let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d, yyyy"
-        return formatter
-    }()
+    private let dateFormatter: DateFormatter = DateFormatter()
     
     var body: some View {
         HStack {
             Spacer()
-            Text(dateFormatter.string(from: startDate))
+            Text(dateFormatter.string(from: startDate, format: .shortDate))
             Spacer()
             Divider().frame(width: 2)
             Spacer()
-            Text(dateFormatter.string(from: endDate))
+            Text(dateFormatter.string(from: endDate, format: .shortDate))
             Spacer()
         }
         .padding()

@@ -33,7 +33,7 @@ class AssignmentDetailViewController: BaseViewController, ScrollableView {
         let picker = IPDatePickerTextField()
         picker.isRequired = true
         picker.datePickerMode = .dateAndTime
-        picker.dateFormat = "MMM d, yyyy h:mma"
+        picker.dateFormat = .dateAndTime
         picker.placeholder = "Deadline".localized
         return picker
     }()

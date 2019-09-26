@@ -45,7 +45,7 @@ class CreateAssignmentViewController: BaseFormViewController {
         let picker = IPDatePickerTextField()
         picker.isRequired = true
         picker.datePickerMode = .dateAndTime
-        picker.dateFormat = "MMM d, yyyy h:mma"
+        picker.dateFormat = .dateAndTime
         picker.placeholder = "On date".localized
         return picker
     }()
@@ -236,10 +236,8 @@ class CreateAssignmentViewController: BaseFormViewController {
     private func scheduleNotification(for assignment: Assignment, subjectName: String, notificationCenter center: UNUserNotificationCenter) {
         if assignment.deadline > Date() {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "EEEE"
-            let day = dateFormatter.string(from: assignment.deadline)
-            dateFormatter.dateFormat = "h:mma"
-            let time = dateFormatter.string(from: assignment.deadline)
+            let day = dateFormatter.string(from: assignment.deadline, format: .weekday)
+            let time = dateFormatter.string(from: assignment.deadline, format: .time)
             
             let content = UNMutableNotificationContent()
             content.title = "\(assignment.name) of \(subjectName)"

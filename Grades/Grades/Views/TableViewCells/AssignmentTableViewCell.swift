@@ -42,11 +42,7 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
 
 struct AssignmentView: View {
     var assignment: Assignment
-    private let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d, yyyy - h:mma"
-        return formatter
-    }()
+    private let dateFormatter: DateFormatter = DateFormatter()
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -56,7 +52,7 @@ struct AssignmentView: View {
                         .frame(width: 2)
                         .background(getDividerColor())
                         
-                    Text(dateFormatter.string(from: assignment.deadline))
+                    Text(dateFormatter.string(from: assignment.deadline, format: .dateAndTime))
                         .font(.body)
                         .foregroundColor(getDateTextColor())
                     Spacer()

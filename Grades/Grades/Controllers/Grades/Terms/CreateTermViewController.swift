@@ -21,14 +21,14 @@ class CreateTermViewController: BaseFormViewController {
         let textField = IPDatePickerTextField()
         textField.isRequired = true
         textField.datePickerMode = .date
-        textField.dateFormat = "MMM d, yyyy"
+        textField.dateFormat = .shortDate
         return textField
     }()
     let endDateTextField: IPDatePickerTextField = {
         let textField = IPDatePickerTextField()
         textField.isRequired = true
         textField.datePickerMode = .date
-        textField.dateFormat = "MMM d, yyyy"
+        textField.dateFormat = .shortDate
         return textField
     }()
     

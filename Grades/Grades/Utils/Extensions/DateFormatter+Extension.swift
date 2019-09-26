@@ -11,9 +11,10 @@ import Foundation
 enum DateFormat: String {
     case dashed = "yyyy-MM-dd"
     case monthAndYear = "MMMM yyyy"
-    case dateAndTime = "MMM d, yyyy h:mma"
+    case dateAndTime = "MMM d, yyyy - h:mma"
     case weekday = "EEEE"
     case shortDate = "MMM d, yyyy"
+    case time = "h:mma"
 }
 
 extension DateFormatter {
