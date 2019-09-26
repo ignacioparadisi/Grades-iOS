@@ -27,7 +27,8 @@ class SubjectDetailViewController: BaseViewController {
         title = subject.name
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateAssignment))
-        navigationItem.rightBarButtonItem = addButton
+        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(goToEditSubject))
+        navigationItem.rightBarButtonItems = [addButton, editButton]
     }
     
     override func setupView() {
@@ -55,6 +56,10 @@ class SubjectDetailViewController: BaseViewController {
         controller.subject = subject
         controller.delegate = self
         present(UINavigationController(rootViewController: controller), animated: true)
+    }
+    
+    @objc private func goToEditSubject() {
+        
     }
     
     private func fetchAssignments() {

@@ -31,6 +31,7 @@ class CalendarViewController: BaseViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         
         view.addSubview(tableView)
         tableView.anchor.edgesToSuperview().activate()
@@ -78,7 +79,6 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
             let view = UIView()
             let label = IPTitleLabel()
             label.text = "Events".localized
-            
             view.addSubview(label)
             label.anchor.edgesToSuperview(insets: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: -16)).activate()
             return view
@@ -99,7 +99,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch TableSection(rawValue: indexPath.section) {
         case .calendar?:
-            return view.frame.width + 100
+            return view.frame.width + 88
         default:
             return UITableView.automaticDimension
         }

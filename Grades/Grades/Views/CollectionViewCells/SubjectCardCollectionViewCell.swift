@@ -19,7 +19,7 @@ class SubjectCardCollectionViewCell: UICollectionViewCell, ReusableView {
             subviews.last?.removeFromSuperview()
             addSubview(view)
             view.backgroundColor = .clear
-            view.anchor.edgesToSuperview().activate()
+            view.anchor.edgesToSuperview(insets: UIEdgeInsets(top: 7, left: 0, bottom: 0, right: 0)).activate()
         }
     }
 }
@@ -31,12 +31,11 @@ struct SubjectCardView: View {
             HStack {
                 Text(subject.name)
                 Spacer()
-                GradableChartView(gradable: subject).frame(width: 70, height: 70)
+                GradableChartView(gradable: subject).frame(width: 60, height: 60)
             }
             Spacer()
             Rectangle().fill(Color(.systemGray3)).frame(height: 1)
         }
-        
         .padding()
     }
 }

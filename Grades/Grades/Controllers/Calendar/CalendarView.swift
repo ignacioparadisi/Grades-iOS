@@ -37,9 +37,11 @@ class CalendarView: UIView {
         backgroundColor = .clear
         setupMonthView()
         setupCalendarView()
+        let sunday = getSunday(from: Date())
         DispatchQueue.main.async { [weak self] in
             self?.populateCalendarDataSource()
-            self?.scrollToCurrentDate(animated: false)
+            self?.calendar.selectDates([Date()])
+            self?.calendar.scrollToDate(sunday, animateScroll: false)
         }
         
     }
@@ -119,9 +121,9 @@ class CalendarView: UIView {
     }
 
     
-    @objc private func scrollToCurrentDate(animated: Bool = true) {
-        calendar.scrollToDate(getSunday(from: Date()), animateScroll: animated)
+    @objc private func scrollToCurrentDate() {
         calendar.selectDates([Date()])
+        calendar.scrollToDate(getSunday(from: Date()), animateScroll: true)
     }
     
     private func populateCalendarDataSource() {
@@ -206,16 +208,16 @@ extension CalendarView: JTACMonthViewDelegate {
     
     func handlerCellSelection(cell: CalendarDayCell, cellState: CellState) {
         if cellState.dateBelongsTo != .thisMonth {
-            cell.dateLabel.textColor = .secondaryLabel
+            cell.dateLabel.textColor = .tertiaryLabel
             cell.dateLabel.font = UIFont.systemFont(ofSize: 18)
             cell.currentDateView.isHidden = true
             return
         }
         
         let dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: cellState.date)
-        let date = Calendar.current.date(from: dateComponents)
+        guard let date = Calendar.current.date(from: dateComponents) else { return }
         let todayComponents = Calendar.current.dateComponents([.year, .month, .day], from: Date())
-        let today = Calendar.current.date(from: todayComponents)
+        guard let today = Calendar.current.date(from: todayComponents) else { return }
         
         if cellState.isSelected {
             cell.currentDateView.isHidden = false
@@ -225,7 +227,7 @@ extension CalendarView: JTACMonthViewDelegate {
                 cell.dateLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
             } else {
                 cell.currentDateView.backgroundColor = .systemGray3
-                cell.dateLabel.textColor = .label
+                cell.dateLabel.textColor = Calendar.current.isDateInWeekend(date) ? .secondaryLabel : .label
                 cell.dateLabel.font = UIFont.systemFont(ofSize: 18)
             }
         } else {
@@ -235,7 +237,7 @@ extension CalendarView: JTACMonthViewDelegate {
                 cell.dateLabel.textColor = UIColor.accentColor
             } else {
                 cell.dateLabel.font = UIFont.systemFont(ofSize: 18)
-                cell.dateLabel.textColor = .label
+                cell.dateLabel.textColor = Calendar.current.isDateInWeekend(date) ? .secondaryLabel : .label
             }
         }
     }

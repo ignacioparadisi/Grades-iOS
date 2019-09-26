@@ -33,7 +33,7 @@ class CalendarTableViewCell: UITableViewCell, ReusableView {
         calendarView.layer.cornerRadius = 10
         calendarView.delegate = self
         calendarView.anchor
-            .edgesToSuperview(insets: UIEdgeInsets(top: 20, left: 16, bottom: -20, right: -16))
+            .edgesToSuperview(insets: UIEdgeInsets(top: 20, left: 16, bottom: -8, right: -16))
             .activate()
     }
 }

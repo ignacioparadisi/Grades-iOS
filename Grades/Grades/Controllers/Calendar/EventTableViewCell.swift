@@ -13,6 +13,7 @@ class EventTableViewCell: UITableViewCell, ReusableView {
     let titleLabel: UILabel = UILabel()
     let dateTimeLabel: UILabel = UILabel()
     let dateFormatter = DateFormatter()
+    let divider = UIView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -25,14 +26,13 @@ class EventTableViewCell: UITableViewCell, ReusableView {
 
     private func initialize() {
         selectionStyle = .none
-        // accessoryType = .disclosureIndicator
+        accessoryView?.constraints.last?.constant = (accessoryView?.constraints.last?.constant ?? 0) - 16
         let contentView: UIView = UIView()
         contentView.backgroundColor = .systemGray5
         contentView.layer.cornerRadius = 10
         addSubview(contentView)
         
-        let divider = UIView()
-        divider.backgroundColor = UIColor.accentColor
+        divider.backgroundColor = .systemGray3
         
         contentView.addSubview(titleLabel)
         contentView.addSubview(divider)
@@ -69,5 +69,6 @@ class EventTableViewCell: UITableViewCell, ReusableView {
     func configure(with assignment: Assignment) {
         titleLabel.text = "\(assignment.name) - \(assignment.subject?.name ?? "")"
         dateTimeLabel.text = dateFormatter.string(from: assignment.deadline, format: .dateAndTime)
+        divider.backgroundColor = assignment.deadline > Date() ? UIColor.accentColor : .systemGray3
     }
 }
