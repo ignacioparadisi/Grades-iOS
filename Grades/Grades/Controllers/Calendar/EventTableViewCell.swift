@@ -8,20 +8,14 @@
 
 import UIKit
 
-class EventView: UIView {
+class EventTableViewCell: UITableViewCell, ReusableView {
 
     let titleLabel: UILabel = UILabel()
     let dateTimeLabel: UILabel = UILabel()
     let dateFormatter = DateFormatter()
     
-    init(assignment: Assignment) {
-        super.init(frame: .zero)
-        initialize()
-        configure(with: assignment)
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         initialize()
     }
     
@@ -30,6 +24,8 @@ class EventView: UIView {
     }
 
     private func initialize() {
+        selectionStyle = .none
+        // accessoryType = .disclosureIndicator
         let contentView: UIView = UIView()
         contentView.backgroundColor = .systemGray5
         contentView.layer.cornerRadius = 10
@@ -43,7 +39,7 @@ class EventView: UIView {
         contentView.addSubview(dateTimeLabel)
         
         contentView.anchor
-            .edgesToSuperview()
+            .edgesToSuperview(insets: UIEdgeInsets(top: 8, left: 16, bottom: -8, right: -16))
             .activate()
         
         titleLabel.numberOfLines = 0
@@ -54,8 +50,6 @@ class EventView: UIView {
             .leadingToSuperview(constant: 16)
             .trailingToSuperview(constant: -16)
             .activate()
-        
-        
         
         divider.anchor
             .top(to: dateTimeLabel.topAnchor)

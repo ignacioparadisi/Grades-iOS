@@ -13,6 +13,7 @@ enum DateFormat: String {
     case monthAndYear = "MMMM yyyy"
     case dateAndTime = "MMM d, yyyy h:mma"
     case weekday = "EEEE"
+    case shortDate = "MMM d, yyyy"
 }
 
 extension DateFormatter {

@@ -1,19 +1,23 @@
 //
-//  CalendarViewController.swift
+//  CalendarTableViewController.swift
 //  Grades
 //
-//  Created by Ignacio Paradisi on 5/1/19.
+//  Created by Ignacio Paradisi on 9/25/19.
 //  Copyright © 2019 Ignacio Paradisi. All rights reserved.
 //
 
-import SwiftUI
+import UIKit
 
-class CalendarViewController: BaseViewController, ScrollableView {
+class CalendarViewController: BaseViewController {
+    
+    private enum TableSection: Int {
+        case calendar = 0
+        case events = 1
+    }
 
-    var contentView: UIView = UIView()
-    let calendarView: CalendarView = CalendarView()
-    let eventsStackView: UIStackView = UIStackView()
-    var selectedAssignments: [Assignment]?
+    let tableView: UITableView = UITableView()
+    var assignments: [Assignment]?
+    
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = "Calendar".localized
@@ -21,76 +25,90 @@ class CalendarViewController: BaseViewController, ScrollableView {
     
     override func setupView() {
         super.setupView()
-        addScrollView()
-        setupCalendarView()
-        setupEvents()
-    }
-    
-    private func setupCalendarView() {
-        calendarView.delegate = self
-        calendarView.layer.cornerRadius = 10
-        calendarView.backgroundColor = .systemGray5
-        contentView.addSubview(calendarView)
-        calendarView.anchor
-            .topToSuperview(constant: 20, toSafeArea: true)
-            .leadingToSuperview(constant: 16)
-            .trailingToSuperview(constant: -16)
-            .activate()
-    }
-    
-    func setupEvents() {
-        let eventsLabel: IPTitleLabel = IPTitleLabel()
-        eventsLabel.text = "Events".localized
-        contentView.addSubview(eventsLabel)
         
-        eventsLabel.anchor
-            .top(to: calendarView.bottomAnchor, constant: 20)
-            .trailingToSuperview(constant: -16, toSafeArea: true)
-            .leadingToSuperview(constant: 16, toSafeArea: true)
-            .activate()
+        tableView.register(CalendarTableViewCell.self)
+        tableView.register(EventTableViewCell.self)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
         
-        eventsStackView.distribution = .fillEqually
-        eventsStackView.alignment = .center
-        eventsStackView.axis = .vertical
-        eventsStackView.spacing = 16
-        contentView.addSubview(eventsStackView)
-        eventsStackView.anchor
-            .top(to: eventsLabel.bottomAnchor, constant: 16)
-            .trailingToSuperview(constant: -16, toSafeArea: true)
-            .bottomToSuperview(constant: -20, toSafeArea: true)
-            .leadingToSuperview(constant: 16, toSafeArea: true)
-            .activate()
+        view.addSubview(tableView)
+        tableView.anchor.edgesToSuperview().activate()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        calendarView.updateUI()
-        didSelectDate(selectedAssignments)
+        tableView.reloadData()
     }
 
 }
 
-extension CalendarViewController: CalendarViewDelegate {
-    func didSelectDate(_ assignments: [Assignment]?) {
-        selectedAssignments = assignments
-        removeArrangedSubviews()
-        if let assignments = assignments {
-            for assignment in assignments {
-                let eventView = EventView(assignment: assignment)
-                eventView.anchor.width(constant: eventsStackView.frame.width).activate()
-                eventsStackView.addArrangedSubview(eventView)
-            }
+extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch TableSection(rawValue: section) {
+        case .calendar?:
+            return 1
+        default:
+            return assignments?.count ?? 0
         }
     }
     
-    private func removeArrangedSubviews() {
-        let subviews = eventsStackView.arrangedSubviews.reduce([]) { (allSubviews, subview) -> [UIView] in
-            eventsStackView.removeArrangedSubview(subview)
-            return allSubviews + [subview]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch TableSection(rawValue: indexPath.section) {
+        case .calendar?:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as CalendarTableViewCell
+            cell.delegate = self
+            return cell
+        default:
+            guard let assignment = assignments?[indexPath.row] else { return UITableViewCell() }
+            let cell = tableView.dequeueReusableCell(for: indexPath) as EventTableViewCell
+            cell.configure(with: assignment)
+            return cell
         }
-        
-        NSLayoutConstraint.deactivate(subviews.flatMap({ $0.constraints }))
-        
-        subviews.forEach({ $0.removeFromSuperview() })
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch TableSection(rawValue: section) {
+        case .events?:
+            let view = UIView()
+            let label = IPTitleLabel()
+            label.text = "Events".localized
+            
+            view.addSubview(label)
+            label.anchor.edgesToSuperview(insets: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: -16)).activate()
+            return view
+        default:
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch TableSection(rawValue: section) {
+        case .events?:
+            return 44
+        default:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch TableSection(rawValue: indexPath.section) {
+        case .calendar?:
+            return view.frame.width + 100
+        default:
+            return UITableView.automaticDimension
+        }
+    }
+}
+
+extension CalendarViewController: CalendarTableViewCellDelegate {
+    func didSelectDate(_ assignments: [Assignment]?) {
+        self.assignments = assignments
+        tableView.reloadSections(IndexSet(integer: TableSection.events.rawValue), with: .fade)
     }
 }

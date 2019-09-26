@@ -34,28 +34,23 @@ class CalendarView: UIView {
     }
     
     private func initialize() {
+        backgroundColor = .clear
+        setupMonthView()
+        setupCalendarView()
+        DispatchQueue.main.async { [weak self] in
+            self?.populateCalendarDataSource()
+            self?.scrollToCurrentDate()
+        }
+        
+    }
+    
+    private func setupMonthView() {
         let monthView = UIView()
-        monthView.addSubview(monthLabel)
         monthLabel.font = UIFont.preferredFont(forTextStyle: .title3)
-        
         let todayButton = UIButton()
-        let today = Date()
-        dateFormatter.dateFormat = "MMM d, yyyy"
-        todayButton.setTitle(dateFormatter.string(from: today), for: .normal)
+        todayButton.setTitle(dateFormatter.string(from: Date(), format: .shortDate), for: .normal)
         todayButton.setTitleColor(UIColor.accentColor, for: .normal)
-        todayButton.addTarget(self, action: #selector(goToToday), for: .touchUpInside)
-        monthView.addSubview(todayButton)
-        
-        monthLabel.anchor
-            .topToSuperview(constant: 16)
-            .leadingToSuperview(constant: 20)
-            .bottomToSuperview(constant: -16)
-            .activate()
-        
-        todayButton.anchor
-            .trailingToSuperview(constant: -20)
-            .centerYToSuperview()
-            .activate()
+        todayButton.addTarget(self, action: #selector(scrollToCurrentDate), for: .touchUpInside)
         
         daysOfWeekStackView.alignment = .center
         daysOfWeekStackView.axis = .horizontal
@@ -74,47 +69,31 @@ class CalendarView: UIView {
         }
         
         addSubview(monthView)
+        monthView.addSubview(monthLabel)
+        monthView.addSubview(todayButton)
         addSubview(daysOfWeekStackView)
         
-        monthView.anchor.topToSuperview().leadingToSuperview().trailingToSuperview().activate()
+        monthView.anchor
+            .topToSuperview()
+            .leadingToSuperview()
+            .trailingToSuperview().activate()
+        
+        monthLabel.anchor
+            .topToSuperview(constant: 16)
+            .leadingToSuperview(constant: 20)
+            .bottomToSuperview(constant: -16)
+            .activate()
+        
+        todayButton.anchor
+            .trailingToSuperview(constant: -20)
+            .centerYToSuperview()
+            .activate()
+        
         daysOfWeekStackView.anchor
             .top(to: monthView.bottomAnchor)
             .leadingToSuperview()
             .trailingToSuperview()
             .activate()
-        
-        backgroundColor = .clear
-        setupCalendarView()
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.populateCalendarDataSource()
-        }
-        
-    }
-    
-    func updateUI() {
-        populateCalendarDataSource()
-    }
-    
-    private func populateCalendarDataSource() {
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        calendarDataSource.removeAll()
-        var assignments: [Assignment] = []
-        do {
-            assignments = try Assignment.fetchForCalendar()
-        } catch {
-            print(error)
-            Logger.log("Error fetching assignments for calendar", category: .assignment, type: .error)
-        }
-        for assignment in assignments {
-            let key = dateFormatter.string(from: assignment.deadline)
-            if calendarDataSource[key] == nil {
-                calendarDataSource[key] = [assignment]
-            } else {
-                calendarDataSource[key]?.append(assignment)
-            }
-        }
-        calendar.reloadData()
     }
     
     private func setupCalendarView() {
@@ -129,16 +108,39 @@ class CalendarView: UIView {
         calendar.scrollDirection = .horizontal
         calendar.showsHorizontalScrollIndicator = false
         calendar.showsVerticalScrollIndicator = false
-        calendar.scrollToDate(getSunday(from: Date()), animateScroll: false)
-        calendar.selectDates([Date()])
         addSubview(calendar)
         calendar.anchor
             .top(to: daysOfWeekStackView.bottomAnchor, constant: 5)
             .trailingToSuperview()
             .leadingToSuperview()
             .bottomToSuperview()
-            .height(to: calendar.widthAnchor, multiplier: 1)
+            .height(to: calendar.widthAnchor)
             .activate()
+    }
+    
+    @objc private func scrollToCurrentDate(animated: Bool = false) {
+        calendar.scrollToDate(getSunday(from: Date()), animateScroll: animated)
+        calendar.selectDates([Date()])
+    }
+    
+    private func populateCalendarDataSource() {
+        calendarDataSource.removeAll()
+        var assignments: [Assignment] = []
+        do {
+            assignments = try Assignment.fetchForCalendar()
+        } catch {
+            print(error)
+            Logger.log("Error fetching assignments for calendar", category: .assignment, type: .error)
+        }
+        for assignment in assignments {
+            let key = dateFormatter.string(from: assignment.deadline, format: .dashed)
+            if calendarDataSource[key] == nil {
+                calendarDataSource[key] = [assignment]
+            } else {
+                calendarDataSource[key]?.append(assignment)
+            }
+        }
+        calendar.reloadData()
     }
     
     private func getSunday(from date: Date) -> Date {
@@ -146,11 +148,6 @@ class CalendarView: UIView {
         let components = calendar.dateComponents([.weekOfYear, .yearForWeekOfYear], from: date)
         let sunday = calendar.date(from: components)!
         return sunday
-    }
-    
-    @objc private func goToToday() {
-        calendar.scrollToDate(getSunday(from: Date()), animateScroll: true)
-        calendar.selectDates([Date()])
     }
 }
 
@@ -183,15 +180,13 @@ extension CalendarView: JTACMonthViewDelegate {
     func calendar(_ calendar: JTACMonthView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         DispatchQueue.main.async { [weak self] in
             guard let date = visibleDates.monthDates.first?.date else { return }
-            self?.dateFormatter.dateFormat = "MMMM yyyy"
-            self?.monthLabel.text = self?.dateFormatter.string(from: date)
+            self?.monthLabel.text = self?.dateFormatter.string(from: date, format: .monthAndYear)
         }
     }
     
     func calendar(_ calendar: JTACMonthView, didSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
         configureCell(cell, cellState: cellState)
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let key = dateFormatter.string(from: date)
+        let key = dateFormatter.string(from: date, format: .dashed)
         delegate?.didSelectDate(calendarDataSource[key])
     }
     
@@ -200,8 +195,7 @@ extension CalendarView: JTACMonthViewDelegate {
     }
     
     func handleCellEvents(cell: CalendarDayCell, cellState: CellState) {
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let dateString = dateFormatter.string(from: cellState.date)
+        let dateString = dateFormatter.string(from: cellState.date, format: .dashed)
         if calendarDataSource[dateString] == nil {
             cell.notificationView.isHidden = true
         } else {
@@ -212,6 +206,7 @@ extension CalendarView: JTACMonthViewDelegate {
     func handlerCellSelection(cell: CalendarDayCell, cellState: CellState) {
         if cellState.dateBelongsTo != .thisMonth {
             cell.dateLabel.textColor = .secondaryLabel
+            cell.dateLabel.font = UIFont.systemFont(ofSize: 18)
             cell.currentDateView.isHidden = true
             return
         }
