@@ -54,4 +54,45 @@ public class Assignment: Gradable {
         return result
     }
     
+    static func fetchToday() throws -> [Assignment] {
+        let components = Calendar.current.dateComponents([.day, .month, .year], from: Date())
+        let today = Calendar.current.date(from: components)!
+        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+        return try fetchEventsForHome(startDate: today, endDate: tomorrow)
+    }
+    
+    static func fetchThisWeek() throws -> [Assignment] {
+        let components = Calendar.current.dateComponents([.day, .month, .year], from: Date())
+        let today = Calendar.current.date(from: components)!
+        let thisSunday = getSunday(from: Date())
+        let nextSunday = Calendar.current.date(byAdding: .day, value: 7, to: thisSunday)!
+        return try fetchEventsForHome(startDate: today, endDate: nextSunday)
+    }
+    
+    static func fetchNextWeek() throws -> [Assignment] {
+        let thisSunday = getSunday(from: Date())
+        let nextSunday = Calendar.current.date(byAdding: .day, value: 7, to: thisSunday)!
+        let secondNextSunday = Calendar.current.date(byAdding: .day, value: 7, to: nextSunday)!
+        return try fetchEventsForHome(startDate: nextSunday, endDate: secondNextSunday)
+    }
+    
+    static private func fetchEventsForHome(startDate: Date, endDate: Date) throws -> [Assignment]  {
+        let request: NSFetchRequest<Assignment> = Assignment.fetchRequest()
+        let sort: NSSortDescriptor = NSSortDescriptor(key: "dateCreated", ascending: false)
+        let todayFilter: NSPredicate = NSPredicate(format: "deadline >= %@", startDate as NSDate)
+        let tomorrowFilter: NSPredicate = NSPredicate(format: "deadline < %@", endDate as NSDate)
+        let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [todayFilter, tomorrowFilter])
+        request.sortDescriptors = [sort]
+        request.predicate = datePredicate
+        let result = try CoreDataManager.shared.context.fetch(request)
+        return result
+    }
+    
+    static private func getSunday(from date: Date) -> Date {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.weekOfYear, .yearForWeekOfYear], from: date)
+        let sunday = calendar.date(from: components)!
+        return sunday
+    }
+    
 }
