@@ -60,7 +60,7 @@ class EditTermViewController: BaseViewController {
         navigationItem.title = term.name
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
-        navigationItem.rightBarButtonItem = cancelButton
+        navigationItem.leftBarButtonItem = cancelButton
     }
     
     @objc private func dismissView() {

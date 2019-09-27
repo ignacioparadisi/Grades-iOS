@@ -190,7 +190,7 @@ class CreateAssignmentViewController: BaseFormViewController {
             !name.isEmpty {
             
             var grade: Float = 0
-            var percentage: Float = 0
+            var percentage: Float = -1
             if let gradeText = gradeTextField.text, let gradeFloat = Float(gradeText) {
                 grade = gradeFloat
             }
@@ -279,11 +279,7 @@ class CreateAssignmentViewController: BaseFormViewController {
             gradeTextField.showErrorBorder()
             valid = false
         }
-        if percentage < 0 {
-            percentageTextField.showErrorBorder()
-            valid = false
-        }
-        if percentage > 100  || percentage < 0 {
+        if percentage < -1 || (percentage > -1 && percentage < 0) || percentage > 100 {
             percentageTextField.showErrorBorder()
             valid = false
         }

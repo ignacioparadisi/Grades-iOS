@@ -13,14 +13,15 @@ import CoreData
 @objc(Assignment)
 public class Assignment: Gradable {
     
-    static func create(name: String, grade: Float = 0.0, maxGrade: Float, minGrade: Float, percentage: Float = 0, decimals: Int = 0, deadline: Date, subject: Subject) -> Assignment {
+    static func create(name: String, grade: Float = 0.0, maxGrade: Float, minGrade: Float, percentage: Float = -1, decimals: Int = 0, deadline: Date, subject: Subject) -> Assignment {
         let assignment = Assignment(context: CoreDataManager.shared.context)
         assignment.name = name
         assignment.grade = grade
         assignment.maxGrade = maxGrade
         assignment.minGrade = minGrade
+        assignment.maxObtainedGrade = maxGrade
         assignment.decimals = Int16(decimals)
-        assignment.percentage = percentage * 0.01
+        assignment.percentage = percentage == -1 ? percentage : percentage * 0.01
         assignment.deadline = deadline
         assignment.subject = subject
         assignment.dateCreated = Date()

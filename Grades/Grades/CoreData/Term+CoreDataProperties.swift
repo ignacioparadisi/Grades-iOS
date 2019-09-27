@@ -2,7 +2,7 @@
 //  Term+CoreDataProperties.swift
 //  Grades
 //
-//  Created by Ignacio Paradisi on 9/22/19.
+//  Created by Ignacio Paradisi on 9/27/19.
 //  Copyright © 2019 Ignacio Paradisi. All rights reserved.
 //
 //
@@ -17,8 +17,8 @@ extension Term {
         return NSFetchRequest<Term>(entityName: "Term")
     }
 
-    @NSManaged public var startDate: Date
     @NSManaged public var endDate: Date
+    @NSManaged public var startDate: Date
     @NSManaged public var subjects: NSSet?
 
 }

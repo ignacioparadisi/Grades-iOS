@@ -41,17 +41,26 @@ class AssignmentDetailViewController: BaseViewController, ScrollableView {
         let button = IPButton()
         return button
     }()
+    var editButton: UIBarButtonItem!
+    var isEditEnabled: Bool = false
 
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = assignment.name
         navigationController?.navigationBar.prefersLargeTitles = false
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
-        navigationItem.rightBarButtonItem = cancelButton
+        editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(enableEdit))
+        navigationItem.leftBarButtonItem = cancelButton
+        navigationItem.rightBarButtonItem = editButton
+        disableEdit()
     }
     
     @objc private func dismissView() {
-        dismiss(animated: true)
+        if isEditEnabled {
+            disableEdit()
+        } else {
+            dismiss(animated: true)
+        }
     }
     
     override func setupView() {
@@ -61,6 +70,24 @@ class AssignmentDetailViewController: BaseViewController, ScrollableView {
         setupCircularSlider()
         setupDeadline()
         setupSaveButton()
+    }
+    
+    @objc private func enableEdit() {
+        isEditEnabled = true
+        navigationItem.setRightBarButton(nil, animated: true)
+        decimalsSegmentedControl.isUserInteractionEnabled = true
+        circularSlider.isUserInteractionEnabled = true
+        deadlineTextField.isUserInteractionEnabled = true
+        saveButton.isEnabled = true
+    }
+    
+    private func disableEdit() {
+        isEditEnabled = false
+        navigationItem.setRightBarButton(editButton, animated: true)
+        decimalsSegmentedControl.isUserInteractionEnabled = false
+        circularSlider.isUserInteractionEnabled = false
+        deadlineTextField.isUserInteractionEnabled = false
+        saveButton.isEnabled = false
     }
     
     private func setupDecimalsSection() {

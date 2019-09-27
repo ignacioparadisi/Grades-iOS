@@ -50,7 +50,7 @@ class BaseFormViewController: BaseViewController, ScrollableView {
         super.setupNavigationBar()
         navigationController?.navigationBar.prefersLargeTitles = false
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
-        navigationItem.rightBarButtonItem = cancelButton
+        navigationItem.leftBarButtonItem = cancelButton
     }
     
     override func setupView() {

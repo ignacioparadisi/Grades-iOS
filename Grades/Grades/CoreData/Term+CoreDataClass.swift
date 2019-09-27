@@ -40,6 +40,7 @@ public class Term: Gradable {
         term.grade = 0.0
         term.maxGrade = maxGrade
         term.minGrade = minGrade
+        term.maxObtainedGrade = maxGrade
         term.decimals = Int16(decimals)
         term.startDate = startDate
         term.endDate = endDate
