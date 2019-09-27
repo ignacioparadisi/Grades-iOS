@@ -79,6 +79,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
             let view = UIView()
             let label = IPTitleLabel()
             label.text = "Events".localized
+            view.backgroundColor = .systemBackground
             view.addSubview(label)
             label.anchor.edgesToSuperview(insets: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: -16)).activate()
             return view
