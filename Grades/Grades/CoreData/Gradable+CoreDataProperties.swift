@@ -23,6 +23,5 @@ extension Gradable {
     @NSManaged public var maxGrade: Float
     @NSManaged public var minGrade: Float
     @NSManaged public var name: String
-    @NSManaged public var maxObtainedGrade: Float
 
 }

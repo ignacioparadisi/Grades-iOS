@@ -2,7 +2,7 @@
 //  Assignment+CoreDataProperties.swift
 //  Grades
 //
-//  Created by Ignacio Paradisi on 9/22/19.
+//  Created by Ignacio Paradisi on 9/27/19.
 //  Copyright © 2019 Ignacio Paradisi. All rights reserved.
 //
 //
@@ -17,11 +17,11 @@ extension Assignment {
         return NSFetchRequest<Assignment>(entityName: "Assignment")
     }
 
-    @NSManaged public var percentage: Float
     @NSManaged public var deadline: Date
-    @NSManaged public var subject: Subject?
+    @NSManaged public var percentage: Float
     @NSManaged public var assignment: Assignment?
     @NSManaged public var assignments: NSSet?
+    @NSManaged public var subject: Subject?
 
 }
 

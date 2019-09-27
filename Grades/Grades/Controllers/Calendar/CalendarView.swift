@@ -189,15 +189,6 @@ extension CalendarView: JTACMonthViewDelegate {
     
     func calendar(_ calendar: JTACMonthView, didSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
         configureCell(cell, cellState: cellState)
-        if cellState.dateBelongsTo != .thisMonth {
-            calendar.selectDates([date])
-            if cellState.dateBelongsTo == .followingMonthWithinBoundary {
-                calendar.scrollToSegment(.next)
-            } else if cellState.dateBelongsTo == .previousMonthWithinBoundary {
-                calendar.scrollToSegment(.previous)
-            }
-            return
-        }
         let key = dateFormatter.string(from: date, format: .dashed)
         delegate?.didSelectDate(calendarDataSource[key])
     }
@@ -251,11 +242,11 @@ extension CalendarView: JTACMonthViewDelegate {
         }
     }
     
-//    func calendar(_ calendar: JTACMonthView, shouldSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) -> Bool {
-//        if cellState.dateBelongsTo == .thisMonth {
-//            return true
-//        }
-//        return false
-//    }
+    func calendar(_ calendar: JTACMonthView, shouldSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) -> Bool {
+        if cellState.dateBelongsTo == .thisMonth {
+            return true
+        }
+        return false
+    }
     
 }

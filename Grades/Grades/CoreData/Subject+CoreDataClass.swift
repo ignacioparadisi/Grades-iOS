@@ -24,7 +24,6 @@ public class Subject: Gradable {
         subject.maxGrade = maxGrade
         subject.minGrade = minGrade
         subject.grade = 0.0
-        subject.maxObtainedGrade = maxGrade
         subject.decimals = Int16(decimals)
         subject.dateCreated = Date()
         term.calculateGrade()
