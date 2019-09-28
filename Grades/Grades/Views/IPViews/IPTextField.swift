@@ -10,6 +10,8 @@ import UIKit
 
 class IPTextField: UITextField {
     
+    typealias GFieldValidation = () -> Bool
+    
     private var wasInitialized = false
     private let padding = UIEdgeInsets(top: 15, left: 10, bottom: 15, right: 10)
     override var placeholder: String? {
@@ -22,6 +24,7 @@ class IPTextField: UITextField {
         return text?.isEmpty ?? true
     }
     var isRequired: Bool = false
+    var validation: GFieldValidation?
     
     override func awakeFromNib() {
         super.awakeFromNib()

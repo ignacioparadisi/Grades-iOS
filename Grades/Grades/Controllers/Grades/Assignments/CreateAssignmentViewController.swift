@@ -186,10 +186,8 @@ class CreateAssignmentViewController: BaseFormViewController {
     @objc private func createAssignment() {
         if let name = nameTextField.text, let minGradeText = minGradeTextField.text,
             let maxGradeText = maxGradeTextField.text,
-            let percentageText = percentageTextField.text,
             let minGrade = Float(minGradeText),
             let maxGrade = Float(maxGradeText),
-            let percentage = Float(percentageText),
             let deadline = deadlinePickerTextField.date,
             !name.isEmpty {
             
@@ -287,6 +285,34 @@ class CreateAssignmentViewController: BaseFormViewController {
             minGradeTextField.showErrorBorder()
             valid = false
         }
+        
+        let assignments = subject.getAssignments()
+        if assignments.first?.percentage == -1 {
+            if percentage == -1 {
+                var totalGrade: Float = 0
+                for assignment in assignments {
+                    totalGrade += assignment.maxGrade
+                }
+                if totalGrade > subject.maxGrade {
+                    percentageTextField.showErrorBorder()
+                    valid = false
+                }
+            } else {
+                percentageTextField.showErrorBorder()
+                valid = false
+            }
+        } else {
+            var totalPercentage: Float = 0.0
+            for assignment in assignments {
+                totalPercentage += assignment.percentage
+            }
+            totalPercentage += percentage * 0.01
+            if totalPercentage > 100 {
+                percentageTextField.showErrorBorder()
+                valid = false
+            }
+        }
+        
         return valid
     }
     
