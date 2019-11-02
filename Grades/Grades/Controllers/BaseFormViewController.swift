@@ -51,6 +51,8 @@ class BaseFormViewController: BaseViewController, ScrollableView {
         navigationController?.navigationBar.prefersLargeTitles = false
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
         navigationItem.leftBarButtonItem = cancelButton
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSaveButton))
+        navigationItem.rightBarButtonItem = saveButton
     }
     
     override func setupView() {
@@ -62,7 +64,7 @@ class BaseFormViewController: BaseViewController, ScrollableView {
         dismiss(animated: true)
     }
     
-    internal func setupNameSection(topAnchor: NSLayoutYAxisAnchor, description: String, placeholder: String) {
+    func setupNameSection(topAnchor: NSLayoutYAxisAnchor, description: String, placeholder: String) {
         let nameTitleLabel = IPTitleLabel()
         let nameDescriptionLabel = IPLabel()
         
@@ -83,7 +85,7 @@ class BaseFormViewController: BaseViewController, ScrollableView {
             .activate()
     }
     
-    internal func setupDecimalsSection(topAnchor: NSLayoutYAxisAnchor, selectedIndex: Int = 0) {
+    func setupDecimalsSection(topAnchor: NSLayoutYAxisAnchor, selectedIndex: Int = 0) {
         let label = IPTitleLabel()
         let descriptionLabel = IPLabel()
         
@@ -104,7 +106,7 @@ class BaseFormViewController: BaseViewController, ScrollableView {
             .activate()
     }
     
-    internal func setupGradesSection(topAnchor: NSLayoutYAxisAnchor) {
+    func setupGradesSection(topAnchor: NSLayoutYAxisAnchor) {
         let gradesLabel = IPTitleLabel()
         let gradesDescriptionLabel = IPLabel()
         
@@ -132,7 +134,7 @@ class BaseFormViewController: BaseViewController, ScrollableView {
             .activate()
     }
     
-    internal func setupSaveButton(topAnchor: NSLayoutYAxisAnchor, action: Selector) {
+    func setupSaveButton(topAnchor: NSLayoutYAxisAnchor, action: Selector) {
         saveButton.setTitle("Save".localized, for: .normal)
         saveButton.addTarget(self, action: action, for: .touchUpInside)
         saveButton.isEnabled = false
@@ -145,7 +147,7 @@ class BaseFormViewController: BaseViewController, ScrollableView {
             .activate()
     }
     
-    internal func setupLabelConstraints(for label: UILabel, topAnchor: NSLayoutYAxisAnchor, topConstant: CGFloat) {
+    func setupLabelConstraints(for label: UILabel, topAnchor: NSLayoutYAxisAnchor, topConstant: CGFloat) {
         label.anchor
             .top(to: topAnchor, constant: topConstant)
             .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
@@ -153,4 +155,6 @@ class BaseFormViewController: BaseViewController, ScrollableView {
             .width(constant: view.frame.width - 2 * leadingConstant)
             .activate()
     }
+    
+    @objc func didTapSaveButton() {}
 }

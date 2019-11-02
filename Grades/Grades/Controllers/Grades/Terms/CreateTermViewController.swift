@@ -102,6 +102,10 @@ class CreateTermViewController: BaseFormViewController {
         saveButton.isEnabled = true
     }
     
+    override func didTapSaveButton() {
+        createTerm()
+    }
+    
     @objc private func createTerm() {
         if let name = nameTextField.text, let minGradeText = minGradeTextField.text,
             let maxGradeText = maxGradeTextField.text,
