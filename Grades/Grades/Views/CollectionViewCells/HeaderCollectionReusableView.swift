@@ -108,7 +108,7 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
     public func configureWith(term: Term) {
         self.term = term
         termNameLabel.text = term.name
-        gradeLabel.text = term.grade.toString(with: term.decimals)
+        gradeLabel.text = term.grade.toString(decimals: term.decimals)
         setNeedsDisplay()
     }
     

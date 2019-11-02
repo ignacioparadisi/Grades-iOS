@@ -40,6 +40,7 @@ final class TermsViewController: BaseViewController {
         
         view.addSubview(tableView)
         tableView.anchor.edgesToSuperview().activate()
+        tableView.register(TermGradeTableViewCell.self)
         // collectionView.register(TermCollectionViewCell.self)
     }
     
@@ -65,17 +66,30 @@ final class TermsViewController: BaseViewController {
 extension TermsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return terms.count
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return terms.count
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = terms[indexPath.row].name
-        return cell
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(for: indexPath) as TermGradeTableViewCell
+            cell.configure(with: 20)
+            return cell
+        } else {
+            let cell = UITableViewCell()
+            cell.textLabel?.text = terms[indexPath.row].name
+            return cell
+        }
     }
     
 }

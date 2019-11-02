@@ -362,7 +362,7 @@ open class CircularSlider: UIView {
     }
     
     fileprivate func updateValueLabel() {
-        textfield.text = value.toString(with: Int16(numberOfDecimals))
+        textfield.text = value.toString(decimals: Int16(numberOfDecimals))
     }
     
     

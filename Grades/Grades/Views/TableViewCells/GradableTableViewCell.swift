@@ -86,7 +86,7 @@ struct GradableChartView: View {
                         self.animateRing(self.gradable)
                 }
                 
-                Text(self.gradable.grade.toString(with: self.gradable.decimals))
+                Text(self.gradable.grade.toString(decimals: self.gradable.decimals))
             }
         }
         .padding(.top, 9)
