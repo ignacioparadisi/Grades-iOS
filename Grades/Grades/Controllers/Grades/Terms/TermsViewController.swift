@@ -22,9 +22,7 @@ final class TermsViewController: BaseViewController {
     override func setupNavigationBar() {
         super.setupNavigationBar()
         navigationItem.title = "Terms".localized
-        
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateTerm))
-        navigationItem.setRightBarButtonItems([addButton], animated: false)
+        setupAddAndOptionsButton()
     }
     
     /// Sets up elements in the view
@@ -63,7 +61,7 @@ final class TermsViewController: BaseViewController {
     }
     
     /// Presents the View Controller to create a new Term
-    @objc private func goToCreateTerm() {
+     override func didTapAddButton() {
         let viewController =  CreateTermViewController()
         viewController.delegate = self
         present(UINavigationController(rootViewController: viewController), animated: true)
