@@ -42,6 +42,7 @@ final class TermsViewController: BaseViewController {
         tableView.anchor.edgesToSuperview().activate()
         tableView.register(TermGradeTableViewCell.self)
         tableView.register(BarChartTableViewCell.self)
+        tableView.register(GradableTableViewCell.self)
         // collectionView.register(TermCollectionViewCell.self)
     }
     
@@ -93,8 +94,8 @@ extension TermsViewController: UITableViewDelegate, UITableViewDataSource {
             cell.configure(with: terms)
             return cell
         } else {
-            let cell = UITableViewCell()
-            cell.textLabel?.text = terms[indexPath.row].name
+            let cell = tableView.dequeueReusableCell(for: indexPath) as GradableTableViewCell
+            cell.configure(with: terms[indexPath.row])
             return cell
         }
     }

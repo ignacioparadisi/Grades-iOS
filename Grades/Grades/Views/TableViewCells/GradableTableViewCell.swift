@@ -23,7 +23,7 @@ class GradableTableViewCell: UITableViewCell, ReusableView {
     
     /// Adds all the components to the view
     private func initialize() {
-        selectionStyle = .none
+        accessoryType = .disclosureIndicator
     }
     
     
@@ -33,7 +33,8 @@ class GradableTableViewCell: UITableViewCell, ReusableView {
     func configure(with gradable: Gradable) {
         if let view = UIHostingController(rootView: GradableView(gradable: gradable)).view {
             addSubview(view)
-            view.anchor.edgesToSuperview(insets: UIEdgeInsets(top: 8, left: 16, bottom: -8, right: -16)).activate()
+            view.backgroundColor = .clear
+            view.anchor.edgesToSuperview(insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -30)).activate()
         }
     }
     
@@ -50,7 +51,6 @@ struct GradableView: View {
         }
         .padding([.horizontal])
         .padding([.vertical], 7)
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
     }
 }
 
@@ -71,7 +71,7 @@ struct GradableChartView: View {
             ZStack {
                 Circle()
                     .trim(from: self.startAngle, to: self.endAngle)
-                    .stroke(Color(.systemGray3), style: StrokeStyle(lineWidth: self.lineWidth, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [], dashPhase: 0))
+                    .stroke(Color(.tertiarySystemGroupedBackground), style: StrokeStyle(lineWidth: self.lineWidth, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [], dashPhase: 0))
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .rotationEffect(Angle(degrees: -210))
                     .offset(x: 0, y: 1)
