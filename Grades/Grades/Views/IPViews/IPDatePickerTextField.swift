@@ -66,7 +66,6 @@ class IPDatePickerTextField: IPTextField {
         
         let toolbar = UIToolbar()
         toolbar.isTranslucent = true
-        toolbar.tintColor = UIColor(named: "accentColor")
         toolbar.sizeToFit()
         toolbar.setItems([spaceButton, doneButton], animated: false)
         

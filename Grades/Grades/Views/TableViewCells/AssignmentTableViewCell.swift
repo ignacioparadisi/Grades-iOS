@@ -65,7 +65,7 @@ struct AssignmentView: View {
     }
     
     private func getDividerColor() -> Color {
-        return (assignment.deadline >= Date()) ? Color(UIColor.accentColor!) : Color(.systemGray3)
+        return (assignment.deadline >= Date()) ? Color(UIColor.accentColor) : Color(.systemGray3)
     }
     
     private func getDateTextColor() -> Color {

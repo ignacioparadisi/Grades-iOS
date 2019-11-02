@@ -66,7 +66,7 @@ class TermGradeTableViewCell: UITableViewCell, ReusableView {
     }
     
     func configure(with grade: Float) {
-        backgroundColor = UIColor.getColor(for: grade, maxGrade: 10, minGrade: 20)
+        backgroundColor = UIColor.getColor(for: grade, maxGrade: 20, minGrade: 10)
         motivationLabel.text = "You are doing great! Keep going."
         gradeLabel.text = "\(grade)"
         translucentGradeLabel.font = UIFont.boldSystemFont(ofSize: frame.size.width / 2 * 0.9)

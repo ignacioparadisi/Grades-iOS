@@ -10,7 +10,7 @@ import UIKit
 
 extension UIColor {
     
-    static let accentColor = UIColor(named: "accentColor")
+    static let accentColor = UIColor.systemBlue
     
     /// Creates a UIColor from RGB
     ///

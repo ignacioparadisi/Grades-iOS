@@ -41,6 +41,7 @@ final class TermsViewController: BaseViewController {
         view.addSubview(tableView)
         tableView.anchor.edgesToSuperview().activate()
         tableView.register(TermGradeTableViewCell.self)
+        tableView.register(BarChartTableViewCell.self)
         // collectionView.register(TermCollectionViewCell.self)
     }
     
@@ -66,7 +67,7 @@ final class TermsViewController: BaseViewController {
 extension TermsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -74,6 +75,8 @@ extension TermsViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 1
         case 1:
+            return 1
+        case 2:
             return terms.count
         default:
             return 0
@@ -84,6 +87,10 @@ extension TermsViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(for: indexPath) as TermGradeTableViewCell
             cell.configure(with: 20)
+            return cell
+        } else if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCell(for: indexPath) as BarChartTableViewCell
+            cell.configure(with: terms)
             return cell
         } else {
             let cell = UITableViewCell()
