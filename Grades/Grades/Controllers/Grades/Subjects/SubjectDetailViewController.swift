@@ -22,18 +22,25 @@ class SubjectDetailViewController: BaseViewController {
     var assignments: [Assignment] = []
     weak var delegate: CreateSubjectViewControllerDelegate?
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        showNavigationBarButtons(false)
+    }
+    
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = subject.name
-        
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateAssignment))
-        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(goToEditSubject))
-        navigationItem.rightBarButtonItems = [addButton, editButton]
+        showNavigationBarButtons(false)
     }
     
     override func setupView() {
         super.setupView()
-        
+        setupAddAndOptionsButton()
+        setupTableView()
+        fetchAssignments()
+    }
+    
+    private func setupTableView() {
         tableView = UITableView(frame: .zero)
         tableView.delegate = self
         tableView.dataSource = self
@@ -47,8 +54,6 @@ class SubjectDetailViewController: BaseViewController {
         tableView.register(TitleLabelTableViewCell.self)
         tableView.register(AssignmentTableViewCell.self)
         tableView.register(BarChartTableViewCell.self)
-        
-        fetchAssignments()
     }
     
     @objc private func goToCreateAssignment() {

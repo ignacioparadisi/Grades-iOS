@@ -30,7 +30,7 @@ class TermDateTableViewCell: UITableViewCell, ReusableView {
         if let view = UIHostingController(rootView: TermDatesView(startDate: startDate, endDate: endDate)).view {
             subviews.last?.removeFromSuperview()
             addSubview(view)
-            view.anchor.edgesToSuperview(insets: UIEdgeInsets(top: 16, left: 16, bottom: 0, right: -16)).activate()
+            view.anchor.edgesToSuperview().activate()
         }
     }
 }
@@ -51,6 +51,5 @@ struct TermDatesView: View {
             Spacer()
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
     }
 }

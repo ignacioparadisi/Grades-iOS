@@ -85,6 +85,25 @@ class BaseViewController: UIViewController {
         }
     }
     
+    func showAddButton(_ show: Bool) {
+      UIView.animate(withDuration: 0.2) {
+        self.addButton.alpha = show ? 1.0 : 0.0
+        self.addButton.isEnabled = show
+      }
+    }
+    
+    func showOptionButton(_ show: Bool) {
+        UIView.animate(withDuration: 0.2) {
+          self.optionsButton.alpha = show ? 1.0 : 0.0
+          self.optionsButton.isEnabled = show
+        }
+    }
+    
+    func showNavigationBarButtons(_ show: Bool) {
+        showAddButton(show)
+        showOptionButton(show)
+    }
+    
     @objc func didTapAddButton() {
         
     }

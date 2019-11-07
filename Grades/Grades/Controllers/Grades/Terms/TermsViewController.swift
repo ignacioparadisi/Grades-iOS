@@ -15,19 +15,23 @@ final class TermsViewController: BaseViewController {
     var tableView: UITableView!
     /// Terms to be displayed
     private var terms: [Term] = []
-    /// Current selected cell
-    var selectedCell: Int = -1
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        showAddButton(false)
+    }
     
     /// Sets up Navigation Bar buttons and title
     override func setupNavigationBar() {
         super.setupNavigationBar()
         navigationItem.title = "Terms".localized
-        setupAddAndOptionsButton()
+        showAddButton(true)
     }
     
     /// Sets up elements in the view
     override func setupView() {
         super.setupView()
+        setupAddButton()
         setupTableView()
         fetchTerms()
     }
@@ -37,13 +41,13 @@ final class TermsViewController: BaseViewController {
         tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
         
         view.addSubview(tableView)
         tableView.anchor.edgesToSuperview().activate()
         tableView.register(TermGradeTableViewCell.self)
         tableView.register(BarChartTableViewCell.self)
         tableView.register(GradableTableViewCell.self)
-        // collectionView.register(TermCollectionViewCell.self)
     }
     
     /// Fetches Terms from Database
@@ -100,6 +104,42 @@ extension TermsViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.section == 2
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if indexPath.section == 2 {
+            deleteTerm(at: indexPath.row)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 2 {
+            goToTermDetail(index: indexPath.row)
+        }
+    }
+    
+    /// Deletes a Term with animation from the CollectionVIew
+    /// - Parameter index: Index of the Term to be deleted
+    private func deleteTerm(at index: Int) {
+        let term = terms[index]
+        terms.remove(at: index)
+        tableView.deleteRows(at: [IndexPath(item: index, section: 2)], with: .left)
+        tableView.reloadSections(IndexSet(arrayLiteral: 0, 1), with: .automatic)
+        term.delete()
+        fetchTerms()
+    }
+
+    /// Pushes the View Controller to Term Detail into the Navigation Stack
+    /// - Parameter item: Index of the term to shown
+    func goToTermDetail(index: Int) {
+        let term = terms[index]
+        let viewController = TermDetailViewController()
+        viewController.delegate = self
+        viewController.term = term
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }
 
 extension TermsViewController: CreateTermViewControllerDelegate {
@@ -109,41 +149,3 @@ extension TermsViewController: CreateTermViewControllerDelegate {
     }
     
 }
-
-//extension TermsViewController: TermCollectionViewCellDelegate {
-//    
-//    /// Show an alert to confirm the deletion of a Term
-//    /// - Parameter item: Index of the term to be deleted
-//    func showDeleteAlert(index: Int) {
-//        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//        let deleteAction = UIAlertAction(title: "Delete".localized, style: .destructive) { [weak self] _ in
-//            self?.deleteTerm(at: index)
-//        }
-//        let cancelAction = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
-//        
-//        alertController.addAction(deleteAction)
-//        alertController.addAction(cancelAction)
-//        present(alertController, animated: true)
-//    }
-//    
-//    /// Deletes a Term with animation from the CollectionVIew
-//    /// - Parameter index: Index of the Term to be deleted
-//    private func deleteTerm(at index: Int) {
-//        let term = terms[index]
-//        terms.remove(at: index)
-//        collectionView.deleteItems(at: [IndexPath(item: index, section: 0)])
-//        term.delete()
-//        fetchTerms()
-//    }
-//    
-//    /// Pushes the View Controller to Term Detail into the Navigation Stack
-//    /// - Parameter item: Index of the term to shown
-//    func goToTermDetail(index: Int) {
-//        selectedCell = index
-//        let term = terms[index]
-//        let viewController = TermDetailViewController()
-//        viewController.delegate = self
-//        viewController.term = term
-//        navigationController?.pushViewController(viewController, animated: true)
-//    }
-//}

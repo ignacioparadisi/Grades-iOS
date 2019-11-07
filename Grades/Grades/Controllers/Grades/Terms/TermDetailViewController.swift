@@ -25,14 +25,16 @@ class TermDetailViewController: BaseViewController {
     var subjects: [Subject] = []
     weak var delegate: CreateTermViewControllerDelegate?
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        showNavigationBarButtons(false)
+    }
+    
     /// Setups the navigation bar buttons an title
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = term.name
-        
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateSubject))
-        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(goToEditTerm))
-        navigationItem.setRightBarButtonItems([addButton, editButton], animated: false)
+        showNavigationBarButtons(true)
     }
     
     /// Goes to the previous View Controller
@@ -43,23 +45,25 @@ class TermDetailViewController: BaseViewController {
     /// Setups the view
     override func setupView() {
         super.setupView()
-
-        tableView = UITableView(frame: .zero)
+        setupAddAndOptionsButton()
+        setupTableView()
+        fetchSubjects()
+    }
+    
+    private func setupTableView() {
+        tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
         view.addSubview(tableView)
         tableView.anchor
-            .edgesToSuperview(toSafeArea: true)
+            .edgesToSuperview()
             .activate()
+        tableView.register(GradeTableViewCell.self)
         tableView.register(TermDateTableViewCell.self)
         tableView.register(TitleLabelTableViewCell.self)
         tableView.register(GradableTableViewCell.self)
         tableView.register(BarChartTableViewCell.self)
-        
-        fetchSubjects()
     }
     
     /// Presents the View Controller to create a new Subject
@@ -111,39 +115,60 @@ class TermDetailViewController: BaseViewController {
 
 extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if subjects.isEmpty {
+        if section == 0 {
             return 1
+        } else if section == 1 {
+            return 1
+        } else {
+            return subjects.count
         }
-        return subjects.count + TableRows.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = indexPath.row
+        let section = indexPath.section
         
-        switch TableRows(rawValue: row) {
-        case .dateRow?:
+        if section == 0 {
+            let cell = tableView.dequeueReusableCell(for: indexPath) as GradeTableViewCell
+            cell.configure(with: term)
+            return cell
+        } else if section == 1 {
             let cell = tableView.dequeueReusableCell(for: indexPath) as TermDateTableViewCell
             cell.configure(startDate: term.startDate, endDate: term.endDate)
             return cell
-        case .chartTitleRow?:
-            let cell = tableView.dequeueReusableCell(for: indexPath) as TitleLabelTableViewCell
-            cell.titleLabel.text = "Stats".localized
-            return cell
-        case .chartRow?:
-            let cell = tableView.dequeueReusableCell(for: indexPath) as BarChartTableViewCell
-            cell.configure(with: subjects)
-            return cell
-        case .subjectsTitleRow?:
-            let cell = tableView.dequeueReusableCell(for: indexPath) as TitleLabelTableViewCell
-            cell.titleLabel.text = "Subjects".localized
-            return cell
-        default:
-            let index = row - TableRows.allCases.count
+        } else {
             let cell = tableView.dequeueReusableCell(for: indexPath) as GradableTableViewCell
-            cell.configure(with: subjects[index])
+            cell.configure(with: subjects[indexPath.row])
             return cell
         }
+        
+//        switch TableRows(rawValue: row) {
+//        case .dateRow?:
+//            let cell = tableView.dequeueReusableCell(for: indexPath) as TermDateTableViewCell
+//            cell.configure(startDate: term.startDate, endDate: term.endDate)
+//            return cell
+//        case .chartTitleRow?:
+//            let cell = tableView.dequeueReusableCell(for: indexPath) as TitleLabelTableViewCell
+//            cell.titleLabel.text = "Stats".localized
+//            return cell
+//        case .chartRow?:
+//            let cell = tableView.dequeueReusableCell(for: indexPath) as BarChartTableViewCell
+//            cell.configure(with: subjects)
+//            return cell
+//        case .subjectsTitleRow?:
+//            let cell = tableView.dequeueReusableCell(for: indexPath) as TitleLabelTableViewCell
+//            cell.titleLabel.text = "Subjects".localized
+//            return cell
+//        default:
+//            let index = row - TableRows.allCases.count
+//            let cell = tableView.dequeueReusableCell(for: indexPath) as GradableTableViewCell
+//            cell.configure(with: subjects[index])
+//            return cell
+//        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -156,17 +181,6 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
             viewController.delegate = self
             viewController.subject = subject
             navigationController?.pushViewController(viewController, animated: true)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch section {
-        case 0:
-            let header = DetailHeader(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 120))
-            header.configure(with: term)
-            return header
-        default:
-            return nil
         }
     }
     
