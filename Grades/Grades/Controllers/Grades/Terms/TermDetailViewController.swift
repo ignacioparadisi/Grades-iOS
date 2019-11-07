@@ -111,6 +111,10 @@ class TermDetailViewController: BaseViewController {
         }
         delegate?.shouldRefresh()
     }
+    
+    override func didTapAddButton() {
+        goToCreateSubject()
+    }
 }
 
 extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -201,6 +205,13 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             deleteSubject(at: indexPath)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 2 {
+            return "Subjects".localized
+        }
+        return nil
     }
 }
 

@@ -120,6 +120,13 @@ extension TermsViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 2 {
+            return "Terms".localized
+        }
+        return nil
+    }
+    
     /// Deletes a Term with animation from the CollectionVIew
     /// - Parameter index: Index of the Term to be deleted
     private func deleteTerm(at index: Int) {
