@@ -206,6 +206,7 @@ class CreateAssignmentViewController: BaseFormViewController {
                 requestNotificationsAuthorization()
                 createNotification(for: assignment, subjectName: subject.name)
                 dismissView()
+                NotificationCenter.default.post(name: .didCreateAssignment, object: nil)
                 delegate?.didCreateAssignment()
             }
         }

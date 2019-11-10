@@ -38,6 +38,7 @@ class CalendarView: UIView {
         setupMonthView()
         setupCalendarView()
         let sunday = getSunday(from: Date())
+        NotificationCenter.default.addObserver(self, selector: #selector(populateCalendarDataSource), name: .didCreateAssignment, object: nil)
         DispatchQueue.main.async { [weak self] in
             self?.populateCalendarDataSource()
             self?.calendar.selectDates([Date()])
@@ -126,7 +127,7 @@ class CalendarView: UIView {
         calendar.scrollToDate(getSunday(from: Date()), animateScroll: true)
     }
     
-    private func populateCalendarDataSource() {
+    @objc private func populateCalendarDataSource() {
         calendarDataSource.removeAll()
         var assignments: [Assignment] = []
         do {

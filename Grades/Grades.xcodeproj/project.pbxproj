@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3201C21A23787B5E0088DFB6 /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3201C21923787B5E0088DFB6 /* NSNotification+Extension.swift */; };
 		32A91C8D236DDFBD002DF41E /* TermGradeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A91C8C236DDFBD002DF41E /* TermGradeTableViewCell.swift */; };
 		32F6EC9E2374711D00D980AD /* GradeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F6EC9D2374711D00D980AD /* GradeTableViewCell.swift */; };
 		4F09643D22B583B700D72277 /* CreateSubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */; };
@@ -114,6 +115,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3201C21923787B5E0088DFB6 /* NSNotification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
 		32A91C8C236DDFBD002DF41E /* TermGradeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermGradeTableViewCell.swift; sourceTree = "<group>"; };
 		32F6EC9D2374711D00D980AD /* GradeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeTableViewCell.swift; sourceTree = "<group>"; };
 		4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubjectViewController.swift; sourceTree = "<group>"; };
@@ -467,6 +469,7 @@
 				4F66289F22A14B7E001F2CD9 /* UIViewController+Extension.swift */,
 				4F9BAFCD2338F75F006FE7D1 /* Float+Extension.swift */,
 				4FFAA4FE233C2DBB007C5C9B /* DateFormatter+Extension.swift */,
+				3201C21923787B5E0088DFB6 /* NSNotification+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -664,6 +667,7 @@
 				4F4A650322B99DB7003A1199 /* BarChartTableViewCell.swift in Sources */,
 				4FF6F460227A10F7000F14D2 /* UIColor+Extension.swift in Sources */,
 				4FFAA4FF233C2DBB007C5C9B /* DateFormatter+Extension.swift in Sources */,
+				3201C21A23787B5E0088DFB6 /* NSNotification+Extension.swift in Sources */,
 				4FF6F467227A14AC000F14D2 /* BaseViewController.swift in Sources */,
 				4FCD778A233838F400A2FA5E /* Subject+CoreDataClass.swift in Sources */,
 				4FCD7789233838F400A2FA5E /* Assignment+CoreDataProperties.swift in Sources */,

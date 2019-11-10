@@ -38,6 +38,13 @@ class HomeViewController: BaseViewController {
         view.addSubview(tableView)
         tableView.anchor.edgesToSuperview().activate()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: .didCreateAssignment, object: nil)
+        
+        refresh()
+        
+    }
+    
+    @objc func refresh() {
         do {
             todayAssignments = try Assignment.fetchToday()
             thisWeekAssignments = try Assignment.fetchThisWeek()
@@ -46,7 +53,6 @@ class HomeViewController: BaseViewController {
         } catch {
             print("Error")
         }
-        
     }
 
 }

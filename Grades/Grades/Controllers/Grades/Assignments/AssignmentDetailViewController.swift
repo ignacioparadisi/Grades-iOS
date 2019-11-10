@@ -164,6 +164,7 @@ class AssignmentDetailViewController: BaseViewController, ScrollableView {
     
     @objc private func updateAssignment() {
         assignment.update(grade: circularSlider.value, decimals: decimalsSegmentedControl.selectedSegmentIndex)
+        NotificationCenter.default.post(name: .didCreateAssignment, object: nil)
         delegate?.didEditAssignment()
         dismiss(animated: true)
     }
