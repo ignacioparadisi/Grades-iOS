@@ -51,7 +51,9 @@ class BaseFormViewController: BaseViewController, ScrollableView {
         navigationController?.navigationBar.prefersLargeTitles = false
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
         navigationItem.leftBarButtonItem = cancelButton
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSaveButton))
+        let saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(didTapSaveButton))
+        saveButton.isEnabled = false
+//        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSaveButton))
         navigationItem.rightBarButtonItem = saveButton
     }
     

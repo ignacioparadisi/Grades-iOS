@@ -83,41 +83,46 @@ import SwiftUI
 //}
 
 struct GradeView: View {
+    var gradable: Gradable
+    var isMaximumGrade: Bool = false
+    private var grade: String {
+        return isMaximumGrade ? gradable.maxGrade.toString(decimals: 0) : gradable.grade.toString(decimals: 0)
+    }
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .trailing) {
-                Image(uiImage: self.imageWith(name: "20", size: geometry.size)!)
+                Image(uiImage: self.imageWith(name: self.grade, size: geometry.size)!)
                     .opacity(0.2)
                     .offset(x: -16, y: 0)
                     
                 VStack(alignment: .leading) {
-                    Text("20").font(.title).bold()
-                    Text("Grade")
+                    Text(self.grade).font(.title).bold()
+                    Text(self.isMaximumGrade ? "Maximum Grade" : "Grade")
                     Text("You are doing great!").font(.footnote)
                 }
                 .frame(width: geometry.size.width, height: geometry.size.width)
                 .padding()
             }
             .frame(width: geometry.size.width, height: geometry.size.width)
-            .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGreen)))
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color(UIColor.getColor(for: self.isMaximumGrade ?  self.gradable.maxGrade : self.gradable.grade, maxGrade: self.gradable.maxGrade, minGrade: self.gradable.minGrade))))
         }
     }
     
     func imageWith(name: String?, size: CGSize) -> UIImage? {
         let frame = CGRect(x: 0, y: 0, width: size.width * 0.84, height: size.height)
-         let nameLabel = UILabel(frame: frame)
-         nameLabel.textAlignment = .center
-         nameLabel.textColor = .black
+        let nameLabel = UILabel(frame: frame)
+        nameLabel.textAlignment = .right
+        nameLabel.textColor = .black
         nameLabel.lineBreakMode = .byClipping
         nameLabel.font = UIFont.boldSystemFont(ofSize: size.width * 0.9)
-         nameLabel.text = name
-         UIGraphicsBeginImageContext(frame.size)
-          if let currentContext = UIGraphicsGetCurrentContext() {
-             nameLabel.layer.render(in: currentContext)
-             let nameImage = UIGraphicsGetImageFromCurrentImageContext()
-             return nameImage
-          }
-          return nil
+        nameLabel.text = name
+        UIGraphicsBeginImageContext(frame.size)
+        if let currentContext = UIGraphicsGetCurrentContext() {
+            nameLabel.layer.render(in: currentContext)
+            let nameImage = UIGraphicsGetImageFromCurrentImageContext()
+            return nameImage
+        }
+        return nil
     }
 }
 
@@ -139,8 +144,8 @@ class GradeTableViewCell: UITableViewCell, ReusableView {
     }
     
     func configure(with gradable: Gradable) {
-        let leftView = UIHostingController(rootView: GradeView()).view!
-        let rightView = UIHostingController(rootView: GradeView()).view!
+        let leftView = UIHostingController(rootView: GradeView(gradable: gradable)).view!
+        let rightView = UIHostingController(rootView: GradeView(gradable: gradable, isMaximumGrade: true)).view!
         
         leftView.backgroundColor = .clear
         rightView.backgroundColor = .clear

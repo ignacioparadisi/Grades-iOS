@@ -40,7 +40,7 @@ class CreateTermViewController: BaseFormViewController {
         setupDecimalsSection(topAnchor: nameTextField.bottomAnchor)
         setupGradesSection(topAnchor: decimalsSegmentedControl.bottomAnchor)
         setupDuration()
-        setupSaveButton(topAnchor: startDateTextField.bottomAnchor, action: #selector(createTerm))
+//        setupSaveButton(topAnchor: startDateTextField.bottomAnchor, action: #selector(createTerm))
         setupDelegates()
     }
     
@@ -71,18 +71,15 @@ class CreateTermViewController: BaseFormViewController {
             .top(to: durationDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
             .trailing(to: contentView.centerXAnchor, constant: trailingConstant / 2)
             .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
+            .bottomToSuperview(constant: -titleTopConstant, toSafeArea: true)
             .activate()
         endDateTextField.anchor
             .top(to: durationDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
             .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
             .leading(to: contentView.centerXAnchor, constant: leadingConstant / 2)
+            .bottom(to: startDateTextField.bottomAnchor)
             .activate()
     }
-    
-//    override func setupSaveButton(topAnchor: NSLayoutYAxisAnchor, action: Selector) {
-//        super.setupSaveButton(topAnchor: topAnchor, action: action)
-//        saveButton.addTarget(self, action: #selector(createTerm), for: .touchUpInside)
-//    }
     
     func setupDelegates() {
         nameTextField.delegate = self

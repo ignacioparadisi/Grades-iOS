@@ -10,11 +10,13 @@ import SwiftUI
 
 class TermDetailViewController: BaseViewController {
     /// Type of rows inside the Table View
-    enum TableRows: Int, CaseIterable {
-        case dateRow = 0
-        case chartTitleRow = 1
-        case chartRow = 2
-        case subjectsTitleRow = 3
+    struct Sections {
+        static let grades = 0
+        static let dates = 1
+        static let chart = 2
+        static let subjects = 3
+        
+        static let count = 4
     }
     
     /// Tabla View to display Subjects
@@ -61,9 +63,8 @@ class TermDetailViewController: BaseViewController {
             .activate()
         tableView.register(GradeTableViewCell.self)
         tableView.register(TermDateTableViewCell.self)
-        tableView.register(TitleLabelTableViewCell.self)
-        tableView.register(GradableTableViewCell.self)
         tableView.register(BarChartTableViewCell.self)
+        tableView.register(GradableTableViewCell.self)
     }
     
     /// Presents the View Controller to create a new Subject
@@ -90,20 +91,14 @@ class TermDetailViewController: BaseViewController {
     
     /// Deletes a subject from Table View with animation and then deletes it from Core Data
     private func deleteSubject(at indexPath: IndexPath) {
-        let index = indexPath.row -  TableRows.allCases.count
-        let subject: Subject = subjects[index]
-        subjects.remove(at: index)
+        let subject: Subject = subjects[indexPath.row]
+        subjects.remove(at: indexPath.row)
         if !subjects.isEmpty {
             tableView.deleteRows(at: [indexPath], with: .left)
-            tableView.reloadRows(at: [IndexPath(row: TableRows.chartRow.rawValue, section: 0)], with: .none)
+            tableView.reloadSections(IndexSet(arrayLiteral: Sections.grades, Sections.chart), with: .automatic)
         } else {
-            let indexPaths = [
-                indexPath,
-                IndexPath(row: TableRows.chartTitleRow.rawValue, section: 0),
-                IndexPath(row: TableRows.chartRow.rawValue, section: 0),
-                IndexPath(row: TableRows.subjectsTitleRow.rawValue, section: 0)
-            ]
-            tableView.deleteRows(at: indexPaths, with: .fade)
+            tableView.deleteSections(IndexSet(arrayLiteral: Sections.chart), with: .automatic)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
         subject.delete()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
@@ -120,67 +115,51 @@ class TermDetailViewController: BaseViewController {
 extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return Sections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        switch section {
+        case Sections.grades:
             return 1
-        } else if section == 1 {
+        case Sections.dates:
             return 1
-        } else {
+        case Sections.chart:
+            return 1
+        case Sections.subjects:
             return subjects.count
+        default:
+            return 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         
-        if section == 0 {
+        switch section {
+        case Sections.grades:
             let cell = tableView.dequeueReusableCell(for: indexPath) as GradeTableViewCell
             cell.configure(with: term)
             return cell
-        } else if section == 1 {
+        case Sections.dates:
             let cell = tableView.dequeueReusableCell(for: indexPath) as TermDateTableViewCell
             cell.configure(startDate: term.startDate, endDate: term.endDate)
             return cell
-        } else {
+        case Sections.chart:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as BarChartTableViewCell
+           cell.configure(with: subjects)
+           return cell
+        case Sections.subjects:
             let cell = tableView.dequeueReusableCell(for: indexPath) as GradableTableViewCell
             cell.configure(with: subjects[indexPath.row])
             return cell
+        default: return UITableViewCell()
         }
-        
-//        switch TableRows(rawValue: row) {
-//        case .dateRow?:
-//            let cell = tableView.dequeueReusableCell(for: indexPath) as TermDateTableViewCell
-//            cell.configure(startDate: term.startDate, endDate: term.endDate)
-//            return cell
-//        case .chartTitleRow?:
-//            let cell = tableView.dequeueReusableCell(for: indexPath) as TitleLabelTableViewCell
-//            cell.titleLabel.text = "Stats".localized
-//            return cell
-//        case .chartRow?:
-//            let cell = tableView.dequeueReusableCell(for: indexPath) as BarChartTableViewCell
-//            cell.configure(with: subjects)
-//            return cell
-//        case .subjectsTitleRow?:
-//            let cell = tableView.dequeueReusableCell(for: indexPath) as TitleLabelTableViewCell
-//            cell.titleLabel.text = "Subjects".localized
-//            return cell
-//        default:
-//            let index = row - TableRows.allCases.count
-//            let cell = tableView.dequeueReusableCell(for: indexPath) as GradableTableViewCell
-//            cell.configure(with: subjects[index])
-//            return cell
-//        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let row = indexPath.row
-        
-        if row >= TableRows.allCases.count {
-            let index = row - TableRows.allCases.count
-            let subject = subjects[index]
+        if indexPath.section >= Sections.subjects {
+            let subject = subjects[indexPath.row]
             let viewController = SubjectDetailViewController()
             viewController.delegate = self
             viewController.subject = subject
@@ -188,17 +167,17 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch section {
-        case 0:
-            return 120
-        default:
-            return 0
-        }
-    }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        switch section {
+//        case 0:
+//            return 120
+//        default:
+//            return 0
+//        }
+//    }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.row >= TableRows.allCases.count
+        return indexPath.section == Sections.subjects
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -208,7 +187,7 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 2 {
+        if section == Sections.subjects {
             return "Subjects".localized
         }
         return nil
