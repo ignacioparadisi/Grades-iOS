@@ -21,7 +21,6 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
     
     /// Adds all the components to the view
     private func initialize() {
-        selectionStyle = .none
     }
     
     
@@ -30,9 +29,10 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
     /// - Parameter gradable: Gradable to be displayed
     func configure(with assignment: Assignment) {
         if let view = UIHostingController(rootView: AssignmentView(assignment: assignment)).view {
+            view.backgroundColor = .clear
             subviews.last?.removeFromSuperview()
             addSubview(view)
-            view.anchor.edgesToSuperview(insets: UIEdgeInsets(top: 8, left: 16, bottom: -8, right: -16)).activate()
+            view.anchor.edgesToSuperview().activate()
         }
 
     }
@@ -61,7 +61,6 @@ struct AssignmentView: View {
             GradableChartView(gradable: assignment).frame(width: 60, height: 60)
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
     }
     
     private func getDividerColor() -> Color {

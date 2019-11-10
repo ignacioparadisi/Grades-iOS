@@ -97,8 +97,7 @@ class TermDetailViewController: BaseViewController {
             tableView.deleteRows(at: [indexPath], with: .left)
             tableView.reloadSections(IndexSet(arrayLiteral: Sections.grades, Sections.chart), with: .automatic)
         } else {
-            tableView.deleteSections(IndexSet(arrayLiteral: Sections.chart), with: .automatic)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.deleteSections(IndexSet(arrayLiteral: Sections.chart, Sections.subjects), with: .fade)
         }
         subject.delete()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
@@ -115,7 +114,7 @@ class TermDetailViewController: BaseViewController {
 extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Sections.count
+        return subjects.isEmpty ? Sections.count - 2 : Sections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -125,7 +124,7 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
         case Sections.dates:
             return 1
         case Sections.chart:
-            return 1
+            return subjects.isEmpty ? 0 : 1
         case Sections.subjects:
             return subjects.count
         default:
@@ -166,15 +165,6 @@ extension TermDetailViewController: UITableViewDelegate, UITableViewDataSource {
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
-    
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        switch section {
-//        case 0:
-//            return 120
-//        default:
-//            return 0
-//        }
-//    }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return indexPath.section == Sections.subjects

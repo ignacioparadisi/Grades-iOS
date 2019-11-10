@@ -22,13 +22,18 @@ class CreateSubjectViewController: BaseFormViewController {
         setupNameSection(topAnchor: contentView.safeAreaLayoutGuide.topAnchor, description: "Enter a name for the subject", placeholder: "Subject name")
         setupDecimalsSection(topAnchor: nameTextField.bottomAnchor)
         setupGradesSection(topAnchor: decimalsSegmentedControl.bottomAnchor)
-        setupSaveButton(topAnchor: maxGradeTextField.bottomAnchor, action: #selector(createSubject))
         setupDelegates()
     }
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = "Add Subject".localized
+    }
+    
+    override func setupGradesSection(topAnchor: NSLayoutYAxisAnchor) {
+        super.setupGradesSection(topAnchor: topAnchor)
+        minGradeTextField.anchor.bottomToSuperview(constant: -titleTopConstant, toSafeArea: true).activate()
+        maxGradeTextField.anchor.bottom(to: minGradeTextField.bottomAnchor).activate()
     }
     
     private func setupDelegates() {

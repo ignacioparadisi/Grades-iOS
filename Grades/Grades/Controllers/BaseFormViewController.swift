@@ -40,20 +40,15 @@ class BaseFormViewController: BaseViewController, ScrollableView {
         textField.isRequired = true
         return textField
     }()
-    let saveButton: IPButton = {
-        let button = IPButton()
-        button.setTitle("Save".localized, for: .normal)
-        return button
-    }()
+    var saveButton: UIBarButtonItem!
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
         navigationController?.navigationBar.prefersLargeTitles = false
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
         navigationItem.leftBarButtonItem = cancelButton
-        let saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(didTapSaveButton))
+        saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(didTapSaveButton))
         saveButton.isEnabled = false
-//        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSaveButton))
         navigationItem.rightBarButtonItem = saveButton
     }
     
@@ -133,19 +128,6 @@ class BaseFormViewController: BaseViewController, ScrollableView {
             .top(to: gradesDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
             .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
             .leading(to: contentView.centerXAnchor, constant: leadingConstant / 2)
-            .activate()
-    }
-    
-    func setupSaveButton(topAnchor: NSLayoutYAxisAnchor, action: Selector) {
-        saveButton.setTitle("Save".localized, for: .normal)
-        saveButton.addTarget(self, action: action, for: .touchUpInside)
-        saveButton.isEnabled = false
-        contentView.addSubview(saveButton)
-        saveButton.anchor
-            .top(greaterOrEqual: topAnchor, constant: titleTopConstant)
-            .bottomToSuperview(constant: -titleTopConstant, toSafeArea: true)
-            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
-            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
             .activate()
     }
     

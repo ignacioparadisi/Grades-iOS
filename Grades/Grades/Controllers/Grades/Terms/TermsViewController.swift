@@ -72,7 +72,7 @@ final class TermsViewController: BaseViewController {
 extension TermsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return terms.isEmpty ? 1 : 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,7 +80,7 @@ extension TermsViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 1
         case 1:
-            return 1
+            return terms.isEmpty ? 0 : 1
         case 2:
             return terms.count
         default:
@@ -91,7 +91,7 @@ extension TermsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(for: indexPath) as TermGradeTableViewCell
-            cell.configure(with: 20)
+            cell.configure(with: Calculator.getAverage(for: terms))
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(for: indexPath) as BarChartTableViewCell
@@ -110,7 +110,7 @@ extension TermsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if indexPath.section == 2 {
-            deleteTerm(at: indexPath.row)
+            deleteTerm(at: indexPath)
         }
     }
     
@@ -129,11 +129,15 @@ extension TermsViewController: UITableViewDelegate, UITableViewDataSource {
     
     /// Deletes a Term with animation from the CollectionVIew
     /// - Parameter index: Index of the Term to be deleted
-    private func deleteTerm(at index: Int) {
-        let term = terms[index]
-        terms.remove(at: index)
-        tableView.deleteRows(at: [IndexPath(item: index, section: 2)], with: .left)
-        tableView.reloadSections(IndexSet(arrayLiteral: 0, 1), with: .automatic)
+    private func deleteTerm(at indexPath: IndexPath) {
+        let term = terms[indexPath.row]
+        terms.remove(at: indexPath.row)
+        if !terms.isEmpty {
+            tableView.deleteRows(at: [indexPath], with: .left)
+            tableView.reloadSections(IndexSet(arrayLiteral: 0, 1), with: .automatic)
+        } else {
+            tableView.deleteSections(IndexSet(arrayLiteral: 1, 2), with: .fade)
+        }
         term.delete()
         fetchTerms()
     }

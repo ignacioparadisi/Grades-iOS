@@ -37,11 +37,8 @@ class AssignmentDetailViewController: BaseViewController, ScrollableView {
         picker.placeholder = "Deadline".localized
         return picker
     }()
-    var saveButton: IPButton = {
-        let button = IPButton()
-        return button
-    }()
     var editButton: UIBarButtonItem!
+    var saveButton: UIBarButtonItem!
     var isEditEnabled: Bool = false
 
     override func setupNavigationBar() {
@@ -50,6 +47,7 @@ class AssignmentDetailViewController: BaseViewController, ScrollableView {
         navigationController?.navigationBar.prefersLargeTitles = false
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
         editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(enableEdit))
+        saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(updateAssignment))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = editButton
         disableEdit()
@@ -69,12 +67,11 @@ class AssignmentDetailViewController: BaseViewController, ScrollableView {
         setupDecimalsSection()
         setupCircularSlider()
         setupDeadline()
-        setupSaveButton()
     }
     
     @objc private func enableEdit() {
         isEditEnabled = true
-        navigationItem.setRightBarButton(nil, animated: true)
+        navigationItem.setRightBarButton(saveButton, animated: true)
         decimalsSegmentedControl.isUserInteractionEnabled = true
         circularSlider.isUserInteractionEnabled = true
         deadlineTextField.isUserInteractionEnabled = true
@@ -148,19 +145,7 @@ class AssignmentDetailViewController: BaseViewController, ScrollableView {
             .top(to: dateDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
             .leadingToSuperview(constant: leadingConstant)
             .trailingToSuperview(constant: trailingConstant)
-            .activate()
-    }
-    
-    private func setupSaveButton() {
-        saveButton.setTitle("Save".localized, for: .normal)
-        saveButton.addTarget(self, action: #selector(updateAssignment), for: .touchUpInside)
-        saveButton.color = UIColor(named: "accentColor")
-        contentView.addSubview(saveButton)
-        saveButton.anchor
-            .top(greaterOrEqual: deadlineTextField.bottomAnchor, constant: titleTopConstant)
             .bottomToSuperview(constant: -20, toSafeArea: true)
-            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
-            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
             .activate()
     }
     

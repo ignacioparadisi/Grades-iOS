@@ -57,7 +57,6 @@ class CreateAssignmentViewController: BaseFormViewController {
         setupGradesSection(topAnchor: decimalsSegmentedControl.bottomAnchor)
         setupChildSwitchSection()
         setupDateSection()
-        setupSaveButton(topAnchor: deadlinePickerTextField.bottomAnchor, action: #selector(createAssignment))
         setupDelegates()
     }
     
@@ -158,8 +157,9 @@ class CreateAssignmentViewController: BaseFormViewController {
         setupLabelConstraints(for: dateDescriptionLabel, topAnchor: dateLabel.bottomAnchor, topConstant: descriptionTopConstant)
         deadlinePickerTextField.anchor
             .top(to: dateDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
-            .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
-            .leading(to: contentView.leadingAnchor, constant: leadingConstant)
+            .trailingToSuperview(constant: trailingConstant)
+            .leadingToSuperview(constant: leadingConstant)
+            .bottomToSuperview(constant: -titleTopConstant, toSafeArea: true)
             .activate()
     }
     
@@ -314,6 +314,10 @@ class CreateAssignmentViewController: BaseFormViewController {
         }
         
         return valid
+    }
+    
+    override func didTapSaveButton() {
+        createAssignment()
     }
     
 }

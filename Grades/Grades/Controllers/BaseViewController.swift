@@ -109,7 +109,22 @@ class BaseViewController: UIViewController {
     }
     
     @objc func didTapOptionsButton() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let editAction = UIAlertAction(title: "Edit", style: .default, handler: nil)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
+        alertController.addAction(editAction)
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = CGRect(x: self.view.bounds.width, y: 0, width: 0, height: 0)
+            popoverController.permittedArrowDirections = []
+        }
+        
+        present(alertController, animated: true)
     }
 
 }
