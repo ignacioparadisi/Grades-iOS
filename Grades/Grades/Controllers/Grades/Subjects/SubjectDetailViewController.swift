@@ -10,44 +10,49 @@ import UIKit
 
 class SubjectDetailViewController: BaseViewController {
     
-    enum TableRows: Int, CaseIterable {
-        case chartTitleRow = 0
-        case chartRow = 1
-        case assignmentsTitleRow = 2
+    struct Sections {
+        static let grades = 0
+        static let chart = 1
+        static let assignments = 2
+        
+        static let count = 3
     }
 
     var tableView: UITableView!
-    let header: DetailHeader = DetailHeader(frame: .zero)
     var subject: Subject = Subject()
     var assignments: [Assignment] = []
     weak var delegate: CreateSubjectViewControllerDelegate?
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        showNavigationBarButtons(false)
+    }
+    
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = subject.name
-        
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateAssignment))
-        navigationItem.rightBarButtonItem = addButton
+        showNavigationBarButtons(true)
     }
     
     override func setupView() {
         super.setupView()
-        
-        tableView = UITableView(frame: .zero)
+        setupAddAndOptionsButton()
+        setupTableView()
+        fetchAssignments()
+    }
+    
+    private func setupTableView() {
+        tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
         view.addSubview(tableView)
         tableView.anchor
-            .edgesToSuperview(toSafeArea: true)
+            .edgesToSuperview()
             .activate()
-        tableView.register(TitleLabelTableViewCell.self)
+        tableView.register(GradeTableViewCell.self)
         tableView.register(AssignmentTableViewCell.self)
         tableView.register(BarChartTableViewCell.self)
-        
-        fetchAssignments()
     }
     
     @objc private func goToCreateAssignment() {
@@ -57,39 +62,24 @@ class SubjectDetailViewController: BaseViewController {
         present(UINavigationController(rootViewController: controller), animated: true)
     }
     
+    @objc private func goToEditSubject() {
+        
+    }
+    
     private func fetchAssignments() {
         assignments = subject.getAssignments()
         tableView.reloadData()
     }
     
-    private func showActionSheet() {
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let editDateAction = UIAlertAction(title: "Edit deadline".localized, style: .default, handler: nil)
-        let editGradeAction = UIAlertAction(title: "Edit grade".localized, style: .default, handler: nil)
-        let cancelAction = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
-        
-        actionSheet.addAction(editDateAction)
-        actionSheet.addAction(editGradeAction)
-        actionSheet.addAction(cancelAction)
-        
-        present(actionSheet, animated: true)
-    }
-    
     private func deleteAssignment(at indexPath: IndexPath) {
-        let index = indexPath.row -  TableRows.allCases.count
+        let index = indexPath.row
         let assignment = assignments[index]
         assignments.remove(at: index)
         if !assignments.isEmpty {
             tableView.deleteRows(at: [indexPath], with: .left)
-            tableView.reloadRows(at: [IndexPath(row: TableRows.chartRow.rawValue, section: 0)], with: .none)
+            tableView.reloadSections(IndexSet(arrayLiteral: Sections.grades, Sections.chart), with: .automatic)
         } else {
-            let indexPaths = [
-                indexPath,
-                IndexPath(row: TableRows.chartTitleRow.rawValue, section: 0),
-                IndexPath(row: TableRows.chartRow.rawValue, section: 0),
-                IndexPath(row: TableRows.assignmentsTitleRow.rawValue, section: 0)
-            ]
-            tableView.deleteRows(at: indexPaths, with: .fade)
+            tableView.deleteSections(IndexSet(arrayLiteral: Sections.chart, Sections.assignments), with: .fade)
         }
         assignment.delete()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
@@ -97,78 +87,77 @@ class SubjectDetailViewController: BaseViewController {
         }
         delegate?.shouldRefresh()
     }
+    
+    override func didTapAddButton() {
+        goToCreateAssignment()
+    }
 
 }
 
 extension SubjectDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return assignments.isEmpty ? Sections.count - 2 : Sections.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if assignments.isEmpty {
+        switch section {
+        case Sections.grades:
+            return 1
+        case Sections.chart:
+            return assignments.isEmpty ? 0 : 1
+        case Sections.assignments:
+            return assignments.count
+        default:
             return 0
         }
-        return assignments.count + TableRows.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = indexPath.row
-        
-        switch TableRows(rawValue: row) {
-        case .chartTitleRow?:
-            let cell = tableView.dequeueReusableCell(for: indexPath) as TitleLabelTableViewCell
-            cell.titleLabel.text = "Stats".localized
+        let section = indexPath.section
+        switch section {
+        case Sections.grades:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as GradeTableViewCell
+            cell.configure(with: subject)
             return cell
-        case .chartRow?:
+        case Sections.chart:
             let cell = tableView.dequeueReusableCell(for: indexPath) as BarChartTableViewCell
             cell.configure(with: assignments)
             return cell
-        case .assignmentsTitleRow?:
-            let cell = tableView.dequeueReusableCell(for: indexPath) as TitleLabelTableViewCell
-            cell.titleLabel.text = "Assignments".localized
+        case Sections.assignments:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as AssignmentTableViewCell
+            cell.configure(with: assignments[indexPath.row])
             return cell
         default:
-            let index = row - TableRows.allCases.count
-            let cell = tableView.dequeueReusableCell(for: indexPath) as AssignmentTableViewCell
-            cell.configure(with: assignments[index])
-            return cell
+            return UITableViewCell()
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let row = indexPath.row
-        
-        if row >= TableRows.allCases.count {
-            showActionSheet()
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch section {
-        case 0:
-            let header = DetailHeader(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 120))
-            header.configure(with: subject)
-            return header
-        default:
-            return nil
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch section {
-        case 0:
-            return 120
-        default:
-            return 0
+        if indexPath.section == Sections.assignments {
+            goToAssignmentDetail(assignments[indexPath.row])
         }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.row >= TableRows.allCases.count
+        return indexPath.section == Sections.assignments
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             deleteAssignment(at: indexPath)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return section == Sections.assignments ? "Assignments" : nil
+    }
+    
+    private func goToAssignmentDetail(_ assignment: Assignment) {
+        let controller = AssignmentDetailViewController()
+        controller.delegate = self
+        controller.assignment = assignment
+        present(UINavigationController(rootViewController: controller), animated: true)
     }
 }
 
@@ -179,4 +168,11 @@ extension SubjectDetailViewController: CreateAssignmentViewControllerDelegate {
         delegate?.shouldRefresh()
     }
     
+}
+
+extension SubjectDetailViewController: AssignmentDetailViewControllerDelegate {
+    func didEditAssignment() {
+        fetchAssignments()
+        delegate?.shouldRefresh()
+    }
 }

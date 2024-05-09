@@ -14,131 +14,39 @@ protocol CreateTermViewControllerDelegate: class {
     func shouldRefresh()
 }
 
-class CreateTermViewController: BaseViewController, ScrollableView {
-    
-    let titleTopConstant: CGFloat = 20.0
-    let descriptionTopConstant: CGFloat = 5.0
-    let fieldTopConstant: CGFloat = 10.0
-    let trailingConstant: CGFloat = -16.0
-    let leadingConstant: CGFloat = 16.0
+class CreateTermViewController: BaseFormViewController {
     
     weak var delegate: CreateTermViewControllerDelegate?
-    var contentView: UIView = UIView()
-    let nameTextField: IPTextField = {
-        let textField = IPTextField()
-        textField.isRequired = true
-        return textField
-    }()
-    let addButton = IPButton()
-    let minGradeTextField: IPTextField = {
-        let textField = IPTextField()
-        textField.keyboardType = .decimalPad
-        textField.isRequired = true
-        return textField
-    }()
-    let maxGradeTextField: IPTextField = {
-        let textField = IPTextField()
-        textField.keyboardType = .decimalPad
-        textField.isRequired = true
-        return textField
-    }()
     let startDateTextField: IPDatePickerTextField = {
         let textField = IPDatePickerTextField()
         textField.isRequired = true
         textField.datePickerMode = .date
-        textField.dateFormat = "MMM d, yyyy"
+        textField.dateFormat = .shortDate
         return textField
     }()
     let endDateTextField: IPDatePickerTextField = {
         let textField = IPDatePickerTextField()
         textField.isRequired = true
         textField.datePickerMode = .date
-        textField.dateFormat = "MMM d, yyyy"
+        textField.dateFormat = .shortDate
         return textField
     }()
     
     override func setupView() {
         super.setupView()
-        isModalInPresentation = true
-        navigationController?.presentationController?.delegate = self
-        addScrollView()
-        setupNameSection()
-        setupGradesSection()
+//        isModalInPresentation = true
+//        navigationController?.presentationController?.delegate = self
+        setupNameSection(topAnchor: contentView.safeAreaLayoutGuide.topAnchor, description: "Enter a name for the term", placeholder: "Term name")
+        setupDecimalsSection(topAnchor: nameTextField.bottomAnchor)
+        setupGradesSection(topAnchor: decimalsSegmentedControl.bottomAnchor)
         setupDuration()
-        setupSaveButton()
+//        setupSaveButton(topAnchor: startDateTextField.bottomAnchor, action: #selector(createTerm))
+        setupDelegates()
     }
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = "Add Term".localized
-        navigationController?.navigationBar.prefersLargeTitles = false
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
-        navigationItem.rightBarButtonItem = cancelButton
-    }
-    
-    @objc private func dismissView() {
-        dismiss(animated: true)
-    }
-    
-    private func setupLabelConstraints(for label: UILabel, topAnchor: NSLayoutYAxisAnchor, topConstant: CGFloat) {
-        label.anchor
-            .top(to: topAnchor, constant: topConstant)
-            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
-            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
-            .width(constant: view.frame.width - 2 * leadingConstant)
-            .activate()
-    }
-    
-    private func setupNameSection() {
-        let nameTitleLabel = IPTitleLabel()
-        let nameDescriptionLabel = IPLabel()
-        
-        nameTitleLabel.text = "Name".localized
-        nameDescriptionLabel.text = "Enter a name for the term".localized
-        nameTextField.placeholder = "Term name".localized
-        nameTextField.delegate = self
-        
-        contentView.addSubview(nameTitleLabel)
-        contentView.addSubview(nameDescriptionLabel)
-        contentView.addSubview(nameTextField)
-        
-        setupLabelConstraints(for: nameTitleLabel, topAnchor: contentView.safeAreaLayoutGuide.topAnchor, topConstant: titleTopConstant)
-        setupLabelConstraints(for: nameDescriptionLabel, topAnchor: nameTitleLabel.bottomAnchor, topConstant: descriptionTopConstant)
-        nameTextField.anchor
-            .top(to: nameDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
-            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
-            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
-            .activate()
-    }
-    
-    private func setupGradesSection() {
-        let gradesLabel = IPTitleLabel()
-        let gradesDescriptionLabel = IPLabel()
-        
-        gradesLabel.text = "Grades".localized
-        gradesDescriptionLabel.text = "Enter max and min grade to pass".localized
-        maxGradeTextField.placeholder = "Max. Grade".localized
-        minGradeTextField.placeholder = "Min. Grade".localized
-        maxGradeTextField.delegate = self
-        minGradeTextField.delegate = self
-        
-        contentView.addSubview(gradesLabel)
-        contentView.addSubview(gradesDescriptionLabel)
-        contentView.addSubview(minGradeTextField)
-        contentView.addSubview(maxGradeTextField)
-        
-        setupLabelConstraints(for: gradesLabel, topAnchor: nameTextField.bottomAnchor, topConstant: titleTopConstant)
-        setupLabelConstraints(for: gradesDescriptionLabel, topAnchor: gradesLabel.bottomAnchor, topConstant: descriptionTopConstant)
-        minGradeTextField.anchor
-            .top(to: gradesDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
-            .trailing(to: contentView.centerXAnchor, constant: trailingConstant / 2)
-            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
-            .activate()
-        maxGradeTextField.anchor
-            .top(to: gradesDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
-            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
-            .leading(to: contentView.centerXAnchor, constant: leadingConstant / 2)
-            .activate()
     }
     
     private func setupDuration() {
@@ -163,26 +71,20 @@ class CreateTermViewController: BaseViewController, ScrollableView {
             .top(to: durationDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
             .trailing(to: contentView.centerXAnchor, constant: trailingConstant / 2)
             .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
+            .bottomToSuperview(constant: -titleTopConstant, toSafeArea: true)
             .activate()
         endDateTextField.anchor
             .top(to: durationDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
             .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
             .leading(to: contentView.centerXAnchor, constant: leadingConstant / 2)
+            .bottom(to: startDateTextField.bottomAnchor)
             .activate()
     }
     
-    private func setupSaveButton() {
-        addButton.setTitle("Save".localized, for: .normal)
-        addButton.addTarget(self, action: #selector(createTerm), for: .touchUpInside)
-        addButton.color = UIColor(named: "accentColor")
-        addButton.isEnabled = false
-        contentView.addSubview(addButton)
-        addButton.anchor
-            .top(greaterOrEqual: startDateTextField.bottomAnchor, constant: 20)
-            .bottom(to: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -20)
-            .trailing(to: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -16)
-            .leading(to: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 16)
-            .activate()
+    func setupDelegates() {
+        nameTextField.delegate = self
+        minGradeTextField.delegate = self
+        maxGradeTextField.delegate = self
     }
     
     private func checkRequiredFields() {
@@ -191,10 +93,14 @@ class CreateTermViewController: BaseViewController, ScrollableView {
             || maxGradeTextField.isEmpty
             || startDateTextField.isEmpty
             || endDateTextField.isEmpty {
-            addButton.isEnabled = false
+            saveButton.isEnabled = false
             return
         }
-        addButton.isEnabled = true
+        saveButton.isEnabled = true
+    }
+    
+    override func didTapSaveButton() {
+        createTerm()
     }
     
     @objc private func createTerm() {
@@ -206,8 +112,9 @@ class CreateTermViewController: BaseViewController, ScrollableView {
             let endDate = endDateTextField.date {
             
             if valuesAreValid(maxGrade: maxGrade, minGrade: minGrade) {
+                let decimals = decimalsSegmentedControl.selectedSegmentIndex
                 do {
-                    try _ = Term.create(name: name, maxGrade: maxGrade, minGrade: minGrade, startDate: startDate, endDate: endDate)
+                    try _ = Term.create(name: name, maxGrade: maxGrade, minGrade: minGrade, decimals: decimals, startDate: startDate, endDate: endDate)
                     dismissView()
                     delegate?.shouldRefresh()
                 } catch {
@@ -270,18 +177,18 @@ extension CreateTermViewController: UITextFieldDelegate {
     }
 }
 
-extension CreateTermViewController: UIAdaptivePresentationControllerDelegate {
-    
-    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
-        let alert = UIAlertController(title: "Dismiss", message: "Dismiss", preferredStyle: .alert)
-        let acceptButton = UIAlertAction(title: "Dismiss", style: .destructive) { _ in
-            self.dismiss(animated: true)
-        }
-        let cancelButton = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
-        alert.addAction(acceptButton)
-        alert.addAction(cancelButton)
-
-        present(alert, animated: true)
-    }
-    
-}
+//extension CreateTermViewController: UIAdaptivePresentationControllerDelegate {
+//
+//    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+//        let alert = UIAlertController(title: "Dismiss", message: "Dismiss", preferredStyle: .alert)
+//        let acceptButton = UIAlertAction(title: "Dismiss", style: .destructive) { _ in
+//            self.dismiss(animated: true)
+//        }
+//        let cancelButton = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
+//        alert.addAction(acceptButton)
+//        alert.addAction(cancelButton)
+//
+//        present(alert, animated: true)
+//    }
+//
+//}

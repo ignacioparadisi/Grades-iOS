@@ -48,7 +48,7 @@ class TermCollectionViewCell: UICollectionViewCell, ReusableView {
         
         let layout = StretchyHeaderLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: frame.width, height: 60)
+        layout.itemSize = CGSize(width: frame.width, height: 67)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .systemGray5
         collectionView.delegate = self

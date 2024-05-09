@@ -27,14 +27,14 @@ class EditTermViewController: BaseViewController {
         let textField = IPDatePickerTextField()
         textField.isRequired = true
         textField.datePickerMode = .date
-        textField.dateFormat = "MMM d, yyyy"
+        textField.dateFormat = .shortDate
         return textField
     }()
     let endDateTextField: IPDatePickerTextField = {
         let textField = IPDatePickerTextField()
         textField.isRequired = true
         textField.datePickerMode = .date
-        textField.dateFormat = "MMM d, yyyy"
+        textField.dateFormat = .shortDate
         return textField
     }()
     let saveButton: IPButton = {
@@ -60,7 +60,7 @@ class EditTermViewController: BaseViewController {
         navigationItem.title = term.name
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
-        navigationItem.rightBarButtonItem = cancelButton
+        navigationItem.leftBarButtonItem = cancelButton
     }
     
     @objc private func dismissView() {

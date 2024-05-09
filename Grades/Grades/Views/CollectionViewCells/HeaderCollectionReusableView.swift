@@ -22,7 +22,6 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .title2)
         label.textAlignment = .center
-        label.text = "17"
         return label
     }()
     
@@ -109,7 +108,7 @@ class HeaderCollectionReusableView: UICollectionReusableView, ReusableView {
     public func configureWith(term: Term) {
         self.term = term
         termNameLabel.text = term.name
-        gradeLabel.text = "\(Int(term.grade.rounded()))"
+        gradeLabel.text = term.grade.toString(decimals: term.decimals)
         setNeedsDisplay()
     }
     

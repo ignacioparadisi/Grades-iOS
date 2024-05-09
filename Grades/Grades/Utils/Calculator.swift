@@ -28,6 +28,14 @@ class Calculator {
         return total / Float(items.count)
     }
     
+    static func getAverage(for terms: [Term]) -> Float {
+        var total: Float = 0.0
+        for term in terms where !term.isDeleted {
+            total += (term.grade * 20.0) / term.maxGrade
+        }
+        return total / Float(terms.count)
+    }
+    
     /// Get average grade for assignments
     /// It multiplies the grade times the percentage to get the actual grade
     ///
@@ -36,7 +44,11 @@ class Calculator {
     static func getGrade(for assignments: [Assignment], parent: Gradable) -> Float {
         var total: Float = 0.0
         for assignment in assignments where !assignment.isDeleted {
-            total += ((assignment.grade * parent.maxGrade) / assignment.maxGrade) * assignment.percentage
+            if assignment.percentage == -1 {
+                total += ((assignment.grade * parent.maxGrade) / assignment.maxGrade)
+            } else {
+                total += ((assignment.grade * parent.maxGrade) / assignment.maxGrade) * assignment.percentage
+            }
         }
         return total
     }

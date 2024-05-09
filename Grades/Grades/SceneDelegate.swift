@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             window.rootViewController =  MainTabBarController()
-            window.tintColor = UIColor(named: "accentColor")
+            window.tintColor = .systemBlue
             self.window = window
             window.makeKeyAndVisible()
         }

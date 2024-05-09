@@ -29,7 +29,7 @@ class BarChartTableViewCell: UITableViewCell, ReusableView {
     func configure(with items: [Gradable]) {
         if let view = UIHostingController(rootView: BarChartView(gradables: items)).view {
                addSubview(view)
-               view.anchor.edgesToSuperview(insets: UIEdgeInsets(top: 4, left: margin, bottom: -4, right: -margin)).activate()
+               view.anchor.edgesToSuperview().activate()
         }
     }
     
@@ -42,7 +42,7 @@ struct BarChartView: View {
             VStack(alignment: .leading) {
                 ForEach(0..<gradables.count, id: \.self) { index in
                     Text("\(index + 1). \(self.gradables[index].name)")
-                        .lineLimit(0)
+                        .lineLimit(nil)
                         .padding(2)
                 }
             }
@@ -56,7 +56,7 @@ struct BarChartView: View {
         }
         .frame(minHeight: 90)
         .padding()
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
+        .background(Color(.secondarySystemGroupedBackground))
     }
     
     private func barView(gradable: Gradable, index: Int) -> some View {
@@ -66,7 +66,7 @@ struct BarChartView: View {
                 ZStack(alignment: .bottom) {
                     RoundedRectangle(cornerRadius: 5)
                         .frame(width: 10)
-                        .foregroundColor(Color(.systemGray3))
+                        .foregroundColor(Color(.tertiarySystemGroupedBackground))
                     RoundedRectangle(cornerRadius: 5)
                         .frame(width: 10, height: geometry.size.height * heightFactor)
                         .foregroundColor(Color(UIColor.getColor(for: gradable)))

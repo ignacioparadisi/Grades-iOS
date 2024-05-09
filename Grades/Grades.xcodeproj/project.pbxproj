@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3201C21A23787B5E0088DFB6 /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3201C21923787B5E0088DFB6 /* NSNotification+Extension.swift */; };
+		32A91C8D236DDFBD002DF41E /* TermGradeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A91C8C236DDFBD002DF41E /* TermGradeTableViewCell.swift */; };
+		32F6EC9E2374711D00D980AD /* GradeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F6EC9D2374711D00D980AD /* GradeTableViewCell.swift */; };
 		4F09643D22B583B700D72277 /* CreateSubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */; };
 		4F09643F22B588FA00D72277 /* SubjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */; };
 		4F2FFB2222F1D1E40086B8B2 /* ProgressRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FFB2122F1D1E40086B8B2 /* ProgressRingView.swift */; };
@@ -19,6 +22,7 @@
 		4F4A650322B99DB7003A1199 /* BarChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A650222B99DB7003A1199 /* BarChartTableViewCell.swift */; };
 		4F4A650522B99E11003A1199 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A650422B99E11003A1199 /* Header.swift */; };
 		4F54CD532333B6D800444FE1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54CD522333B6D800444FE1 /* CoreDataManager.swift */; };
+		4F5C9FD2233ACE1100DF2034 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5C9FD1233ACE1100DF2034 /* CalendarDayCell.swift */; };
 		4F5F65FF2336A309004DA7E9 /* GradesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F65FE2336A309004DA7E9 /* GradesTests.swift */; };
 		4F5F66062336A336004DA7E9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54CD522333B6D800444FE1 /* CoreDataManager.swift */; };
 		4F5F66082336A3C8004DA7E9 /* CoreDataTermTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F66072336A3C8004DA7E9 /* CoreDataTermTests.swift */; };
@@ -33,6 +37,8 @@
 		4F6C602322B5BAC800C7A931 /* CreateAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C602222B5BAC800C7A931 /* CreateAssignmentViewController.swift */; };
 		4F7EE95B22A18C6500E34672 /* IPButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EE95A22A18C6500E34672 /* IPButton.swift */; };
 		4F7EE96322A1914300E34672 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F7EE96522A1914300E34672 /* Localizable.strings */; };
+		4F9922C2233980FA005B52F4 /* BaseFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9922C1233980FA005B52F4 /* BaseFormViewController.swift */; };
+		4F9BAFCE2338F75F006FE7D1 /* Float+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BAFCD2338F75F006FE7D1 /* Float+Extension.swift */; };
 		4FA7E01422F50FEA00C493AE /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA7E01322F50FEA00C493AE /* DatabaseError.swift */; };
 		4FACFF4F22F0DB71000997E1 /* IPDatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF4E22F0DB71000997E1 /* IPDatePickerTextField.swift */; };
 		4FACFF5922F0FBD0000997E1 /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACFF5822F0FBD0000997E1 /* LabelTableViewCell.swift */; };
@@ -46,15 +52,20 @@
 		4FCD778B233838F400A2FA5E /* Subject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD7783233838F400A2FA5E /* Subject+CoreDataProperties.swift */; };
 		4FCD778C233838F400A2FA5E /* Term+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD7784233838F400A2FA5E /* Term+CoreDataClass.swift */; };
 		4FCD778D233838F400A2FA5E /* Term+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD7785233838F400A2FA5E /* Term+CoreDataProperties.swift */; };
+		4FCD778F23384B0000A2FA5E /* AssignmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD778E23384B0000A2FA5E /* AssignmentDetailViewController.swift */; };
+		4FCD779523384CEC00A2FA5E /* CircularSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FCD779123384CEC00A2FA5E /* CircularSlider.xib */; };
+		4FCD779623384CEC00A2FA5E /* RotationGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD779223384CEC00A2FA5E /* RotationGesture.swift */; };
+		4FCD779723384CEC00A2FA5E /* CircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD779323384CEC00A2FA5E /* CircularSlider.swift */; };
+		4FCD779823384CEC00A2FA5E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD779423384CEC00A2FA5E /* Utils.swift */; };
 		4FCEA14C229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */; };
 		4FD3EB612335BCA8003BBD30 /* CreateTermView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD3EB602335BCA8003BBD30 /* CreateTermView.swift */; };
+		4FDD0EB9233AC799005E5279 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDD0EB8233AC799005E5279 /* CalendarView.swift */; };
 		4FE7BD0A22B55CE800EB9590 /* FixedHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7BD0922B55CE800EB9590 /* FixedHeaderLayout.swift */; };
 		4FF6F420227A04B6000F14D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F41F227A04B6000F14D2 /* AppDelegate.swift */; };
 		4FF6F427227A04B8000F14D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FF6F426227A04B8000F14D2 /* Assets.xcassets */; };
 		4FF6F42A227A04B8000F14D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF6F428227A04B8000F14D2 /* LaunchScreen.storyboard */; };
 		4FF6F44A227A0BAE000F14D2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F444227A0BAE000F14D2 /* HomeViewController.swift */; };
 		4FF6F44B227A0BAE000F14D2 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F446227A0BAE000F14D2 /* TermsViewController.swift */; };
-		4FF6F44C227A0BAE000F14D2 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F448227A0BAE000F14D2 /* CalendarViewController.swift */; };
 		4FF6F44D227A0BAE000F14D2 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F449227A0BAE000F14D2 /* MainTabBarController.swift */; };
 		4FF6F452227A0BBF000F14D2 /* IPTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F451227A0BBF000F14D2 /* IPTitleLabel.swift */; };
 		4FF6F45C227A0CA4000F14D2 /* Images+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F45B227A0CA4000F14D2 /* Images+Enum.swift */; };
@@ -72,6 +83,10 @@
 		4FF6F481227A70AB000F14D2 /* SubjectCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F480227A70AB000F14D2 /* SubjectCardCollectionViewCell.swift */; };
 		4FF6F483227A72BE000F14D2 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6F482227A72BE000F14D2 /* HeaderCollectionReusableView.swift */; };
 		4FF9AA0622F205CA00FE59AE /* AssignmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF9AA0522F205CA00FE59AE /* AssignmentTableViewCell.swift */; };
+		4FFAA4FD233C2C42007C5C9B /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFAA4FC233C2C42007C5C9B /* EventTableViewCell.swift */; };
+		4FFAA4FF233C2DBB007C5C9B /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFAA4FE233C2DBB007C5C9B /* DateFormatter+Extension.swift */; };
+		4FFAA501233C425C007C5C9B /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFAA500233C425C007C5C9B /* CalendarViewController.swift */; };
+		4FFAA503233C42A2007C5C9B /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFAA502233C42A2007C5C9B /* CalendarTableViewCell.swift */; };
 		4FFCBC0F22F37BF900A7172A /* TermDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFCBC0E22F37BF900A7172A /* TermDateTableViewCell.swift */; };
 		4FFE0F84231369B60019244F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE0F83231369B60019244F /* Logger.swift */; };
 /* End PBXBuildFile section */
@@ -100,6 +115,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3201C21923787B5E0088DFB6 /* NSNotification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
+		32A91C8C236DDFBD002DF41E /* TermGradeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermGradeTableViewCell.swift; sourceTree = "<group>"; };
+		32F6EC9D2374711D00D980AD /* GradeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeTableViewCell.swift; sourceTree = "<group>"; };
 		4F09643C22B583B700D72277 /* CreateSubjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubjectViewController.swift; sourceTree = "<group>"; };
 		4F09643E22B588FA00D72277 /* SubjectDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectDetailViewController.swift; sourceTree = "<group>"; };
 		4F2FFB2122F1D1E40086B8B2 /* ProgressRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRingView.swift; sourceTree = "<group>"; };
@@ -110,6 +128,7 @@
 		4F4A650222B99DB7003A1199 /* BarChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartTableViewCell.swift; sourceTree = "<group>"; };
 		4F4A650422B99E11003A1199 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		4F54CD522333B6D800444FE1 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		4F5C9FD1233ACE1100DF2034 /* CalendarDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
 		4F5F65FC2336A309004DA7E9 /* GradesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GradesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5F65FE2336A309004DA7E9 /* GradesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesTests.swift; sourceTree = "<group>"; };
 		4F5F66002336A309004DA7E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -126,6 +145,8 @@
 		4F7EE96022A190F200E34672 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		4F7EE96422A1914300E34672 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4F7EE96622A1914800E34672 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		4F9922C1233980FA005B52F4 /* BaseFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFormViewController.swift; sourceTree = "<group>"; };
+		4F9BAFCD2338F75F006FE7D1 /* Float+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Extension.swift"; sourceTree = "<group>"; };
 		4FA7E01322F50FEA00C493AE /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		4FACFF4E22F0DB71000997E1 /* IPDatePickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPDatePickerTextField.swift; sourceTree = "<group>"; };
 		4FACFF5822F0FBD0000997E1 /* LabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTableViewCell.swift; sourceTree = "<group>"; };
@@ -139,8 +160,14 @@
 		4FCD7783233838F400A2FA5E /* Subject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4FCD7784233838F400A2FA5E /* Term+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Term+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4FCD7785233838F400A2FA5E /* Term+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Term+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4FCD778E23384B0000A2FA5E /* AssignmentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailViewController.swift; sourceTree = "<group>"; };
+		4FCD779123384CEC00A2FA5E /* CircularSlider.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircularSlider.xib; sourceTree = "<group>"; };
+		4FCD779223384CEC00A2FA5E /* RotationGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationGesture.swift; sourceTree = "<group>"; };
+		4FCD779323384CEC00A2FA5E /* CircularSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularSlider.swift; sourceTree = "<group>"; };
+		4FCD779423384CEC00A2FA5E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		4FCEA14B229F4C9D00CD4AC6 /* StretchyHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyHeaderLayout.swift; sourceTree = "<group>"; };
 		4FD3EB602335BCA8003BBD30 /* CreateTermView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTermView.swift; sourceTree = "<group>"; };
+		4FDD0EB8233AC799005E5279 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		4FE7BD0922B55CE800EB9590 /* FixedHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedHeaderLayout.swift; sourceTree = "<group>"; };
 		4FF6F41C227A04B6000F14D2 /* Grades.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grades.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FF6F41F227A04B6000F14D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -149,7 +176,6 @@
 		4FF6F42B227A04B8000F14D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FF6F444227A0BAE000F14D2 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4FF6F446227A0BAE000F14D2 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
-		4FF6F448227A0BAE000F14D2 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		4FF6F449227A0BAE000F14D2 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		4FF6F451227A0BBF000F14D2 /* IPTitleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPTitleLabel.swift; sourceTree = "<group>"; };
 		4FF6F45B227A0CA4000F14D2 /* Images+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Images+Enum.swift"; sourceTree = "<group>"; };
@@ -167,6 +193,10 @@
 		4FF6F480227A70AB000F14D2 /* SubjectCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		4FF6F482227A72BE000F14D2 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		4FF9AA0522F205CA00FE59AE /* AssignmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentTableViewCell.swift; sourceTree = "<group>"; };
+		4FFAA4FC233C2C42007C5C9B /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		4FFAA4FE233C2DBB007C5C9B /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
+		4FFAA500233C425C007C5C9B /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		4FFAA502233C42A2007C5C9B /* CalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewCell.swift; sourceTree = "<group>"; };
 		4FFCBC0E22F37BF900A7172A /* TermDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDateTableViewCell.swift; sourceTree = "<group>"; };
 		4FFE0F83231369B60019244F /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -208,6 +238,8 @@
 				4FF9AA0522F205CA00FE59AE /* AssignmentTableViewCell.swift */,
 				4F3B693122F22F9F002C6263 /* TitleLabelTableViewCell.swift */,
 				4FFCBC0E22F37BF900A7172A /* TermDateTableViewCell.swift */,
+				32A91C8C236DDFBD002DF41E /* TermGradeTableViewCell.swift */,
+				32F6EC9D2374711D00D980AD /* GradeTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -255,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				4F6C602222B5BAC800C7A931 /* CreateAssignmentViewController.swift */,
+				4FCD778E23384B0000A2FA5E /* AssignmentDetailViewController.swift */,
 			);
 			path = Assignments;
 			sourceTree = "<group>";
@@ -268,6 +301,17 @@
 				4FCD777B2338371B00A2FA5E /* Grades.xcdatamodeld */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4FCD779023384CDD00A2FA5E /* CircularSlider */ = {
+			isa = PBXGroup;
+			children = (
+				4FCD779323384CEC00A2FA5E /* CircularSlider.swift */,
+				4FCD779123384CEC00A2FA5E /* CircularSlider.xib */,
+				4FCD779223384CEC00A2FA5E /* RotationGesture.swift */,
+				4FCD779423384CEC00A2FA5E /* Utils.swift */,
+			);
+			path = CircularSlider;
 			sourceTree = "<group>";
 		};
 		4FCEA14D229F557400CD4AC6 /* Layouts */ = {
@@ -337,6 +381,7 @@
 			children = (
 				4FF6F449227A0BAE000F14D2 /* MainTabBarController.swift */,
 				4FF6F466227A14AC000F14D2 /* BaseViewController.swift */,
+				4F9922C1233980FA005B52F4 /* BaseFormViewController.swift */,
 				4FF6F443227A0BAE000F14D2 /* Home */,
 				4FF6F445227A0BAE000F14D2 /* Grades */,
 				4FF6F447227A0BAE000F14D2 /* Calendar */,
@@ -365,7 +410,11 @@
 		4FF6F447227A0BAE000F14D2 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				4FF6F448227A0BAE000F14D2 /* CalendarViewController.swift */,
+				4FDD0EB8233AC799005E5279 /* CalendarView.swift */,
+				4F5C9FD1233ACE1100DF2034 /* CalendarDayCell.swift */,
+				4FFAA4FC233C2C42007C5C9B /* EventTableViewCell.swift */,
+				4FFAA500233C425C007C5C9B /* CalendarViewController.swift */,
+				4FFAA502233C42A2007C5C9B /* CalendarTableViewCell.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -397,6 +446,7 @@
 		4FF6F458227A0C14000F14D2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4FCD779023384CDD00A2FA5E /* CircularSlider */,
 				4FF6F463227A128F000F14D2 /* Protocols */,
 				4FF6F45A227A0C93000F14D2 /* Enums */,
 				4FF6F459227A0C1E000F14D2 /* Extensions */,
@@ -417,6 +467,9 @@
 				4FF6F474227A211D000F14D2 /* String+Extension.swift */,
 				4FF6F47E227A410B000F14D2 /* UIView+Extension.swift */,
 				4F66289F22A14B7E001F2CD9 /* UIViewController+Extension.swift */,
+				4F9BAFCD2338F75F006FE7D1 /* Float+Extension.swift */,
+				4FFAA4FE233C2DBB007C5C9B /* DateFormatter+Extension.swift */,
+				3201C21923787B5E0088DFB6 /* NSNotification+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -555,6 +608,7 @@
 				4FF6F42A227A04B8000F14D2 /* LaunchScreen.storyboard in Resources */,
 				4F7EE96322A1914300E34672 /* Localizable.strings in Resources */,
 				4FF6F427227A04B8000F14D2 /* Assets.xcassets in Resources */,
+				4FCD779523384CEC00A2FA5E /* CircularSlider.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,15 +653,21 @@
 				4FCD777D2338371B00A2FA5E /* Grades.xcdatamodeld in Sources */,
 				4FF6F481227A70AB000F14D2 /* SubjectCardCollectionViewCell.swift in Sources */,
 				4FFE0F84231369B60019244F /* Logger.swift in Sources */,
+				4FFAA503233C42A2007C5C9B /* CalendarTableViewCell.swift in Sources */,
 				4FF6F45C227A0CA4000F14D2 /* Images+Enum.swift in Sources */,
 				4FFCBC0F22F37BF900A7172A /* TermDateTableViewCell.swift in Sources */,
+				4FFAA501233C425C007C5C9B /* CalendarViewController.swift in Sources */,
+				4F9922C2233980FA005B52F4 /* BaseFormViewController.swift in Sources */,
 				4F4A650122B99D40003A1199 /* GradableTableViewCell.swift in Sources */,
 				4FF6F47F227A410B000F14D2 /* UIView+Extension.swift in Sources */,
+				4FCD779623384CEC00A2FA5E /* RotationGesture.swift in Sources */,
+				32F6EC9E2374711D00D980AD /* GradeTableViewCell.swift in Sources */,
 				4F09643D22B583B700D72277 /* CreateSubjectViewController.swift in Sources */,
-				4FF6F44C227A0BAE000F14D2 /* CalendarViewController.swift in Sources */,
 				4FF6F469227A1585000F14D2 /* ReusableView.swift in Sources */,
 				4F4A650322B99DB7003A1199 /* BarChartTableViewCell.swift in Sources */,
 				4FF6F460227A10F7000F14D2 /* UIColor+Extension.swift in Sources */,
+				4FFAA4FF233C2DBB007C5C9B /* DateFormatter+Extension.swift in Sources */,
+				3201C21A23787B5E0088DFB6 /* NSNotification+Extension.swift in Sources */,
 				4FF6F467227A14AC000F14D2 /* BaseViewController.swift in Sources */,
 				4FCD778A233838F400A2FA5E /* Subject+CoreDataClass.swift in Sources */,
 				4FCD7789233838F400A2FA5E /* Assignment+CoreDataProperties.swift in Sources */,
@@ -616,7 +676,9 @@
 				4FACFF5B22F124A8000997E1 /* EditTermViewController.swift in Sources */,
 				4FF6F46F227A15BE000F14D2 /* UICollectionView+Extension.swift in Sources */,
 				4F6C601D22B59DC300C7A931 /* PopAnimator.swift in Sources */,
+				4FCD779823384CEC00A2FA5E /* Utils.swift in Sources */,
 				4FCD7787233838F400A2FA5E /* Gradable+CoreDataProperties.swift in Sources */,
+				4FCD778F23384B0000A2FA5E /* AssignmentDetailViewController.swift in Sources */,
 				4FF6F44B227A0BAE000F14D2 /* TermsViewController.swift in Sources */,
 				4FF6F44D227A0BAE000F14D2 /* MainTabBarController.swift in Sources */,
 				4FCD7786233838F400A2FA5E /* Gradable+CoreDataClass.swift in Sources */,
@@ -634,8 +696,10 @@
 				4FF6F475227A211D000F14D2 /* String+Extension.swift in Sources */,
 				4FF6F473227A1F90000F14D2 /* UIFont+Extension.swift in Sources */,
 				4FF6F46D227A15AF000F14D2 /* UITableView+Extension.swift in Sources */,
+				4FCD779723384CEC00A2FA5E /* CircularSlider.swift in Sources */,
 				4FF6F462227A119F000F14D2 /* NSLayoutAnchor+Extension.swift in Sources */,
 				4FCD778D233838F400A2FA5E /* Term+CoreDataProperties.swift in Sources */,
+				4FDD0EB9233AC799005E5279 /* CalendarView.swift in Sources */,
 				4F66289C22A1462D001F2CD9 /* CreateTermViewController.swift in Sources */,
 				4FA7E01422F50FEA00C493AE /* DatabaseError.swift in Sources */,
 				4F3B693222F22F9F002C6263 /* TitleLabelTableViewCell.swift in Sources */,
@@ -643,9 +707,12 @@
 				4F54CD532333B6D800444FE1 /* CoreDataManager.swift in Sources */,
 				4F2FFB2222F1D1E40086B8B2 /* ProgressRingView.swift in Sources */,
 				4FD3EB612335BCA8003BBD30 /* CreateTermView.swift in Sources */,
+				32A91C8D236DDFBD002DF41E /* TermGradeTableViewCell.swift in Sources */,
 				4F6628A022A14B7E001F2CD9 /* UIViewController+Extension.swift in Sources */,
 				4F61FA8022EBE6F8008C6555 /* WatchSessionManager.swift in Sources */,
+				4FFAA4FD233C2C42007C5C9B /* EventTableViewCell.swift in Sources */,
 				4FF6F420227A04B6000F14D2 /* AppDelegate.swift in Sources */,
+				4F5C9FD2233ACE1100DF2034 /* CalendarDayCell.swift in Sources */,
 				4FCD7788233838F400A2FA5E /* Assignment+CoreDataClass.swift in Sources */,
 				4FF6F471227A17F8000F14D2 /* ScrollableView.swift in Sources */,
 				4FF9AA0622F205CA00FE59AE /* AssignmentTableViewCell.swift in Sources */,
@@ -653,6 +720,7 @@
 				4F7EE95B22A18C6500E34672 /* IPButton.swift in Sources */,
 				4F6C602322B5BAC800C7A931 /* CreateAssignmentViewController.swift in Sources */,
 				4F09643F22B588FA00D72277 /* SubjectDetailViewController.swift in Sources */,
+				4F9BAFCE2338F75F006FE7D1 /* Float+Extension.swift in Sources */,
 				4FF6F44A227A0BAE000F14D2 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

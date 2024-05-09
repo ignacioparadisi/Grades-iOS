@@ -21,9 +21,9 @@ class IPDatePickerTextField: IPTextField {
             datePicker.datePickerMode = datePickerMode
         }
     }
-    var dateFormat: String = "MMM d, yyyy" {
+    var dateFormat: DateFormat = .shortDate {
         didSet {
-            dateFormatter.dateFormat = dateFormat
+            dateFormatter.dateFormat = DateFormat.shortDate.rawValue
         }
     }
     var date: Date? {
@@ -66,7 +66,6 @@ class IPDatePickerTextField: IPTextField {
         
         let toolbar = UIToolbar()
         toolbar.isTranslucent = true
-        toolbar.tintColor = UIColor(named: "accentColor")
         toolbar.sizeToFit()
         toolbar.setItems([spaceButton, doneButton], animated: false)
         

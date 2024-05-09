@@ -21,7 +21,6 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
     
     /// Adds all the components to the view
     private func initialize() {
-        selectionStyle = .none
     }
     
     
@@ -30,9 +29,10 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
     /// - Parameter gradable: Gradable to be displayed
     func configure(with assignment: Assignment) {
         if let view = UIHostingController(rootView: AssignmentView(assignment: assignment)).view {
+            view.backgroundColor = .clear
             subviews.last?.removeFromSuperview()
             addSubview(view)
-            view.anchor.edgesToSuperview(insets: UIEdgeInsets(top: 8, left: 16, bottom: -8, right: -16)).activate()
+            view.anchor.edgesToSuperview().activate()
         }
 
     }
@@ -42,11 +42,7 @@ class AssignmentTableViewCell: UITableViewCell, ReusableView {
 
 struct AssignmentView: View {
     var assignment: Assignment
-    private let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d, yyyy - h:mma"
-        return formatter
-    }()
+    private let dateFormatter: DateFormatter = DateFormatter()
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -56,20 +52,19 @@ struct AssignmentView: View {
                         .frame(width: 2)
                         .background(getDividerColor())
                         
-                    Text(dateFormatter.string(from: assignment.deadline))
+                    Text(dateFormatter.string(from: assignment.deadline, format: .dateAndTime))
                         .font(.body)
                         .foregroundColor(getDateTextColor())
                     Spacer()
                 }
             }
-            GradableCharView(gradable: assignment).frame(width: 52, height: 52)
+            GradableChartView(gradable: assignment).frame(width: 60, height: 60)
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
     }
     
     private func getDividerColor() -> Color {
-        return (assignment.deadline >= Date()) ? Color(UIColor.accentColor!) : Color(.systemGray3)
+        return (assignment.deadline >= Date()) ? Color(UIColor.accentColor) : Color(.systemGray3)
     }
     
     private func getDateTextColor() -> Color {

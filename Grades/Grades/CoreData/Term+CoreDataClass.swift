@@ -25,7 +25,7 @@ public class Term: Gradable {
     /// - Parameter minGrade: Minimum grade to pass the Term
     /// - Parameter startDate: Start date of the Term
     /// - Parameter endDate: Final date of the Term
-    static func create(name: String, maxGrade: Float, minGrade: Float, startDate: Date, endDate: Date) throws -> Term {
+    static func create(name: String, maxGrade: Float, minGrade: Float, decimals: Int = 0, startDate: Date, endDate: Date) throws -> Term {
         if maxGrade < minGrade {
             throw TermError.invalidMinGradeOrMaxGrade
         }
@@ -40,6 +40,7 @@ public class Term: Gradable {
         term.grade = 0.0
         term.maxGrade = maxGrade
         term.minGrade = minGrade
+        term.decimals = Int16(decimals)
         term.startDate = startDate
         term.endDate = endDate
         term.dateCreated = Date()

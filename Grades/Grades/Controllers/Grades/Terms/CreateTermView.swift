@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct CreateTermView: View {
+    private let dateFormatter: DateFormatter = DateFormatter()
     @Environment(\.presentationMode) var presentation
     @State var nameText = ""
     @State var maxGradeText = ""
@@ -16,16 +17,11 @@ struct CreateTermView: View {
     @State var deadline = Date() {
         didSet {
             print(deadline)
-            deadlineText = dateFormatter.string(from: deadline)
+            deadlineText = dateFormatter.string(from: deadline, format: .shortDate)
         }
     }
     @State private var showDatePicker = false
     @State var deadlineText = ""
-    private let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d, yyyy"
-        return formatter
-    }()
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {

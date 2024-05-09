@@ -2,7 +2,7 @@
 //  Subject+CoreDataProperties.swift
 //  Grades
 //
-//  Created by Ignacio Paradisi on 9/22/19.
+//  Created by Ignacio Paradisi on 9/27/19.
 //  Copyright © 2019 Ignacio Paradisi. All rights reserved.
 //
 //
@@ -17,8 +17,8 @@ extension Subject {
         return NSFetchRequest<Subject>(entityName: "Subject")
     }
 
-    @NSManaged public var term: Term?
     @NSManaged public var assignments: NSSet?
+    @NSManaged public var term: Term?
 
 }
 

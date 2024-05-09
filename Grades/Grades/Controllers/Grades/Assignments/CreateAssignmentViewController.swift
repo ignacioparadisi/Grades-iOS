@@ -13,34 +13,10 @@ protocol CreateAssignmentViewControllerDelegate: class {
     func didCreateAssignment()
 }
 
-class CreateAssignmentViewController: BaseViewController, ScrollableView {
-    
-    let titleTopConstant: CGFloat = 20.0
-    let descriptionTopConstant: CGFloat = 5.0
-    let fieldTopConstant: CGFloat = 10.0
-    let trailingConstant: CGFloat = -16.0
-    let leadingConstant: CGFloat = 16.0
+class CreateAssignmentViewController: BaseFormViewController {
     
     weak var delegate: CreateAssignmentViewControllerDelegate?
-    var contentView: UIView = UIView()
-    let nameTextField: IPTextField = {
-        let textField = IPTextField()
-        textField.isRequired = true
-        return textField
-    }()
-    let saveButton = IPButton()
-    let minGradeTextField: IPTextField = {
-        let textField = IPTextField()
-        textField.keyboardType = .decimalPad
-        textField.isRequired = true
-        return textField
-    }()
-    let maxGradeTextField: IPTextField = {
-        let textField = IPTextField()
-        textField.keyboardType = .decimalPad
-        textField.isRequired = true
-        return textField
-    }()
+    var subject: Subject = Subject()
     let gradeTextField: IPTextField = {
         let textField = IPTextField()
         textField.keyboardType = .decimalPad
@@ -65,100 +41,41 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
         return view
     }()
     var testHeightAnchor: NSLayoutConstraint?
-    let datePickerTextField: IPDatePickerTextField = {
+    let deadlinePickerTextField: IPDatePickerTextField = {
         let picker = IPDatePickerTextField()
         picker.isRequired = true
         picker.datePickerMode = .dateAndTime
-        picker.dateFormat = "MMM d, yyyy h:mma"
+        picker.dateFormat = .dateAndTime
         picker.placeholder = "On date".localized
         return picker
     }()
-    var subject: Subject = Subject()
     
     override func setupView() {
         super.setupView()
-        isModalInPresentation = true
-        navigationController?.presentationController?.delegate = self
-        addScrollView()
-        setupNameSection()
-        setupGradesSection()
+        setupNameSection(topAnchor: contentView.safeAreaLayoutGuide.topAnchor, description: "Enter a name for the assignment", placeholder: "Enter a name for the assignment")
+        setupDecimalsSection(topAnchor: nameTextField.bottomAnchor)
+        setupGradesSection(topAnchor: decimalsSegmentedControl.bottomAnchor)
         setupChildSwitchSection()
         setupDateSection()
-        setupSaveButton()
+        setupDelegates()
     }
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
         title = "Add Assignment".localized
-        navigationController?.navigationBar.prefersLargeTitles = false
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
-        navigationItem.rightBarButtonItem = cancelButton
     }
     
-    @objc private func dismissView() {
-        dismiss(animated: true)
-    }
-    
-    private func setupLabelConstraints(for label: UILabel, topAnchor: NSLayoutYAxisAnchor, topConstant: CGFloat) {
-        label.anchor
-            .top(to: topAnchor, constant: topConstant)
-            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
-            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
-            .width(constant: view.frame.width - 2 * leadingConstant)
-            .activate()
-    }
-    
-    private func setupNameSection() {
-        let nameTitleLabel = IPTitleLabel()
-        let nameDescriptionLabel = IPLabel()
-        
-        nameTitleLabel.text = "Name".localized
-        nameDescriptionLabel.text = "Enter a name for the assignment".localized
-        nameTextField.placeholder = "Assignment name".localized
+    private func setupDelegates() {
         nameTextField.delegate = self
-        
-        contentView.addSubview(nameTitleLabel)
-        contentView.addSubview(nameDescriptionLabel)
-        contentView.addSubview(nameTextField)
-        
-        setupLabelConstraints(for: nameTitleLabel, topAnchor: contentView.safeAreaLayoutGuide.topAnchor, topConstant: titleTopConstant)
-        setupLabelConstraints(for: nameDescriptionLabel, topAnchor: nameTitleLabel.bottomAnchor, topConstant: descriptionTopConstant)
-        nameTextField.anchor
-            .top(to: nameDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
-            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
-            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
-            .activate()
-    }
-    
-    private func setupGradesSection() {
-        let gradesLabel = IPTitleLabel()
-        let gradesDescriptionLabel = IPLabel()
-        
-        gradesLabel.text = "Grades".localized
-        gradesDescriptionLabel.text = "Enter max and min grade to pass".localized
-        maxGradeTextField.placeholder = "Max. Grade".localized
-        minGradeTextField.placeholder = "Min. Grade".localized
         maxGradeTextField.delegate = self
         minGradeTextField.delegate = self
-        
-        contentView.addSubview(gradesLabel)
-        contentView.addSubview(gradesDescriptionLabel)
-        contentView.addSubview(minGradeTextField)
-        contentView.addSubview(maxGradeTextField)
-        
-        setupLabelConstraints(for: gradesLabel, topAnchor: nameTextField.bottomAnchor, topConstant: titleTopConstant)
-        setupLabelConstraints(for: gradesDescriptionLabel, topAnchor: gradesLabel.bottomAnchor, topConstant: descriptionTopConstant)
-        minGradeTextField.anchor
-            .top(to: gradesDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
-            .trailing(to: contentView.centerXAnchor, constant: trailingConstant / 2)
-            .leadingToSuperview(constant: leadingConstant, toSafeArea: true)
-            .activate()
-        maxGradeTextField.anchor
-            .top(to: gradesDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
-            .trailingToSuperview(constant: trailingConstant, toSafeArea: true)
-            .leading(to: contentView.centerXAnchor, constant: leadingConstant / 2)
-            .activate()
-        
+        gradeTextField.delegate = self
+        percentageTextField.delegate = self
+        deadlinePickerTextField.delegate = self
+    }
+    
+    override func setupGradesSection(topAnchor: NSLayoutYAxisAnchor) {
+        super.setupGradesSection(topAnchor: topAnchor)
         contentView.addSubview(gradeTextField)
         contentView.addSubview(percentageTextField)
         gradeTextField.placeholder = "Grade".localized
@@ -230,35 +147,20 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
         
         dateLabel.text = "Date and time".localized
         dateDescriptionLabel.text = "Enter the date and time of the assignment".localized
-        datePickerTextField.delegate = self
+        deadlinePickerTextField.delegate = self
         
         contentView.addSubview(dateLabel)
         contentView.addSubview(dateDescriptionLabel)
-        contentView.addSubview(datePickerTextField)
+        contentView.addSubview(deadlinePickerTextField)
         
         setupLabelConstraints(for: dateLabel, topAnchor: testView.bottomAnchor, topConstant: titleTopConstant)
         setupLabelConstraints(for: dateDescriptionLabel, topAnchor: dateLabel.bottomAnchor, topConstant: descriptionTopConstant)
-        datePickerTextField.anchor
+        deadlinePickerTextField.anchor
             .top(to: dateDescriptionLabel.bottomAnchor, constant: fieldTopConstant)
-            .trailing(to: contentView.trailingAnchor, constant: trailingConstant)
-            .leading(to: contentView.leadingAnchor, constant: leadingConstant)
+            .trailingToSuperview(constant: trailingConstant)
+            .leadingToSuperview(constant: leadingConstant)
+            .bottomToSuperview(constant: -titleTopConstant, toSafeArea: true)
             .activate()
-    }
-    
-    private func setupSaveButton() {
-        saveButton.setTitle("Save".localized, for: .normal)
-        saveButton.addTarget(self, action: #selector(createAssignment), for: .touchUpInside)
-        saveButton.color = UIColor(named: "accentColor")
-        saveButton.isEnabled = false
-        contentView.addSubview(saveButton)
-        saveButton.anchor
-            .top(greaterOrEqual: datePickerTextField.bottomAnchor, constant: titleTopConstant)
-            .bottom(to: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -20)
-            .trailing(to: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -16)
-            .leading(to: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 16)
-            .activate()
-        let topConstraint = saveButton.topAnchor.constraint(greaterThanOrEqualTo: minGradeTextField.bottomAnchor, constant: 20)
-        topConstraint.isActive = true
     }
     
     @objc private func switchValueChanged(_ childsSwitch: UISwitch) {
@@ -274,7 +176,7 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
             || minGradeTextField.isEmpty
             || maxGradeTextField.isEmpty
             || percentageTextField.isEmpty
-            || datePickerTextField.isEmpty {
+            || deadlinePickerTextField.isEmpty {
             saveButton.isEnabled = false
             return
         }
@@ -284,23 +186,27 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
     @objc private func createAssignment() {
         if let name = nameTextField.text, let minGradeText = minGradeTextField.text,
             let maxGradeText = maxGradeTextField.text,
-            let percentageText = percentageTextField.text,
             let minGrade = Float(minGradeText),
             let maxGrade = Float(maxGradeText),
-            let percentage = Float(percentageText),
-            let deadline = datePickerTextField.date,
+            let deadline = deadlinePickerTextField.date,
             !name.isEmpty {
             
             var grade: Float = 0
-            if let gradeText = gradeTextField.text, let unwrappedGrade = Float(gradeText) {
-                grade = unwrappedGrade
+            var percentage: Float = -1
+            if let gradeText = gradeTextField.text, let gradeFloat = Float(gradeText) {
+                grade = gradeFloat
+            }
+            if let percentageText = percentageTextField.text, let percentageFloat = Float(percentageText) {
+                percentage = percentageFloat
             }
             
             if valuesAreValid(maxGrade: maxGrade, minGrade: minGrade, grade: grade, percentage: percentage) {
-                let assignment = Assignment.create(name: name, grade: grade, maxGrade: maxGrade, minGrade: minGrade, percentage: percentage, deadline: deadline, subject: subject)
+                let decimals = decimalsSegmentedControl.selectedSegmentIndex
+                let assignment = Assignment.create(name: name, grade: grade, maxGrade: maxGrade, minGrade: minGrade, percentage: percentage, decimals: decimals, deadline: deadline, subject: subject)
                 requestNotificationsAuthorization()
                 createNotification(for: assignment, subjectName: subject.name)
                 dismissView()
+                NotificationCenter.default.post(name: .didCreateAssignment, object: nil)
                 delegate?.didCreateAssignment()
             }
         }
@@ -333,10 +239,8 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
     private func scheduleNotification(for assignment: Assignment, subjectName: String, notificationCenter center: UNUserNotificationCenter) {
         if assignment.deadline > Date() {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "EEEE"
-            let day = dateFormatter.string(from: assignment.deadline)
-            dateFormatter.dateFormat = "h:mma"
-            let time = dateFormatter.string(from: assignment.deadline)
+            let day = dateFormatter.string(from: assignment.deadline, format: .weekday)
+            let time = dateFormatter.string(from: assignment.deadline, format: .time)
             
             let content = UNMutableNotificationContent()
             content.title = "\(assignment.name) of \(subjectName)"
@@ -360,36 +264,61 @@ class CreateAssignmentViewController: BaseViewController, ScrollableView {
     }
     
     private func valuesAreValid(maxGrade: Float, minGrade: Float, grade: Float, percentage: Float) -> Bool {
-        if maxGrade <= 0 || minGrade < 0 || grade < 0 {
-            if maxGrade <= 0 {
-                maxGradeTextField.showErrorBorder()
-            }
-            if minGrade <= 0 {
-                minGradeTextField.showErrorBorder()
-            }
-            if grade <= 0 {
-                gradeTextField.showErrorBorder()
-            }
-            return false
+        var valid = true
+        if maxGrade <= 0 {
+            maxGradeTextField.showErrorBorder()
+            valid = false
         }
-        
-        if percentage <= 0 {
+        if minGrade <= 0 {
+            minGradeTextField.showErrorBorder()
+            valid = false
+        }
+        if grade < 0 || grade > maxGrade {
+            gradeTextField.showErrorBorder()
+            valid = false
+        }
+        if percentage < -1 || (percentage > -1 && percentage < 0) || percentage > 100 {
             percentageTextField.showErrorBorder()
-            return false
+            valid = false
         }
-        
-        if percentage > 100 {
-            percentageTextField.showErrorBorder()
-            return false
-        }
-        
         if maxGrade <= minGrade {
             maxGradeTextField.showErrorBorder()
             minGradeTextField.showErrorBorder()
-            return false
+            valid = false
         }
         
-        return true
+        let assignments = subject.getAssignments()
+        if assignments.first?.percentage == -1 {
+            if percentage == -1 {
+                var totalGrade: Float = 0
+                for assignment in assignments {
+                    totalGrade += assignment.maxGrade
+                }
+                if totalGrade > subject.maxGrade {
+                    percentageTextField.showErrorBorder()
+                    valid = false
+                }
+            } else {
+                percentageTextField.showErrorBorder()
+                valid = false
+            }
+        } else {
+            var totalPercentage: Float = 0.0
+            for assignment in assignments {
+                totalPercentage += assignment.percentage
+            }
+            totalPercentage += percentage * 0.01
+            if totalPercentage > 100 {
+                percentageTextField.showErrorBorder()
+                valid = false
+            }
+        }
+        
+        return valid
+    }
+    
+    override func didTapSaveButton() {
+        createAssignment()
     }
     
 }
@@ -417,21 +346,5 @@ extension CreateAssignmentViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         checkRequiredFields()
     }
-}
-
-extension CreateAssignmentViewController: UIAdaptivePresentationControllerDelegate {
-    
-    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
-        let alert = UIAlertController(title: "Dismiss", message: "Dismiss", preferredStyle: .alert)
-        let acceptButton = UIAlertAction(title: "Dismiss", style: .destructive) { _ in
-            self.dismiss(animated: true)
-        }
-        let cancelButton = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
-        alert.addAction(acceptButton)
-        alert.addAction(cancelButton)
-
-        present(alert, animated: true)
-    }
-    
 }
 
