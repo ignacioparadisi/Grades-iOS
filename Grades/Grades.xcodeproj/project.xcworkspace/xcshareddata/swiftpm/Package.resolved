@@ -1,25 +1,24 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "IQKeyboardManagerSwift",
-        "repositoryURL": "https://github.com/hackiftekhar/IQKeyboardManager",
-        "state": {
-          "branch": null,
-          "revision": "be563396713fa3a6bf286c1b98bfb0d85ef0e650",
-          "version": "6.4.2"
-        }
-      },
-      {
-        "package": "JTAppleCalendar",
-        "repositoryURL": "https://github.com/patchthecode/JTAppleCalendar.git",
-        "state": {
-          "branch": null,
-          "revision": "6ffb85de7f6dcd9d20b8a3eab81fdce304c9bb4e",
-          "version": "8.0.2"
-        }
+  "originHash" : "25311308a4e4c80b284c06d294c6da311a5358f8c7b73ebd31133287b00d514b",
+  "pins" : [
+    {
+      "identity" : "iqkeyboardmanager",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hackiftekhar/IQKeyboardManager",
+      "state" : {
+        "revision" : "c00b1ae9fa1ad8af4465bb6ca901f6943fc98eba",
+        "version" : "6.5.16"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "jtapplecalendar",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/patchthecode/JTAppleCalendar.git",
+      "state" : {
+        "revision" : "718f0ab68ba0fcd2bc134f6e9d30edc1b9b038e1",
+        "version" : "8.0.5"
+      }
+    }
+  ],
+  "version" : 3
 }
